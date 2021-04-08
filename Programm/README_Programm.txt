@@ -1,0 +1,1 @@
+Hier ist das Programm, das die Daten von der Datenbank verwaltet und für den Benutzer anschaulich veranschaulicht...^^
