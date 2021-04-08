@@ -28,7 +28,9 @@ namespace Benutzeroberflaeche
         {
             string firstBox = BenutzernameBox.Text;
             string secondBox = PasswortBox.Password;
-            MessageBox.Show(firstBox + " " + secondBox);
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            this.Close();
         }
     }
 }

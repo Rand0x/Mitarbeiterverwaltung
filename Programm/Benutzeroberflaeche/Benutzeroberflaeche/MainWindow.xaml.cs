@@ -24,5 +24,15 @@ namespace Benutzeroberflaeche
         {
             InitializeComponent();
         }
+
+        private void MenuItemUbersicht_Click(object sender, RoutedEventArgs e)
+        {
+            // Zeigt eigene Daten/Übersicht
+        }
+
+        private void MenuItemPasswort_Click(object sender, RoutedEventArgs e)
+        {
+            // Passwort vom eigenem Konto ändern
+        }
     }
 }

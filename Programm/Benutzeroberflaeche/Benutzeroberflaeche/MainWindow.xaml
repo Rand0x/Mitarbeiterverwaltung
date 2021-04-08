@@ -5,8 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Benutzeroberflaeche"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="Mitarbeiterverwaltung" Height="450" Width="800" Icon="/zahnraederbild.png">
 
+    <Grid>
+        <Menu>
+            <MenuItem Name="KontoEinstellungen" Header="Kon_to">
+                <MenuItem Header="Ü_bersicht" Click="MenuItemUbersicht_Click"/>
+                <MenuItem Header="Pass_wort ändern" Click="MenuItemPasswort_Click"/>
+            </MenuItem>
+
+        </Menu>
     </Grid>
 </Window>
