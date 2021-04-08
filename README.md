@@ -1,4 +1,4 @@
 # Mitarbeiterverwaltung
-Software Engineering Projekt SoSe2021
+Team: Borshch Samuel, Engelhardt Christoph, Grüner Petra, Kaiser Tobias und Röhrer Manuel
 
-Ein Programm das mit einer Datenbank arbeitet. Beinhaltet Daten von Arbeitnehmern.
+Datenbanksammlung von verschiedenen Daten der Arbeitnehmern.
