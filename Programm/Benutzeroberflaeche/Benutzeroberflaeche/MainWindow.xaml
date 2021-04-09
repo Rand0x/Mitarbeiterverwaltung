@@ -1,0 +1,19 @@
+﻿<Window x:Class="Benutzeroberflaeche.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Benutzeroberflaeche"
+        mc:Ignorable="d"
+        Title="Mitarbeiterverwaltung" Height="450" Width="800" Icon="/zahnraederbild.png">
+
+    <Grid>
+        <Menu>
+            <MenuItem Name="KontoEinstellungen" Header="Kon_to">
+                <MenuItem Header="Ü_bersicht" Click="MenuItemUbersicht_Click"/>
+                <MenuItem Header="Pass_wort ändern" Click="MenuItemPasswort_Click"/>
+            </MenuItem>
+
+        </Menu>
+    </Grid>
+</Window>
