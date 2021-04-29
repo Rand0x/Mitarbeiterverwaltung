@@ -16,7 +16,7 @@
       <ListBox.ItemTemplate>
         <DataTemplate>
           <StackPanel Orientation="Horizontal">
-            <TextBlock Text="{Binding FirstName}"/>
+            <TextBlock Text="{Binding FirstName, UpdateSourceTrigger=PropertyChanged}"/>
             <TextBlock Text="{Binding LastName}" Margin="5 0 0 0"/>
           </StackPanel>
         </DataTemplate>

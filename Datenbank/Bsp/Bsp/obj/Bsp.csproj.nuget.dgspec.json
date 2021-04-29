@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Tobias\\Desktop\\Bsp\\Bsp\\Bsp.csproj": {}
+    "C:\\Users\\Tobias\\Desktop\\Mitarbeiterverwaltung\\Mitarbeiterverwaltung\\Datenbank\\Bsp\\Bsp\\Bsp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Tobias\\Desktop\\Bsp\\Bsp\\Bsp.csproj": {
+    "C:\\Users\\Tobias\\Desktop\\Mitarbeiterverwaltung\\Mitarbeiterverwaltung\\Datenbank\\Bsp\\Bsp\\Bsp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Tobias\\Desktop\\Bsp\\Bsp\\Bsp.csproj",
+        "projectUniqueName": "C:\\Users\\Tobias\\Desktop\\Mitarbeiterverwaltung\\Mitarbeiterverwaltung\\Datenbank\\Bsp\\Bsp\\Bsp.csproj",
         "projectName": "Bsp",
-        "projectPath": "C:\\Users\\Tobias\\Desktop\\Bsp\\Bsp\\Bsp.csproj",
+        "projectPath": "C:\\Users\\Tobias\\Desktop\\Mitarbeiterverwaltung\\Mitarbeiterverwaltung\\Datenbank\\Bsp\\Bsp\\Bsp.csproj",
         "packagesPath": "C:\\Users\\Tobias\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Tobias\\Desktop\\Bsp\\Bsp\\obj\\",
+        "outputPath": "C:\\Users\\Tobias\\Desktop\\Mitarbeiterverwaltung\\Mitarbeiterverwaltung\\Datenbank\\Bsp\\Bsp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Tobias\\AppData\\Roaming\\NuGet\\NuGet.Config",
