@@ -50,10 +50,11 @@ namespace Bsp
     public MainWindowViewModel()
     {
       PersonList = new ObservableCollection<PersonModel>();
+      PersonList.Add(new PersonModel(12, "kdfjs", "klsdfjl"));
       //Commands für Buttons initialisieren
       CreateCommands();
       //(Beispiel-)Daten aus DB laden
-      LoadPersons();
+      //LoadPersons();
     }
 
     #endregion
