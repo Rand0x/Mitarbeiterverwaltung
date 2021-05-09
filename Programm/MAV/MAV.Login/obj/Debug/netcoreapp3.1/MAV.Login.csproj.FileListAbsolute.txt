@@ -1,0 +1,15 @@
+C:\Users\manue\OneDrive\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Login\bin\Debug\netcoreapp3.1\MAV.Login.exe
+C:\Users\manue\OneDrive\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Login\bin\Debug\netcoreapp3.1\MAV.Login.deps.json
+C:\Users\manue\OneDrive\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Login\bin\Debug\netcoreapp3.1\MAV.Login.runtimeconfig.json
+C:\Users\manue\OneDrive\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Login\bin\Debug\netcoreapp3.1\MAV.Login.runtimeconfig.dev.json
+C:\Users\manue\OneDrive\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Login\bin\Debug\netcoreapp3.1\MAV.Login.dll
+C:\Users\manue\OneDrive\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Login\bin\Debug\netcoreapp3.1\MAV.Login.pdb
+C:\Users\manue\OneDrive\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Login\obj\Debug\netcoreapp3.1\MAV.Login.csprojAssemblyReference.cache
+C:\Users\manue\OneDrive\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Login\obj\Debug\netcoreapp3.1\App.g.cs
+C:\Users\manue\OneDrive\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Login\obj\Debug\netcoreapp3.1\MAV.Login_MarkupCompile.cache
+C:\Users\manue\OneDrive\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Login\obj\Debug\netcoreapp3.1\MAV.Login.AssemblyInfoInputs.cache
+C:\Users\manue\OneDrive\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Login\obj\Debug\netcoreapp3.1\MAV.Login.AssemblyInfo.cs
+C:\Users\manue\OneDrive\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Login\obj\Debug\netcoreapp3.1\MAV.Login.csproj.CoreCompileInputs.cache
+C:\Users\manue\OneDrive\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Login\obj\Debug\netcoreapp3.1\MAV.Login.dll
+C:\Users\manue\OneDrive\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Login\obj\Debug\netcoreapp3.1\MAV.Login.pdb
+C:\Users\manue\OneDrive\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Login\obj\Debug\netcoreapp3.1\MAV.Login.genruntimeconfig.cache

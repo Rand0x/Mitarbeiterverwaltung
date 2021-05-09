@@ -1,0 +1,36 @@
+﻿<Application x:Class="MAV.Client.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:MAV.Client"
+             xmlns:viewModel ="clr-namespace:MAV.Client.MVVM.ViewModel"
+             xmlns:view = "clr-namespace:MAV.Client.MVVM.View"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Theme/NavigationButtonTheme.xaml"/>
+                <ResourceDictionary Source="Theme/WindowSizeButtonsTheme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <DataTemplate DataType="{x:Type viewModel:AdministrationViewModel}">
+                <view:AdministrationView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:DirectoryViewModel}">
+                <view:DirectoryView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:HolidayViewModel}">
+                <view:HolidayView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
+                <view:HomeView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:SettingsViewModel}">
+                <view:SettingsView/>
+            </DataTemplate>
+            
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
