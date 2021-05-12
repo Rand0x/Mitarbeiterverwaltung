@@ -1,0 +1,13 @@
+C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Helper\obj\Debug\net5.0\MAV.Helper.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Helper\obj\Debug\net5.0\MAV.Helper.AssemblyInfoInputs.cache
+C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Helper\obj\Debug\net5.0\MAV.Helper.AssemblyInfo.cs
+C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Helper\obj\Debug\net5.0\MAV.Helper.csproj.CoreCompileInputs.cache
+C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Helper\bin\Debug\net5.0\MAV.Helper.deps.json
+C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Helper\bin\Debug\net5.0\MAV.Helper.dll
+C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Helper\bin\Debug\net5.0\ref\MAV.Helper.dll
+C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Helper\bin\Debug\net5.0\MAV.Helper.pdb
+C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Helper\bin\Debug\net5.0\PresentationCore.dll
+C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Helper\obj\Debug\net5.0\MAV.Helper.csproj.CopyComplete
+C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Helper\obj\Debug\net5.0\MAV.Helper.dll
+C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Helper\obj\Debug\net5.0\ref\MAV.Helper.dll
+C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Helper\obj\Debug\net5.0\MAV.Helper.pdb

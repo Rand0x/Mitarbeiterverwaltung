@@ -1,0 +1,4 @@
+C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Helper\obj\Debug\netcoreapp3.1\MAV.Helper.csprojAssemblyReference.cache
+C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Helper\obj\Debug\netcoreapp3.1\MAV.Helper.AssemblyInfoInputs.cache
+C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Helper\obj\Debug\netcoreapp3.1\MAV.Helper.AssemblyInfo.cs
+C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Helper\obj\Debug\netcoreapp3.1\MAV.Helper.csproj.CoreCompileInputs.cache
