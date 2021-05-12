@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MAV.Base", "MAV.Base\MAV.Ba
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MAV.Helper", "MAV.Helper\MAV.Helper.csproj", "{4EECD3BF-AC88-4390-B9D1-D18A2D8D3AAE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MAV.Client", "MAV.Client\MAV.Client.csproj", "{4663C845-6334-4594-BCA9-B891DD44E785}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MAV.Client", "MAV.Client\MAV.Client.csproj", "{4663C845-6334-4594-BCA9-B891DD44E785}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
