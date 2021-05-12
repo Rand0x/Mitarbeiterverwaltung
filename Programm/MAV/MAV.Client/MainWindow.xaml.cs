@@ -38,14 +38,14 @@ namespace MAV.Client
                 zwischenspeichern = this.WindowState;
                 this.WindowState = WindowState.Maximized;
                 windowButtonResize.Content = null;
-                windowButtonResize.Content = "\uE1D8;";
+                windowButtonResize.Content = "\uE1D8";
                 windowButtonResize.ToolTip = "Verkleinern";
             }
             else
             {
                 this.WindowState = zwischenspeichern;
                 windowButtonResize.Content = null;
-                windowButtonResize.Content = "\uE740;";
+                windowButtonResize.Content = "\uE740";
                 windowButtonResize.ToolTip = "Vergrößern";
 
             }
