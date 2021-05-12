@@ -11,6 +11,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="ModernWpfUI" Version="0.9.4" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\MAV.Base\MAV.Base.csproj" />
   </ItemGroup>
 

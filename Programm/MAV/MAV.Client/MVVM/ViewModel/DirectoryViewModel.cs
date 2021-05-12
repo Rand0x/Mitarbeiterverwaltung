@@ -6,5 +6,6 @@ namespace MAV.Client.MVVM.ViewModel
 {
     class DirectoryViewModel
     {
-    }
+		
+	}	
 }

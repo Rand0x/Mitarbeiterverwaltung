@@ -4,50 +4,61 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MAV.Client.MVVM.View"
+             xmlns:ui="http://schemas.modernwpf.com/2019"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+   
     <StackPanel>
         <TextBlock Text="Adressbuch"
                    Foreground="Black"
                    FontSize="30"
                    />
-        <ListBox Margin="10" Width="250" HorizontalAlignment="Left">
-            <ListBoxItem>
-                <TextBlock Text="1. Mitarbeiter"/>
-            </ListBoxItem>
-            <ListBoxItem>
-                <TextBlock Text="2. Mitarbeiter"/>
-            </ListBoxItem>
-            <ListBoxItem>
-                <TextBlock Text="3. Mitarbeiter"/>
-            </ListBoxItem>
-            <ListBoxItem>
-                <TextBlock Text="4. Mitarbeiter"/>
-            </ListBoxItem>
-            <ListBoxItem>
-                <TextBlock Text="5. Mitarbeiter"/>
-            </ListBoxItem>
-            <ListBoxItem>
-                <TextBlock Text="6. Mitarbeiter"/>
-            </ListBoxItem>
-        </ListBox>
 
-        <RadioButton>
-            <RadioButton.Content>
-                <TextBlock Text="Hallo"/>
-            </RadioButton.Content>
+        <DockPanel LastChildFill="False">
+            <ui:AutoSuggestBox
+                x:Name="controlsSearchBox"
+                DockPanel.Dock="Right"
+                Margin="12"
+                Width="150"
+                PlaceholderText="Suchen"
+                QueryIcon="Find"
+                TextChanged="controlsSearchBox_TextChanged"
+                />
+        </DockPanel>
 
-        </RadioButton>
-        <RadioButton>
-            <RadioButton.Content>
-                <TextBlock Text="Hallo"/>
-            </RadioButton.Content>
-        </RadioButton>
-        <RadioButton>
-            <RadioButton.Content>
-                <TextBlock Text="Hallo"/>
-            </RadioButton.Content>
 
-        </RadioButton>
+
+        <ListView Margin="10" Name="lvUsers" Height="450" MouseDoubleClick="ListView_MouseDoubleClick">
+            <ListView.View >
+                <GridView>
+                    <GridViewColumn Width="120"  DisplayMemberBinding="{Binding FirstName}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="Vorname" Click="sortFirstName">Vorname</GridViewColumnHeader>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn  Width="120" DisplayMemberBinding="{Binding LastName}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="Nachname" Click="sortLastName">Nachname</GridViewColumnHeader>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn Width="170" DisplayMemberBinding="{Binding PersNr}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="Personalnummer" Click="sortPersNr" >Personalnummer</GridViewColumnHeader>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn Width="150" DisplayMemberBinding="{Binding Department}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="Abteilung" Click="sortDepartment" >Abteilung</GridViewColumnHeader>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <DockPanel LastChildFill="False">
+            <Button Content="Zum Kontakt" IsEnabled="True" 
+                    DockPanel.Dock="Right" Margin="12" Width="150">
+            </Button>
+        </DockPanel>
     </StackPanel>
 </UserControl>

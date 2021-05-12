@@ -25,7 +25,7 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <DockPanel Background ="#44484C" Grid.ColumnSpan="2" LastChildFill="False" MouseDown="DockPanel_MouseDown">
+             <DockPanel Background ="#44484C" Grid.ColumnSpan="2" LastChildFill="False" MouseDown="DockPanel_MouseDown">
                 <TextBlock Text="SE - Mitarbeiterverwaltung" Foreground="DarkOrange" FontSize="30"
                        VerticalAlignment="Center" Padding="20" FontFamily="Fonts/#Nunito Sans SemiBold" />
 
@@ -99,7 +99,7 @@
                 </RadioButton>
 
                 <RadioButton DockPanel.Dock="Bottom" Style="{StaticResource NavigationButtonTheme}"
-                             Command="{Binding HolidayViewCommand}">
+                             Command="{Binding EmployeeInfoViewCommand}">
                     <RadioButton.Content>
                         <Grid>
                             <Grid.ColumnDefinitions>

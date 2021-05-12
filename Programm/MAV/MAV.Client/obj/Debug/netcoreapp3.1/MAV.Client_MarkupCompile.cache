@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1;
 C:\Users\manue\OneDrive\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Client\App.xaml
-81436024016
+9-942337842
 
-15-1028321815
-1931695196483
-MainWindow.xaml;MVVM\View\AdministrationView.xaml;MVVM\View\DirectoryView.xaml;MVVM\View\HolidayView.xaml;MVVM\View\HomeView.xaml;MVVM\View\SettingsView.xaml;Theme\NavigationButtonTheme.xaml;Theme\WindowSizeButtonsTheme.xaml;
+17-191426784
+2821990383111
+MainWindow.xaml;MVVM\View\AdministrationView.xaml;MVVM\View\DirectoryView.xaml;MVVM\View\EmployeeInfoView.xaml;MVVM\View\HolidayView.xaml;MVVM\View\HomeView.xaml;MVVM\View\SettingsView.xaml;Theme\NavigationButtonTheme.xaml;Theme\WindowSizeButtonsTheme.xaml;
 
 False
 

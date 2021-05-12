@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="MAV.Client.MVVM.View.EmployeeInfoView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MAV.Client.MVVM.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <StackPanel>
+        <TextBlock Text="Scott Becker" FontSize="45" FontWeight="Bold" Margin="20"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <StackPanel>
+                <TextBlock Text="Kontakt" Margin ="0,0,0,10" FontSize="20" FontWeight="Bold"/>
+                <TextBlock Text="Mobiltelefon" Foreground="#5B5B5B" FontSize="16"/>
+                <TextBlock Text="0175 6565234" Margin ="0,0,0,10" FontSize="16"/>
+                <TextBlock Text="Telefon" Foreground="#5B5B5B" FontSize="16"/>
+                <TextBlock Text="09131 981871" Margin ="0,0,0,10" FontSize="16"/>
+                <TextBlock Text="E-Mail" Foreground="#5B5B5B" FontSize="16"/>
+                <TextBlock Text="scott.becker@mav.com" Margin ="0,0,0,10" FontSize="16"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1">
+                <TextBlock Text="Persönliche Informationen" Margin ="0,0,0,10" FontSize="20" FontWeight="Bold"/>
+                <TextBlock Text="Personalnummer" Foreground="#5B5B5B" FontSize="16"/>
+                <TextBlock Text="10277" Margin ="0,0,0,10" FontSize="16"/>
+                <TextBlock Text="Geburtstag" Foreground="#5B5B5B" FontSize="16"/>
+                <TextBlock Text="04.06.1979" Margin ="0,0,0,10" FontSize="16"/>
+                <TextBlock Text="Familienstand" Foreground="#5B5B5B" FontSize="16"/>
+                <TextBlock Text="single" Margin ="0,0,0,10" FontSize="16"/>
+                <TextBlock Text="Geschlecht" Foreground="#5B5B5B" FontSize="16"/>
+                <TextBlock Text="männlich" Margin ="0,0,0,10" FontSize="16"/>
+            </StackPanel>
+        </Grid>
+        <TextBlock Text="Geschäftsbeziehungen" Margin ="0,0,0,10" FontSize="20" FontWeight="Bold"/>
+        <TextBlock Text="Abteilung" Foreground="#5B5B5B" FontSize="16"/>
+        <TextBlock Text="Production" Margin ="0,0,0,10" FontSize="16"/>
+        <TextBlock Text="Tätigkeit" Foreground="#5B5B5B" FontSize="16"/>
+        <TextBlock Text="Production Technician I" Margin ="0,0,0,10" FontSize="16"/>
+        <TextBlock Text="Mitarbeiter seit" Foreground="#5B5B5B" FontSize="16"/>
+        <TextBlock Text="07.08.2013" Margin ="0,0,0,10" FontSize="16"/>
+        <TextBlock Text="Vorgesetzter" Foreground="#5B5B5B" FontSize="16"/>
+        <TextBlock Text="Webster Butler" Margin ="0,0,0,10" FontSize="16"/>
+    </StackPanel>
+</UserControl>
