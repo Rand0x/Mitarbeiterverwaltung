@@ -12,7 +12,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Theme/NavigationButtonTheme.xaml"/>
                 <ResourceDictionary Source="Theme/WindowSizeButtonsTheme.xaml"/>
-                <ui:ThemeResources AccentColor ="DarkOrange" />
+                <ui:ThemeResources RequestedTheme="Light" AccentColor ="DarkOrange" />
                 <ui:XamlControlsResources />
             </ResourceDictionary.MergedDictionaries>
 
