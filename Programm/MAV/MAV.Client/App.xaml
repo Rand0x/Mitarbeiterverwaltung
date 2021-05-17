@@ -2,15 +2,20 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:MAV.Client"
+             xmlns:ui="http://schemas.modernwpf.com/2019"
              xmlns:viewModel ="clr-namespace:MAV.Client.MVVM.ViewModel"
              xmlns:view = "clr-namespace:MAV.Client.MVVM.View"
              StartupUri="MainWindow.xaml">
+
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Theme/NavigationButtonTheme.xaml"/>
                 <ResourceDictionary Source="Theme/WindowSizeButtonsTheme.xaml"/>
+                <ui:ThemeResources AccentColor ="DarkOrange" />
+                <ui:XamlControlsResources />
             </ResourceDictionary.MergedDictionaries>
+
             <DataTemplate DataType="{x:Type viewModel:AdministrationViewModel}">
                 <view:AdministrationView/>
             </DataTemplate>
@@ -30,7 +35,11 @@
             <DataTemplate DataType="{x:Type viewModel:SettingsViewModel}">
                 <view:SettingsView/>
             </DataTemplate>
-            
+
+            <DataTemplate DataType="{x:Type viewModel:EmployeeInfoViewModel}">
+                <view:EmployeeInfoView/>
+            </DataTemplate>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

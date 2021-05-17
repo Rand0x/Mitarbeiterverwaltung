@@ -99,7 +99,7 @@
                 </RadioButton>
 
                 <RadioButton DockPanel.Dock="Bottom" Style="{StaticResource NavigationButtonTheme}"
-                             Command="{Binding HolidayViewCommand}">
+                             Command="{Binding EmployeeInfoViewCommand}">
                     <RadioButton.Content>
                         <Grid>
                             <Grid.ColumnDefinitions>
