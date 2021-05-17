@@ -13,6 +13,9 @@
     <Compile Update="MVVM\View\DirectoryView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="MVVM\View\EmployeeInfoView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="MVVM\View\HolidayView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -31,6 +34,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MVVM\View\DirectoryView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MVVM\View\EmployeeInfoView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MVVM\View\HolidayView.xaml">

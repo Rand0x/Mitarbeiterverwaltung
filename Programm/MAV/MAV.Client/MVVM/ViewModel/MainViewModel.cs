@@ -13,12 +13,14 @@ namespace MAV.Client.MVVM.ViewModel
         public RelayCommand HolidayViewCommand { get; set; }
         public RelayCommand HomeViewCommand { get; set; }
         public RelayCommand SettingsViewCommand { get; set; }
+        public RelayCommand EmployeeInfoViewCommand { get; set; }
 
         public AdministrationViewModel AdministrationVM { get; set; }
         public DirectoryViewModel DirectoryVM { get; set; }
         public HolidayViewModel HolidayVM { get; set; }
         public HomeViewModel HomeVM { get; set; }
         public SettingsViewModel SettingsVM { get; set; }
+        public EmployeeInfoViewModel EmployeeInfoVM { get; set; }
 
         private object _currentView;
 
@@ -40,6 +42,7 @@ namespace MAV.Client.MVVM.ViewModel
             HolidayVM = new HolidayViewModel();
             HomeVM = new HomeViewModel();
             SettingsVM = new SettingsViewModel();
+            EmployeeInfoVM = new EmployeeInfoViewModel();
 
             CurrentView = HomeVM;
 
@@ -66,6 +69,11 @@ namespace MAV.Client.MVVM.ViewModel
             SettingsViewCommand = new RelayCommand(o =>
             {
                 CurrentView = SettingsVM;
+            });
+
+            EmployeeInfoViewCommand = new RelayCommand(o =>
+            {
+                CurrentView = EmployeeInfoVM;
             });
         }
     }

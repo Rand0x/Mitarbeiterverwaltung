@@ -10,11 +10,9 @@
         <TextBlock Text="Urlaubsplaner"
                    Foreground="Black"
                    FontSize="30"
-                   />
-
-        <Calendar Name="cldSample" SelectionMode="MultipleRange" />
-        <Label Width="100">Ausgewähltes Datum:</Label>
-        <ListBox ItemsSource="{Binding ElementName=cldSample, Path=SelectedDates}" Width="100" />
-
+                   Margin="0,0,0,20"/>
+        <Calendar Name="cldSample" SelectionMode="MultipleRange" Width="400" HorizontalAlignment="Center" Margin="0,0,0,20" Language="de-DE"/>
+        <Label Content="Ausgewähltes Datum:" HorizontalAlignment="Center"/>
+        <TextBlock Text="{Binding ElementName=cldSample, Path=SelectedDate, StringFormat=D, ConverterCulture=de-DE}" VerticalAlignment="Center" Width="150"/>
     </StackPanel>
 </UserControl>
