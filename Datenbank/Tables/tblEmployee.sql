@@ -10,7 +10,6 @@ create table tblEmployee
   szFirstName           nvarchar(200)       not null,
   szLastName            nvarchar(200)       not null,
   dtBirthdate           datetime            not null,
-  szSex                 nvarchar(1)         null,
   szMail                nvarchar(200)       not null,
   szTelephone           nvarchar(50)        not null,
   nDepartementLink      int                 not null,

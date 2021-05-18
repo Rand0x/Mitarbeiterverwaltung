@@ -53,7 +53,7 @@ namespace MAV.Login {
         /// InitializeComponent
         /// </summary>
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [System.CodeDom.Compiler.GeneratedCodeAttribute("PresentationBuildTasks", "5.0.5.0")]
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("PresentationBuildTasks", "5.0.6.0")]
         public void InitializeComponent() {
             if (_contentLoaded) {
                 return;
@@ -65,7 +65,7 @@ namespace MAV.Login {
             
             #line default
             #line hidden
-            System.Uri resourceLocater = new System.Uri("/MAV.Login;component/app.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/MAV.Login;V1.0.0.0;component/app.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\App.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
@@ -79,7 +79,7 @@ namespace MAV.Login {
         /// </summary>
         [System.STAThreadAttribute()]
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [System.CodeDom.Compiler.GeneratedCodeAttribute("PresentationBuildTasks", "5.0.5.0")]
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("PresentationBuildTasks", "5.0.6.0")]
         public static void Main() {
             MAV.Login.App app = new MAV.Login.App();
             app.InitializeComponent();
