@@ -69,12 +69,12 @@ namespace MAV.Login
                 var user = new UserModel(
                   result.Rows[0]["nEmployeeLink"] is DBNull ? null : (int?)result.Rows[0]["nEmployeeLink"], //nKey des Users
                   (int)result.Rows[0]["nRightLink"], //nKey des Rechts
-                  result.Rows[0]["szName"].ToString() //Name des Rechts
+                  result.Rows[0]["szRightName"].ToString() //Name des Rechts
                 );
 
                 //Client starten und Login schließen
-                m_Control.Close();
                 var client = new ClientView(user);
+                m_Control.Close();
                 client.ShowDialog();
             }
             else //Anmaeldung nicht erfolgreich

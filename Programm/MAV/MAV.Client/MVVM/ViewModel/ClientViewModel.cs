@@ -1,6 +1,7 @@
 ﻿using MAV.Base;
 using MAV.Client.Core;
 using MAV.Client.MVVM.Model;
+using MAV.Client.MVVM.View;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,12 +17,13 @@ namespace MAV.Client.MVVM.ViewModel
         public RelayCommand SettingsViewCommand { get; set; }
         public RelayCommand EmployeeInfoViewCommand { get; set; }
 
-        public AdministrationViewModel AdministrationVM { get; set; }
-        public DirectoryViewModel DirectoryVM { get; set; }
-        public HolidayViewModel HolidayVM { get; set; }
-        public HomeViewModel HomeVM { get; set; }
-        public SettingsViewModel SettingsVM { get; set; }
-        public EmployeeInfoViewModel EmployeeInfoVM { get; set; }
+
+        public AdministrationView Administration { get; set; }
+        public DirectoryView Directory { get; set; }
+        public HolidayView Holiday { get; set; }
+        public HomeView Home { get; set; }
+        public SettingsView Settings { get; set; }
+        public EmployeeInfoView EmployeeInfo { get; set; }
 
         private object _currentView;
 
@@ -48,48 +50,47 @@ namespace MAV.Client.MVVM.ViewModel
             }
         }
 
-
         public ClientViewModel(UserModel user)
         {
             User = user;
-            
-            AdministrationVM = new AdministrationViewModel();
-            DirectoryVM = new DirectoryViewModel();
-            HolidayVM = new HolidayViewModel();
-            HomeVM = new HomeViewModel();
-            SettingsVM = new SettingsViewModel();
-            EmployeeInfoVM = new EmployeeInfoViewModel();
 
-            CurrentView = HomeVM;
+            Administration = new AdministrationView();
+            Directory = new DirectoryView();
+            Holiday = new HolidayView();
+            Home = new HomeView();
+            Settings = new SettingsView();
+            EmployeeInfo = new EmployeeInfoView();
+
+            CurrentView = Home;
 
             AdministrationViewCommand = new RelayCommand(o =>
             {
-                CurrentView = AdministrationVM;
+                CurrentView = Administration;
             });
 
             DirectoryViewCommand = new RelayCommand(o =>
             {
-                CurrentView = DirectoryVM;
+                CurrentView = Directory;
             });
 
             HolidayViewCommand = new RelayCommand(o =>
             {
-                CurrentView = HolidayVM;
+                CurrentView = Holiday;
             });
 
             HomeViewCommand = new RelayCommand(o =>
             {
-                CurrentView = HomeVM;
+                CurrentView = Home;
             });
 
             SettingsViewCommand = new RelayCommand(o =>
             {
-                CurrentView = SettingsVM;
+                CurrentView = Settings;
             });
 
             EmployeeInfoViewCommand = new RelayCommand(o =>
             {
-                CurrentView = EmployeeInfoVM;
+                CurrentView = EmployeeInfo;
             });
         }
     }
