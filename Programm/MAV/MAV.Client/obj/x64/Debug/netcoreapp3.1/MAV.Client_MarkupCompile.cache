@@ -1,0 +1,20 @@
+﻿MAV.Client
+
+
+winexe
+C#
+.cs
+C:\Users\Chris\Documents\_Studium OHM\2. Semester\Software Engineering\_Projekt\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Client\obj\x64\Debug\netcoreapp3.1\
+MAV.Client
+none
+false
+TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1;
+C:\Users\Chris\Documents\_Studium OHM\2. Semester\Software Engineering\_Projekt\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Client\App.xaml
+9-942337842
+
+17-191426784
+2821803406928
+MainWindow.xaml;MVVM\View\AdministrationView.xaml;MVVM\View\DirectoryView.xaml;MVVM\View\EmployeeInfoView.xaml;MVVM\View\HolidayView.xaml;MVVM\View\HomeView.xaml;MVVM\View\SettingsView.xaml;Theme\NavigationButtonTheme.xaml;Theme\WindowSizeButtonsTheme.xaml;
+
+False
+

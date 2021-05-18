@@ -4,7 +4,12 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
+    <Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="LogoOhneText.png" />
+  </ItemGroup>
 
   <ItemGroup>
     <Folder Include="MVVM\Model\" />
@@ -16,6 +21,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MAV.Base\MAV.Base.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="LogoOhneText.png" />
   </ItemGroup>
 
 </Project>
