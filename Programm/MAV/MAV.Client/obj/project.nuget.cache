@@ -1,14 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "Z0sHvEBgUrYOJhc908oby2/BSHcRq+DZcT3+t4CqStcfEzyOFGI4w2MI9XiWJ/JFWNUgezGwjP6N/cDXd3yiDw==",
+  "dgSpecHash": "AZ5R9TuSTvFJkrsKoTzdF3OD15fYcqc9VrljXPpwpwVUxnIwgv+chxXD6QGRuPCVDsBavZkdu2dUxW6jLYWTsQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Chris\\Documents\\_Studium OHM\\2. Semester\\Software Engineering\\_Projekt\\Mitarbeiterverwaltung\\Mitarbeiterverwaltung\\Programm\\MAV\\MAV.Client\\MAV.Client.csproj",
+  "projectFilePath": "C:\\Users\\Tobias\\Desktop\\Mitarbeiterverwaltung\\Mitarbeiterverwaltung\\Programm\\MAV\\MAV.Client\\MAV.Client.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Chris\\.nuget\\packages\\microsoft.netcore.platforms\\3.0.0\\microsoft.netcore.platforms.3.0.0.nupkg.sha512",
-    "C:\\Users\\Chris\\.nuget\\packages\\microsoft.windows.sdk.contracts\\10.0.18362.2005\\microsoft.windows.sdk.contracts.10.0.18362.2005.nupkg.sha512",
-    "C:\\Users\\Chris\\.nuget\\packages\\modernwpfui\\0.9.4\\modernwpfui.0.9.4.nupkg.sha512",
-    "C:\\Users\\Chris\\.nuget\\packages\\system.runtime.windowsruntime\\4.6.0\\system.runtime.windowsruntime.4.6.0.nupkg.sha512",
-    "C:\\Users\\Chris\\.nuget\\packages\\system.runtime.windowsruntime.ui.xaml\\4.6.0\\system.runtime.windowsruntime.ui.xaml.4.6.0.nupkg.sha512"
+    "C:\\Users\\Tobias\\.nuget\\packages\\microsoft.netcore.platforms\\3.0.0\\microsoft.netcore.platforms.3.0.0.nupkg.sha512",
+    "C:\\Users\\Tobias\\.nuget\\packages\\microsoft.windows.sdk.contracts\\10.0.18362.2005\\microsoft.windows.sdk.contracts.10.0.18362.2005.nupkg.sha512",
+    "C:\\Users\\Tobias\\.nuget\\packages\\modernwpfui\\0.9.4\\modernwpfui.0.9.4.nupkg.sha512",
+    "C:\\Users\\Tobias\\.nuget\\packages\\system.runtime.windowsruntime\\4.6.0\\system.runtime.windowsruntime.4.6.0.nupkg.sha512",
+    "C:\\Users\\Tobias\\.nuget\\packages\\system.runtime.windowsruntime.ui.xaml\\4.6.0\\system.runtime.windowsruntime.ui.xaml.4.6.0.nupkg.sha512"
   ],
   "logs": []
 }
