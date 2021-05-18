@@ -7,7 +7,7 @@
         xmlns:viewModel ="clr-namespace:MAV.Client.MVVM.ViewModel"
         mc:Ignorable="d"
         Title="MainWindow" Height="700" Width="1200"
-        WindowStyle="None" AllowsTransparency="True" Background="Transparent">
+        WindowStyle="None" AllowsTransparency="True" Background="Transparent" Icon="/LogoOhneText.png">
 
     <Window.DataContext>
         <viewModel:MainViewModel/>
