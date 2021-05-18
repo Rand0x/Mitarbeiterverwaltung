@@ -54,7 +54,7 @@
       </DockPanel>
 
       <Button x:Name="LoginButton" Grid.Row="5" Grid.RowSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center"
-              Width="170" Margin="0,0,0,20">
+              Width="170" Margin="0,0,0,20" Command="{Binding LogInCommand}">
         <DockPanel>
           <TextBlock FontFamily="Segoe MDL2 Assets" Text="" Margin="0,3,5,0"/>
           <TextBlock Text="Einloggen"/>
@@ -62,7 +62,7 @@
       </Button>
 
       <Button x:Name="PasswordButton" Grid.Row="5" Grid.RowSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center"
-              Width="170" Margin="0,60,0,0">
+              Width="170" Margin="0,60,0,0" Command="{Binding ChangePwdCommand}">
         <DockPanel>
           <TextBlock FontFamily="Segoe MDL2 Assets" Text="" Margin="0,3,7,0"/>
           <TextBlock Text="Passwort vergessen"/>

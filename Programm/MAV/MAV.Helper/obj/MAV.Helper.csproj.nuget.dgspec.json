@@ -1,27 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Chris\\Documents\\_Studium OHM\\2. Semester\\Software Engineering\\_Projekt\\Mitarbeiterverwaltung\\Mitarbeiterverwaltung\\Programm\\MAV\\MAV.Helper\\MAV.Helper.csproj": {}
+    "C:\\Users\\Tobias\\Desktop\\Mitarbeiterverwaltung\\Mitarbeiterverwaltung\\Programm\\MAV\\MAV.Helper\\MAV.Helper.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Chris\\Documents\\_Studium OHM\\2. Semester\\Software Engineering\\_Projekt\\Mitarbeiterverwaltung\\Mitarbeiterverwaltung\\Programm\\MAV\\MAV.Helper\\MAV.Helper.csproj": {
+    "C:\\Users\\Tobias\\Desktop\\Mitarbeiterverwaltung\\Mitarbeiterverwaltung\\Programm\\MAV\\MAV.Helper\\MAV.Helper.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Chris\\Documents\\_Studium OHM\\2. Semester\\Software Engineering\\_Projekt\\Mitarbeiterverwaltung\\Mitarbeiterverwaltung\\Programm\\MAV\\MAV.Helper\\MAV.Helper.csproj",
+        "projectUniqueName": "C:\\Users\\Tobias\\Desktop\\Mitarbeiterverwaltung\\Mitarbeiterverwaltung\\Programm\\MAV\\MAV.Helper\\MAV.Helper.csproj",
         "projectName": "MAV.Helper",
-        "projectPath": "C:\\Users\\Chris\\Documents\\_Studium OHM\\2. Semester\\Software Engineering\\_Projekt\\Mitarbeiterverwaltung\\Mitarbeiterverwaltung\\Programm\\MAV\\MAV.Helper\\MAV.Helper.csproj",
-        "packagesPath": "C:\\Users\\Chris\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Chris\\Documents\\_Studium OHM\\2. Semester\\Software Engineering\\_Projekt\\Mitarbeiterverwaltung\\Mitarbeiterverwaltung\\Programm\\MAV\\MAV.Helper\\obj\\",
+        "projectPath": "C:\\Users\\Tobias\\Desktop\\Mitarbeiterverwaltung\\Mitarbeiterverwaltung\\Programm\\MAV\\MAV.Helper\\MAV.Helper.csproj",
+        "packagesPath": "C:\\Users\\Tobias\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Tobias\\Desktop\\Mitarbeiterverwaltung\\Mitarbeiterverwaltung\\Programm\\MAV\\MAV.Helper\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Chris\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Tobias\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -60,7 +58,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }

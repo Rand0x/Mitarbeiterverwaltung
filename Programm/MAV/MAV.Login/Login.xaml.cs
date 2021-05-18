@@ -19,7 +19,7 @@ namespace MAV.Login
     {
         public Login()
         {
-
+            this.DataContext = new LoginViewModel(this);
             InitializeComponent();
         }
 
