@@ -53,7 +53,7 @@ namespace MAV.Client.MVVM.View {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/MAV.Client;V1.0.0.0;component/mvvm/view/administrationview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/MAV.Client;component/mvvm/view/administrationview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\MVVM\View\AdministrationView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
