@@ -5,60 +5,61 @@ using System.Text;
 
 namespace MAV.Base
 {
-  public class UserModel : PropertyChangedBase
-  {
-
-    #region Properties
-
-    private int? m_EmployeeKey;
-    public int? EmployeeKey
+    public class UserModel : PropertyChangedBase
     {
-      get { return m_EmployeeKey; }
-      set {
-        if (value != m_EmployeeKey)
+
+        #region Properties
+
+        private int? m_EmployeeKey;
+        public int? EmployeeKey
         {
-          m_EmployeeKey = value;
-          OnPropertyChanged();
+            get { return m_EmployeeKey; }
+            private set
+            {
+                if (value != m_EmployeeKey)
+                {
+                    m_EmployeeKey = value;
+                    OnPropertyChanged();
+                }
+            }
         }
-      }
-    }
 
-    private int m_Right;
-    public int Right
-    {
-      get { return m_Right; }
-      set
-      {
-        if (value != m_Right)
+        private int m_Right;
+        public int Right
         {
-          m_Right = value;
-          OnPropertyChanged();
+            get { return m_Right; }
+            private set
+            {
+                if (value != m_Right)
+                {
+                    m_Right = value;
+                    OnPropertyChanged();
+                }
+            }
         }
-      }
-    }
 
-    private string m_RightName;
-    public string RightName
-    {
-      get { return m_RightName; }
-      set
-      {
-        if (value != m_RightName)
+        private string m_RightName;
+        public string RightName
         {
-          m_RightName = value;
-          OnPropertyChanged();
+            get { return m_RightName; }
+            private set
+            {
+                if (value != m_RightName)
+                {
+                    m_RightName = value;
+                    OnPropertyChanged();
+                }
+            }
         }
-      }
+
+        #endregion
+
+        public UserModel(int? employee, int right, string rightname)
+        {
+            EmployeeKey = employee;
+            Right = right;
+            RightName = rightname;
+        }
+
     }
-
-    #endregion
-
-    public UserModel(int? employee, int right, string rightname)
-    {
-      EmployeeKey = employee;
-      Right = right;
-      RightName = rightname;
-    }
-
-  }
 }

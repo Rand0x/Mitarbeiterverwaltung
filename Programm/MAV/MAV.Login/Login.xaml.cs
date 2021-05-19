@@ -21,11 +21,12 @@ namespace MAV.Login
         {
             this.DataContext = new LoginViewModel(this);
             InitializeComponent();
+            UsernameBox.Focus();
         }
 
         private void OnWindowClose(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Application.Current.Shutdown();
         }
 
         private void OnWindowMinimize(object sender, RoutedEventArgs e)

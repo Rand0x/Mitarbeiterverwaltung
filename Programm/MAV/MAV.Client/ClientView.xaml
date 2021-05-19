@@ -99,7 +99,8 @@
                 </RadioButton>
 
                 <RadioButton DockPanel.Dock="Bottom" Style="{StaticResource NavigationButtonTheme}"
-                             Command="{Binding EmployeeInfoViewCommand}">
+                             Command="{Binding LogOutCommand}">
+                             <!--Command="{Binding EmployeeInfoViewCommand}">-->
                     <RadioButton.Content>
                         <Grid>
                             <Grid.ColumnDefinitions>

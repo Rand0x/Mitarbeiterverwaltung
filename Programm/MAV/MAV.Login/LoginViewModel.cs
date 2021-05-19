@@ -14,10 +14,21 @@ namespace MAV.Login
     public class LoginViewModel : PropertyChangedBase
     {
 
-        #region Variables
+        #region Properties
 
         //Verweis auf Frontend um Password nciht zwischenspeichern zu müssen
         private Login m_Control;
+        public Login Control
+        {
+            get { return m_Control; }
+            private set {
+                if(value != m_Control)
+                {
+                    m_Control = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
 
         #endregion
 
@@ -25,7 +36,7 @@ namespace MAV.Login
 
         public LoginViewModel(Login control)
         {
-            m_Control = control;
+            Control = control;
             CreateCommands();
         }
 
@@ -52,17 +63,18 @@ namespace MAV.Login
         private void Login(object parameter = null)
         {
             //wenn kein Username angegeben ist wird gar nicht erst ein Anmeldeversuch gestartet
-            if (m_Control.UsernameBox.Text is null)
+            if (Control.UsernameBox.Text is null)
                 return;
 
             var param = new ObservableCollection<SqlParameter>();
 
             //Übergabeparameter für die Prozedur
-            param.Add(new SqlParameter("@szUserName", m_Control.UsernameBox.Text));
-            param.Add(new SqlParameter("@szPassword", m_Control.PasswordBox.Password));
+            param.Add(new SqlParameter("@szUserName", Control.UsernameBox.Text));
+            param.Add(new SqlParameter("@szPassword", Control.PasswordBox.Password));
 
             var result = tmp_ExecProc("sp_LogIn", param); //Prozedur ausführen
 
+            //ToDo Fehlertext aus DB anzeigen lassen auf Frontend
             if (result.Rows.Count > 0) //Anmeldung war erfolgreich
             {
                 //erstellen neus UserModel dass ID des Users und dessen Recht beinhalted
@@ -74,15 +86,23 @@ namespace MAV.Login
 
                 //Client starten und Login schließen
                 var client = new ClientView(user);
-                m_Control.Close();
+                Control.Hide();
                 client.ShowDialog();
+
+                try //wenn Anwendung über X geschlossen wird kommt Fehler und beendigung des Programms, ansonsten kann sich wieder eingelogt werden
+                {
+                    Control.Show();
+                }
+                catch(Exception ex)
+                {
+                    return;
+                }
             }
-            else //Anmaeldung nicht erfolgreich
-            {
-                m_Control.UsernameBox.Clear();
-                m_Control.PasswordBox.Clear();
-                //ToDo Fehlertext aus DB anzeigen lassen auf Frontend
-            }
+
+            //Eingaben clearen und Fokus auf UsernameBox setzen
+            Control.UsernameBox.Clear();
+            Control.PasswordBox.Clear();
+            Control.UsernameBox.Focus();
         }
 
         private void ChangePwd(object parameter = null)

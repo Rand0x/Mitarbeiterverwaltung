@@ -7,13 +7,10 @@ namespace MAV.Base
     public class ViewModelBase : PropertyChangedBase
     {
         private UserModel m_User;
-        /// <summary>
-        /// beinhaltet nKey des Mitarbeiters und zugehöriges Recht zum Abgleich mit benötigten Rechten für best. Funktionen
-        /// </summary>
-        public UserModel User
-        {
-            get { return m_User; }
-        }
+
+        public int? EmployeeKey => m_User.EmployeeKey;
+        public int Right => m_User.Right;
+        public string RightName => m_User.RightName;
 
         public ViewModelBase(UserModel user)
         {

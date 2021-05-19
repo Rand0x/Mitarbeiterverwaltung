@@ -170,3 +170,5 @@ C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV
 C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Client\obj\Debug\netcoreapp3.1\MAV.Client.dll
 C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Client\obj\Debug\netcoreapp3.1\MAV.Client.pdb
 C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Client\obj\Debug\netcoreapp3.1\MAV.Client.genruntimeconfig.cache
+C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Client\bin\Debug\netcoreapp3.1\MAV.Helper.dll
+C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Client\bin\Debug\netcoreapp3.1\MAV.Helper.pdb

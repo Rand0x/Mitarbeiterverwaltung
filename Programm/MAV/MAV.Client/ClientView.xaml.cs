@@ -28,13 +28,14 @@ namespace MAV.Client
 
         public ClientView(UserModel user)
         {
-            this.DataContext = new ClientViewModel(user);
+            this.DataContext = new ClientViewModel(this, user);
             InitializeComponent();
         }
 
         private void OnWindowClose(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Application.Current.Shutdown();
+            //this.Close();
         }
 
         private void OnWindowResize(object sender, RoutedEventArgs e)

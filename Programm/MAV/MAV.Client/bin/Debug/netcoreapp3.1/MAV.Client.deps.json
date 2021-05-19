@@ -9,6 +9,7 @@
       "MAV.Client/1.0.0": {
         "dependencies": {
           "MAV.Base": "1.0.0",
+          "MAV.Helper": "1.0.0",
           "ModernWpfUI": "0.9.4"
         },
         "runtime": {
@@ -450,6 +451,11 @@
         "runtime": {
           "MAV.Base.dll": {}
         }
+      },
+      "MAV.Helper/1.0.0": {
+        "runtime": {
+          "MAV.Helper.dll": {}
+        }
       }
     }
   },
@@ -495,6 +501,11 @@
       "hashPath": "system.runtime.windowsruntime.ui.xaml.4.6.0.nupkg.sha512"
     },
     "MAV.Base/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "MAV.Helper/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

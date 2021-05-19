@@ -569,6 +569,16 @@
         "runtime": {
           "bin/placeholder/MAV.Base.dll": {}
         }
+      },
+      "MAV.Helper/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "compile": {
+          "bin/placeholder/MAV.Helper.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/MAV.Helper.dll": {}
+        }
       }
     }
   },
@@ -1470,11 +1480,17 @@
       "type": "project",
       "path": "../MAV.Base/MAV.Base.csproj",
       "msbuildProject": "../MAV.Base/MAV.Base.csproj"
+    },
+    "MAV.Helper/1.0.0": {
+      "type": "project",
+      "path": "../MAV.Helper/MAV.Helper.csproj",
+      "msbuildProject": "../MAV.Helper/MAV.Helper.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
       "MAV.Base >= 1.0.0",
+      "MAV.Helper >= 1.0.0",
       "ModernWpfUI >= 0.9.4"
     ]
   },
@@ -1512,6 +1528,9 @@
           "projectReferences": {
             "C:\\Users\\Tobias\\Desktop\\Mitarbeiterverwaltung\\Mitarbeiterverwaltung\\Programm\\MAV\\MAV.Base\\MAV.Base.csproj": {
               "projectPath": "C:\\Users\\Tobias\\Desktop\\Mitarbeiterverwaltung\\Mitarbeiterverwaltung\\Programm\\MAV\\MAV.Base\\MAV.Base.csproj"
+            },
+            "C:\\Users\\Tobias\\Desktop\\Mitarbeiterverwaltung\\Mitarbeiterverwaltung\\Programm\\MAV\\MAV.Helper\\MAV.Helper.csproj": {
+              "projectPath": "C:\\Users\\Tobias\\Desktop\\Mitarbeiterverwaltung\\Mitarbeiterverwaltung\\Programm\\MAV\\MAV.Helper\\MAV.Helper.csproj"
             }
           }
         }

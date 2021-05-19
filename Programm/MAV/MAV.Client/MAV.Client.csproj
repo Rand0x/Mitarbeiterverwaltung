@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MAV.Base\MAV.Base.csproj" />
+    <ProjectReference Include="..\MAV.Helper\MAV.Helper.csproj" />
   </ItemGroup>
 
   <ItemGroup>

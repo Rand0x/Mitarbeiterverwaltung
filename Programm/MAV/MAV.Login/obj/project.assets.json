@@ -695,6 +695,7 @@
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
           "MAV.Base": "1.0.0",
+          "MAV.Helper": "1.0.0",
           "ModernWpfUI": "0.9.4"
         },
         "compile": {

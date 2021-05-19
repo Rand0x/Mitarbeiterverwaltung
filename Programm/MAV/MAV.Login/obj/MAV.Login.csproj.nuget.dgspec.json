@@ -92,6 +92,9 @@
             "projectReferences": {
               "C:\\Users\\Tobias\\Desktop\\Mitarbeiterverwaltung\\Mitarbeiterverwaltung\\Programm\\MAV\\MAV.Base\\MAV.Base.csproj": {
                 "projectPath": "C:\\Users\\Tobias\\Desktop\\Mitarbeiterverwaltung\\Mitarbeiterverwaltung\\Programm\\MAV\\MAV.Base\\MAV.Base.csproj"
+              },
+              "C:\\Users\\Tobias\\Desktop\\Mitarbeiterverwaltung\\Mitarbeiterverwaltung\\Programm\\MAV\\MAV.Helper\\MAV.Helper.csproj": {
+                "projectPath": "C:\\Users\\Tobias\\Desktop\\Mitarbeiterverwaltung\\Mitarbeiterverwaltung\\Programm\\MAV\\MAV.Helper\\MAV.Helper.csproj"
               }
             }
           }
