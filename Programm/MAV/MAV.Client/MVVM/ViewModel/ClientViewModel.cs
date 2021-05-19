@@ -1,6 +1,5 @@
 ﻿using MAV.Base;
 using MAV.Client.Core;
-using MAV.Client.MVVM.Model;
 using MAV.Client.MVVM.View;
 using System;
 using System.Collections.Generic;
@@ -8,7 +7,7 @@ using System.Text;
 
 namespace MAV.Client.MVVM.ViewModel
 {
-    class ClientViewModel : PropertyChangedBase
+    class ClientViewModel : ViewModelBase
     {
         public RelayCommand AdministrationViewCommand { get; set; }
         public RelayCommand DirectoryViewCommand { get; set; }
@@ -37,23 +36,8 @@ namespace MAV.Client.MVVM.ViewModel
             }
         }
 
-        private UserModel m_User;
-        public UserModel User
+        public ClientViewModel(UserModel user) : base(user)
         {
-            get { return m_User; }
-            private set {
-                if (value != m_User)
-                {
-                    m_User = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        public ClientViewModel(UserModel user)
-        {
-            User = user;
-
             Administration = new AdministrationView();
             Directory = new DirectoryView();
             Holiday = new HolidayView();

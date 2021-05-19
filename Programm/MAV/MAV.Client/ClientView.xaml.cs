@@ -1,4 +1,4 @@
-﻿using MAV.Client.MVVM.Model;
+﻿using MAV.Base;
 using MAV.Client.MVVM.ViewModel;
 using System;
 using System.Collections.Generic;
