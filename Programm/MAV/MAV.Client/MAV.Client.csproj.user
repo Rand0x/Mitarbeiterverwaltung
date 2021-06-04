@@ -7,7 +7,7 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="MVVM\View\AdministrationView.xaml.cs">
+    <Compile Update="MVVM\View\AddUserView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="MVVM\View\DeleteEmployeeDialog.xaml.cs">
@@ -39,7 +39,7 @@
     <Page Update="ClientView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="MVVM\View\AdministrationView.xaml">
+    <Page Update="MVVM\View\AddUserView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MVVM\View\DeleteEmployeeDialog.xaml">
