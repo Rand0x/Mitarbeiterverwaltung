@@ -4,32 +4,58 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MAV.Client.MVVM.View"
-             xmlns:ui="http://schemas.modernwpf.com/2019"
+             xmlns:ui="http://schemas.modernwpf.com/2019" xmlns:viewModel="clr-namespace:MAV.Client.MVVM.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
-    <StackPanel>
+
+    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition/>
+            <RowDefinition Height="70"/>
+        </Grid.RowDefinitions>
+
         <TextBlock Text="Adressbuch"
                    Foreground="Black"
-                   FontSize="30"
-                   />
+                   FontSize="30"/>
 
-        <DockPanel LastChildFill="False">
+        <DockPanel LastChildFill="False" Grid.Row="1">
+            <ComboBox
+                x:Name="cmbDepartments"                
+                SelectionChanged="cmbDepartments_SelectionChanged"
+                DockPanel.Dock="Right"
+                Margin="12"
+                Width="200"/>
             <ui:AutoSuggestBox
                 x:Name="controlsSearchBox"
                 DockPanel.Dock="Right"
                 Margin="12"
-                Width="150"
+                Width="200"
                 PlaceholderText="Suchen"
                 QueryIcon="Find"
-                TextChanged="controlsSearchBox_TextChanged"
-                />
+                QuerySubmitted="controlsSearchBox_QuerySubmitted"/>
+            
+            
         </DockPanel>
 
-
-
-        <ListView Margin="10" Name="lvUsers" Height="450" MouseDoubleClick="ListView_MouseDoubleClick">
-            <ListView.View >
+        <ListView Margin="10" Name="lvUsers" MouseDoubleClick="ListView_MouseDoubleClick" Grid.Row="2">
+            <ListView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Informationen anzeigen" Click="OnCtxMenuInfo">
+                        <MenuItem.Icon>
+                            <ui:FontIcon Glyph="&#xE13D;" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Mitarbeiter bearbeiten" Click="OnCtxMenuEdit">
+                        <MenuItem.Icon>
+                            <ui:FontIcon Glyph="&#xE104;" />
+                        </MenuItem.Icon>
+                    </MenuItem>                    
+                </ContextMenu>
+            </ListView.ContextMenu>
+            <ListView.View>
                 <GridView>
                     <GridViewColumn Width="120"  DisplayMemberBinding="{Binding FirstName}">
                         <GridViewColumn.Header>
@@ -40,25 +66,32 @@
                         <GridViewColumn.Header>
                             <GridViewColumnHeader Tag="Nachname" Click="sortLastName">Nachname</GridViewColumnHeader>
                         </GridViewColumn.Header>
-                    </GridViewColumn>
-                    <GridViewColumn Width="170" DisplayMemberBinding="{Binding PersNr}">
-                        <GridViewColumn.Header>
-                            <GridViewColumnHeader Tag="Personalnummer" Click="sortPersNr" >Personalnummer</GridViewColumnHeader>
-                        </GridViewColumn.Header>
-                    </GridViewColumn>
+                    </GridViewColumn>                    
                     <GridViewColumn Width="150" DisplayMemberBinding="{Binding Department}">
                         <GridViewColumn.Header>
                             <GridViewColumnHeader Tag="Abteilung" Click="sortDepartment" >Abteilung</GridViewColumnHeader>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn Width="170" DisplayMemberBinding="{Binding LandlineNbr}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="Telefon (geschäftlich)" Click="sortLandlineNbr" >Telefon (geschäftlich)</GridViewColumnHeader>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn Width="170" DisplayMemberBinding="{Binding MobileNbr}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="Mobil (geschäftlich)" Click="sortMobileNbr" >Mobil (geschäftlich)</GridViewColumnHeader>
                         </GridViewColumn.Header>
                     </GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>
 
-        <DockPanel LastChildFill="False">
+        <DockPanel LastChildFill="False" Grid.Row="3">
             <Button Content="Zum Kontakt" IsEnabled="True" 
-                    DockPanel.Dock="Right" Margin="12" Width="150">
+                    DockPanel.Dock="Right" Margin="12" Width="150"                    
+                    Click="Button_Click">
             </Button>
-        </DockPanel>
-    </StackPanel>
+        </DockPanel>        
+    </Grid>
+    
 </UserControl>

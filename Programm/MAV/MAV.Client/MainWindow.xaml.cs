@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MAV.Client.MVVM.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ModernWpf.Controls;
 
 namespace MAV.Client
 {
@@ -21,8 +23,9 @@ namespace MAV.Client
     public partial class MainWindow : Window
     {
         private WindowState zwischenspeichern = WindowState.Normal;
-        public MainWindow()
-        {
+        public MainWindow()        {
+
+            this.DataContext = new MainViewModel();
             InitializeComponent();
         }
 
@@ -57,6 +60,17 @@ namespace MAV.Client
         {
             if (e.ChangedButton == MouseButton.Left)
                 this.DragMove();
+        }
+
+        private async void OnLogoutButton(object sender, RoutedEventArgs e)
+        {
+            LogoutDialog dialog = new LogoutDialog();
+            var result = await dialog.ShowAsync();
+
+            if (result == ContentDialogResult.Primary)
+            {
+                MessageBox.Show($"Hier Logout-Prozedur ausführen");
+            }
         }
     }
 }

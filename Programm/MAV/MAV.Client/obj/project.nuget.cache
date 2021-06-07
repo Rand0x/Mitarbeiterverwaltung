@@ -1,6 +1,10 @@
 {
   "version": 2,
+<<<<<<< Updated upstream
   "dgSpecHash": "i3wUw8u951U/p5iSiRaedwPf8Js8b2nNJZLj3CAbxGfUsLEGRdd74EYnOC7qSpLEu/CkiGUCp17E5zjduLNqBg==",
+=======
+  "dgSpecHash": "txbhYDQkBuqM7Tc1xx9sAVLKB9M+gTxvmlMzFi1QfQhVZs1bJUfkTto5j5MpGEC8/o9Qe6nhrTyKurEa+r/WGQ==",
+>>>>>>> Stashed changes
   "success": true,
   "projectFilePath": "C:\\Users\\manue\\OneDrive\\Documents\\GitHub\\Mitarbeiterverwaltung\\Programm\\MAV\\MAV.Client\\MAV.Client.csproj",
   "expectedPackageFiles": [

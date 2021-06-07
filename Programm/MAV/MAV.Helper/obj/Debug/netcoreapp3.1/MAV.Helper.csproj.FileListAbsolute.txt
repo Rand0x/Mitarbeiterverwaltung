@@ -1,0 +1,11 @@
+C:\Users\manue\OneDrive\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Helper\bin\Debug\netcoreapp3.1\MAV.Helper.deps.json
+C:\Users\manue\OneDrive\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Helper\bin\Debug\netcoreapp3.1\MAV.Helper.dll
+C:\Users\manue\OneDrive\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Helper\bin\Debug\netcoreapp3.1\MAV.Helper.pdb
+C:\Users\manue\OneDrive\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Helper\bin\Debug\netcoreapp3.1\PresentationCore.dll
+C:\Users\manue\OneDrive\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Helper\obj\Debug\netcoreapp3.1\MAV.Helper.csprojAssemblyReference.cache
+C:\Users\manue\OneDrive\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Helper\obj\Debug\netcoreapp3.1\MAV.Helper.AssemblyInfoInputs.cache
+C:\Users\manue\OneDrive\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Helper\obj\Debug\netcoreapp3.1\MAV.Helper.AssemblyInfo.cs
+C:\Users\manue\OneDrive\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Helper\obj\Debug\netcoreapp3.1\MAV.Helper.csproj.CoreCompileInputs.cache
+C:\Users\manue\OneDrive\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Helper\obj\Debug\netcoreapp3.1\MAV.Helper.csproj.CopyComplete
+C:\Users\manue\OneDrive\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Helper\obj\Debug\netcoreapp3.1\MAV.Helper.dll
+C:\Users\manue\OneDrive\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Helper\obj\Debug\netcoreapp3.1\MAV.Helper.pdb

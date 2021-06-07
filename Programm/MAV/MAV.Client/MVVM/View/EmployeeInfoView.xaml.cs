@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MAV.Client.MVVM.ViewModel;
+using MAV.DirectoryModule.Model;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -21,6 +23,14 @@ namespace MAV.Client.MVVM.View
         public EmployeeInfoView()
         {
             InitializeComponent();
+        }
+
+        private void OnEditButton(object sender, RoutedEventArgs e)
+        {
+            DirectoryViewModel.UserSelectedEdited = DirectoryViewModel.UserSelected.Clone();
+            var viewModel = (ViewModel.MainViewModel)DataContext;
+            if (viewModel.EmployeeEditViewCommand.CanExecute(null))                
+                viewModel.EmployeeEditViewCommand.Execute(null);
         }
     }
 }

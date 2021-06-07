@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MAV.Base\MAV.Base.csproj" />
+    <ProjectReference Include="..\MAV.DirectoryModule\MAV.DirectoryModule.csproj" />
   </ItemGroup>
 
   <ItemGroup>
