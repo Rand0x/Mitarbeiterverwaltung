@@ -50,11 +50,11 @@
       <DockPanel Grid.Row="4" Grid.RowSpan="1">
         <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Margin="100,10,0,10"
                    FontSize="24" FontFamily="Segoe MDL2 Assets" Text="&#xE8D7;"/>
-        <PasswordBox x:Name="PasswordBox" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Margin="0,0,120,0" />
+        <PasswordBox x:Name="PasswordBox" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Margin="0,0,120,0" KeyDown="PasswordBox_KeyDown" />
       </DockPanel>
 
       <Button x:Name="LoginButton" Grid.Row="5" Grid.RowSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center"
-              Width="170" Margin="0,0,0,20">
+              Width="170" Margin="0,0,0,20" Command="{Binding LogInCommand}">
         <DockPanel>
           <TextBlock FontFamily="Segoe MDL2 Assets" Text="" Margin="0,3,5,0"/>
           <TextBlock Text="Einloggen"/>

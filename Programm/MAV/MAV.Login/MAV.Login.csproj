@@ -14,10 +14,17 @@
 
   <ItemGroup>
     <PackageReference Include="ModernWpfUI" Version="0.9.4" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Logo\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MAV.Base\MAV.Base.csproj" />
+    <ProjectReference Include="..\MAV.Client\MAV.Client.csproj" />
+    <ProjectReference Include="..\MAV.Helper\MAV.Helper.csproj" />
   </ItemGroup>
 
   <ItemGroup>

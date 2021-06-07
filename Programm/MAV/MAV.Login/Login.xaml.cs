@@ -19,7 +19,7 @@ namespace MAV.Login
     {
         public Login()
         {
-
+            this.DataContext = new LoginViewModel(this);
             InitializeComponent();
             UsernameBox.Focus();
         }
@@ -40,6 +40,10 @@ namespace MAV.Login
                 this.DragMove();
         }
 
-        
-    }
+        private void PasswordBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+                ((LoginViewModel)this.DataContext).LogInCommand.Execute(null);
+        }
+  }
 }
