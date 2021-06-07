@@ -116,9 +116,7 @@ namespace MAV.Login
         //nur temporär bis DBProvider existiert
         #region tmp_Helper
 
-        #region privat
-        private string conStr = "Data Source=(local);Initial Catalog=dbMAV;Integrated Security=sspi;User ID=DESKTOP-RL90RDQ\\Tobias;Password=091216";
-        #endregion
+        private string conStr = "Data Source=141.75.150.78,49724\\MAVSQL01;Initial Catalog=dbMAV;User ID=sa;Password=MAVAdmin01";
 
         private DataTable tmp_ExecProc(string proc, ObservableCollection<SqlParameter> param = null)
         {
