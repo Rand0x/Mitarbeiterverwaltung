@@ -1936,28 +1936,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Tobias\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
-    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
+    "C:\\Users\\manue\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Tobias\\Desktop\\Mitarbeiterverwaltung\\Mitarbeiterverwaltung\\Programm\\MAV\\MAV.Login\\MAV.Login.csproj",
+      "projectUniqueName": "C:\\Users\\manue\\OneDrive\\Documents\\GitHub\\Mitarbeiterverwaltung\\Programm\\MAV\\MAV.Login\\MAV.Login.csproj",
       "projectName": "MAV.Login",
-      "projectPath": "C:\\Users\\Tobias\\Desktop\\Mitarbeiterverwaltung\\Mitarbeiterverwaltung\\Programm\\MAV\\MAV.Login\\MAV.Login.csproj",
-      "packagesPath": "C:\\Users\\Tobias\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Tobias\\Desktop\\Mitarbeiterverwaltung\\Mitarbeiterverwaltung\\Programm\\MAV\\MAV.Login\\obj\\",
+      "projectPath": "C:\\Users\\manue\\OneDrive\\Documents\\GitHub\\Mitarbeiterverwaltung\\Programm\\MAV\\MAV.Login\\MAV.Login.csproj",
+      "packagesPath": "C:\\Users\\manue\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\manue\\OneDrive\\Documents\\GitHub\\Mitarbeiterverwaltung\\Programm\\MAV\\MAV.Login\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Tobias\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\manue\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
@@ -1970,14 +1967,14 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\Tobias\\Desktop\\Mitarbeiterverwaltung\\Mitarbeiterverwaltung\\Programm\\MAV\\MAV.Base\\MAV.Base.csproj": {
-              "projectPath": "C:\\Users\\Tobias\\Desktop\\Mitarbeiterverwaltung\\Mitarbeiterverwaltung\\Programm\\MAV\\MAV.Base\\MAV.Base.csproj"
+            "C:\\Users\\manue\\OneDrive\\Documents\\GitHub\\Mitarbeiterverwaltung\\Programm\\MAV\\MAV.Base\\MAV.Base.csproj": {
+              "projectPath": "C:\\Users\\manue\\OneDrive\\Documents\\GitHub\\Mitarbeiterverwaltung\\Programm\\MAV\\MAV.Base\\MAV.Base.csproj"
             },
-            "C:\\Users\\Tobias\\Desktop\\Mitarbeiterverwaltung\\Mitarbeiterverwaltung\\Programm\\MAV\\MAV.Client\\MAV.Client.csproj": {
-              "projectPath": "C:\\Users\\Tobias\\Desktop\\Mitarbeiterverwaltung\\Mitarbeiterverwaltung\\Programm\\MAV\\MAV.Client\\MAV.Client.csproj"
+            "C:\\Users\\manue\\OneDrive\\Documents\\GitHub\\Mitarbeiterverwaltung\\Programm\\MAV\\MAV.Client\\MAV.Client.csproj": {
+              "projectPath": "C:\\Users\\manue\\OneDrive\\Documents\\GitHub\\Mitarbeiterverwaltung\\Programm\\MAV\\MAV.Client\\MAV.Client.csproj"
             },
-            "C:\\Users\\Tobias\\Desktop\\Mitarbeiterverwaltung\\Mitarbeiterverwaltung\\Programm\\MAV\\MAV.Helper\\MAV.Helper.csproj": {
-              "projectPath": "C:\\Users\\Tobias\\Desktop\\Mitarbeiterverwaltung\\Mitarbeiterverwaltung\\Programm\\MAV\\MAV.Helper\\MAV.Helper.csproj"
+            "C:\\Users\\manue\\OneDrive\\Documents\\GitHub\\Mitarbeiterverwaltung\\Programm\\MAV\\MAV.Helper\\MAV.Helper.csproj": {
+              "projectPath": "C:\\Users\\manue\\OneDrive\\Documents\\GitHub\\Mitarbeiterverwaltung\\Programm\\MAV\\MAV.Helper\\MAV.Helper.csproj"
             }
           }
         }
@@ -2019,7 +2016,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
       }
     }
   }
