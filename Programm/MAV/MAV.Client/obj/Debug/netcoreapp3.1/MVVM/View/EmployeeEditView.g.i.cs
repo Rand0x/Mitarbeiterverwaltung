@@ -9,7 +9,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using MAV.Client.MVVM.View;
 using MAV.Client.MVVM.ViewModel;
 using System;
 using System.Diagnostics;
@@ -62,7 +61,7 @@ namespace MAV.Client.MVVM.View {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/MAV.Client;V1.0.0.0;component/mvvm/view/employeeeditview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/MAV.Client;component/mvvm/view/employeeeditview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\MVVM\View\EmployeeEditView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

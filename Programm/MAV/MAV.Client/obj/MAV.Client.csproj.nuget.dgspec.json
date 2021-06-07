@@ -92,12 +92,9 @@
             "projectReferences": {
               "C:\\Users\\manue\\OneDrive\\Documents\\GitHub\\Mitarbeiterverwaltung\\Programm\\MAV\\MAV.Base\\MAV.Base.csproj": {
                 "projectPath": "C:\\Users\\manue\\OneDrive\\Documents\\GitHub\\Mitarbeiterverwaltung\\Programm\\MAV\\MAV.Base\\MAV.Base.csproj"
-<<<<<<< Updated upstream
-=======
               },
               "C:\\Users\\manue\\OneDrive\\Documents\\GitHub\\Mitarbeiterverwaltung\\Programm\\MAV\\MAV.DirectoryModule\\MAV.DirectoryModule.csproj": {
                 "projectPath": "C:\\Users\\manue\\OneDrive\\Documents\\GitHub\\Mitarbeiterverwaltung\\Programm\\MAV\\MAV.DirectoryModule\\MAV.DirectoryModule.csproj"
->>>>>>> Stashed changes
               }
             }
           }

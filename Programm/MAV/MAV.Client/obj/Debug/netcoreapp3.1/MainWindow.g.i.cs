@@ -10,8 +10,6 @@
 //------------------------------------------------------------------------------
 
 using MAV.Client;
-using MAV.Client.MVVM.View;
-using MAV.Client.MVVM.ViewModel;
 using System;
 using System.Diagnostics;
 using System.Windows;
@@ -71,7 +69,7 @@ namespace MAV.Client {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/MAV.Client;V1.0.0.0;component/mainwindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/MAV.Client;component/mainwindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\MainWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
