@@ -21,10 +21,15 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MAV.Base\MAV.Base.csproj" />
+    <ProjectReference Include="..\MAV.Helper\MAV.Helper.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="LogoOhneText.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="MVVM\Model\" />
   </ItemGroup>
 
 </Project>

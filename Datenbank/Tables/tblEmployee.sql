@@ -14,13 +14,16 @@ create table tblEmployee
   szTelephone           nvarchar(50)        not null,
   nDepartementLink      int                 not null,
   szJobName             nvarchar(200)       not null,
+  dtRecruitDate         datetime            not null,
   nHoursPerWeek         int                 not null,
   rOvertime             decimal(5,1)        null,
   rWage                 decimal(10,2)       not null,
   nHolidyPerYear        int                 not null,
+  nNoticePeriod         int                 not null, --in Tagen
   nAddressLink          int                 not null,
   nBankingLink          int                 not null,
-  nTaxClass             int                 not null
+  nTaxClass             int                 not null,
+  szComment             nvarchar(max)       null
 )
 
 
