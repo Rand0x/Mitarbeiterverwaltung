@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Chris\Documents\_Studium OHM\2. Semester\Software Engineering\_Projekt\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Client\obj\Debug\netcoreapp3.1\
+C:\Users\manue\OneDrive\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Client\obj\Debug\netcoreapp3.1\
 MAV.Client
 none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1;
-C:\Users\Chris\Documents\_Studium OHM\2. Semester\Software Engineering\_Projekt\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Client\App.xaml
+C:\Users\manue\OneDrive\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Client\App.xaml
 9-942337842
 
 19-58217585
-282-156421342
+2821990383111
 MainWindow.xaml;MVVM\View\AdministrationView.xaml;MVVM\View\DirectoryView.xaml;MVVM\View\EmployeeInfoView.xaml;MVVM\View\HolidayView.xaml;MVVM\View\HomeView.xaml;MVVM\View\SettingsView.xaml;Theme\NavigationButtonTheme.xaml;Theme\WindowSizeButtonsTheme.xaml;
 
-True
+False
 
