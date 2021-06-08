@@ -10,7 +10,13 @@
     <Compile Update="MVVM\View\AdministrationView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="MVVM\View\DeleteEmployeeDialog.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="MVVM\View\DirectoryView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="MVVM\View\EmployeeEditView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="MVVM\View\EmployeeInfoView.xaml.cs">
@@ -20,6 +26,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="MVVM\View\HomeView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="MVVM\View\LogoutDialog.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="MVVM\View\SettingsView.xaml.cs">
@@ -33,7 +42,13 @@
     <Page Update="MVVM\View\AdministrationView.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="MVVM\View\DeleteEmployeeDialog.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="MVVM\View\DirectoryView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MVVM\View\EmployeeEditView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MVVM\View\EmployeeInfoView.xaml">
@@ -43,6 +58,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MVVM\View\HomeView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MVVM\View\LogoutDialog.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MVVM\View\SettingsView.xaml">

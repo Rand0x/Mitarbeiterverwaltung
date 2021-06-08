@@ -1,0 +1,12 @@
+C:\Users\manue\OneDrive\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.DirectoryModule\bin\Debug\netcoreapp3.1\MAV.DirectoryModule.deps.json
+C:\Users\manue\OneDrive\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.DirectoryModule\bin\Debug\netcoreapp3.1\MAV.DirectoryModule.dll
+C:\Users\manue\OneDrive\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.DirectoryModule\bin\Debug\netcoreapp3.1\MAV.DirectoryModule.pdb
+C:\Users\manue\OneDrive\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.DirectoryModule\bin\Debug\netcoreapp3.1\MAV.Base.dll
+C:\Users\manue\OneDrive\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.DirectoryModule\bin\Debug\netcoreapp3.1\MAV.Base.pdb
+C:\Users\manue\OneDrive\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.DirectoryModule\obj\Debug\netcoreapp3.1\MAV.DirectoryModule.csprojAssemblyReference.cache
+C:\Users\manue\OneDrive\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.DirectoryModule\obj\Debug\netcoreapp3.1\MAV.DirectoryModule.AssemblyInfoInputs.cache
+C:\Users\manue\OneDrive\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.DirectoryModule\obj\Debug\netcoreapp3.1\MAV.DirectoryModule.AssemblyInfo.cs
+C:\Users\manue\OneDrive\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.DirectoryModule\obj\Debug\netcoreapp3.1\MAV.DirectoryModule.csproj.CoreCompileInputs.cache
+C:\Users\manue\OneDrive\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.DirectoryModule\obj\Debug\netcoreapp3.1\MAV.DirectoryModule.csproj.CopyComplete
+C:\Users\manue\OneDrive\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.DirectoryModule\obj\Debug\netcoreapp3.1\MAV.DirectoryModule.dll
+C:\Users\manue\OneDrive\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.DirectoryModule\obj\Debug\netcoreapp3.1\MAV.DirectoryModule.pdb

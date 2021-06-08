@@ -14,32 +14,8 @@
                 <ResourceDictionary Source="Theme/WindowSizeButtonsTheme.xaml"/>
                 <ui:ThemeResources RequestedTheme="Light" AccentColor ="DarkOrange" />
                 <ui:XamlControlsResources />
+                <ui:ThemeResources />
             </ResourceDictionary.MergedDictionaries>
-
-            <DataTemplate DataType="{x:Type viewModel:AdministrationViewModel}">
-                <view:AdministrationView/>
-            </DataTemplate>
-
-            <DataTemplate DataType="{x:Type viewModel:DirectoryViewModel}">
-                <view:DirectoryView/>
-            </DataTemplate>
-
-            <DataTemplate DataType="{x:Type viewModel:HolidayViewModel}">
-                <view:HolidayView/>
-            </DataTemplate>
-
-            <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
-                <view:HomeView/>
-            </DataTemplate>
-
-            <DataTemplate DataType="{x:Type viewModel:SettingsViewModel}">
-                <view:SettingsView/>
-            </DataTemplate>
-
-            <DataTemplate DataType="{x:Type viewModel:EmployeeInfoViewModel}">
-                <view:EmployeeInfoView/>
-            </DataTemplate>
-
         </ResourceDictionary>
     </Application.Resources>
 </Application>

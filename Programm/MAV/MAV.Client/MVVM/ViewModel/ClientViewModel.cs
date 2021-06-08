@@ -10,21 +10,23 @@ namespace MAV.Client.MVVM.ViewModel
 {
     class ClientViewModel : ViewModelBase
     {
-        public RelayCommand AdministrationViewCommand { get; private set; }
-        public RelayCommand DirectoryViewCommand { get; private set; }
-        public RelayCommand HolidayViewCommand { get; private set; }
-        public RelayCommand HomeViewCommand { get; private set; }
-        public RelayCommand SettingsViewCommand { get; private set; }
-        public RelayCommand EmployeeInfoViewCommand { get; private set; }
+        public RelayCommand AdministrationViewCommand { get; set; }
+        public RelayCommand DirectoryViewCommand { get; set; }
+        public RelayCommand HolidayViewCommand { get; set; }
+        public RelayCommand HomeViewCommand { get; set; }
+        public RelayCommand SettingsViewCommand { get; set; }
+        public RelayCommand EmployeeInfoViewCommand { get; set; }
+        public RelayCommand EmployeeEditViewCommand { get; set; }
 
         public RelayCommand LogOutCommand { get; private set; }
 
-        public AdministrationView Administration { get; private set; }
-        public DirectoryView Directory { get; private set; }
-        public HolidayView Holiday { get; private set; }
-        public HomeView Home { get; private set; }
-        public SettingsView Settings { get; private set; }
-        public EmployeeInfoView EmployeeInfo { get; private set; }
+        public AdministrationView Administration { get; set; }
+        public DirectoryView Directory { get; set; }
+        public HolidayView Holiday { get; set; }
+        public HomeView Home { get; set; }
+        public SettingsView Settings { get; set; }
+        public EmployeeInfoView EmployeeInfo { get; set; }
+        public EmployeeEditView EmployeeEdit { get; set; }
 
         private object _currentView;
         public object CurrentView
@@ -60,8 +62,7 @@ namespace MAV.Client.MVVM.ViewModel
             Holiday = new HolidayView();
             Home = new HomeView();
             Settings = new SettingsView();
-            EmployeeInfo = new EmployeeInfoView();
-            
+
             CurrentView = Home;
 
             CreateCommands();
@@ -96,7 +97,12 @@ namespace MAV.Client.MVVM.ViewModel
 
             EmployeeInfoViewCommand = new RelayCommand(o =>
             {
-                CurrentView = EmployeeInfo;
+                CurrentView = new EmployeeInfoView();
+            });
+
+            EmployeeEditViewCommand = new RelayCommand(o =>
+            {
+                CurrentView = new EmployeeEditView();
             });
 
             LogOutCommand = new RelayCommand(LogOut);

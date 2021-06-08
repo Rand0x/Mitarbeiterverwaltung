@@ -695,6 +695,7 @@
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
           "MAV.Base": "1.0.0",
+          "MAV.DirectoryModule": "1.0.0",
           "MAV.Helper": "1.0.0",
           "ModernWpfUI": "0.9.4"
         },
@@ -707,6 +708,19 @@
         "frameworkReferences": [
           "Microsoft.WindowsDesktop.App.WPF"
         ]
+      },
+      "MAV.DirectoryModule/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "MAV.Base": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/MAV.DirectoryModule.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/MAV.DirectoryModule.dll": {}
+        }
       },
       "MAV.Helper/1.0.0": {
         "type": "project",
@@ -1919,6 +1933,11 @@
       "type": "project",
       "path": "../MAV.Client/MAV.Client.csproj",
       "msbuildProject": "../MAV.Client/MAV.Client.csproj"
+    },
+    "MAV.DirectoryModule/1.0.0": {
+      "type": "project",
+      "path": "../MAV.DirectoryModule/MAV.DirectoryModule.csproj",
+      "msbuildProject": "../MAV.DirectoryModule/MAV.DirectoryModule.csproj"
     },
     "MAV.Helper/1.0.0": {
       "type": "project",

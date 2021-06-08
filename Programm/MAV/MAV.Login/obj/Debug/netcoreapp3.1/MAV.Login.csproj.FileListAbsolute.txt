@@ -500,3 +500,5 @@ C:\Users\manue\OneDrive\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.
 C:\Users\manue\OneDrive\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Login\obj\Debug\netcoreapp3.1\MAV.Login.dll
 C:\Users\manue\OneDrive\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Login\obj\Debug\netcoreapp3.1\MAV.Login.pdb
 C:\Users\manue\OneDrive\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Login\obj\Debug\netcoreapp3.1\MAV.Login.genruntimeconfig.cache
+C:\Users\manue\OneDrive\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Login\bin\Debug\netcoreapp3.1\MAV.DirectoryModule.dll
+C:\Users\manue\OneDrive\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Login\bin\Debug\netcoreapp3.1\MAV.DirectoryModule.pdb
