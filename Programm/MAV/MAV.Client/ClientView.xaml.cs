@@ -1,5 +1,6 @@
 ﻿using MAV.Base;
 using MAV.Client.MVVM.ViewModel;
+using MAV.Client.MVVM.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ModernWpf.Controls;
 
 namespace MAV.Client
 {
@@ -66,6 +68,19 @@ namespace MAV.Client
         {
             if (e.ChangedButton == MouseButton.Left)
                 this.DragMove();
+        }
+
+        private async void OnLogoutButton(object sender, RoutedEventArgs e)
+        {
+            LogoutDialog dialog = new LogoutDialog();
+            var result = await dialog.ShowAsync();
+
+            if (result == ContentDialogResult.Primary)
+            {
+                var viewModel = (ClientViewModel)DataContext;
+                if (viewModel.LogOutCommand.CanExecute(null))
+                    viewModel.LogOutCommand.Execute(null);
+            }
         }
     }
 }

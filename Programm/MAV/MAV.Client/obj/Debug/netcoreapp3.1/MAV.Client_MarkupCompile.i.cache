@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Client\obj\Debug\netcoreapp3.1\
+C:\Users\manue\OneDrive\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Client\obj\Debug\netcoreapp3.1\
 MAV.Client
 none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1;
-C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Client\App.xaml
-91867725892
+C:\Users\manue\OneDrive\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Client\App.xaml
+12-1494163800
 
-20-424737833
-283-1487844492
-ClientView.xaml;MVVM\View\AdministrationView.xaml;MVVM\View\DirectoryView.xaml;MVVM\View\EmployeeInfoView.xaml;MVVM\View\HolidayView.xaml;MVVM\View\HomeView.xaml;MVVM\View\SettingsView.xaml;Theme\NavigationButtonTheme.xaml;Theme\WindowSizeButtonsTheme.xaml;
+2215083814
+284-1333961478
+ClientView.xaml;MVVM\View\AdministrationView.xaml;MVVM\View\DeleteEmployeeDialog.xaml;MVVM\View\DirectoryView.xaml;MVVM\View\EmployeeEditView.xaml;MVVM\View\EmployeeInfoView.xaml;MVVM\View\HolidayView.xaml;MVVM\View\HomeView.xaml;MVVM\View\LogoutDialog.xaml;MVVM\View\SettingsView.xaml;Theme\NavigationButtonTheme.xaml;Theme\WindowSizeButtonsTheme.xaml;
 
-True
+False
 

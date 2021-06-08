@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -11,6 +11,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MAV.Client.MVVM.ViewModel;
+using MAV.DirectoryModule.Model;
 
 namespace MAV.Client.MVVM.View
 {
@@ -28,389 +30,107 @@ namespace MAV.Client.MVVM.View
     /// </summary>
     public partial class DirectoryView : UserControl
     {
-        List<User> items = new List<User>();
-        List<User> sortedList = new List<User>();
+        Person allUsers = new Person();
 
-        private void sortFirstName(object sender, RoutedEventArgs e)
-        {
-            sortedList = items.OrderBy(o => o.FirstName).ToList();
-            lvUsers.ItemsSource = sortedList;
-        }
+        private string selectedDepartment = Department.TermForAllDeps;
 
-        private void sortLastName(object sender, RoutedEventArgs e)
-        {
-            sortedList = items.OrderBy(o => o.LastName).ToList();
-            lvUsers.ItemsSource = sortedList;
-        }
-
-        private void sortPersNr(object sender, RoutedEventArgs e)
-        {
-            sortedList = items.OrderBy(o => o.PersNr).ToList();
-            lvUsers.ItemsSource = sortedList;
-        }
-
-        void ListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            User userSelected = ((FrameworkElement)e.OriginalSource).DataContext as User;
-            if (userSelected != null)
-            {
-                MessageBox.Show($"{userSelected.FirstName} {userSelected.LastName} ist seit dem {userSelected.HireDate} Mitarbeiter:in der Firma");
-            }
-        }
-
-        private void sortDepartment(object sender, RoutedEventArgs e)
-        {
-            sortedList = items.OrderBy(o => o.Department).ToList();
-            lvUsers.ItemsSource = sortedList;
-        }
-
-        private void controlsSearchBox_TextChanged(ModernWpf.Controls.AutoSuggestBox sender, ModernWpf.Controls.AutoSuggestBoxTextChangedEventArgs args)
-        {
-            string eingabe = sender.Text.ToLower();
-
-            sortedList.Clear();
-
-            foreach (User user in items)
-            {
-                if (user.FirstName.ToLower().Contains(eingabe))
-                    sortedList.Add(user);
-            }
-            lvUsers.ItemsSource = sortedList;
-        }
+        private static User userSelected = new User();
+        public static User UserSelected { get { return userSelected; } }
 
         public DirectoryView()
         {
             InitializeComponent();
 
-            items.Add(new User() { FirstName = "WilsonK", LastName = "Adinolfi", PersNr = 10026, Job = "Production Technician I", Birthday = "07.10.1983", Sex = "M ", MaritalDesc = "Single", HireDate = "07.05.2011", Department = "Production", Manager = "Michael Albert", ManagerID = 22 });
-            items.Add(new User() { FirstName = "Karthikeyan", LastName = "AitSidi", PersNr = 10084, Job = "Sr. DBA", Birthday = "05.05.1975", Sex = "M ", MaritalDesc = "Married", HireDate = "30.3.2015", Department = "IT/IS", Manager = "Simon Roup", ManagerID = 4 });
-            items.Add(new User() { FirstName = "Sarah", LastName = "Akinkuolie", PersNr = 10196, Job = "Production Technician II", Birthday = "19.09.1988", Sex = "F", MaritalDesc = "Married", HireDate = "07.05.2011", Department = "Production", Manager = "Kissy Sullivan", ManagerID = 20 });
-            items.Add(new User() { FirstName = "Trina", LastName = "Alagbe", PersNr = 10088, Job = "Production Technician I", Birthday = "27.09.1988", Sex = "F", MaritalDesc = "Married", HireDate = "01.07.2008", Department = "Production", Manager = "Elijiah Gray", ManagerID = 16 });
-            items.Add(new User() { FirstName = "Carol", LastName = "Anderson", PersNr = 10069, Job = "Production Technician I", Birthday = "09.08.1989", Sex = "F", MaritalDesc = "Divorced", HireDate = "07.11.2011", Department = "Production", Manager = "Webster Butler", ManagerID = 39 });
-            items.Add(new User() { FirstName = "Linda", LastName = "Anderson", PersNr = 10002, Job = "Production Technician I", Birthday = "22.05.1977", Sex = "F", MaritalDesc = "Single", HireDate = "01.09.2012", Department = "Production", Manager = "Amy Dunn", ManagerID = 11 });
-            items.Add(new User() { FirstName = "Colby", LastName = "Andreola", PersNr = 10194, Job = "Software Engineer", Birthday = "24.05.1979", Sex = "F", MaritalDesc = "Single", HireDate = "11.10.2014", Department = "SoftwareEngineering", Manager = "Alex Sweetwater", ManagerID = 10 });
-            items.Add(new User() { FirstName = "Sam", LastName = "Athwal", PersNr = 10062, Job = "Production Technician I", Birthday = "18.02.1983", Sex = "M ", MaritalDesc = "Widowed", HireDate = "30.9.2013", Department = "Production", Manager = "Ketsia Liebig", ManagerID = 19 });
-            items.Add(new User() { FirstName = "Linda", LastName = "Bachiochi", PersNr = 10114, Job = "Production Technician I", Birthday = "02.11.1970", Sex = "F", MaritalDesc = "Single", HireDate = "07.06.2009", Department = "Production", Manager = "Brannon Miller", ManagerID = 12 });
-            items.Add(new User() { FirstName = "Alejandro", LastName = "Bacong", PersNr = 10250, Job = "IT Support", Birthday = "01.07.1988", Sex = "M ", MaritalDesc = "Divorced", HireDate = "01.05.2015", Department = "IT/IS", Manager = "Peter Monroe", ManagerID = 7 });
-            items.Add(new User() { FirstName = "Rachael", LastName = "Baczenski", PersNr = 10252, Job = "Production Technician I", Birthday = "01.12.1974", Sex = "F", MaritalDesc = "Married", HireDate = "01.10.2011", Department = "Production", Manager = "David Stanley", ManagerID = 14 });
-            items.Add(new User() { FirstName = "Thomas", LastName = "Barbara", PersNr = 10242, Job = "Production Technician I", Birthday = "21.02.1974", Sex = "M ", MaritalDesc = "Married", HireDate = "04.02.2012", Department = "Production", Manager = "Kissy Sullivan", ManagerID = 20 });
-            items.Add(new User() { FirstName = "Hector", LastName = "Barbossa", PersNr = 10012, Job = "Data Analyst", Birthday = "07.04.1988", Sex = "M ", MaritalDesc = "Divorced", HireDate = "11.10.2014", Department = "IT/IS", Manager = "Simon Roup", ManagerID = 4 });
-            items.Add(new User() { FirstName = "FrancescoA", LastName = "Barone", PersNr = 10265, Job = "Production Technician I", Birthday = "20.07.1983", Sex = "M ", MaritalDesc = "Single", HireDate = "20.2.2012", Department = "Production", Manager = "Kelley Spirea", ManagerID = 18 });
-            items.Add(new User() { FirstName = "Nader", LastName = "Barton", PersNr = 10066, Job = "Production Technician I", Birthday = "15.07.1977", Sex = "M ", MaritalDesc = "Divorced", HireDate = "24.9.2012", Department = "Production", Manager = "Michael Albert", ManagerID = 22 });
-            items.Add(new User() { FirstName = "Norman", LastName = "Bates", PersNr = 10061, Job = "Production Technician I", Birthday = "18.10.1981", Sex = "M ", MaritalDesc = "Single", HireDate = "21.2.2011", Department = "Production", Manager = "Kelley Spirea", ManagerID = 18 });
-            items.Add(new User() { FirstName = "Kimberly", LastName = "Beak", PersNr = 10023, Job = "Production Technician II", Birthday = "17.04.1966", Sex = "F", MaritalDesc = "Married", HireDate = "21.7.2016", Department = "Production", Manager = "Kelley Spirea", ManagerID = 18 });
-            items.Add(new User() { FirstName = "Courtney", LastName = "Beatrice", PersNr = 10055, Job = "Production Technician I", Birthday = "27.10.1970", Sex = "F", MaritalDesc = "Single", HireDate = "04.04.2011", Department = "Production", Manager = "Elijiah Gray", ManagerID = 16 });
-            items.Add(new User() { FirstName = "Renee", LastName = "Becker", PersNr = 10245, Job = "Database Administrator", Birthday = "04.04.1986", Sex = "F", MaritalDesc = "Single", HireDate = "07.07.2014", Department = "IT/IS", Manager = "Simon Roup", ManagerID = 4 });
-            items.Add(new User() { FirstName = "Scott", LastName = "Becker", PersNr = 10277, Job = "Production Technician I", Birthday = "04.06.1979", Sex = "M ", MaritalDesc = "Single", HireDate = "07.08.2013", Department = "Production", Manager = "Webster Butler", ManagerID = -1 });
-            items.Add(new User() { FirstName = "Sean", LastName = "Bernstein", PersNr = 10046, Job = "Production Technician I", Birthday = "22.12.1970", Sex = "M ", MaritalDesc = "Single", HireDate = "04.02.2012", Department = "Production", Manager = "Amy Dunn", ManagerID = 11 });
-            items.Add(new User() { FirstName = "LowanM", LastName = "Biden", PersNr = 10226, Job = "Production Technician I", Birthday = "27.12.1958", Sex = "F", MaritalDesc = "Divorced", HireDate = "19.8.2013", Department = "Production", Manager = "Ketsia Liebig", ManagerID = 19 });
-            items.Add(new User() { FirstName = "Helen", LastName = "Billis", PersNr = 10003, Job = "Production Technician I", Birthday = "09.01.1989", Sex = "F", MaritalDesc = "Married", HireDate = "07.07.2014", Department = "Production", Manager = "Brannon Miller", ManagerID = 12 });
-            items.Add(new User() { FirstName = "Dianna", LastName = "Blount", PersNr = 10294, Job = "Production Technician II", Birthday = "21.09.1990", Sex = "F", MaritalDesc = "Single", HireDate = "04.04.2011", Department = "Production", Manager = "Michael Albert", ManagerID = 22 });
-            items.Add(new User() { FirstName = "Betsy", LastName = "Bondwell", PersNr = 10267, Job = "Production Technician II", Birthday = "16.01.1967", Sex = "F", MaritalDesc = "Single", HireDate = "01.10.2011", Department = "Production", Manager = "Elijiah Gray", ManagerID = 16 });
-            items.Add(new User() { FirstName = "Frank", LastName = "Booth", PersNr = 10199, Job = "Enterprise Architect", Birthday = "30.07.1964", Sex = "M ", MaritalDesc = "Single", HireDate = "17.2.2014", Department = "IT/IS", Manager = "Simon Roup", ManagerID = 4 });
-            items.Add(new User() { FirstName = "Bonalyn", LastName = "Boutwell", PersNr = 10081, Job = "Sr. Accountant", Birthday = "04.04.1987", Sex = "F", MaritalDesc = "Married", HireDate = "16.2.2015", Department = "AdminOffices", Manager = "Brandon R. LeBlanc", ManagerID = 3 });
-            items.Add(new User() { FirstName = "Charles", LastName = "Bozzi", PersNr = 10175, Job = "Production Manager", Birthday = "03.10.1970", Sex = "M ", MaritalDesc = "Single", HireDate = "30.9.2013", Department = "Production", Manager = "Janet King", ManagerID = 2 });
-            items.Add(new User() { FirstName = "Donna", LastName = "Brill", PersNr = 10177, Job = "Production Technician I", Birthday = "24.08.1990", Sex = "F", MaritalDesc = "Married", HireDate = "04.02.2012", Department = "Production", Manager = "David Stanley", ManagerID = 14 });
-            items.Add(new User() { FirstName = "Mia", LastName = "Brown", PersNr = 10238, Job = "Accountant I", Birthday = "24.11.1987", Sex = "F", MaritalDesc = "Married", HireDate = "27.10.2008", Department = "AdminOffices", Manager = "Brandon R. LeBlanc", ManagerID = 1 });
-            items.Add(new User() { FirstName = "Joseph", LastName = "Buccheri", PersNr = 10184, Job = "Production Technician II", Birthday = "28.07.1983", Sex = "M ", MaritalDesc = "Single", HireDate = "29.9.2014", Department = "Production", Manager = "Webster Butler", ManagerID = -1 });
-            items.Add(new User() { FirstName = "Josephine", LastName = "Bugali", PersNr = 10203, Job = "Production Technician I", Birthday = "30.10.1969", Sex = "F", MaritalDesc = "Separated", HireDate = "11.11.2013", Department = "Production", Manager = "Kissy Sullivan", ManagerID = 20 });
-            items.Add(new User() { FirstName = "Jessica", LastName = "Bunbury", PersNr = 10188, Job = "Area Sales Manager", Birthday = "06.01.1964", Sex = "F", MaritalDesc = "Married", HireDate = "15.8.2011", Department = "Sales", Manager = "John Smith", ManagerID = 17 });
-            items.Add(new User() { FirstName = "Joelle", LastName = "Burke", PersNr = 10107, Job = "Production Technician II", Birthday = "03.02.1980", Sex = "F", MaritalDesc = "Single", HireDate = "03.05.2012", Department = "Production", Manager = "Amy Dunn", ManagerID = 11 });
-            items.Add(new User() { FirstName = "Benjamin", LastName = "Burkett", PersNr = 10181, Job = "Production Technician II", Birthday = "19.08.1977", Sex = "M ", MaritalDesc = "Married", HireDate = "04.04.2011", Department = "Production", Manager = "Ketsia Liebig", ManagerID = 19 });
-            items.Add(new User() { FirstName = "Max", LastName = "Cady", PersNr = 10150, Job = "Software Engineering Manager", Birthday = "22.11.1966", Sex = "M ", MaritalDesc = "Single", HireDate = "15.8.2011", Department = "SoftwareEngineering", Manager = "Jennifer Zamora", ManagerID = 5 });
-            items.Add(new User() { FirstName = "Calvin", LastName = "Candie", PersNr = 10001, Job = "Production Manager", Birthday = "08.09.1983", Sex = "M ", MaritalDesc = "Single", HireDate = "28.1.2016", Department = "Production", Manager = "Janet King", ManagerID = 2 });
-            items.Add(new User() { FirstName = "Judith", LastName = "Carabbio", PersNr = 10085, Job = "Software Engineer", Birthday = "04.05.1987", Sex = "F", MaritalDesc = "Single", HireDate = "11.11.2013", Department = "SoftwareEngineering", Manager = "Alex Sweetwater", ManagerID = 10 });
-            items.Add(new User() { FirstName = "Michael", LastName = "Carey", PersNr = 10115, Job = "Production Technician I", Birthday = "02.02.1983", Sex = "M ", MaritalDesc = "Single", HireDate = "31.3.2014", Department = "Production", Manager = "Kelley Spirea", ManagerID = 18 });
-            items.Add(new User() { FirstName = "ClaudiaN", LastName = "Carr", PersNr = 10082, Job = "Sr. DBA", Birthday = "06.06.1986", Sex = "F", MaritalDesc = "Single", HireDate = "30.6.2016", Department = "IT/IS", Manager = "Simon Roup", ManagerID = 4 });
-            items.Add(new User() { FirstName = "Michelle", LastName = "Carter", PersNr = 10040, Job = "Area Sales Manager", Birthday = "15.05.1963", Sex = "F", MaritalDesc = "Single", HireDate = "18.8.2014", Department = "Sales", Manager = "John Smith", ManagerID = 17 });
-            items.Add(new User() { FirstName = "Beatrice", LastName = "Chace", PersNr = 10067, Job = "Production Technician I", Birthday = "01.02.1951", Sex = "F", MaritalDesc = "Single", HireDate = "29.9.2014", Department = "Production", Manager = "Michael Albert", ManagerID = 22 });
-            items.Add(new User() { FirstName = "Brian", LastName = "Champaigne", PersNr = 10108, Job = "BI Director", Birthday = "02.09.1972", Sex = "M ", MaritalDesc = "Married", HireDate = "09.06.2016", Department = "IT/IS", Manager = "Jennifer Zamora", ManagerID = 5 });
-            items.Add(new User() { FirstName = "Lin", LastName = "Chan", PersNr = 10210, Job = "Production Technician I", Birthday = "02.12.1979", Sex = "F", MaritalDesc = "Single", HireDate = "05.12.2014", Department = "Production", Manager = "Elijiah Gray", ManagerID = 16 });
-            items.Add(new User() { FirstName = "DonovanE", LastName = "Chang", PersNr = 10154, Job = "Production Technician I", Birthday = "24.08.1983", Sex = "M ", MaritalDesc = "Single", HireDate = "07.08.2013", Department = "Production", Manager = "Webster Butler", ManagerID = -1 });
-            items.Add(new User() { FirstName = "Anton", LastName = "Chigurh", PersNr = 10200, Job = "Area Sales Manager", Birthday = "06.11.1970", Sex = "M ", MaritalDesc = "Single", HireDate = "14.5.2012", Department = "Sales", Manager = "Lynn Daneault", ManagerID = 21 });
-            items.Add(new User() { FirstName = "Enola", LastName = "Chivukula", PersNr = 10240, Job = "Production Technician I", Birthday = "27.08.1983", Sex = "F", MaritalDesc = "Single", HireDate = "27.6.2011", Department = "Production", Manager = "Amy Dunn", ManagerID = 11 });
-            items.Add(new User() { FirstName = "Caroline", LastName = "Cierpiszewski", PersNr = 10168, Job = "Production Technician I", Birthday = "31.05.1988", Sex = "F", MaritalDesc = "Single", HireDate = "10.03.2011", Department = "Production", Manager = "Ketsia Liebig", ManagerID = 19 });
-            items.Add(new User() { FirstName = "Rick", LastName = "Clayton", PersNr = 10220, Job = "IT Support", Birthday = "09.05.1985", Sex = "M ", MaritalDesc = "Single", HireDate = "09.05.2012", Department = "IT/IS", Manager = "Eric Dougall", ManagerID = 6 });
-            items.Add(new User() { FirstName = "Jennifer", LastName = "Cloninger", PersNr = 10275, Job = "Production Technician II", Birthday = "31.08.1981", Sex = "F", MaritalDesc = "Married", HireDate = "16.5.2011", Department = "Production", Manager = "Brannon Miller", ManagerID = 12 });
-            items.Add(new User() { FirstName = "Phil", LastName = "Close", PersNr = 10269, Job = "Production Technician II", Birthday = "25.11.1978", Sex = "M ", MaritalDesc = "Married", HireDate = "30.8.2010", Department = "Production", Manager = "David Stanley", ManagerID = 14 });
-            items.Add(new User() { FirstName = "Elijian", LastName = "Clukey", PersNr = 10029, Job = "Production Technician I", Birthday = "26.08.1980", Sex = "M ", MaritalDesc = "Married", HireDate = "07.06.2016", Department = "Production", Manager = "Brannon Miller", ManagerID = 12 });
-            items.Add(new User() { FirstName = "James", LastName = "Cockel", PersNr = 10261, Job = "Production Technician I", Birthday = "09.08.1977", Sex = "M ", MaritalDesc = "Single", HireDate = "07.08.2013", Department = "Production", Manager = "David Stanley", ManagerID = 14 });
-            items.Add(new User() { FirstName = "Spencer", LastName = "Cole", PersNr = 10292, Job = "Production Technician I", Birthday = "08.12.1979", Sex = "M ", MaritalDesc = "Single", HireDate = "07.11.2011", Department = "Production", Manager = "Kissy Sullivan", ManagerID = 20 });
-            items.Add(new User() { FirstName = "Michael", LastName = "Corleone", PersNr = 10282, Job = "Production Manager", Birthday = "17.12.1975", Sex = "M ", MaritalDesc = "Divorced", HireDate = "20.7.2010", Department = "Production", Manager = "Janet King", ManagerID = 2 });
-            items.Add(new User() { FirstName = "Vito", LastName = "Corleone", PersNr = 10019, Job = "Director of Operations", Birthday = "19.03.1983", Sex = "M ", MaritalDesc = "Single", HireDate = "01.05.2009", Department = "Production", Manager = "Janet King", ManagerID = 2 });
-            items.Add(new User() { FirstName = "Lisa", LastName = "Cornett", PersNr = 10094, Job = "Production Technician I", Birthday = "31.03.1977", Sex = "F", MaritalDesc = "Married", HireDate = "01.05.2015", Department = "Production", Manager = "Kelley Spirea", ManagerID = 18 });
-            items.Add(new User() { FirstName = "Frank", LastName = "Costello", PersNr = 10193, Job = "Data Analyst", Birthday = "26.08.1986", Sex = "M ", MaritalDesc = "Married", HireDate = "30.3.2015", Department = "IT/IS", Manager = "Simon Roup", ManagerID = 4 });
-            items.Add(new User() { FirstName = "Jean", LastName = "Crimmings", PersNr = 10132, Job = "Production Technician I", Birthday = "04.10.1987", Sex = "F", MaritalDesc = "Single", HireDate = "07.06.2016", Department = "Production", Manager = "Michael Albert", ManagerID = 22 });
-            items.Add(new User() { FirstName = "Noah", LastName = "Cross", PersNr = 10083, Job = "Sr. Network Engineer", Birthday = "09.09.1965", Sex = "M ", MaritalDesc = "Single", HireDate = "11.10.2014", Department = "IT/IS", Manager = "Peter Monroe", ManagerID = 7 });
-            items.Add(new User() { FirstName = "Lynn", LastName = "Daneault", PersNr = 10099, Job = "Sales Manager", Birthday = "19.04.1990", Sex = "F", MaritalDesc = "Single", HireDate = "05.05.2014", Department = "Sales", Manager = "Debra Houlihan", ManagerID = 15 });
-            items.Add(new User() { FirstName = "Ann", LastName = "Daniele", PersNr = 10212, Job = "Sr. Network Engineer", Birthday = "18.01.1952", Sex = "F", MaritalDesc = "Married", HireDate = "11.10.2014", Department = "IT/IS", Manager = "Peter Monroe", ManagerID = 7 });
-            items.Add(new User() { FirstName = "Jene'ya", LastName = "Darson", PersNr = 10056, Job = "Production Technician I", Birthday = "11.05.1978", Sex = "F", MaritalDesc = "Married", HireDate = "07.02.2012", Department = "Production", Manager = "Elijiah Gray", ManagerID = 16 });
-            items.Add(new User() { FirstName = "Daniel", LastName = "Davis", PersNr = 10143, Job = "Production Technician II", Birthday = "14.09.1979", Sex = "M ", MaritalDesc = "Single", HireDate = "11.07.2011", Department = "Production", Manager = "Kissy Sullivan", ManagerID = 20 });
-            items.Add(new User() { FirstName = "Randy", LastName = "Dee", PersNr = 10311, Job = "Production Technician I", Birthday = "15.04.1988", Sex = "M ", MaritalDesc = "Married", HireDate = "07.09.2018", Department = "Production", Manager = "Brannon Miller", ManagerID = 12 });
-            items.Add(new User() { FirstName = "James", LastName = "DeGweck", PersNr = 10070, Job = "Production Technician I", Birthday = "31.10.1977", Sex = "M ", MaritalDesc = "Married", HireDate = "16.5.2011", Department = "Production", Manager = "Webster Butler", ManagerID = 39 });
-            items.Add(new User() { FirstName = "Keyla", LastName = "DelBosque", PersNr = 10155, Job = "Software Engineer", Birthday = "07.05.1979", Sex = "F", MaritalDesc = "Single", HireDate = "01.09.2012", Department = "SoftwareEngineering", Manager = "Alex Sweetwater", ManagerID = 10 });
-            items.Add(new User() { FirstName = "Alex", LastName = "Delarge", PersNr = 10306, Job = "Area Sales Manager", Birthday = "11.02.1975", Sex = "M ", MaritalDesc = "Single", HireDate = "29.9.2014", Department = "Sales", Manager = "John Smith", ManagerID = 17 });
-            items.Add(new User() { FirstName = "Carla", LastName = "Demita", PersNr = 10100, Job = "Production Technician II", Birthday = "25.02.1951", Sex = "F", MaritalDesc = "Separated", HireDate = "04.04.2011", Department = "Production", Manager = "Kelley Spirea", ManagerID = 18 });
-            items.Add(new User() { FirstName = "Carl", LastName = "Desimone", PersNr = 10310, Job = "Production Technician I", Birthday = "19.04.1967", Sex = "M ", MaritalDesc = "Married", HireDate = "07.07.2014", Department = "Production", Manager = "Amy Dunn", ManagerID = 11 });
-            items.Add(new User() { FirstName = "Tommy", LastName = "DeVito", PersNr = 10197, Job = "BI Developer", Birthday = "09.04.1983", Sex = "M ", MaritalDesc = "Single", HireDate = "15.2.2017", Department = "IT/IS", Manager = "Brian Champaigne", ManagerID = 13 });
-            items.Add(new User() { FirstName = "Geoff", LastName = "Dickinson", PersNr = 10276, Job = "Production Technician I", Birthday = "15.11.1982", Sex = "M ", MaritalDesc = "Single", HireDate = "05.12.2014", Department = "Production", Manager = "Ketsia Liebig", ManagerID = 19 });
-            items.Add(new User() { FirstName = "Jenna", LastName = "Dietrich", PersNr = 10304, Job = "Area Sales Manager", Birthday = "14.05.1987", Sex = "F", MaritalDesc = "Single", HireDate = "20.2.2012", Department = "Sales", Manager = "John Smith", ManagerID = 17 });
-            items.Add(new User() { FirstName = "Lily", LastName = "DiNocco", PersNr = 10284, Job = "Production Technician I", Birthday = "12.02.1978", Sex = "F", MaritalDesc = "Married", HireDate = "01.07.2013", Department = "Production", Manager = "Brannon Miller", ManagerID = 12 });
-            items.Add(new User() { FirstName = "DenisaS", LastName = "Dobrin", PersNr = 10207, Job = "Production Technician I", Birthday = "10.07.1986", Sex = "F", MaritalDesc = "Single", HireDate = "04.02.2012", Department = "Production", Manager = "David Stanley", ManagerID = 14 });
-            items.Add(new User() { FirstName = "Linda", LastName = "Dolan", PersNr = 10133, Job = "IT Support", Birthday = "18.07.1988", Sex = "F", MaritalDesc = "Married", HireDate = "01.05.2015", Department = "IT/IS", Manager = "Peter Monroe", ManagerID = 7 });
-            items.Add(new User() { FirstName = "Eric", LastName = "Dougall", PersNr = 10028, Job = "IT Manager - Support", Birthday = "07.09.1970", Sex = "M ", MaritalDesc = "Single", HireDate = "01.05.2014", Department = "IT/IS", Manager = "Jennifer Zamora", ManagerID = 5 });
-            items.Add(new User() { FirstName = "Elle", LastName = "Driver", PersNr = 10006, Job = "Area Sales Manager", Birthday = "11.08.1988", Sex = "F", MaritalDesc = "Single", HireDate = "01.10.2011", Department = "Sales", Manager = "Lynn Daneault", ManagerID = 21 });
-            items.Add(new User() { FirstName = "Amy", LastName = "Dunn", PersNr = 10105, Job = "Production Manager", Birthday = "28.11.1973", Sex = "F", MaritalDesc = "Single", HireDate = "18.9.2014", Department = "Production", Manager = "Janet King", ManagerID = 2 });
-            items.Add(new User() { FirstName = "Amy", LastName = "Dunne", PersNr = 10211, Job = "Production Technician I", Birthday = "23.09.1973", Sex = "F", MaritalDesc = "Married", HireDate = "26.4.2010", Department = "Production", Manager = "Ketsia Liebig", ManagerID = 19 });
-            items.Add(new User() { FirstName = "Marianne", LastName = "Eaton", PersNr = 10064, Job = "Production Technician I", Birthday = "09.05.1991", Sex = "F", MaritalDesc = "Married", HireDate = "04.04.2011", Department = "Production", Manager = "Kissy Sullivan", ManagerID = 20 });
-            items.Add(new User() { FirstName = "Jean", LastName = "Engdahl", PersNr = 10247, Job = "Production Technician I", Birthday = "31.05.1974", Sex = "M ", MaritalDesc = "Single", HireDate = "11.10.2014", Department = "Production", Manager = "Kelley Spirea", ManagerID = 18 });
-            items.Add(new User() { FirstName = "Rex", LastName = "England", PersNr = 10235, Job = "Production Technician I", Birthday = "25.08.1978", Sex = "M ", MaritalDesc = "Married", HireDate = "31.3.2014", Department = "Production", Manager = "Kelley Spirea", ManagerID = 18 });
-            items.Add(new User() { FirstName = "Angela", LastName = "Erilus", PersNr = 10299, Job = "Production Technician II", Birthday = "25.08.1989", Sex = "F", MaritalDesc = "Separated", HireDate = "07.07.2014", Department = "Production", Manager = "Michael Albert", ManagerID = 22 });
-            items.Add(new User() { FirstName = "Miguel", LastName = "Estremera", PersNr = 10280, Job = "Production Technician I", Birthday = "09.02.1983", Sex = "M ", MaritalDesc = "Single", HireDate = "04.02.2012", Department = "Production", Manager = "Michael Albert", ManagerID = 22 });
-            items.Add(new User() { FirstName = "April", LastName = "Evensen", PersNr = 10296, Job = "Production Technician I", Birthday = "05.06.1989", Sex = "F", MaritalDesc = "Single", HireDate = "17.2.2014", Department = "Production", Manager = "Elijiah Gray", ManagerID = 16 });
-            items.Add(new User() { FirstName = "Susan", LastName = "Exantus", PersNr = 10290, Job = "Software Engineer", Birthday = "15.05.1987", Sex = "F", MaritalDesc = "Married", HireDate = "05.02.2011", Department = "SoftwareEngineering", Manager = "Alex Sweetwater", ManagerID = 10 });
-            items.Add(new User() { FirstName = "Megan", LastName = "Faller", PersNr = 10263, Job = "Production Technician II", Birthday = "22.09.1978", Sex = "F", MaritalDesc = "Married", HireDate = "07.07.2014", Department = "Production", Manager = "Elijiah Gray", ManagerID = 16 });
-            items.Add(new User() { FirstName = "Nicole", LastName = "Fancett", PersNr = 10136, Job = "Production Technician II", Birthday = "27.09.1987", Sex = "F", MaritalDesc = "Single", HireDate = "17.2.2014", Department = "Production", Manager = "Webster Butler", ManagerID = -1 });
-            items.Add(new User() { FirstName = "Susan", LastName = "Ferguson", PersNr = 10189, Job = "Production Technician I", Birthday = "14.04.1955", Sex = "F", MaritalDesc = "Married", HireDate = "11.07.2011", Department = "Production", Manager = "Webster Butler", ManagerID = 39 });
-            items.Add(new User() { FirstName = "Nilson", LastName = "Fernandes", PersNr = 10308, Job = "Production Technician I", Birthday = "18.10.1989", Sex = "M ", MaritalDesc = "Married", HireDate = "05.11.2015", Department = "Production", Manager = "Amy Dunn", ManagerID = 11 });
-            items.Add(new User() { FirstName = "Boba", LastName = "Fett", PersNr = 10309, Job = "Network Engineer", Birthday = "18.06.1987", Sex = "M ", MaritalDesc = "Single", HireDate = "30.3.2015", Department = "IT/IS", Manager = "Peter Monroe", ManagerID = 7 });
-            items.Add(new User() { FirstName = "Libby", LastName = "Fidelia", PersNr = 10049, Job = "Production Technician I", Birthday = "16.03.1981", Sex = "F", MaritalDesc = "Married", HireDate = "01.09.2012", Department = "Production", Manager = "Brannon Miller", ManagerID = 12 });
-            items.Add(new User() { FirstName = "MichaelJ", LastName = "Fitzpatrick", PersNr = 10093, Job = "Production Technician II", Birthday = "10.01.1981", Sex = "M ", MaritalDesc = "Single", HireDate = "16.5.2011", Department = "Production", Manager = "Amy Dunn", ManagerID = 11 });
-            items.Add(new User() { FirstName = "Tanya", LastName = "Foreman", PersNr = 10163, Job = "Production Technician II", Birthday = "11.08.1983", Sex = "F", MaritalDesc = "Married", HireDate = "04.04.2011", Department = "Production", Manager = "Ketsia Liebig", ManagerID = 19 });
-            items.Add(new User() { FirstName = "Alex", LastName = "Forrest", PersNr = 10305, Job = "Area Sales Manager", Birthday = "07.07.1975", Sex = "M ", MaritalDesc = "Married", HireDate = "29.9.2014", Department = "Sales", Manager = "Lynn Daneault", ManagerID = 21 });
-            items.Add(new User() { FirstName = "Jason", LastName = "Foss", PersNr = 10015, Job = "IT Director", Birthday = "07.05.1980", Sex = "M ", MaritalDesc = "Single", HireDate = "15.4.2011", Department = "IT/IS", Manager = "Jennifer Zamora", ManagerID = 5 });
-            items.Add(new User() { FirstName = "Amy", LastName = "Foster-Baker", PersNr = 10080, Job = "Sr. Accountant", Birthday = "16.04.1979", Sex = "F", MaritalDesc = "Married", HireDate = "01.05.2009", Department = "AdminOffices", Manager = "Board of Directors", ManagerID = 9 });
-            items.Add(new User() { FirstName = "Maruk", LastName = "Fraval", PersNr = 10258, Job = "Area Sales Manager", Birthday = "28.08.1963", Sex = "M ", MaritalDesc = "Single", HireDate = "09.06.2011", Department = "Sales", Manager = "Lynn Daneault", ManagerID = 21 });
-            items.Add(new User() { FirstName = "Lisa", LastName = "Galia", PersNr = 10273, Job = "IT Support", Birthday = "07.06.1968", Sex = "F", MaritalDesc = "Single", HireDate = "05.01.2010", Department = "IT/IS", Manager = "Eric Dougall", ManagerID = 6 });
-            items.Add(new User() { FirstName = "Raul", LastName = "Garcia", PersNr = 10111, Job = "Production Technician I", Birthday = "15.09.1985", Sex = "M ", MaritalDesc = "Single", HireDate = "30.3.2015", Department = "Production", Manager = "David Stanley", ManagerID = 14 });
-            items.Add(new User() { FirstName = "Barbara", LastName = "Gaul", PersNr = 10257, Job = "Production Technician I", Birthday = "12.02.1983", Sex = "F", MaritalDesc = "Single", HireDate = "16.5.2011", Department = "Production", Manager = "Kelley Spirea", ManagerID = 18 });
-            items.Add(new User() { FirstName = "Mildred", LastName = "Gentry", PersNr = 10159, Job = "Production Technician I", Birthday = "10.01.1990", Sex = "F", MaritalDesc = "Married", HireDate = "30.3.2015", Department = "Production", Manager = "Michael Albert", ManagerID = 22 });
-            items.Add(new User() { FirstName = "Melisa", LastName = "Gerke", PersNr = 10122, Job = "Production Technician I", Birthday = "15.05.1970", Sex = "F", MaritalDesc = "Divorced", HireDate = "11.07.2011", Department = "Production", Manager = "Elijiah Gray", ManagerID = 16 });
-            items.Add(new User() { FirstName = "Whitney", LastName = "Gill", PersNr = 10142, Job = "Area Sales Manager", Birthday = "07.10.1971", Sex = "F", MaritalDesc = "Widowed", HireDate = "07.07.2014", Department = "Sales", Manager = "John Smith", ManagerID = 17 });
-            items.Add(new User() { FirstName = "Alex", LastName = "Gilles", PersNr = 10283, Job = "Production Technician I", Birthday = "08.09.1974", Sex = "M ", MaritalDesc = "Married", HireDate = "04.02.2012", Department = "Production", Manager = "Webster Butler", ManagerID = 39 });
-            items.Add(new User() { FirstName = "Evelyn", LastName = "Girifalco", PersNr = 10018, Job = "Production Technician I", Birthday = "05.08.1980", Sex = "F", MaritalDesc = "Single", HireDate = "29.9.2014", Department = "Production", Manager = "Amy Dunn", ManagerID = 11 });
-            items.Add(new User() { FirstName = "Myriam", LastName = "Givens", PersNr = 10255, Job = "Area Sales Manager", Birthday = "22.09.1989", Sex = "F", MaritalDesc = "Single", HireDate = "16.2.2015", Department = "Sales", Manager = "Lynn Daneault", ManagerID = 21 });
-            items.Add(new User() { FirstName = "Taisha", LastName = "Goble", PersNr = 10246, Job = "Database Administrator", Birthday = "23.10.1971", Sex = "F", MaritalDesc = "Single", HireDate = "16.2.2015", Department = "IT/IS", Manager = "Simon Roup", ManagerID = 4 });
-            items.Add(new User() { FirstName = "Amon", LastName = "Goeth", PersNr = 10228, Job = "IT Support", Birthday = "24.11.1989", Sex = "M ", MaritalDesc = "Married", HireDate = "30.3.2015", Department = "IT/IS", Manager = "Peter Monroe", ManagerID = 7 });
-            items.Add(new User() { FirstName = "Shenice", LastName = "Gold", PersNr = 10243, Job = "Production Technician I", Birthday = "18.06.1992", Sex = "F", MaritalDesc = "Single", HireDate = "11.11.2013", Department = "Production", Manager = "Ketsia Liebig", ManagerID = 19 });
-            items.Add(new User() { FirstName = "Cayo", LastName = "Gonzalez", PersNr = 10031, Job = "Production Technician I", Birthday = "29.09.1969", Sex = "M ", MaritalDesc = "Divorced", HireDate = "07.11.2011", Department = "Production", Manager = "Brannon Miller", ManagerID = 12 });
-            items.Add(new User() { FirstName = "Juan", LastName = "Gonzalez", PersNr = 10300, Job = "Production Technician II", Birthday = "10.12.1964", Sex = "M ", MaritalDesc = "Married", HireDate = "26.4.2010", Department = "Production", Manager = "Brannon Miller", ManagerID = 12 });
-            items.Add(new User() { FirstName = "Maria", LastName = "Gonzalez", PersNr = 10101, Job = "IT Support", Birthday = "16.04.1981", Sex = "F", MaritalDesc = "Separated", HireDate = "01.05.2015", Department = "IT/IS", Manager = "Peter Monroe", ManagerID = 7 });
-            items.Add(new User() { FirstName = "Susan", LastName = "Good", PersNr = 10237, Job = "Production Technician II", Birthday = "25.05.1986", Sex = "F", MaritalDesc = "Married", HireDate = "05.12.2014", Department = "Production", Manager = "David Stanley", ManagerID = 14 });
-            items.Add(new User() { FirstName = "David", LastName = "Gordon", PersNr = 10051, Job = "Production Technician I", Birthday = "21.05.1979", Sex = "M ", MaritalDesc = "Married", HireDate = "07.02.2012", Department = "Production", Manager = "David Stanley", ManagerID = 14 });
-            items.Add(new User() { FirstName = "Phylicia", LastName = "Gosciminski", PersNr = 10218, Job = "Production Technician II", Birthday = "12.08.1983", Sex = "F", MaritalDesc = "Separated", HireDate = "30.9.2013", Department = "Production", Manager = "Kissy Sullivan", ManagerID = 20 });
-            items.Add(new User() { FirstName = "Roxana", LastName = "Goyal", PersNr = 10256, Job = "Production Technician I", Birthday = "10.09.1974", Sex = "F", MaritalDesc = "Married", HireDate = "19.8.2013", Department = "Production", Manager = "Kissy Sullivan", ManagerID = 20 });
-            items.Add(new User() { FirstName = "Elijiah", LastName = "Gray", PersNr = 10098, Job = "Production Manager", Birthday = "07.11.1981", Sex = "M ", MaritalDesc = "Divorced", HireDate = "06.02.2015", Department = "Production", Manager = "Janet King", ManagerID = 2 });
-            items.Add(new User() { FirstName = "Paula", LastName = "Gross", PersNr = 10059, Job = "Production Technician I", Birthday = "21.05.1983", Sex = "F", MaritalDesc = "Divorced", HireDate = "21.2.2011", Department = "Production", Manager = "Kelley Spirea", ManagerID = 18 });
-            items.Add(new User() { FirstName = "Hans", LastName = "Gruber", PersNr = 10234, Job = "BI Developer", Birthday = "30.06.1989", Sex = "M ", MaritalDesc = "Married", HireDate = "20.4.2017", Department = "IT/IS", Manager = "Brian Champaigne", ManagerID = 13 });
-            items.Add(new User() { FirstName = "Mike", LastName = "Guilianno", PersNr = 10109, Job = "Area Sales Manager", Birthday = "02.09.1969", Sex = "M ", MaritalDesc = "Single", HireDate = "03.07.2012", Department = "Sales", Manager = "John Smith", ManagerID = 17 });
-            items.Add(new User() { FirstName = "Joanne", LastName = "Handschiegl", PersNr = 10125, Job = "Production Technician I", Birthday = "23.03.1977", Sex = "F", MaritalDesc = "Married", HireDate = "28.11.2011", Department = "Production", Manager = "Michael Albert", ManagerID = 22 });
-            items.Add(new User() { FirstName = "Earnest", LastName = "Hankard", PersNr = 10074, Job = "Production Technician II", Birthday = "08.10.1988", Sex = "M ", MaritalDesc = "Single", HireDate = "11.11.2013", Department = "Production", Manager = "Kelley Spirea", ManagerID = 18 });
-            items.Add(new User() { FirstName = "Christie", LastName = "Harrington", PersNr = 10097, Job = "Production Technician I", Birthday = "18.08.1952", Sex = "F", MaritalDesc = "Single", HireDate = "01.09.2012", Department = "Production", Manager = "Webster Butler", ManagerID = 39 });
-            items.Add(new User() { FirstName = "Kara", LastName = "Harrison", PersNr = 10007, Job = "Production Technician I", Birthday = "05.02.1974", Sex = "F", MaritalDesc = "Married", HireDate = "05.12.2014", Department = "Production", Manager = "Amy Dunn", ManagerID = 11 });
-            items.Add(new User() { FirstName = "Anthony", LastName = "Heitzman", PersNr = 10129, Job = "Production Technician I", Birthday = "01.04.1984", Sex = "M ", MaritalDesc = "Single", HireDate = "13.8.2012", Department = "Production", Manager = "Ketsia Liebig", ManagerID = 19 });
-            items.Add(new User() { FirstName = "Trina", LastName = "Hendrickson", PersNr = 10075, Job = "Production Technician II", Birthday = "27.08.1972", Sex = "F", MaritalDesc = "Single", HireDate = "01.10.2011", Department = "Production", Manager = "Kelley Spirea", ManagerID = 18 });
-            items.Add(new User() { FirstName = "Alfred", LastName = "Hitchcock", PersNr = 10167, Job = "Area Sales Manager", Birthday = "14.09.1988", Sex = "M ", MaritalDesc = "Married", HireDate = "18.8.2014", Department = "Sales", Manager = "John Smith", ManagerID = 17 });
-            items.Add(new User() { FirstName = "AdrienneJ", LastName = "Homberger", PersNr = 10195, Job = "Production Technician II", Birthday = "16.02.1984", Sex = "F", MaritalDesc = "Married", HireDate = "15.8.2011", Department = "Production", Manager = "Michael Albert", ManagerID = 30 });
-            items.Add(new User() { FirstName = "Jayne", LastName = "Horton", PersNr = 10112, Job = "Database Administrator", Birthday = "21.02.1984", Sex = "F", MaritalDesc = "Single", HireDate = "30.3.2015", Department = "IT/IS", Manager = "Simon Roup", ManagerID = 4 });
-            items.Add(new User() { FirstName = "Debra", LastName = "Houlihan", PersNr = 10272, Job = "Director of Sales", Birthday = "17.03.1966", Sex = "F", MaritalDesc = "Married", HireDate = "05.05.2014", Department = "Sales", Manager = "Janet King", ManagerID = 2 });
-            items.Add(new User() { FirstName = "Estelle", LastName = "Howard", PersNr = 10182, Job = "Administrative Assistant", Birthday = "16.09.1985", Sex = "F", MaritalDesc = "Married", HireDate = "16.2.2015", Department = "AdminOffices", Manager = "Brandon R. LeBlanc", ManagerID = 1 });
-            items.Add(new User() { FirstName = "Jane", LastName = "Hudson", PersNr = 10248, Job = "Production Technician I", Birthday = "06.10.1986", Sex = "F", MaritalDesc = "Single", HireDate = "20.2.2012", Department = "Production", Manager = "Ketsia Liebig", ManagerID = 19 });
-            items.Add(new User() { FirstName = "Julissa", LastName = "Hunts", PersNr = 10201, Job = "Production Technician II", Birthday = "03.11.1984", Sex = "F", MaritalDesc = "Single", HireDate = "06.06.2016", Department = "Production", Manager = "Elijiah Gray", ManagerID = 16 });
-            items.Add(new User() { FirstName = "Rosalie", LastName = "Hutter", PersNr = 10214, Job = "Production Technician II", Birthday = "05.07.1992", Sex = "F", MaritalDesc = "Separated", HireDate = "06.05.2015", Department = "Production", Manager = "Webster Butler", ManagerID = -1 });
-            items.Add(new User() { FirstName = "Ming", LastName = "Huynh", PersNr = 10160, Job = "Production Technician II", Birthday = "22.09.1976", Sex = "F", MaritalDesc = "Divorced", HireDate = "21.2.2011", Department = "Production", Manager = "Amy Dunn", ManagerID = 11 });
-            items.Add(new User() { FirstName = "Walter", LastName = "Immediato", PersNr = 10289, Job = "Production Manager", Birthday = "15.11.1976", Sex = "M ", MaritalDesc = "Married", HireDate = "21.2.2011", Department = "Production", Manager = "Janet King", ManagerID = 2 });
-            items.Add(new User() { FirstName = "Rose", LastName = "Ivey", PersNr = 10139, Job = "Production Technician I", Birthday = "28.01.1991", Sex = "F", MaritalDesc = "Single", HireDate = "19.8.2013", Department = "Production", Manager = "Brannon Miller", ManagerID = 12 });
-            items.Add(new User() { FirstName = "Maryellen", LastName = "Jackson", PersNr = 10227, Job = "Production Technician I", Birthday = "09.11.1972", Sex = "F", MaritalDesc = "Single", HireDate = "11.05.2012", Department = "Production", Manager = "David Stanley", ManagerID = 14 });
-            items.Add(new User() { FirstName = "Hannah", LastName = "Jacobi", PersNr = 10236, Job = "Production Technician I", Birthday = "22.03.1966", Sex = "F", MaritalDesc = "Divorced", HireDate = "30.9.2013", Department = "Production", Manager = "Kissy Sullivan", ManagerID = 20 });
-            items.Add(new User() { FirstName = "Tayana", LastName = "Jeannite", PersNr = 10009, Job = "Production Technician II", Birthday = "11.06.1986", Sex = "F", MaritalDesc = "Divorced", HireDate = "07.05.2011", Department = "Production", Manager = "Ketsia Liebig", ManagerID = 19 });
-            items.Add(new User() { FirstName = "Sneha", LastName = "Jhaveri", PersNr = 10060, Job = "Production Technician I", Birthday = "13.04.1964", Sex = "F", MaritalDesc = "Separated", HireDate = "01.06.2014", Department = "Production", Manager = "Kelley Spirea", ManagerID = 18 });
-            items.Add(new User() { FirstName = "George", LastName = "Johnson", PersNr = 10034, Job = "Production Technician I", Birthday = "19.08.1959", Sex = "M ", MaritalDesc = "Married", HireDate = "11.07.2011", Department = "Production", Manager = "Michael Albert", ManagerID = 22 });
-            items.Add(new User() { FirstName = "Noelle", LastName = "Johnson", PersNr = 10156, Job = "Database Administrator", Birthday = "11.07.1986", Sex = "F", MaritalDesc = "Married", HireDate = "01.05.2015", Department = "IT/IS", Manager = "Simon Roup", ManagerID = 4 });
-            items.Add(new User() { FirstName = "Yen", LastName = "Johnston", PersNr = 10036, Job = "Production Technician II", Birthday = "09.08.1969", Sex = "F", MaritalDesc = "Single", HireDate = "07.07.2014", Department = "Production", Manager = "Brannon Miller", ManagerID = 12 });
-            items.Add(new User() { FirstName = "Judy", LastName = "Jung", PersNr = 10138, Job = "Production Technician I", Birthday = "17.04.1986", Sex = "F", MaritalDesc = "Married", HireDate = "01.10.2011", Department = "Production", Manager = "Elijiah Gray", ManagerID = 16 });
-            items.Add(new User() { FirstName = "Donysha", LastName = "Kampew", PersNr = 10244, Job = "Sales Manager", Birthday = "11.11.1989", Sex = "F", MaritalDesc = "Single", HireDate = "11.07.2011", Department = "Sales", Manager = "Debra Houlihan", ManagerID = 15 });
-            items.Add(new User() { FirstName = "Kramer", LastName = "Keatts", PersNr = 10192, Job = "Production Technician I", Birthday = "19.01.1976", Sex = "M ", MaritalDesc = "Single", HireDate = "30.9.2013", Department = "Production", Manager = "Michael Albert", ManagerID = 22 });
-            items.Add(new User() { FirstName = "Bartholemew", LastName = "Khemmich", PersNr = 10231, Job = "Area Sales Manager", Birthday = "27.11.1979", Sex = "M ", MaritalDesc = "Single", HireDate = "19.8.2013", Department = "Sales", Manager = "Lynn Daneault", ManagerID = 21 });
-            items.Add(new User() { FirstName = "Janet", LastName = "King", PersNr = 10089, Job = "President & CEO", Birthday = "21.09.1954", Sex = "F", MaritalDesc = "Married", HireDate = "07.02.2012", Department = "ExecutiveOffice", Manager = "Board of Directors", ManagerID = 9 });
-            items.Add(new User() { FirstName = "Kathleen", LastName = "Kinsella", PersNr = 10166, Job = "Production Technician I", Birthday = "12.08.1973", Sex = "F", MaritalDesc = "Married", HireDate = "26.9.2011", Department = "Production", Manager = "Webster Butler", ManagerID = 39 });
-            items.Add(new User() { FirstName = "Alexandra", LastName = "Kirill", PersNr = 10170, Job = "Production Technician I", Birthday = "10.08.1970", Sex = "F", MaritalDesc = "Married", HireDate = "26.9.2011", Department = "Production", Manager = "Amy Dunn", ManagerID = 11 });
-            items.Add(new User() { FirstName = "BradleyJ", LastName = "Knapp", PersNr = 10208, Job = "Production Technician I", Birthday = "11.10.1977", Sex = "M ", MaritalDesc = "Single", HireDate = "17.2.2014", Department = "Production", Manager = "Ketsia Liebig", ManagerID = 19 });
-            items.Add(new User() { FirstName = "John", LastName = "Kretschmer", PersNr = 10176, Job = "Production Technician I", Birthday = "02.02.1980", Sex = "M ", MaritalDesc = "Married", HireDate = "01.10.2011", Department = "Production", Manager = "Brannon Miller", ManagerID = 12 });
-            items.Add(new User() { FirstName = "Freddy", LastName = "Kreuger", PersNr = 10165, Job = "Area Sales Manager", Birthday = "24.02.1969", Sex = "M ", MaritalDesc = "Single", HireDate = "03.07.2011", Department = "Sales", Manager = "John Smith", ManagerID = 17 });
-            items.Add(new User() { FirstName = "Jyoti", LastName = "Lajiri", PersNr = 10113, Job = "Sr. Network Engineer", Birthday = "23.04.1986", Sex = "M ", MaritalDesc = "Married", HireDate = "11.10.2014", Department = "IT/IS", Manager = "Peter Monroe", ManagerID = 7 });
-            items.Add(new User() { FirstName = "Hans", LastName = "Landa", PersNr = 10092, Job = "Production Manager", Birthday = "07.01.1972", Sex = "M ", MaritalDesc = "Married", HireDate = "01.10.2011", Department = "Production", Manager = "Janet King", ManagerID = 2 });
-            items.Add(new User() { FirstName = "Lindsey", LastName = "Langford", PersNr = 10106, Job = "Production Technician II", Birthday = "25.07.1979", Sex = "F", MaritalDesc = "Divorced", HireDate = "01.07.2013", Department = "Production", Manager = "David Stanley", ManagerID = 14 });
-            items.Add(new User() { FirstName = "Enrico", LastName = "Langton", PersNr = 10052, Job = "Production Technician I", Birthday = "12.09.1986", Sex = "M ", MaritalDesc = "Married", HireDate = "07.09.2012", Department = "Production", Manager = "David Stanley", ManagerID = 14 });
-            items.Add(new User() { FirstName = "William", LastName = "LaRotonda", PersNr = 10038, Job = "Accountant I", Birthday = "26.04.1984", Sex = "M ", MaritalDesc = "Divorced", HireDate = "01.06.2014", Department = "AdminOffices", Manager = "Brandon R. LeBlanc", ManagerID = 1 });
-            items.Add(new User() { FirstName = "Mohammed", LastName = "Latif", PersNr = 10249, Job = "Production Technician II", Birthday = "05.09.1984", Sex = "M ", MaritalDesc = "Married", HireDate = "04.02.2012", Department = "Production", Manager = "Kissy Sullivan", ManagerID = 20 });
-            items.Add(new User() { FirstName = "Binh", LastName = "Le", PersNr = 10232, Job = "Senior BI Developer", Birthday = "14.06.1987", Sex = "F", MaritalDesc = "Single", HireDate = "10.02.2016", Department = "IT/IS", Manager = "Brian Champaigne", ManagerID = 13 });
-            items.Add(new User() { FirstName = "Dallas", LastName = "Leach", PersNr = 10087, Job = "Production Technician I", Birthday = "17.01.1979", Sex = "F", MaritalDesc = "Single", HireDate = "26.9.2011", Department = "Production", Manager = "Kissy Sullivan", ManagerID = 20 });
-            items.Add(new User() { FirstName = "BrandonR", LastName = "LeBlanc", PersNr = 10134, Job = "Shared Services Manager", Birthday = "06.10.1984", Sex = "M ", MaritalDesc = "Married", HireDate = "01.05.2016", Department = "AdminOffices", Manager = "Janet King", ManagerID = 2 });
-            items.Add(new User() { FirstName = "Hannibal", LastName = "Lecter", PersNr = 10251, Job = "Production Technician I", Birthday = "09.02.1982", Sex = "M ", MaritalDesc = "Married", HireDate = "14.5.2012", Department = "Production", Manager = "Elijiah Gray", ManagerID = 16 });
-            items.Add(new User() { FirstName = "Giovanni", LastName = "Leruth", PersNr = 10103, Job = "Area Sales Manager", Birthday = "27.12.1988", Sex = "M ", MaritalDesc = "Separated", HireDate = "30.4.2012", Department = "Sales", Manager = "John Smith", ManagerID = 17 });
-            items.Add(new User() { FirstName = "Ketsia", LastName = "Liebig", PersNr = 10017, Job = "Production Manager", Birthday = "26.10.1981", Sex = "F", MaritalDesc = "Married", HireDate = "30.9.2013", Department = "Production", Manager = "Janet King", ManagerID = 2 });
-            items.Add(new User() { FirstName = "Marilyn", LastName = "Linares", PersNr = 10186, Job = "Production Technician I", Birthday = "26.03.1981", Sex = "F", MaritalDesc = "Married", HireDate = "07.05.2011", Department = "Production", Manager = "Michael Albert", ManagerID = 22 });
-            items.Add(new User() { FirstName = "Mathew", LastName = "Linden", PersNr = 10137, Job = "Production Technician II", Birthday = "19.03.1979", Sex = "M ", MaritalDesc = "Married", HireDate = "07.08.2013", Department = "Production", Manager = "Kelley Spirea", ManagerID = 18 });
-            items.Add(new User() { FirstName = "Leonara", LastName = "Lindsay", PersNr = 10008, Job = "IT Support", Birthday = "10.05.1988", Sex = "F", MaritalDesc = "Single", HireDate = "21.1.2011", Department = "IT/IS", Manager = "Eric Dougall", ManagerID = 6 });
-            items.Add(new User() { FirstName = "Susan", LastName = "Lundy", PersNr = 10096, Job = "Production Technician II", Birthday = "26.12.1976", Sex = "F", MaritalDesc = "Widowed", HireDate = "07.08.2013", Department = "Production", Manager = "Michael Albert", ManagerID = 22 });
-            items.Add(new User() { FirstName = "Lisa", LastName = "Lunquist", PersNr = 10035, Job = "Production Technician II", Birthday = "28.03.1982", Sex = "F", MaritalDesc = "Single", HireDate = "19.8.2013", Department = "Production", Manager = "Elijiah Gray", ManagerID = 16 });
-            items.Add(new User() { FirstName = "Allison", LastName = "Lydon", PersNr = 10057, Job = "Production Technician I", Birthday = "22.10.1975", Sex = "F", MaritalDesc = "Married", HireDate = "16.2.2015", Department = "Production", Manager = "Elijiah Gray", ManagerID = 16 });
-            items.Add(new User() { FirstName = "Lindsay", LastName = "Lynch", PersNr = 10004, Job = "Production Technician I", Birthday = "14.02.1973", Sex = "F", MaritalDesc = "Single", HireDate = "11.07.2011", Department = "Production", Manager = "Webster Butler", ManagerID = 39 });
-            items.Add(new User() { FirstName = "Samuel", LastName = "MacLennan", PersNr = 10191, Job = "Production Technician I", Birthday = "11.09.1972", Sex = "M ", MaritalDesc = "Widowed", HireDate = "24.9.2012", Department = "Production", Manager = "Amy Dunn", ManagerID = 11 });
-            items.Add(new User() { FirstName = "Lauren", LastName = "Mahoney", PersNr = 10219, Job = "Production Technician I", Birthday = "07.07.1986", Sex = "F", MaritalDesc = "Single", HireDate = "01.06.2014", Department = "Production", Manager = "Ketsia Liebig", ManagerID = 19 });
-            items.Add(new User() { FirstName = "Robyn", LastName = "Manchester", PersNr = 10077, Job = "Production Technician II", Birthday = "25.08.1976", Sex = "F", MaritalDesc = "Married", HireDate = "05.11.2016", Department = "Production", Manager = "Webster Butler", ManagerID = -1 });
-            items.Add(new User() { FirstName = "Karen", LastName = "Mancuso", PersNr = 10073, Job = "Production Technician II", Birthday = "12.10.1986", Sex = "F", MaritalDesc = "Married", HireDate = "07.05.2011", Department = "Production", Manager = "Amy Dunn", ManagerID = 11 });
-            items.Add(new User() { FirstName = "Debbie", LastName = "Mangal", PersNr = 10279, Job = "Production Technician I", Birthday = "11.07.1974", Sex = "F", MaritalDesc = "Married", HireDate = "11.11.2013", Department = "Production", Manager = "Brannon Miller", ManagerID = 12 });
-            items.Add(new User() { FirstName = "Sandra", LastName = "Martin", PersNr = 10110, Job = "Software Engineer", Birthday = "11.07.1987", Sex = "F", MaritalDesc = "Single", HireDate = "11.11.2013", Department = "SoftwareEngineering", Manager = "Alex Sweetwater", ManagerID = 10 });
-            items.Add(new User() { FirstName = "Shana", LastName = "Maurice", PersNr = 10053, Job = "Production Technician I", Birthday = "22.11.1977", Sex = "F", MaritalDesc = "Married", HireDate = "31.5.2011", Department = "Production", Manager = "David Stanley", ManagerID = 14 });
-            items.Add(new User() { FirstName = "B'rigit", LastName = "Carthy", PersNr = 10076, Job = "Production Technician II", Birthday = "21.05.1987", Sex = "F", MaritalDesc = "Single", HireDate = "30.3.2015", Department = "Production", Manager = "Ketsia Liebig", ManagerID = 19 });
-            items.Add(new User() { FirstName = "Sandy", LastName = "Mckenna", PersNr = 10145, Job = "Production Technician I", Birthday = "01.07.1987", Sex = "F", MaritalDesc = "Married", HireDate = "01.07.2013", Department = "Production", Manager = "Kissy Sullivan", ManagerID = 20 });
-            items.Add(new User() { FirstName = "Jac", LastName = "McKinzie", PersNr = 10202, Job = "Area Sales Manager", Birthday = "07.01.1984", Sex = "M ", MaritalDesc = "Married", HireDate = "07.06.2016", Department = "Sales", Manager = "Lynn Daneault", ManagerID = 21 });
-            items.Add(new User() { FirstName = "Elizabeth", LastName = "Meads", PersNr = 10128, Job = "Production Technician I", Birthday = "30.05.1968", Sex = "F", MaritalDesc = "Single", HireDate = "04.02.2012", Department = "Production", Manager = "Kelley Spirea", ManagerID = 18 });
-            items.Add(new User() { FirstName = "Jennifer", LastName = "Medeiros", PersNr = 10068, Job = "Production Technician I", Birthday = "22.09.1976", Sex = "F", MaritalDesc = "Single", HireDate = "30.3.2015", Department = "Production", Manager = "Michael Albert", ManagerID = 22 });
-            items.Add(new User() { FirstName = "Brannon", LastName = "Miller", PersNr = 10116, Job = "Production Manager", Birthday = "08.10.1981", Sex = "M ", MaritalDesc = "Single", HireDate = "16.8.2012", Department = "Production", Manager = "Janet King", ManagerID = 2 });
-            items.Add(new User() { FirstName = "Ned", LastName = "Miller", PersNr = 10298, Job = "Production Technician II", Birthday = "29.06.1985", Sex = "M ", MaritalDesc = "Single", HireDate = "15.8.2011", Department = "Production", Manager = "Brannon Miller", ManagerID = 12 });
-            items.Add(new User() { FirstName = "Erasumus", LastName = "Monkfish", PersNr = 10213, Job = "Production Technician II", Birthday = "17.08.1992", Sex = "M ", MaritalDesc = "Married", HireDate = "11.07.2011", Department = "Production", Manager = "David Stanley", ManagerID = 14 });
-            items.Add(new User() { FirstName = "Peter", LastName = "Monroe", PersNr = 10288, Job = "IT Manager - Infra", Birthday = "10.05.1986", Sex = "M ", MaritalDesc = "Married", HireDate = "15.2.2012", Department = "IT/IS", Manager = "Jennifer Zamora", ManagerID = 5 });
-            items.Add(new User() { FirstName = "Luisa", LastName = "Monterro", PersNr = 10025, Job = "Production Technician II", Birthday = "24.04.1970", Sex = "F", MaritalDesc = "Single", HireDate = "13.5.2013", Department = "Production", Manager = "Kissy Sullivan", ManagerID = 20 });
-            items.Add(new User() { FirstName = "Patrick", LastName = "Moran", PersNr = 10223, Job = "Production Technician II", Birthday = "12.03.1976", Sex = "M ", MaritalDesc = "Single", HireDate = "01.09.2012", Department = "Production", Manager = "Kelley Spirea", ManagerID = 18 });
-            items.Add(new User() { FirstName = "Tanya", LastName = "Morway", PersNr = 10151, Job = "Network Engineer", Birthday = "04.04.1979", Sex = "F", MaritalDesc = "Married", HireDate = "16.2.2015", Department = "IT/IS", Manager = "Peter Monroe", ManagerID = 7 });
-            items.Add(new User() { FirstName = "Dawn", LastName = "Motlagh", PersNr = 10254, Job = "Production Technician I", Birthday = "07.07.1984", Sex = "F", MaritalDesc = "Divorced", HireDate = "04.01.2013", Department = "Production", Manager = "Elijiah Gray", ManagerID = 16 });
-            items.Add(new User() { FirstName = "Maliki", LastName = "Moumanil", PersNr = 10120, Job = "Production Technician II", Birthday = "12.01.1974", Sex = "M ", MaritalDesc = "Separated", HireDate = "13.5.2013", Department = "Production", Manager = "Michael Albert", ManagerID = 22 });
-            items.Add(new User() { FirstName = "Michael", LastName = "Myers", PersNr = 10216, Job = "Production Technician I", Birthday = "18.04.1980", Sex = "M ", MaritalDesc = "Single", HireDate = "07.08.2013", Department = "Production", Manager = "Kissy Sullivan", ManagerID = 20 });
-            items.Add(new User() { FirstName = "Kurt", LastName = "Navathe", PersNr = 10079, Job = "Senior BI Developer", Birthday = "25.04.1970", Sex = "M ", MaritalDesc = "Single", HireDate = "02.10.2017", Department = "IT/IS", Manager = "Brian Champaigne", ManagerID = 13 });
-            items.Add(new User() { FirstName = "Colombui", LastName = "Ndzi", PersNr = 10215, Job = "Production Technician I", Birthday = "05.02.1989", Sex = "M ", MaritalDesc = "Single", HireDate = "26.9.2011", Department = "Production", Manager = "Webster Butler", ManagerID = 39 });
-            items.Add(new User() { FirstName = "Horia", LastName = "Ndzi", PersNr = 10185, Job = "Production Technician I", Birthday = "28.03.1983", Sex = "M ", MaritalDesc = "Married", HireDate = "04.01.2013", Department = "Production", Manager = "Amy Dunn", ManagerID = 11 });
-            items.Add(new User() { FirstName = "Richard", LastName = "Newman", PersNr = 10063, Job = "Production Technician I", Birthday = "04.08.1977", Sex = "M ", MaritalDesc = "Married", HireDate = "05.12.2014", Department = "Production", Manager = "Ketsia Liebig", ManagerID = 19 });
-            items.Add(new User() { FirstName = "Shari", LastName = "Ngodup", PersNr = 10037, Job = "Production Technician I", Birthday = "06.03.1967", Sex = "F", MaritalDesc = "Separated", HireDate = "04.01.2013", Department = "Production", Manager = "Brannon Miller", ManagerID = 12 });
-            items.Add(new User() { FirstName = "Dheepa", LastName = "Nguyen", PersNr = 10042, Job = "Area Sales Manager", Birthday = "31.03.1989", Sex = "F", MaritalDesc = "Single", HireDate = "07.08.2013", Department = "Sales", Manager = "Lynn Daneault", ManagerID = 21 });
-            items.Add(new User() { FirstName = "Lei-Ming", LastName = "Nguyen", PersNr = 10206, Job = "Production Technician I", Birthday = "07.07.1984", Sex = "F", MaritalDesc = "Single", HireDate = "07.08.2013", Department = "Production", Manager = "David Stanley", ManagerID = 14 });
-            items.Add(new User() { FirstName = "Kristie", LastName = "Nowlan", PersNr = 10104, Job = "Production Technician II", Birthday = "23.11.1985", Sex = "F", MaritalDesc = "Single", HireDate = "11.10.2014", Department = "Production", Manager = "Elijiah Gray", ManagerID = 16 });
-            items.Add(new User() { FirstName = "Lynn", LastName = "O'hare", PersNr = 10303, Job = "Production Technician I", Birthday = "30.09.1980", Sex = "F", MaritalDesc = "Single", HireDate = "31.3.2014", Department = "Production", Manager = "Kissy Sullivan", ManagerID = 20 });
-            items.Add(new User() { FirstName = "Brooke", LastName = "Oliver", PersNr = 10078, Job = "Production Technician II", Birthday = "02.11.1952", Sex = "F", MaritalDesc = "Married", HireDate = "14.5.2012", Department = "Production", Manager = "Webster Butler", ManagerID = 39 });
-            items.Add(new User() { FirstName = "Jasmine", LastName = "Onque", PersNr = 10121, Job = "Area Sales Manager", Birthday = "05.11.1990", Sex = "F", MaritalDesc = "Single", HireDate = "30.9.2013", Department = "Sales", Manager = "Lynn Daneault", ManagerID = 21 });
-            items.Add(new User() { FirstName = "Adeel", LastName = "Osturnka", PersNr = 10021, Job = "Production Technician I", Birthday = "12.11.1976", Sex = "M ", MaritalDesc = "Married", HireDate = "30.9.2013", Department = "Production", Manager = "Kelley Spirea", ManagerID = 18 });
-            items.Add(new User() { FirstName = "Clinton", LastName = "Owad", PersNr = 10281, Job = "Production Technician I", Birthday = "24.11.1979", Sex = "M ", MaritalDesc = "Single", HireDate = "17.2.2014", Department = "Production", Manager = "Michael Albert", ManagerID = 22 });
-            items.Add(new User() { FirstName = "Travis", LastName = "Ozark", PersNr = 10041, Job = "Area Sales Manager", Birthday = "19.05.1982", Sex = "M ", MaritalDesc = "Single", HireDate = "01.05.2015", Department = "Sales", Manager = "John Smith", ManagerID = 17 });
-            items.Add(new User() { FirstName = "Nina", LastName = "Panjwani", PersNr = 10148, Job = "Production Technician I", Birthday = "05.01.1979", Sex = "F", MaritalDesc = "Married", HireDate = "02.07.2011", Department = "Production", Manager = "Elijiah Gray", ManagerID = 16 });
-            items.Add(new User() { FirstName = "Lucas", LastName = "Patronick", PersNr = 10005, Job = "Software Engineer", Birthday = "20.02.1979", Sex = "M ", MaritalDesc = "Single", HireDate = "11.07.2011", Department = "SoftwareEngineering", Manager = "Alex Sweetwater", ManagerID = 10 });
-            items.Add(new User() { FirstName = "Randall", LastName = "Pearson", PersNr = 10259, Job = "Data Analyst", Birthday = "09.05.1984", Sex = "M ", MaritalDesc = "Married", HireDate = "12.01.2014", Department = "IT/IS", Manager = "Simon Roup", ManagerID = 4 });
-            items.Add(new User() { FirstName = "Martin", LastName = "Smith", PersNr = 10286, Job = "Production Technician I", Birthday = "17.03.1988", Sex = "M ", MaritalDesc = "Single", HireDate = "01.10.2011", Department = "Production", Manager = "Webster Butler", ManagerID = 39 });
-            items.Add(new User() { FirstName = "Ermine", LastName = "Pelletier", PersNr = 10297, Job = "Production Technician II", Birthday = "18.07.1989", Sex = "F", MaritalDesc = "Married", HireDate = "07.05.2011", Department = "Production", Manager = "Amy Dunn", ManagerID = 11 });
-            items.Add(new User() { FirstName = "Shakira", LastName = "Perry", PersNr = 10171, Job = "Production Technician I", Birthday = "20.07.1986", Sex = "F", MaritalDesc = "Single", HireDate = "16.5.2011", Department = "Production", Manager = "Amy Dunn", ManagerID = 11 });
-            items.Add(new User() { FirstName = "Lauren", LastName = "Peters", PersNr = 10032, Job = "Production Technician II", Birthday = "17.08.1986", Sex = "F", MaritalDesc = "Married", HireDate = "16.5.2011", Department = "Production", Manager = "Ketsia Liebig", ManagerID = 19 });
-            items.Add(new User() { FirstName = "Ebonee", LastName = "Peterson", PersNr = 10130, Job = "Production Manager", Birthday = "05.09.1977", Sex = "F", MaritalDesc = "Married", HireDate = "25.10.2010", Department = "Production", Manager = "Janet King", ManagerID = 2 });
-            items.Add(new User() { FirstName = "Shana", LastName = "Petingill", PersNr = 10217, Job = "Production Technician II", Birthday = "03.10.1979", Sex = "F", MaritalDesc = "Married", HireDate = "04.02.2012", Department = "Production", Manager = "Brannon Miller", ManagerID = 12 });
-            items.Add(new User() { FirstName = "Thelma", LastName = "Petrowsky", PersNr = 10016, Job = "Data Analyst", Birthday = "16.09.1984", Sex = "F", MaritalDesc = "Married", HireDate = "11.10.2014", Department = "IT/IS", Manager = "Simon Roup", ManagerID = 4 });
-            items.Add(new User() { FirstName = "Hong", LastName = "Pham", PersNr = 10050, Job = "Production Technician I", Birthday = "03.06.1988", Sex = "M ", MaritalDesc = "Married", HireDate = "07.05.2011", Department = "Production", Manager = "Brannon Miller", ManagerID = 12 });
-            items.Add(new User() { FirstName = "Brad", LastName = "Pitt", PersNr = 10164, Job = "Production Technician I", Birthday = "23.11.1981", Sex = "M ", MaritalDesc = "Single", HireDate = "11.05.2007", Department = "Production", Manager = "David Stanley", ManagerID = 14 });
-            items.Add(new User() { FirstName = "Xana", LastName = "Potts", PersNr = 10124, Job = "Area Sales Manager", Birthday = "29.08.1988", Sex = "F", MaritalDesc = "Married", HireDate = "01.09.2012", Department = "Sales", Manager = "Lynn Daneault", ManagerID = 21 });
-            items.Add(new User() { FirstName = "Morissa", LastName = "Power", PersNr = 10187, Job = "Production Technician I", Birthday = "15.10.1984", Sex = "F", MaritalDesc = "Divorced", HireDate = "16.5.2011", Department = "Production", Manager = "Kissy Sullivan", ManagerID = 20 });
-            items.Add(new User() { FirstName = "Louis", LastName = "Punjabhi", PersNr = 10225, Job = "Production Technician I", Birthday = "19.06.1961", Sex = "M ", MaritalDesc = "Single", HireDate = "01.06.2014", Department = "Production", Manager = "Kelley Spirea", ManagerID = 18 });
-            items.Add(new User() { FirstName = "Janine", LastName = "Purinton", PersNr = 10262, Job = "Production Technician I", Birthday = "22.09.1970", Sex = "F", MaritalDesc = "Divorced", HireDate = "24.9.2012", Department = "Production", Manager = "Kissy Sullivan", ManagerID = 20 });
-            items.Add(new User() { FirstName = "Sean", LastName = "Quinn", PersNr = 10131, Job = "Software Engineer", Birthday = "11.06.1984", Sex = "M ", MaritalDesc = "Married", HireDate = "21.2.2011", Department = "SoftwareEngineering", Manager = "Janet King", ManagerID = 2 });
-            items.Add(new User() { FirstName = "Maggie", LastName = "Rachael", PersNr = 10239, Job = "BI Developer", Birthday = "05.12.1980", Sex = "F", MaritalDesc = "Married", HireDate = "10.02.2016", Department = "IT/IS", Manager = "Brian Champaigne", ManagerID = 13 });
-            items.Add(new User() { FirstName = "Quinn", LastName = "Rarrick", PersNr = 10152, Job = "Production Technician I", Birthday = "31.12.1984", Sex = "M ", MaritalDesc = "Divorced", HireDate = "26.9.2011", Department = "Production", Manager = "Michael Albert", ManagerID = 22 });
-            items.Add(new User() { FirstName = "Kylo", LastName = "Ren", PersNr = 10140, Job = "Area Sales Manager", Birthday = "10.12.1954", Sex = "M ", MaritalDesc = "Married", HireDate = "05.12.2014", Department = "Sales", Manager = "John Smith", ManagerID = 17 });
-            items.Add(new User() { FirstName = "Thomas", LastName = "Rhoads", PersNr = 10058, Job = "Production Technician I", Birthday = "22.07.1982", Sex = "M ", MaritalDesc = "Divorced", HireDate = "16.5.2011", Department = "Production", Manager = "Elijiah Gray", ManagerID = 16 });
-            items.Add(new User() { FirstName = "Haley", LastName = "Rivera", PersNr = 10011, Job = "Production Technician I", Birthday = "01.12.1973", Sex = "F", MaritalDesc = "Married", HireDate = "28.11.2011", Department = "Production", Manager = "Webster Butler", ManagerID = -1 });
-            items.Add(new User() { FirstName = "May", LastName = "Roberson", PersNr = 10230, Job = "Production Technician II", Birthday = "09.05.1981", Sex = "F", MaritalDesc = "Divorced", HireDate = "26.9.2011", Department = "Production", Manager = "David Stanley", ManagerID = 14 });
-            items.Add(new User() { FirstName = "Peter", LastName = "Robertson", PersNr = 10224, Job = "Production Technician II", Birthday = "07.03.1972", Sex = "M ", MaritalDesc = "Married", HireDate = "07.05.2011", Department = "Production", Manager = "Kissy Sullivan", ManagerID = 20 });
-            items.Add(new User() { FirstName = "Alain", LastName = "Robinson", PersNr = 10047, Job = "Production Technician I", Birthday = "01.07.1974", Sex = "M ", MaritalDesc = "Married", HireDate = "01.10.2011", Department = "Production", Manager = "Amy Dunn", ManagerID = 11 });
-            items.Add(new User() { FirstName = "Cherly", LastName = "Robinson", PersNr = 10285, Job = "Production Technician I", Birthday = "01.07.1985", Sex = "F", MaritalDesc = "Married", HireDate = "01.10.2011", Department = "Production", Manager = "Ketsia Liebig", ManagerID = 19 });
-            items.Add(new User() { FirstName = "Elias", LastName = "Robinson", PersNr = 10020, Job = "Production Technician I", Birthday = "28.01.1985", Sex = "M ", MaritalDesc = "Widowed", HireDate = "07.08.2013", Department = "Production", Manager = "Brannon Miller", ManagerID = 12 });
-            items.Add(new User() { FirstName = "Lori", LastName = "Roby", PersNr = 10162, Job = "Data Analyst", Birthday = "10.11.1981", Sex = "F", MaritalDesc = "Married", HireDate = "16.2.2015", Department = "IT/IS", Manager = "Simon Roup", ManagerID = 4 });
-            items.Add(new User() { FirstName = "Bianca", LastName = "Roehrich", PersNr = 10149, Job = "Principal Data Architect", Birthday = "27.05.1973", Sex = "F", MaritalDesc = "Single", HireDate = "01.05.2015", Department = "IT/IS", Manager = "Simon Roup", ManagerID = 4 });
-            items.Add(new User() { FirstName = "Katie", LastName = "Roper", PersNr = 10086, Job = "Data Architect", Birthday = "21.11.1972", Sex = "F", MaritalDesc = "Single", HireDate = "01.07.2017", Department = "IT/IS", Manager = "Brian Champaigne", ManagerID = 13 });
-            items.Add(new User() { FirstName = "Ashley", LastName = "Rose", PersNr = 10054, Job = "Production Technician I", Birthday = "12.05.1974", Sex = "F", MaritalDesc = "Separated", HireDate = "01.06.2014", Department = "Production", Manager = "David Stanley", ManagerID = 14 });
-            items.Add(new User() { FirstName = "Bruno", LastName = "Rossetti", PersNr = 10065, Job = "Production Technician I", Birthday = "18.03.1987", Sex = "M ", MaritalDesc = "Single", HireDate = "04.04.2011", Department = "Production", Manager = "Kissy Sullivan", ManagerID = 20 });
-            items.Add(new User() { FirstName = "Simon", LastName = "Roup", PersNr = 10198, Job = "IT Manager - DB", Birthday = "04.05.1973", Sex = "M ", MaritalDesc = "Single", HireDate = "20.1.2013", Department = "IT/IS", Manager = "Jennifer Zamora", ManagerID = 5 });
-            items.Add(new User() { FirstName = "Ricardo", LastName = "Ruiz", PersNr = 10222, Job = "IT Manager - DB", Birthday = "01.04.1964", Sex = "M ", MaritalDesc = "Divorced", HireDate = "01.09.2012", Department = "IT/IS", Manager = "Jennifer Zamora", ManagerID = 5 });
-            items.Add(new User() { FirstName = "Adell", LastName = "Saada", PersNr = 10126, Job = "Software Engineer", Birthday = "24.07.1986", Sex = "F", MaritalDesc = "Married", HireDate = "11.05.2012", Department = "SoftwareEngineering", Manager = "Alex Sweetwater", ManagerID = 10 });
-            items.Add(new User() { FirstName = "Melinda", LastName = "Saar-Beckles", PersNr = 10295, Job = "Production Technician I", Birthday = "06.06.1968", Sex = "F", MaritalDesc = "Single", HireDate = "07.04.2016", Department = "Production", Manager = "Kelley Spirea", ManagerID = 18 });
-            items.Add(new User() { FirstName = "Nore", LastName = "Sadki", PersNr = 10260, Job = "Production Technician I", Birthday = "21.12.1974", Sex = "M ", MaritalDesc = "Single", HireDate = "01.05.2009", Department = "Production", Manager = "Michael Albert", ManagerID = 22 });
-            items.Add(new User() { FirstName = "Adil", LastName = "Sahoo", PersNr = 10233, Job = "Production Technician II", Birthday = "26.04.1986", Sex = "M ", MaritalDesc = "Married", HireDate = "30.8.2010", Department = "Production", Manager = "Kelley Spirea", ManagerID = 18 });
-            items.Add(new User() { FirstName = "Jason", LastName = "Salter", PersNr = 10229, Job = "Data Analyst ", Birthday = "17.12.1987", Sex = "M ", MaritalDesc = "Divorced", HireDate = "01.05.2015", Department = "IT/IS", Manager = "Simon Roup", ManagerID = 4 });
-            items.Add(new User() { FirstName = "Kamrin", LastName = "Sander", PersNr = 10169, Job = "Production Technician I", Birthday = "07.10.1988", Sex = "F", MaritalDesc = "Married", HireDate = "29.9.2014", Department = "Production", Manager = "Elijiah Gray", ManagerID = 16 });
-            items.Add(new User() { FirstName = "Nori", LastName = "Sewkumar", PersNr = 10071, Job = "Production Technician I", Birthday = "03.10.1975", Sex = "F", MaritalDesc = "Single", HireDate = "30.9.2013", Department = "Production", Manager = "Webster Butler", ManagerID = -1 });
-            items.Add(new User() { FirstName = "Anita", LastName = "Shepard", PersNr = 10179, Job = "Network Engineer", Birthday = "14.04.1981", Sex = "F", MaritalDesc = "Married", HireDate = "30.9.2014", Department = "IT/IS", Manager = "Peter Monroe", ManagerID = 7 });
-            items.Add(new User() { FirstName = "Seffi", LastName = "Shields", PersNr = 10091, Job = "Production Technician I", Birthday = "24.08.1985", Sex = "F", MaritalDesc = "Married", HireDate = "19.8.2013", Department = "Production", Manager = "Amy Dunn", ManagerID = 11 });
-            items.Add(new User() { FirstName = "Kramer", LastName = "Simard", PersNr = 10178, Job = "Data Analyst", Birthday = "02.08.1970", Sex = "M ", MaritalDesc = "Married", HireDate = "01.05.2015", Department = "IT/IS", Manager = "Simon Roup", ManagerID = 4 });
-            items.Add(new User() { FirstName = "Nan", LastName = "Singh", PersNr = 10039, Job = "Administrative Assistant", Birthday = "19.05.1988", Sex = "F", MaritalDesc = "Single", HireDate = "05.01.2015", Department = "AdminOffices", Manager = "Brandon R. LeBlanc", ManagerID = 1 });
-            items.Add(new User() { FirstName = "Constance", LastName = "Sloan", PersNr = 10095, Job = "Production Technician II", Birthday = "25.11.1987", Sex = "F", MaritalDesc = "Single", HireDate = "26.10.2009", Department = "Production", Manager = "Michael Albert", ManagerID = 22 });
-            items.Add(new User() { FirstName = "Joe", LastName = "Smith", PersNr = 10027, Job = "Production Technician II", Birthday = "30.10.1963", Sex = "M ", MaritalDesc = "Single", HireDate = "29.9.2014", Department = "Production", Manager = "Elijiah Gray", ManagerID = 16 });
-            items.Add(new User() { FirstName = "John", LastName = "Smith", PersNr = 10291, Job = "Sales Manager", Birthday = "16.08.1984", Sex = "M ", MaritalDesc = "Divorced", HireDate = "18.5.2014", Department = "Sales", Manager = "Debra Houlihan", ManagerID = 15 });
-            items.Add(new User() { FirstName = "LeighAnn", LastName = "Smith", PersNr = 10153, Job = "Administrative Assistant", Birthday = "14.06.1987", Sex = "F", MaritalDesc = "Married", HireDate = "26.9.2011", Department = "AdminOffices", Manager = "Brandon R. LeBlanc", ManagerID = 1 });
-            items.Add(new User() { FirstName = "Sade", LastName = "Smith", PersNr = 10157, Job = "Production Technician I", Birthday = "02.02.1965", Sex = "F", MaritalDesc = "Single", HireDate = "11.11.2013", Department = "Production", Manager = "Ketsia Liebig", ManagerID = 19 });
-            items.Add(new User() { FirstName = "Julia", LastName = "Soto", PersNr = 10119, Job = "IT Support", Birthday = "03.12.1973", Sex = "F", MaritalDesc = "Married", HireDate = "06.10.2011", Department = "IT/IS", Manager = "Eric Dougall", ManagerID = 6 });
-            items.Add(new User() { FirstName = "Keyser", LastName = "Soze", PersNr = 10180, Job = "Sr. Network Engineer", Birthday = "02.09.1983", Sex = "M ", MaritalDesc = "Married", HireDate = "30.6.2016", Department = "IT/IS", Manager = "Peter Monroe", ManagerID = 7 });
-            items.Add(new User() { FirstName = "Taylor", LastName = "Sparks", PersNr = 10302, Job = "Production Technician I", Birthday = "20.07.1968", Sex = "F", MaritalDesc = "Married", HireDate = "20.2.2012", Department = "Production", Manager = "Brannon Miller", ManagerID = 12 });
-            items.Add(new User() { FirstName = "Kelley", LastName = "Spirea", PersNr = 10090, Job = "Production Manager", Birthday = "30.09.1975", Sex = "F", MaritalDesc = "Married", HireDate = "10.02.2012", Department = "Production", Manager = "Janet King", ManagerID = 2 });
-            items.Add(new User() { FirstName = "Kristen", LastName = "Squatrito", PersNr = 10030, Job = "Production Technician I", Birthday = "26.03.1973", Sex = "F", MaritalDesc = "Divorced", HireDate = "13.5.2013", Department = "Production", Manager = "David Stanley", ManagerID = 14 });
-            items.Add(new User() { FirstName = "BarbaraM", LastName = "Stanford", PersNr = 10278, Job = "Production Technician I", Birthday = "25.08.1982", Sex = "F", MaritalDesc = "Divorced", HireDate = "01.10.2011", Department = "Production", Manager = "Kissy Sullivan", ManagerID = 20 });
-            items.Add(new User() { FirstName = "Norman", LastName = "Stansfield", PersNr = 10307, Job = "Area Sales Manager", Birthday = "05.09.1974", Sex = "M ", MaritalDesc = "Married", HireDate = "05.12.2014", Department = "Sales", Manager = "Lynn Daneault", ManagerID = 21 });
-            items.Add(new User() { FirstName = "Tyrone", LastName = "Steans", PersNr = 10147, Job = "Accountant I", Birthday = "09.01.1986", Sex = "M ", MaritalDesc = "Single", HireDate = "29.9.2014", Department = "AdminOffices", Manager = "Brandon R. LeBlanc", ManagerID = 1 });
-            items.Add(new User() { FirstName = "Rick", LastName = "Stoica", PersNr = 10266, Job = "Production Technician I", Birthday = "14.03.1985", Sex = "M ", MaritalDesc = "Married", HireDate = "17.2.2014", Department = "Production", Manager = "Kelley Spirea", ManagerID = 18 });
-            items.Add(new User() { FirstName = "Caitrin", LastName = "Strong", PersNr = 10241, Job = "Area Sales Manager", Birthday = "05.12.1989", Sex = "F", MaritalDesc = "Married", HireDate = "27.9.2010", Department = "Sales", Manager = "John Smith", ManagerID = 17 });
-            items.Add(new User() { FirstName = "Kissy", LastName = "Sullivan", PersNr = 10158, Job = "Production Manager", Birthday = "28.03.1978", Sex = "F", MaritalDesc = "Married", HireDate = "01.08.2009", Department = "Production", Manager = "Janet King", ManagerID = 2 });
-            items.Add(new User() { FirstName = "Timothy", LastName = "Sullivan", PersNr = 10117, Job = "Production Technician I", Birthday = "10.07.1982", Sex = "M ", MaritalDesc = "Married", HireDate = "01.05.2015", Department = "Production", Manager = "Michael Albert", ManagerID = 22 });
-            items.Add(new User() { FirstName = "Barbara", LastName = "Sutwell", PersNr = 10209, Job = "Production Technician I", Birthday = "15.08.1968", Sex = "F", MaritalDesc = "Single", HireDate = "14.5.2012", Department = "Production", Manager = "Elijiah Gray", ManagerID = 16 });
-            items.Add(new User() { FirstName = "Andrew", LastName = "Szabo", PersNr = 10024, Job = "Software Engineer", Birthday = "05.06.1983", Sex = "M ", MaritalDesc = "Single", HireDate = "07.07.2014", Department = "SoftwareEngineering", Manager = "Alex Sweetwater", ManagerID = 10 });
-            items.Add(new User() { FirstName = "Biff", LastName = "Tannen", PersNr = 10173, Job = "BI Developer", Birthday = "24.10.1987", Sex = "M ", MaritalDesc = "Married", HireDate = "20.4.2017", Department = "IT/IS", Manager = "Brian Champaigne", ManagerID = 13 });
-            items.Add(new User() { FirstName = "Desiree", LastName = "Tavares", PersNr = 10221, Job = "Production Technician I", Birthday = "04.03.1975", Sex = "F", MaritalDesc = "Married", HireDate = "27.4.2009", Department = "Production", Manager = "Webster Butler", ManagerID = 39 });
-            items.Add(new User() { FirstName = "Lenora", LastName = "Tejeda", PersNr = 10146, Job = "Production Technician II", Birthday = "24.05.1953", Sex = "F", MaritalDesc = "Married", HireDate = "16.5.2011", Department = "Production", Manager = "Elijiah Gray", ManagerID = 16 });
-            items.Add(new User() { FirstName = "Sharlene", LastName = "Terry", PersNr = 10161, Job = "Area Sales Manager", Birthday = "05.07.1965", Sex = "F", MaritalDesc = "Single", HireDate = "29.9.2014", Department = "Sales", Manager = "Lynn Daneault", ManagerID = 21 });
-            items.Add(new User() { FirstName = "Sophia", LastName = "Theamstern", PersNr = 10141, Job = "Production Technician I", Birthday = "05.09.1965", Sex = "F", MaritalDesc = "Single", HireDate = "07.05.2011", Department = "Production", Manager = "Amy Dunn", ManagerID = 11 });
-            items.Add(new User() { FirstName = "Kenneth", LastName = "Thibaud", PersNr = 10268, Job = "Production Technician II", Birthday = "16.09.1975", Sex = "M ", MaritalDesc = "Widowed", HireDate = "25.6.2007", Department = "Production", Manager = "Webster Butler", ManagerID = 39 });
-            items.Add(new User() { FirstName = "Jeanette", LastName = "Tippett", PersNr = 10123, Job = "Production Technician I", Birthday = "06.05.1967", Sex = "F", MaritalDesc = "Divorced", HireDate = "18.2.2013", Department = "Production", Manager = "Brannon Miller", ManagerID = 12 });
-            items.Add(new User() { FirstName = "Jack", LastName = "Torrence", PersNr = 10013, Job = "Area Sales Manager", Birthday = "15.01.1968", Sex = "M ", MaritalDesc = "Separated", HireDate = "01.09.2006", Department = "Sales", Manager = "Lynn Daneault", ManagerID = 21 });
-            items.Add(new User() { FirstName = "Mei", LastName = "Trang", PersNr = 10287, Job = "Production Technician I", Birthday = "16.05.1983", Sex = "F", MaritalDesc = "Single", HireDate = "17.2.2014", Department = "Production", Manager = "David Stanley", ManagerID = 14 });
-            items.Add(new User() { FirstName = "Neville", LastName = "Tredinnick", PersNr = 10044, Job = "Network Engineer", Birthday = "05.05.1988", Sex = "M ", MaritalDesc = "Married", HireDate = "01.05.2015", Department = "IT/IS", Manager = "Peter Monroe", ManagerID = 7 });
-            items.Add(new User() { FirstName = "Edward", LastName = "True", PersNr = 10102, Job = "Software Engineer", Birthday = "14.06.1983", Sex = "M ", MaritalDesc = "Single", HireDate = "18.2.2013", Department = "SoftwareEngineering", Manager = "Alex Sweetwater", ManagerID = 10 });
-            items.Add(new User() { FirstName = "Cybil", LastName = "Trzeciak", PersNr = 10270, Job = "Production Technician II", Birthday = "15.03.1985", Sex = "F", MaritalDesc = "Single", HireDate = "01.10.2011", Department = "Production", Manager = "Amy Dunn", ManagerID = 11 });
-            items.Add(new User() { FirstName = "Jumil", LastName = "Turpin", PersNr = 10045, Job = "Network Engineer", Birthday = "31.03.1969", Sex = "M ", MaritalDesc = "Married", HireDate = "30.3.2015", Department = "IT/IS", Manager = "Peter Monroe", ManagerID = 7 });
-            items.Add(new User() { FirstName = "Jackie", LastName = "Valentin", PersNr = 10205, Job = "Area Sales Manager", Birthday = "23.05.1991", Sex = "F", MaritalDesc = "Married", HireDate = "07.05.2011", Department = "Sales", Manager = "John Smith", ManagerID = 17 });
-            items.Add(new User() { FirstName = "Abdellah", LastName = "Veera", PersNr = 10014, Job = "Production Technician I", Birthday = "31.01.1987", Sex = "M ", MaritalDesc = "Divorced", HireDate = "13.8.2012", Department = "Production", Manager = "Kissy Sullivan", ManagerID = 20 });
-            items.Add(new User() { FirstName = "Vincent", LastName = "Vega", PersNr = 10144, Job = "Production Manager", Birthday = "10.10.1968", Sex = "M ", MaritalDesc = "Divorced", HireDate = "08.01.2011", Department = "Production", Manager = "Janet King", ManagerID = 2 });
-            items.Add(new User() { FirstName = "Noah", LastName = "Villanueva", PersNr = 10253, Job = "Area Sales Manager", Birthday = "07.11.1989", Sex = "M ", MaritalDesc = "Single", HireDate = "03.05.2012", Department = "Sales", Manager = "John Smith", ManagerID = 17 });
-            items.Add(new User() { FirstName = "Lord", LastName = "Voldemort", PersNr = 10118, Job = "Database Administrator", Birthday = "08.07.1986", Sex = "M ", MaritalDesc = "Married", HireDate = "16.2.2015", Department = "IT/IS", Manager = "Simon Roup", ManagerID = 4 });
-            items.Add(new User() { FirstName = "Colleen", LastName = "Volk", PersNr = 10022, Job = "Production Technician I", Birthday = "06.03.1986", Sex = "F", MaritalDesc = "Married", HireDate = "26.9.2011", Department = "Production", Manager = "Kelley Spirea", ManagerID = 18 });
-            items.Add(new User() { FirstName = "Anna", LastName = "VonMassenbach", PersNr = 10183, Job = "Production Technician I", Birthday = "04.06.1985", Sex = "F", MaritalDesc = "Single", HireDate = "07.05.2015", Department = "Production", Manager = "Michael Albert", ManagerID = 22 });
-            items.Add(new User() { FirstName = "Roger", LastName = "Walker", PersNr = 10190, Job = "Production Technician II", Birthday = "02.10.1976", Sex = "M ", MaritalDesc = "Single", HireDate = "18.8.2014", Department = "Production", Manager = "Ketsia Liebig", ManagerID = 19 });
-            items.Add(new User() { FirstName = "CourtneyE", LastName = "Wallace", PersNr = 10274, Job = "Production Manager", Birthday = "14.11.1955", Sex = "F", MaritalDesc = "Married", HireDate = "26.9.2011", Department = "Production", Manager = "Janet King", ManagerID = 2 });
-            items.Add(new User() { FirstName = "Theresa", LastName = "Wallace", PersNr = 10293, Job = "Production Technician I", Birthday = "08.02.1980", Sex = "F", MaritalDesc = "Single", HireDate = "13.8.2012", Department = "Production", Manager = "Elijiah Gray", ManagerID = 16 });
-            items.Add(new User() { FirstName = "Charlie", LastName = "Wang", PersNr = 10172, Job = "Senior BI Developer", Birthday = "07.08.1981", Sex = "M ", MaritalDesc = "Single", HireDate = "15.2.2017", Department = "IT/IS", Manager = "Brian Champaigne", ManagerID = 13 });
-            items.Add(new User() { FirstName = "Sarah", LastName = "Warfield", PersNr = 10127, Job = "Sr. Network Engineer", Birthday = "05.02.1978", Sex = "F", MaritalDesc = "Widowed", HireDate = "30.3.2015", Department = "IT/IS", Manager = "Peter Monroe", ManagerID = 7 });
-            items.Add(new User() { FirstName = "Scott", LastName = "Whittier", PersNr = 10072, Job = "Production Technician I", Birthday = "24.05.1987", Sex = "M ", MaritalDesc = "Single", HireDate = "01.10.2011", Department = "Production", Manager = "Webster Butler", ManagerID = 39 });
-            items.Add(new User() { FirstName = "Barry", LastName = "Wilber", PersNr = 10048, Job = "Production Technician I", Birthday = "09.09.1965", Sex = "M ", MaritalDesc = "Married", HireDate = "16.5.2011", Department = "Production", Manager = "Amy Dunn", ManagerID = 11 });
-            items.Add(new User() { FirstName = "Annie", LastName = "Wilkes", PersNr = 10204, Job = "Production Technician I", Birthday = "30.07.1983", Sex = "F", MaritalDesc = "Divorced", HireDate = "01.10.2011", Department = "Production", Manager = "Ketsia Liebig", ManagerID = 19 });
-            items.Add(new User() { FirstName = "Jacquelyn", LastName = "Williams", PersNr = 10264, Job = "Production Technician I", Birthday = "10.02.1969", Sex = "F", MaritalDesc = "Single", HireDate = "01.09.2012", Department = "Production", Manager = "Ketsia Liebig", ManagerID = 19 });
-            items.Add(new User() { FirstName = "Jordan", LastName = "Winthrop", PersNr = 10033, Job = "Production Technician II", Birthday = "11.07.1958", Sex = "M ", MaritalDesc = "Single", HireDate = "01.07.2013", Department = "Production", Manager = "Brannon Miller", ManagerID = 12 });
-            items.Add(new User() { FirstName = "HangT", LastName = "Wolk", PersNr = 10174, Job = "Production Technician II", Birthday = "20.04.1985", Sex = "F", MaritalDesc = "Single", HireDate = "29.9.2014", Department = "Production", Manager = "David Stanley", ManagerID = 14 });
-            items.Add(new User() { FirstName = "Jason", LastName = "Woodson", PersNr = 10135, Job = "Production Technician II", Birthday = "05.11.1985", Sex = "M ", MaritalDesc = "Single", HireDate = "07.07.2014", Department = "Production", Manager = "Kissy Sullivan", ManagerID = 20 });
-            items.Add(new User() { FirstName = "Catherine", LastName = "Ybarra", PersNr = 10301, Job = "Production Technician I", Birthday = "05.04.1982", Sex = "F", MaritalDesc = "Single", HireDate = "09.02.2008", Department = "Production", Manager = "Brannon Miller", ManagerID = 12 });
-            items.Add(new User() { FirstName = "Jennifer", LastName = "Zamora", PersNr = 10010, Job = "CIO", Birthday = "30.08.1979", Sex = "F", MaritalDesc = "Single", HireDate = "04.10.2010", Department = "IT/IS", Manager = "Janet King", ManagerID = 2 });
-            items.Add(new User() { FirstName = "Julia", LastName = "Zhou", PersNr = 10043, Job = "Data Analyst", Birthday = "24.02.1979", Sex = "F", MaritalDesc = "Single", HireDate = "30.3.2015", Department = "IT/IS", Manager = "Simon Roup", ManagerID = 4 });
-            items.Add(new User() { FirstName = "Colleen", LastName = "Zima", PersNr = 10271, Job = "Production Technician I", Birthday = "17.08.1978", Sex = "F", MaritalDesc = "Widowed", HireDate = "29.9.2014", Department = "Production", Manager = "David Stanley", ManagerID = 14 });
+            // Als Inhalt der Combobox werden alle vorhandenen Abteilungen abgefragt + eine Bezeichnung 
+            // für alle Abteilungen (als Default-Wert ausgewählt)
+            Department currentDepartments = new Department();
+            List<string> departments = currentDepartments.Departments;
+            departments.Add(Department.TermForAllDeps);
+            cmbDepartments.ItemsSource = departments;
+            cmbDepartments.SelectedItem = Department.TermForAllDeps;
 
-            sortedList = items.OrderBy(o => o.FirstName).ToList();
-
-            lvUsers.ItemsSource = sortedList;
+            lvUsers.ItemsSource = allUsers.OrderByFirstName();
         }
-    }
-    public class User
-    {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public int PersNr { get; set; }
-        public string Job { get; set; }
-        public string Birthday { get; set; }
-        public string Sex { get; set; }
-        public string MaritalDesc { get; set; }
-        public string HireDate { get; set; }
-        public string Department { get; set; }
-        public string Manager { get; set; }
-        public int ManagerID { get; set; }
+
+        private void sortFirstName(object sender, RoutedEventArgs e)
+        {
+            lvUsers.ItemsSource = allUsers.OrderByFirstName();
+        }
+
+        private void sortLastName(object sender, RoutedEventArgs e)
+        {
+            lvUsers.ItemsSource = allUsers.OrderByLastName();
+        }
+
+        private void sortLandlineNbr(object sender, RoutedEventArgs e)
+        {
+            lvUsers.ItemsSource = allUsers.OrderByLandlineNbr();
+        }
+
+        private void sortMobileNbr(object sender, RoutedEventArgs e)
+        {
+            lvUsers.ItemsSource = allUsers.OrderByMobileNbr();
+        }
+
+        private void sortDepartment(object sender, RoutedEventArgs e)
+        {
+            lvUsers.ItemsSource = allUsers.OrderByDepartment();
+        }
+
+        void ListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            DirectoryViewModel.UserSelected = lvUsers.SelectedItem as User;
+
+            if (userSelected != null)
+            {
+                var viewModel = (ViewModel.ClientViewModel)DataContext;
+                if (viewModel.EmployeeInfoViewCommand.CanExecute(null))
+                    viewModel.EmployeeInfoViewCommand.Execute(null);
+            }
+        }
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            DirectoryViewModel.UserSelected = lvUsers.SelectedItem as User;
+            var viewModel = (ViewModel.ClientViewModel)DataContext;
+            if (viewModel.EmployeeInfoViewCommand.CanExecute(null))
+                viewModel.EmployeeInfoViewCommand.Execute(null);
+        }
+
+        private void cmbDepartments_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            object selectedItem = cmbDepartments.SelectedItem;
+            selectedDepartment = selectedItem.ToString();
+            allUsers.FilterByDepartments(selectedDepartment);
+            lvUsers.ItemsSource = allUsers.OrderByFirstName();
+        }
+
+        private void OnCtxMenuInfo(object sender, RoutedEventArgs e)
+        {
+            DirectoryViewModel.UserSelected = lvUsers.SelectedItem as User;
+            if (userSelected != null)
+            {
+                var viewModel = (ViewModel.ClientViewModel)DataContext;
+                if (viewModel.EmployeeInfoViewCommand.CanExecute(null))
+                    viewModel.EmployeeInfoViewCommand.Execute(null);
+            }
+        }
+
+        private void OnCtxMenuEdit(object sender, RoutedEventArgs e)
+        {
+            User userSelected = lvUsers.SelectedItem as User;
+            DirectoryViewModel.UserSelectedEdited = userSelected.Clone();
+            if (userSelected != null)
+            {
+                var viewModel = (ViewModel.ClientViewModel)DataContext;
+                if (viewModel.EmployeeEditViewCommand.CanExecute(null))
+                    viewModel.EmployeeEditViewCommand.Execute(null);
+            }
+        }
+
+        private void controlsSearchBox_QuerySubmitted(ModernWpf.Controls.AutoSuggestBox sender, ModernWpf.Controls.AutoSuggestBoxQuerySubmittedEventArgs args)
+        {
+            string input = sender.Text.ToLower();
+            lvUsers.ItemsSource = allUsers.SearchUser(input);
+        }
     }
 }

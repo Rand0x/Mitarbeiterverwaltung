@@ -3,45 +3,73 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:MAV.Client.MVVM.View"
+             xmlns:localModel="clr-namespace:MAV.Client.MVVM.ViewModel"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <StackPanel>
-        <TextBlock Text="Scott Becker" FontSize="45" FontWeight="Bold" Margin="20"/>
+             d:DesignHeight="700" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <localModel:DirectoryViewModel x:Key="DirectoryVM" />
+    </UserControl.Resources>
+
+    <StackPanel DataContext="{Binding Source={StaticResource DirectoryVM}}">
+        <DockPanel LastChildFill="False">
+            <TextBlock Text="{Binding UserSelected.FirstName}" FontSize="45" FontWeight="Bold" Margin="20,20,10,20"/>
+            <TextBlock Text="{Binding UserSelected.LastName}" FontSize="45" FontWeight="Bold" Margin="10,20,5,20"/>
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
+                <Button Margin="15" Click="OnEditButton" Width="140">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="&#xE104;" FontSize="18" FontFamily="Segoe MDL2 Assets" VerticalAlignment="Center" Margin="0,0,15,0"/>
+                            <Label Content="Bearbeiten" FontSize="18" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+            </StackPanel>
+        </DockPanel>
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
             <StackPanel>
                 <TextBlock Text="Kontakt" Margin ="0,0,0,10" FontSize="20" FontWeight="Bold"/>
-                <TextBlock Text="Mobiltelefon" Foreground="#5B5B5B" FontSize="16"/>
-                <TextBlock Text="0175 6565234" Margin ="0,0,0,10" FontSize="16"/>
-                <TextBlock Text="Telefon" Foreground="#5B5B5B" FontSize="16"/>
-                <TextBlock Text="09131 981871" Margin ="0,0,0,10" FontSize="16"/>
+                <TextBlock Text="Mobil (geschäftlich)" Foreground="#5B5B5B" FontSize="16"/>
+                <TextBlock Text="{Binding UserSelected.MobileNbr}" Margin ="0,0,0,10" FontSize="16"/>
+                <TextBlock Text="Telefon (geschäftlich)" Foreground="#5B5B5B" FontSize="16"/>
+                <TextBlock Text="{Binding UserSelected.LandlineNbr}" Margin ="0,0,0,10" FontSize="16"/>
                 <TextBlock Text="E-Mail" Foreground="#5B5B5B" FontSize="16"/>
-                <TextBlock Text="scott.becker@mav.com" Margin ="0,0,0,10" FontSize="16"/>
+                <TextBlock Text="{Binding UserSelected.EMail}" Margin ="0,0,0,10" FontSize="16"/>
             </StackPanel>
-            <StackPanel Grid.Column="1">
+            <StackPanel Grid.Row="1">
+                <TextBlock Text="Geschäftsbeziehungen" Margin ="0,0,0,10" FontSize="20" FontWeight="Bold"/>
+                <TextBlock Text="Abteilung" Foreground="#5B5B5B" FontSize="16"/>
+                <TextBlock Text="{Binding UserSelected.Department}" Margin ="0,0,0,10" FontSize="16"/>
+                <TextBlock Text="Tätigkeit" Foreground="#5B5B5B" FontSize="16"/>
+                <TextBlock Text="{Binding UserSelected.Job}" Margin ="0,0,0,10" FontSize="16"/>
+                <TextBlock Text="Mitarbeiter seit" Foreground="#5B5B5B" FontSize="16"/>
+                <TextBlock Text="{Binding UserSelected.HireDate}" Margin ="0,0,0,10" FontSize="16"/>
+                <TextBlock Text="Vorgesetzter" Foreground="#5B5B5B" FontSize="16"/>
+                <TextBlock Text="{Binding UserSelected.Manager}" Margin ="0,0,0,10" FontSize="16"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Grid.RowSpan="2">
                 <TextBlock Text="Persönliche Informationen" Margin ="0,0,0,10" FontSize="20" FontWeight="Bold"/>
                 <TextBlock Text="Personalnummer" Foreground="#5B5B5B" FontSize="16"/>
-                <TextBlock Text="10277" Margin ="0,0,0,10" FontSize="16"/>
+                <TextBlock Text="{Binding UserSelected.PersNr}" Margin ="0,0,0,10" FontSize="16"/>
+                <TextBlock Text="Mobil (privat)" Foreground="#5B5B5B" FontSize="16"/>
+                <TextBlock Text="{Binding UserSelected.MobileNbrPrivate}" Margin ="0,0,0,10" FontSize="16"/>
+                <TextBlock Text="Telefon (privat)" Foreground="#5B5B5B" FontSize="16"/>
+                <TextBlock Text="{Binding UserSelected.LandlineNbrPrivate}" Margin ="0,0,0,10" FontSize="16"/>
                 <TextBlock Text="Geburtstag" Foreground="#5B5B5B" FontSize="16"/>
-                <TextBlock Text="04.06.1979" Margin ="0,0,0,10" FontSize="16"/>
+                <TextBlock Text="{Binding UserSelected.Birthday}" Margin ="0,0,0,10" FontSize="16"/>
                 <TextBlock Text="Familienstand" Foreground="#5B5B5B" FontSize="16"/>
-                <TextBlock Text="single" Margin ="0,0,0,10" FontSize="16"/>
+                <TextBlock Text="{Binding UserSelected.MaritalDesc}" Margin ="0,0,0,10" FontSize="16"/>
                 <TextBlock Text="Geschlecht" Foreground="#5B5B5B" FontSize="16"/>
-                <TextBlock Text="männlich" Margin ="0,0,0,10" FontSize="16"/>
+                <TextBlock Text="{Binding UserSelected.Sex}" Margin ="0,0,0,10" FontSize="16"/>
             </StackPanel>
         </Grid>
-        <TextBlock Text="Geschäftsbeziehungen" Margin ="0,0,0,10" FontSize="20" FontWeight="Bold"/>
-        <TextBlock Text="Abteilung" Foreground="#5B5B5B" FontSize="16"/>
-        <TextBlock Text="Production" Margin ="0,0,0,10" FontSize="16"/>
-        <TextBlock Text="Tätigkeit" Foreground="#5B5B5B" FontSize="16"/>
-        <TextBlock Text="Production Technician I" Margin ="0,0,0,10" FontSize="16"/>
-        <TextBlock Text="Mitarbeiter seit" Foreground="#5B5B5B" FontSize="16"/>
-        <TextBlock Text="07.08.2013" Margin ="0,0,0,10" FontSize="16"/>
-        <TextBlock Text="Vorgesetzter" Foreground="#5B5B5B" FontSize="16"/>
-        <TextBlock Text="Webster Butler" Margin ="0,0,0,10" FontSize="16"/>
     </StackPanel>
 </UserControl>
