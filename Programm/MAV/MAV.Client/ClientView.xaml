@@ -6,13 +6,6 @@
         mc:Ignorable="d"
         Title="ClientView" Height="700" Width="1200"
         WindowStyle="None" AllowsTransparency="True" Background="Transparent" Icon="/LogoOhneText.png">
-        <!--xmlns:local="clr-namespace:MAV.Client"
-        xmlns:viewModel ="clr-namespace:MAV.Client.MVVM.ViewModel"-->
-
-    <!--<Window.DataContext>
-        <viewModel:MainViewModel/>
-    </Window.DataContext>-->
-
 
     <Border Background="#EEEFF2">
         <Grid>
@@ -99,15 +92,14 @@
                 </RadioButton>
 
                 <RadioButton DockPanel.Dock="Bottom" Style="{StaticResource NavigationButtonTheme}"
-                             Command="{Binding LogOutCommand}">
-                             <!--Command="{Binding EmployeeInfoViewCommand}">-->
+                             Click="OnLogoutButton">
                     <RadioButton.Content>
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="3*"/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Text="&#xE13D;" FontFamily="Segoe MDL2 Assets" FontSize="24" Padding="10" 
+                            <TextBlock Text="&#xE805;" FontFamily="Segoe MDL2 Assets" FontSize="24" Padding="10" 
                                        HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             <TextBlock Text="Logout" FontSize="20" Grid.Column="1"  VerticalAlignment="Center"/>
                         </Grid>
