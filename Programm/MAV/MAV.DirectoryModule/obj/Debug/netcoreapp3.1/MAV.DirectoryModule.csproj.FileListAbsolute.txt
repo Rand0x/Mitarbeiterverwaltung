@@ -10,3 +10,15 @@ C:\Users\manue\OneDrive\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.
 C:\Users\manue\OneDrive\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.DirectoryModule\obj\Debug\netcoreapp3.1\MAV.DirectoryModule.csproj.CopyComplete
 C:\Users\manue\OneDrive\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.DirectoryModule\obj\Debug\netcoreapp3.1\MAV.DirectoryModule.dll
 C:\Users\manue\OneDrive\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.DirectoryModule\obj\Debug\netcoreapp3.1\MAV.DirectoryModule.pdb
+C:\Users\Chris\Documents\_Studium OHM\2. Semester\Software Engineering\_Projekt\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.DirectoryModule\bin\Debug\netcoreapp3.1\MAV.DirectoryModule.deps.json
+C:\Users\Chris\Documents\_Studium OHM\2. Semester\Software Engineering\_Projekt\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.DirectoryModule\bin\Debug\netcoreapp3.1\MAV.DirectoryModule.dll
+C:\Users\Chris\Documents\_Studium OHM\2. Semester\Software Engineering\_Projekt\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.DirectoryModule\bin\Debug\netcoreapp3.1\MAV.DirectoryModule.pdb
+C:\Users\Chris\Documents\_Studium OHM\2. Semester\Software Engineering\_Projekt\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.DirectoryModule\bin\Debug\netcoreapp3.1\MAV.Base.dll
+C:\Users\Chris\Documents\_Studium OHM\2. Semester\Software Engineering\_Projekt\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.DirectoryModule\bin\Debug\netcoreapp3.1\MAV.Base.pdb
+C:\Users\Chris\Documents\_Studium OHM\2. Semester\Software Engineering\_Projekt\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.DirectoryModule\obj\Debug\netcoreapp3.1\MAV.DirectoryModule.csprojAssemblyReference.cache
+C:\Users\Chris\Documents\_Studium OHM\2. Semester\Software Engineering\_Projekt\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.DirectoryModule\obj\Debug\netcoreapp3.1\MAV.DirectoryModule.AssemblyInfoInputs.cache
+C:\Users\Chris\Documents\_Studium OHM\2. Semester\Software Engineering\_Projekt\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.DirectoryModule\obj\Debug\netcoreapp3.1\MAV.DirectoryModule.AssemblyInfo.cs
+C:\Users\Chris\Documents\_Studium OHM\2. Semester\Software Engineering\_Projekt\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.DirectoryModule\obj\Debug\netcoreapp3.1\MAV.DirectoryModule.csproj.CoreCompileInputs.cache
+C:\Users\Chris\Documents\_Studium OHM\2. Semester\Software Engineering\_Projekt\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.DirectoryModule\obj\Debug\netcoreapp3.1\MAV.DirectoryModule.csproj.CopyComplete
+C:\Users\Chris\Documents\_Studium OHM\2. Semester\Software Engineering\_Projekt\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.DirectoryModule\obj\Debug\netcoreapp3.1\MAV.DirectoryModule.dll
+C:\Users\Chris\Documents\_Studium OHM\2. Semester\Software Engineering\_Projekt\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.DirectoryModule\obj\Debug\netcoreapp3.1\MAV.DirectoryModule.pdb

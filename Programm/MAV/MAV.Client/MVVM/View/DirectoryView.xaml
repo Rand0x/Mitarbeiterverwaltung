@@ -9,26 +9,26 @@
              d:DesignHeight="450" d:DesignWidth="800" Background="White">
 
 
-    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="70"/>
-            <RowDefinition/>
-            <RowDefinition Height="70"/>
-        </Grid.RowDefinitions>
+  <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="50"/>
+      <RowDefinition Height="70"/>
+      <RowDefinition/>
+      <RowDefinition Height="70"/>
+    </Grid.RowDefinitions>
 
-        <TextBlock Text="Adressbuch"
+    <TextBlock Text="Adressbuch"
                    Foreground="Black"
                    FontSize="30"/>
 
-        <DockPanel LastChildFill="False" Grid.Row="1">
-            <ComboBox
+    <DockPanel LastChildFill="False" Grid.Row="1">
+      <ComboBox
                 x:Name="cmbDepartments"                
                 SelectionChanged="cmbDepartments_SelectionChanged"
                 DockPanel.Dock="Right"
                 Margin="12"
                 Width="200"/>
-            <ui:AutoSuggestBox
+      <ui:AutoSuggestBox
                 x:Name="controlsSearchBox"
                 DockPanel.Dock="Right"
                 Margin="12"
@@ -38,60 +38,63 @@
                 QuerySubmitted="controlsSearchBox_QuerySubmitted"/>
 
 
-        </DockPanel>
+    </DockPanel>
 
-        <ListView Margin="10" Name="lvUsers" MouseDoubleClick="ListView_MouseDoubleClick" Grid.Row="2">
-            <ListView.ContextMenu>
-                <ContextMenu>
-                    <MenuItem Header="Informationen anzeigen" Click="OnCtxMenuInfo">
-                        <MenuItem.Icon>
-                            <ui:FontIcon Glyph="&#xE13D;" />
-                        </MenuItem.Icon>
-                    </MenuItem>
-                    <MenuItem Header="Mitarbeiter bearbeiten" Click="OnCtxMenuEdit">
-                        <MenuItem.Icon>
-                            <ui:FontIcon Glyph="&#xE104;" />
-                        </MenuItem.Icon>
-                    </MenuItem>
-                </ContextMenu>
-            </ListView.ContextMenu>
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Width="120"  DisplayMemberBinding="{Binding FirstName}">
-                        <GridViewColumn.Header>
-                            <GridViewColumnHeader Tag="Vorname" Click="sortFirstName">Vorname</GridViewColumnHeader>
-                        </GridViewColumn.Header>
-                    </GridViewColumn>
-                    <GridViewColumn  Width="120" DisplayMemberBinding="{Binding LastName}">
-                        <GridViewColumn.Header>
-                            <GridViewColumnHeader Tag="Nachname" Click="sortLastName">Nachname</GridViewColumnHeader>
-                        </GridViewColumn.Header>
-                    </GridViewColumn>
-                    <GridViewColumn Width="150" DisplayMemberBinding="{Binding Department}">
-                        <GridViewColumn.Header>
-                            <GridViewColumnHeader Tag="Abteilung" Click="sortDepartment" >Abteilung</GridViewColumnHeader>
-                        </GridViewColumn.Header>
-                    </GridViewColumn>
-                    <GridViewColumn Width="170" DisplayMemberBinding="{Binding LandlineNbr}">
-                        <GridViewColumn.Header>
-                            <GridViewColumnHeader Tag="Telefon (geschäftlich)" Click="sortLandlineNbr" >Telefon (geschäftlich)</GridViewColumnHeader>
-                        </GridViewColumn.Header>
-                    </GridViewColumn>
-                    <GridViewColumn Width="170" DisplayMemberBinding="{Binding MobileNbr}">
-                        <GridViewColumn.Header>
-                            <GridViewColumnHeader Tag="Mobil (geschäftlich)" Click="sortMobileNbr" >Mobil (geschäftlich)</GridViewColumnHeader>
-                        </GridViewColumn.Header>
-                    </GridViewColumn>
-                </GridView>
-            </ListView.View>
-        </ListView>
+    <ListView Margin="10" Name="lvUsers" MouseDoubleClick="ListView_MouseDoubleClick" Grid.Row="2">
+      <ListView.ContextMenu>
+        <ContextMenu>
+          <MenuItem Header="Informationen anzeigen" Click="OnCtxMenuInfo">
+            <MenuItem.Icon>
+              <ui:FontIcon Glyph="&#xE13D;" />
+            </MenuItem.Icon>
+          </MenuItem>
+          <MenuItem Header="Mitarbeiter bearbeiten" Click="OnCtxMenuEdit">
+            <MenuItem.Icon>
+              <ui:FontIcon Glyph="&#xE104;" />
+            </MenuItem.Icon>
+          </MenuItem>
+        </ContextMenu>
+      </ListView.ContextMenu>
+      <ListView.View>
+        <GridView>
+          <GridViewColumn Width="120"  DisplayMemberBinding="{Binding FirstName}">
+            <GridViewColumn.Header>
+              <GridViewColumnHeader Tag="Vorname" Click="sortFirstName">Vorname</GridViewColumnHeader>
+            </GridViewColumn.Header>
+          </GridViewColumn>
+          <GridViewColumn  Width="120" DisplayMemberBinding="{Binding LastName}">
+            <GridViewColumn.Header>
+              <GridViewColumnHeader Tag="Nachname" Click="sortLastName">Nachname</GridViewColumnHeader>
+            </GridViewColumn.Header>
+          </GridViewColumn>
+          <GridViewColumn Width="150" DisplayMemberBinding="{Binding Department}">
+            <GridViewColumn.Header>
+              <GridViewColumnHeader Tag="Abteilung" Click="sortDepartment" >Abteilung</GridViewColumnHeader>
+            </GridViewColumn.Header>
+          </GridViewColumn>
+          <GridViewColumn Width="170" DisplayMemberBinding="{Binding LandlineNbr}">
+            <GridViewColumn.Header>
+              <GridViewColumnHeader Tag="Telefon (geschäftlich)" Click="sortLandlineNbr" >Telefon (geschäftlich)</GridViewColumnHeader>
+            </GridViewColumn.Header>
+          </GridViewColumn>
+          <GridViewColumn Width="170" DisplayMemberBinding="{Binding MobileNbr}">
+            <GridViewColumn.Header>
+              <GridViewColumnHeader Tag="Mobil (geschäftlich)" Click="sortMobileNbr" >Mobil (geschäftlich)</GridViewColumnHeader>
+            </GridViewColumn.Header>
+          </GridViewColumn>
+        </GridView>
+      </ListView.View>
+    </ListView>
 
-        <DockPanel LastChildFill="False" Grid.Row="3">
-            <Button Content="Zum Kontakt" IsEnabled="True" 
+    <DockPanel LastChildFill="False" Grid.Row="3">
+      <Button Content="Bearbeiten" IsEnabled="False" 
+                    DockPanel.Dock="Left" Margin="12" Width="150"> <!-- ToDo: Bearbeiten Button hinzufügen -->
+      </Button>
+      <Button Content="Zum Kontakt" IsEnabled="True" 
                     DockPanel.Dock="Right" Margin="12" Width="150"                    
                     Click="Button_Click">
-            </Button>
-        </DockPanel>
-    </Grid>
+      </Button>
+    </DockPanel>
+  </Grid>
 
 </UserControl>

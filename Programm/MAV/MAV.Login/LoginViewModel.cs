@@ -108,6 +108,10 @@ namespace MAV.Login
         private void ChangePwd(object parameter = null)
         {
             //ToDo Implementiern
+            // --
+            // Chris: Das "Passwort Vergessen" habe ich entfernt. Das können wir noch
+            // hinzufügen wenn wir Zeit dafür haben!
+            // --
         }
 
         #endregion

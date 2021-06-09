@@ -10,7 +10,7 @@ namespace MAV.Client.MVVM.ViewModel
 {
     class ClientViewModel : ViewModelBase
     {
-        public RelayCommand AdministrationViewCommand { get; set; }
+        public RelayCommand AddUserViewCommand { get; set; }
         public RelayCommand DirectoryViewCommand { get; set; }
         public RelayCommand HolidayViewCommand { get; set; }
         public RelayCommand HomeViewCommand { get; set; }
@@ -20,7 +20,7 @@ namespace MAV.Client.MVVM.ViewModel
 
         public RelayCommand LogOutCommand { get; private set; }
 
-        public AdministrationView Administration { get; set; }
+        public AddUserView AddUser { get; set; }
         public DirectoryView Directory { get; set; }
         public HolidayView Holiday { get; set; }
         public HomeView Home { get; set; }
@@ -57,7 +57,7 @@ namespace MAV.Client.MVVM.ViewModel
         {
             Control = control;
 
-            Administration = new AdministrationView();
+            AddUser = new AddUserView();
             Directory = new DirectoryView();
             Holiday = new HolidayView();
             Home = new HomeView();
@@ -70,9 +70,9 @@ namespace MAV.Client.MVVM.ViewModel
 
         private void CreateCommands()
         {
-            AdministrationViewCommand = new RelayCommand(o =>
+            AddUserViewCommand = new RelayCommand(o =>
             {
-                CurrentView = Administration;
+                CurrentView = AddUser;
             });
 
             DirectoryViewCommand = new RelayCommand(o =>
