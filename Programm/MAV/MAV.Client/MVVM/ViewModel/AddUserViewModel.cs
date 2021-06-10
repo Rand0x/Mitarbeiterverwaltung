@@ -64,6 +64,11 @@ namespace MAV.Client.MVVM.ViewModel
             else if(Control.Password.Password is null)
             {
                 //ToDo: Meldung, dass kein Passwort gesetzt worden ist
+                
+            }
+            else if (Control.Password.Password.Length < 8)
+            {
+                //ToDo: Meldung Passwort ist zu kurz, muss mind. 8 Zeilen groß sein
             }
             else if (Control.Password.Password != Control.PasswordRepeat.Password)
             {
