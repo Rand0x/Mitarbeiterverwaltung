@@ -44,6 +44,7 @@ namespace MAV.Client.MVVM.ViewModel
         private void CreateCommands()
         {
             AddUserCommand = new RelayCommand(AddUser);
+            
         }
 
         #endregion
@@ -52,16 +53,16 @@ namespace MAV.Client.MVVM.ViewModel
 
         private void AddUser(object parameter = null)
         {
-            if(Control.LastName.Text is null)
+            if(Control.LastName.Text.Length <= 0)
             {
                 //ToDo: Meldung, dass Name leer ist
                 
             }
-            else if(Control.FirstName.Text is null)
+            else if(Control.FirstName.Text.Length <= 0)
             {
                 //ToDo: Meldung, dass Vorname leer ist
             }
-            else if(Control.Password.Password is null)
+            else if(Control.Password.Password.Length <= 0)
             {
                 //ToDo: Meldung, dass kein Passwort gesetzt worden ist
                 
