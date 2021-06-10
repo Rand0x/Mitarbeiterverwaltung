@@ -16,9 +16,9 @@ namespace MAV.Client.MVVM.View
     /// <summary>
     /// Interaktionslogik für AdministrationView.xaml
     /// </summary>
-    public partial class AdministrationView : UserControl
+    public partial class AddUserView : UserControl
     {
-        public AdministrationView()
+        public AddUserView()
         {
             InitializeComponent();
         }
