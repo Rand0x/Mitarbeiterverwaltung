@@ -15,7 +15,7 @@ namespace MAV.DirectoryModule.Model
         {
             rights.Add("Administrator");
             rights.Add("Personal");
-            rights.Add("Mitarbeiter:in");
+            rights.Add("Mitarbeiter");
         }
     }
 }
