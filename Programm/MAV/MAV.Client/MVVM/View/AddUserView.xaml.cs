@@ -25,7 +25,7 @@ namespace MAV.Client.MVVM.View
             InitializeComponent();
             this.DataContext = new AddUserViewModel(this);
 
-
+            // Voreinstellung der Combobox
             Right currentRight = new Right();
             List<string> rights = currentRight.Rights;
             cmbRights.ItemsSource = rights;
