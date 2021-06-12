@@ -10,7 +10,7 @@
     <Compile Update="MVVM\View\AddUserView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="MVVM\View\DeleteEmployeeDialog.xaml.cs">
+    <Compile Update="MVVM\View\Dialogs\DeleteEmployeeDialog.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="MVVM\View\DirectoryView.xaml.cs">
@@ -28,7 +28,7 @@
     <Compile Update="MVVM\View\ImprintView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="MVVM\View\LogoutDialog.xaml.cs">
+    <Compile Update="MVVM\View\Dialogs\LogoutDialog.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="MVVM\View\SettingsView.xaml.cs">
@@ -42,7 +42,13 @@
     <Page Update="MVVM\View\AddUserView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="MVVM\View\DeleteEmployeeDialog.xaml">
+    <Page Update="MVVM\View\Dialogs\SettingsDialog.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MVVM\View\Dialogs\DeleteEmployeeDialog.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MVVM\View\Dialogs\AddUserDialog.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MVVM\View\DirectoryView.xaml">
@@ -60,7 +66,7 @@
     <Page Update="MVVM\View\ImprintView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="MVVM\View\LogoutDialog.xaml">
+    <Page Update="MVVM\View\Dialogs\LogoutDialog.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MVVM\View\SettingsView.xaml">

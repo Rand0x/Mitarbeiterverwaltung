@@ -16,7 +16,7 @@
         <ColumnDefinition/>
         <ColumnDefinition/>
       </Grid.ColumnDefinitions>
-      <TextBlock Text="Name: *" Foreground="#5B5B5B" FontSize="16" Margin="10,0,10,10"/>
+      <TextBlock Text="Nachname: *" Foreground="#5B5B5B" FontSize="16" Margin="10,0,10,10"/>
       <TextBox x:Name="LastName" Width="300" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,22,10,10" VerticalContentAlignment="Center"/>
       
       <TextBlock Text="Vorname: *" Foreground="#5B5B5B" FontSize="16" Margin="10,70,10,10"/>

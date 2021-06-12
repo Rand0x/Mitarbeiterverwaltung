@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1;
 C:\Users\Chris\Documents\_Studium OHM\2. Semester\Software Engineering\_Projekt\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Client\App.xaml
-121800078130
+14-347156250
 
-20-1419398737
+22366014525
 284632903760
-ClientView.xaml;MVVM\View\AddUserView.xaml;MVVM\View\DeleteEmployeeDialog.xaml;MVVM\View\DirectoryView.xaml;MVVM\View\EmployeeEditView.xaml;MVVM\View\EmployeeInfoView.xaml;MVVM\View\HolidayView.xaml;MVVM\View\ImprintView.xaml;MVVM\View\LogoutDialog.xaml;MVVM\View\SettingsView.xaml;Theme\NavigationButtonTheme.xaml;Theme\WindowSizeButtonsTheme.xaml;
+ClientView.xaml;MVVM\View\AddUserView.xaml;MVVM\View\Dialogs\AddUserDialog.xaml;MVVM\View\Dialogs\DeleteEmployeeDialog.xaml;MVVM\View\Dialogs\LogoutDialog.xaml;MVVM\View\Dialogs\SettingsDialog.xaml;MVVM\View\DirectoryView.xaml;MVVM\View\EmployeeEditView.xaml;MVVM\View\EmployeeInfoView.xaml;MVVM\View\HolidayView.xaml;MVVM\View\ImprintView.xaml;MVVM\View\SettingsView.xaml;Theme\NavigationButtonTheme.xaml;Theme\WindowSizeButtonsTheme.xaml;
 
 False
 
