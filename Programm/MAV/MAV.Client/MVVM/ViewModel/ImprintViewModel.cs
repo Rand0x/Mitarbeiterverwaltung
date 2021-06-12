@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MAV.Client.MVVM.ViewModel
 {
-    class HomeViewModel
+    class ImprintViewModel
     {
     }
 }

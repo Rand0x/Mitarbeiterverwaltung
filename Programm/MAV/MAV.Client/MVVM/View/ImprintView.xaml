@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="MAV.Client.MVVM.View.ImprintView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MAV.Client.MVVM.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <StackPanel>
+        <TextBlock Text="Impressum"
+                   Foreground="Black"
+                   FontSize="30"
+                   />
+
+    <TextBlock Margin="10,20,10,10" FontSize="15" Text="Mitarbeiterverwaltung ist ein Projekt für das Modul Software Engineering - "/>
+    <TextBlock Margin="10,5,10,10" FontSize="15" Text="Informatik auf der Technischen Hochschule Nürnberg im zweiten Semester."/>
+    <TextBlock Margin="10,5,10,10" FontSize="15" Text=""/>
+    <TextBlock Margin="10,5,10,10" FontSize="15" Text="Bei diesem Projekt war Samuel Borchsh, Christoph Engelhardt, Petra Grüner, Tobias Kaiser und Manuel Röhrer beteiligt."/>
+    <TextBlock Margin="10,5,10,10" FontSize="15" Text=""/>
+    <TextBlock Margin="10,0,10,5" FontSize="12" Text=" "/>
+
+  </StackPanel>
+</UserControl>

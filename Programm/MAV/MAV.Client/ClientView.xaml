@@ -34,7 +34,7 @@
         
         
         <RadioButton DockPanel.Dock="Bottom" Style="{StaticResource NavigationButtonTheme}"
-                             Command="{Binding HomeViewCommand}" IsChecked="True">
+                             Command="{Binding ImprintViewCommand}" IsChecked="True">
           <RadioButton.Content>
             <Grid>
               <Grid.ColumnDefinitions>
@@ -49,7 +49,7 @@
           </RadioButton.Content>
         </RadioButton>
 
-        <RadioButton DockPanel.Dock="Top" Style="{StaticResource NavigationButtonTheme}"
+        <RadioButton DockPanel.Dock="Top" Style="{StaticResource NavigationButtonTheme}" IsChecked="True"
                              Command="{Binding DirectoryViewCommand}">
           <RadioButton.Content>
             <Grid>
