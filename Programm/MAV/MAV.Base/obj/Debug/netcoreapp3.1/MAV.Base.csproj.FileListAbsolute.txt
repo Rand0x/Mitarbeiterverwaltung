@@ -6,7 +6,6 @@ C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV
 C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Base\obj\Debug\netcoreapp3.1\MAV.Base.csproj.CoreCompileInputs.cache
 C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Base\obj\Debug\netcoreapp3.1\MAV.Base.dll
 C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Base\obj\Debug\netcoreapp3.1\MAV.Base.pdb
-C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Base\obj\Debug\netcoreapp3.1\MAV.Base.csprojAssemblyReference.cache
 C:\Users\manue\OneDrive\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Base\bin\Debug\netcoreapp3.1\MAV.Base.deps.json
 C:\Users\manue\OneDrive\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Base\bin\Debug\netcoreapp3.1\MAV.Base.dll
 C:\Users\manue\OneDrive\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Base\bin\Debug\netcoreapp3.1\MAV.Base.pdb

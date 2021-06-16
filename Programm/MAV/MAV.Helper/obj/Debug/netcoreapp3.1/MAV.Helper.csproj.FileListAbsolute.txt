@@ -8,7 +8,6 @@ C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV
 C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Helper\obj\Debug\netcoreapp3.1\MAV.Helper.csproj.CopyComplete
 C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Helper\obj\Debug\netcoreapp3.1\MAV.Helper.dll
 C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Helper\obj\Debug\netcoreapp3.1\MAV.Helper.pdb
-C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Helper\obj\Debug\netcoreapp3.1\MAV.Helper.csprojAssemblyReference.cache
 C:\Users\manue\OneDrive\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Helper\bin\Debug\netcoreapp3.1\MAV.Helper.deps.json
 C:\Users\manue\OneDrive\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Helper\bin\Debug\netcoreapp3.1\MAV.Helper.dll
 C:\Users\manue\OneDrive\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Helper\bin\Debug\netcoreapp3.1\MAV.Helper.pdb
@@ -31,3 +30,4 @@ C:\Users\Chris\Documents\_Studium OHM\2. Semester\Software Engineering\_Projekt\
 C:\Users\Chris\Documents\_Studium OHM\2. Semester\Software Engineering\_Projekt\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Helper\bin\Debug\netcoreapp3.1\PresentationCore.dll
 C:\Users\Chris\Documents\_Studium OHM\2. Semester\Software Engineering\_Projekt\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Helper\obj\Debug\netcoreapp3.1\MAV.Helper.csproj.CopyComplete
 C:\Users\Chris\Documents\_Studium OHM\2. Semester\Software Engineering\_Projekt\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Helper\obj\Debug\netcoreapp3.1\MAV.Helper.csprojAssemblyReference.cache
+C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Helper\obj\Debug\netcoreapp3.1\MAV.Helper.csprojAssemblyReference.cache

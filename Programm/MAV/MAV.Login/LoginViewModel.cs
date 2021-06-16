@@ -6,6 +6,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Security.Cryptography;
 using System.Text;
 using System.Windows;
 
@@ -70,32 +73,38 @@ namespace MAV.Login
 
             //Übergabeparameter für die Prozedur
             param.Add(new SqlParameter("@szUserName", Control.UsernameBox.Text));
-            param.Add(new SqlParameter("@szPassword", Control.PasswordBox.Password));
+            //param.Add(new SqlParameter("@szPassword", Control.PasswordBox.Password));
 
             var result = tmp_ExecProc("sp_LogIn", param); //Prozedur ausführen
 
             //ToDo Fehlertext aus DB anzeigen lassen auf Frontend
             if (result.Rows.Count > 0) //Anmeldung war erfolgreich
             {
-                //erstellen neus UserModel dass ID des Users und dessen Recht beinhalted
-                var user = new UserModel(
-                  result.Rows[0]["nEmployeeLink"] is DBNull ? null : (int?)result.Rows[0]["nEmployeeLink"], //nKey des Users
-                  (int)result.Rows[0]["nRightLink"], //nKey des Rechts
-                  result.Rows[0]["szRightName"].ToString() //Name des Rechts
-                );
+                var pwd = result.Rows[0]["szPassword"].ToString();
+                var salt = ByteStringConverter.ToByteFromString(result.Rows[0]["szSalt"].ToString());
 
-                //Client starten und Login schließen
-                var client = new ClientView(user);
-                Control.Hide();
-                client.ShowDialog();
+                if (pwd == ByteStringConverter.ToStringFromBytes(PasswordHash.Hash(Control.PasswordBox.Password, salt)))
+                {
+                    //erstellen neus UserModel dass ID des Users und dessen Recht beinhalted
+                    var user = new UserModel(
+                      result.Rows[0]["nEmployeeLink"] is DBNull ? null : (int?)result.Rows[0]["nEmployeeLink"], //nKey des Users
+                      (int)result.Rows[0]["nRightLink"], //nKey des Rechts
+                      result.Rows[0]["szRightName"].ToString() //Name des Rechts
+                    );
 
-                try //wenn Anwendung über X geschlossen wird kommt Fehler und beendigung des Programms, ansonsten kann sich wieder eingelogt werden
-                {
-                    Control.Show();
-                }
-                catch(Exception ex)
-                {
-                    return;
+                    //Client starten und Login schließen
+                    var client = new ClientView(user);
+                    Control.Hide();
+                    client.ShowDialog();
+
+                    try //wenn Anwendung über X geschlossen wird kommt Fehler und beendigung des Programms, ansonsten kann sich wieder eingelogt werden
+                    {
+                        Control.Show();
+                    }
+                    catch (Exception ex)
+                    {
+                        return;
+                    }
                 }
             }
 

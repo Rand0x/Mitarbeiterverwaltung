@@ -8,8 +8,11 @@ GO
 
 
 alter proc [dbo].[sp_CreateUser]
-    @nEmployee          int,
-    @nRight             int,
+    @szFirstName        nvarchar(200),
+    @szLastName         nvarchar(200),
+    @szPassword         nvarchar(max),
+    @szSalt             nvarchar(200),
+    @nRightLink         int,
     @szError            nvarchar(500)       = N''         output,
     @bDebug             int                 = 0
 as begin
@@ -19,7 +22,7 @@ as begin
 
     Erstellt am: 18.05.2021
 
-    Inhalt: erstellt einen User mit Standartpasswort
+    Inhalt: erstellt einen User
 
     History:
         TK    erstellt
@@ -29,19 +32,27 @@ as begin
   begin
     print N'Übergebene Parameter:'
     print N'********************************************************'
-    print N'Employee: ' + @nEmployee
-    print N'Rivht: ' + @nRight
     print N'********************************************************'
   end
 
-  insert into tblUser(szName, szPassword, nEmployeeLink, nRightLink)
-  select e.szFirstName + N'_' + e.szLastName
-       , N'Standart'
-       , @nEmployee
-       , @nRight
-  from tblEmployee e
-  where e.nKey = @nEmployee
+  declare @szUserName nvarchar(400)
+  select @szUserName = @szFirstName + N'_' + @szLastName
+
+  declare @nEmployeeLink int
+  select @nEmployeeLink = nKey from tblEmployee where szFirstName = @szFirstName and szLastName = @szLastName
   
+  insert into tblUser(
+    szName       
+  , szPassword   
+  , szSalt       
+  , nEmployeeLink
+  , nRightLink
+  )
+  select @szUserName
+       , @szPassword
+       , @szSalt
+       , @nEmployeeLink
+       , @nRightLink
   
 end
 

@@ -27,16 +27,14 @@ values (15654, N'HR', N'Mitarbeiter', GETDATE(), N'M', N'HR@MAV.de', N'015446455
 --select * from tblEmployee
 
 
-insert into tblUser(szName, szPassword, nEmployeeLink, nRightLink)
-values (N'Admin', N'Admin123', null, 1)
-     , (N'HR_Mitarbeiter', N'HR123', 1, 2)
-     , (N'Max_Mustermann', N'123', 2, 3)
-     , (N'Erika_Mustermann', N'123', 3, 3)
-     , (N'Thomas_Mustermann', N'123', 4, 3)
-     , (N'Franziska_Mustermann', N'123', 5, 3)
-     , (N'Antonia_Mustermann', N'123', 6, 3)
+insert into tblUser(szName, szPassword, szSalt, nEmployeeLink, nRightLink)
+values (N'Admin', N'005f3e75dea50b01e3d3bed0a0d86d4967e55d8b', N'f637c635415bc01a',null, 1) --Pwd: Admin123
+     , (N'HR_Mitarbeiter', N'202c8ca5a518c5ac84d26cb07be5c0a15109a290', N'f507690acd40ccf2', 1, 2) --Pwd: HR123
+     , (N'Max_Mustermann', N'10745c5f090193feb7d9dabecbbebcbf2bd076f5', N'c91fe344c7e87aa0', 2, 3) --Pwd: MM123
 
 --select * from tblUser
+
+
 
 insert into tblDepartement(szName, szIdentifier, szInfo, nManagerLink)
 values (N'Produktion', N'PRO', N'Produziert Dinge', 6)
