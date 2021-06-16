@@ -57,7 +57,7 @@ namespace MAV.Client.MVVM.ViewModel
         {
             Control = control;
 
-            AddUser = new AddUserView();
+            AddUser = new AddUserView(user);
             Directory = new DirectoryView();
             Holiday = new HolidayView();
             Home = new HomeView();

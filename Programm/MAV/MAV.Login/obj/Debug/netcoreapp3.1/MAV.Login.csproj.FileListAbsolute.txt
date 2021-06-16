@@ -521,3 +521,5 @@ C:\Users\Chris\Documents\_Studium OHM\2. Semester\Software Engineering\_Projekt\
 C:\Users\Chris\Documents\_Studium OHM\2. Semester\Software Engineering\_Projekt\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Login\bin\Debug\netcoreapp3.1\MAV.Helper.pdb
 C:\Users\Chris\Documents\_Studium OHM\2. Semester\Software Engineering\_Projekt\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Login\bin\Debug\netcoreapp3.1\MAV.DirectoryModule.pdb
 C:\Users\Chris\Documents\_Studium OHM\2. Semester\Software Engineering\_Projekt\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Login\obj\Debug\netcoreapp3.1\MAV.Login.csprojAssemblyReference.cache
+C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Login\bin\Debug\netcoreapp3.1\MAV.DirectoryModule.dll
+C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Login\bin\Debug\netcoreapp3.1\MAV.DirectoryModule.pdb

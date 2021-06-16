@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MAV.Base;
+using MAV.Client.MVVM.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -18,8 +20,9 @@ namespace MAV.Client.MVVM.View
     /// </summary>
     public partial class AddUserView : UserControl
     {
-        public AddUserView()
+        public AddUserView(UserModel user)
         {
+            this.DataContext = new AddUserViewModel(this, user);
             InitializeComponent();
         }
     }

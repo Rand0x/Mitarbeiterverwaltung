@@ -533,7 +533,8 @@
           "MAV.Base": "1.0.0",
           "MAV.DirectoryModule": "1.0.0",
           "MAV.Helper": "1.0.0",
-          "ModernWpfUI": "0.9.4"
+          "ModernWpfUI": "0.9.4",
+          "System.Data.SqlClient": "4.8.2"
         },
         "runtime": {
           "MAV.Client.dll": {}
