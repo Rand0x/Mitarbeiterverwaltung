@@ -25,7 +25,7 @@
     <Compile Update="MVVM\View\HolidayView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="MVVM\View\HomeView.xaml.cs">
+    <Compile Update="MVVM\View\ImprintView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="MVVM\View\LogoutDialog.xaml.cs">
@@ -45,6 +45,9 @@
     <Page Update="MVVM\View\DeleteEmployeeDialog.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="MVVM\View\Dialogs\Dialog.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="MVVM\View\DirectoryView.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -57,7 +60,7 @@
     <Page Update="MVVM\View\HolidayView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="MVVM\View\HomeView.xaml">
+    <Page Update="MVVM\View\ImprintView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MVVM\View\LogoutDialog.xaml">

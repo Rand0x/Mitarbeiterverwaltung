@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Login\obj\Debug\netcoreapp3.1\
+C:\Users\Christoph\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Login\obj\Debug\netcoreapp3.1\
 MAV.Login
 none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1;
-C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Login\App.xaml
-3-622446425
+C:\Users\Christoph\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Login\App.xaml
+4-1526683388
 
-6602927439
-286-1284149659
-Login.xaml;Theme\NavigationButtonTheme.xaml;Theme\WindowSizeButtonsTheme.xaml;
+7-1031688111
+2861447909298
+Dialogs\Dialog.xaml;Login.xaml;Theme\NavigationButtonTheme.xaml;Theme\WindowSizeButtonsTheme.xaml;
 
 False
 

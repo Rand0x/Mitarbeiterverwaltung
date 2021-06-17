@@ -6,10 +6,41 @@
              xmlns:local="clr-namespace:MAV.Client.MVVM.View"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <StackPanel>
         <TextBlock Text="Einstellungen"
                    Foreground="Black"
                    FontSize="30"
                    />
-    </Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0">
+
+                <DockPanel>
+                    <TextBlock Text="Passwort ändern" Margin="10,20,5,10" VerticalAlignment="Center"
+                 FontSize="18" Foreground="Black"/>
+                    <TextBlock Text="" Margin="0,25,10,10" FontFamily="Segoe MDL2 Assets" VerticalAlignment="Center"
+                 FontSize="15" Foreground="Black"/>
+                </DockPanel>
+
+                <TextBlock Text="Passwort: *" Grid.Column="0" Margin="10,0,10,0" Foreground="#5B5B5B" FontSize="16"/>
+                <PasswordBox x:Name="PasswordOld" Grid.Column="0" Margin="10,5,10,10" Width="250" HorizontalAlignment="Left"/>
+
+                <TextBlock Text="Neues Passwort: *" Grid.Column="0" Margin="10,10,10,0" Foreground="#5B5B5B" FontSize="16"/>
+                <PasswordBox x:Name="PasswordNew" Grid.Column="0" Margin="10,5,10,10" Width="250" HorizontalAlignment="Left"/>
+
+                <TextBlock Text=" Neues Passwort wiederholen: *" Grid.Column="0" Margin="10,10,10,0" Foreground="#5B5B5B" FontSize="16"/>
+                <PasswordBox x:Name="PasswordNewRepeat" Grid.Column="0" Margin="10,5,10,10" Width="250" HorizontalAlignment="Left"/>
+
+
+                <Button Content="Passwort ändern" Grid.Column="0" Margin="10" Command="{Binding ChangePwdCommand}"/>
+            </StackPanel>
+
+        </Grid>
+        <TextBlock Text="* Erforderlich"/>
+    </StackPanel>
+
 </UserControl>

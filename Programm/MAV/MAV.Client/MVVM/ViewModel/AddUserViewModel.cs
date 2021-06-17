@@ -121,31 +121,29 @@ namespace MAV.Client.MVVM.ViewModel
 
         private void AddUser(object parameter = null)
         {
-            if(LastName is null)
+            if (LastName is null)
             {
-                //ToDo: Meldung, dass Name leer ist
-                
+                DialogPopUp("Kein Nachname", "Es wurde kein Nachname eingegeben");
             }
-            else if(FirstName is null)
+            else if (FirstName is null)
             {
-                //ToDo: Meldung, dass Vorname leer ist
+                DialogPopUp("Kein Vorname", "Es wurde kein Vorname eingegeben");
             }
-            else if(Control.Password.Password is null)
+            else if (Control.Password.Password is null)
             {
-                //ToDo: Meldung, dass kein Passwort gesetzt worden ist
-                
+                DialogPopUp("Kein Passwort", "Es wurde kein Passwort eingegeben");
             }
             else if (Control.Password.Password.Length < 8)
             {
-                //ToDo: Meldung Passwort ist zu kurz, muss mind. 8 Zeilen groß sein
+                DialogPopUp("Passwort ist zu kurz", "Das Passwort muss mindestens", "acht Zeichen lang sein.");
             }
             else if (Control.Password.Password != Control.PasswordRepeat.Password)
             {
-                //ToDo: Meldung Passwort und das Passwort zum Wiederholen ist nicht identisch
+                DialogPopUp("Passwörter nicht identisch", "Das Passwort ist nicht mit dem", "wiederholten Passwort identisch.");
             }
             else if (SelectedRight is null)
             {
-                //ToDo: Meldung, dass kein Recht ausgewählt wurde
+                DialogPopUp("Kein Recht vergeben", "Die erstellte Person braucht Rechte");
             }
             else
             {
@@ -162,12 +160,9 @@ namespace MAV.Client.MVVM.ViewModel
 
                 tmp_ExecProc("sp_CreateUser", param);
 
-                //ToDo Mitteilung über Erfolg an Anwender
-                FirstName = null;
-                LastName = null;
-                Control.Password.Clear();
-                Control.PasswordRepeat.Clear();
-                SelectedRight = null;
+                
+                DialogPopUp("Erfolgreich erstellt", "Der Benutzer wurde erfolgreich erstellt", $"Benutzername: {Control.FirstName.Text}_{Control.LastName.Text}");
+                ClearBoxes();
             }
 
         }
@@ -178,7 +173,7 @@ namespace MAV.Client.MVVM.ViewModel
         private void LoadRights()
         {
             var result = tmp_ExecProc("sp_LoadRights");
-            foreach(DataRow row in result.Rows)
+            foreach (DataRow row in result.Rows)
             {
                 Rights.Add(new RightModel()
                 {
@@ -187,6 +182,35 @@ namespace MAV.Client.MVVM.ViewModel
                     Info = row["szInfo"].ToString()
                 });
             }
+        }
+
+        /// <summary>
+        /// Beim Aufrufen erscheint ein Fenster
+        /// </summary>
+        /// <param name="title">Title des Fensters</param>
+        /// <param name="firstLine">Erste Zeile des Fensters</param>
+        /// <param name="secondLine">Zweite Zeile des Fensters</param>
+        private void DialogPopUp(string title, string firstLine, string secondLine = "")
+        {
+            Dialog dialog = new Dialog();
+            dialog.Title = title;
+            dialog.FirstLine.Text = firstLine;
+            dialog.SecondLine.Text = secondLine;
+            var result = dialog.ShowAsync();
+        }
+
+
+
+        /// <summary>
+        /// Leert die Boxen
+        /// </summary>
+        void ClearBoxes()
+        {
+            FirstName = null;
+            LastName = null;
+            Control.Password.Clear();
+            Control.PasswordRepeat.Clear();
+            SelectedRight = null;
         }
 
         //ToDo entfernen

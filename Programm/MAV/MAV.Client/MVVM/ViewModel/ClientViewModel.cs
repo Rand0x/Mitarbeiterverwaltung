@@ -13,7 +13,7 @@ namespace MAV.Client.MVVM.ViewModel
         public RelayCommand AddUserViewCommand { get; set; }
         public RelayCommand DirectoryViewCommand { get; set; }
         public RelayCommand HolidayViewCommand { get; set; }
-        public RelayCommand HomeViewCommand { get; set; }
+        public RelayCommand ImprintViewCommand { get; set; }
         public RelayCommand SettingsViewCommand { get; set; }
         public RelayCommand EmployeeInfoViewCommand { get; set; }
         public RelayCommand EmployeeEditViewCommand { get; set; }
@@ -23,7 +23,7 @@ namespace MAV.Client.MVVM.ViewModel
         public AddUserView AddUser { get; set; }
         public DirectoryView Directory { get; set; }
         public HolidayView Holiday { get; set; }
-        public HomeView Home { get; set; }
+        public ImprintView Imprint { get; set; }
         public SettingsView Settings { get; set; }
         public EmployeeInfoView EmployeeInfo { get; set; }
         public EmployeeEditView EmployeeEdit { get; set; }
@@ -60,10 +60,10 @@ namespace MAV.Client.MVVM.ViewModel
             AddUser = new AddUserView(user);
             Directory = new DirectoryView();
             Holiday = new HolidayView();
-            Home = new HomeView();
+            Imprint = new ImprintView();
             Settings = new SettingsView();
 
-            CurrentView = Home;
+            CurrentView = Directory;
 
             CreateCommands();
         }
@@ -85,9 +85,9 @@ namespace MAV.Client.MVVM.ViewModel
                 CurrentView = Holiday;
             });
 
-            HomeViewCommand = new RelayCommand(o =>
+            ImprintViewCommand = new RelayCommand(o =>
             {
-                CurrentView = Home;
+                CurrentView = Imprint;
             });
 
             SettingsViewCommand = new RelayCommand(o =>

@@ -24,6 +24,7 @@ namespace MAV.Client.MVVM.View
         {
             this.DataContext = new AddUserViewModel(this, user);
             InitializeComponent();
+
         }
     }
 }
