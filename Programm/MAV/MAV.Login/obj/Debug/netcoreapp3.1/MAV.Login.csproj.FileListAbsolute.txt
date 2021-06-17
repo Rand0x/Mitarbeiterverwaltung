@@ -523,6 +523,15 @@ C:\Users\Chris\Documents\_Studium OHM\2. Semester\Software Engineering\_Projekt\
 C:\Users\Chris\Documents\_Studium OHM\2. Semester\Software Engineering\_Projekt\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Login\obj\Debug\netcoreapp3.1\MAV.Login.csprojAssemblyReference.cache
 C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Login\bin\Debug\netcoreapp3.1\MAV.DirectoryModule.dll
 C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Login\bin\Debug\netcoreapp3.1\MAV.DirectoryModule.pdb
+C:\Users\Christoph\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Login\obj\Debug\netcoreapp3.1\Dialogs\Dialog.baml
+C:\Users\Christoph\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Login\obj\Debug\netcoreapp3.1\Theme\NavigationButtonTheme.baml
+C:\Users\Christoph\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Login\obj\Debug\netcoreapp3.1\Theme\WindowSizeButtonsTheme.baml
+C:\Users\Christoph\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Login\obj\Debug\netcoreapp3.1\Dialogs\Dialog.g.cs
+C:\Users\Christoph\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Login\obj\Debug\netcoreapp3.1\Login.g.cs
+C:\Users\Christoph\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Login\obj\Debug\netcoreapp3.1\App.g.cs
+C:\Users\Christoph\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Login\obj\Debug\netcoreapp3.1\MAV.Login_MarkupCompile.cache
+C:\Users\Christoph\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Login\obj\Debug\netcoreapp3.1\MAV.Login_MarkupCompile.lref
+C:\Users\Christoph\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Login\obj\Debug\netcoreapp3.1\MAV.Login.csproj.AssemblyReference.cache
 C:\Users\Christoph\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Login\bin\Debug\netcoreapp3.1\MAV.Client.deps.json
 C:\Users\Christoph\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Login\bin\Debug\netcoreapp3.1\MAV.Client.runtimeconfig.json
 C:\Users\Christoph\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Login\bin\Debug\netcoreapp3.1\MAV.Client.runtimeconfig.dev.json
@@ -681,15 +690,6 @@ C:\Users\Christoph\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Login
 C:\Users\Christoph\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Login\bin\Debug\netcoreapp3.1\MAV.Client.pdb
 C:\Users\Christoph\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Login\bin\Debug\netcoreapp3.1\MAV.Helper.pdb
 C:\Users\Christoph\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Login\bin\Debug\netcoreapp3.1\MAV.DirectoryModule.pdb
-C:\Users\Christoph\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Login\obj\Debug\netcoreapp3.1\MAV.Login.csproj.AssemblyReference.cache
-C:\Users\Christoph\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Login\obj\Debug\netcoreapp3.1\Dialogs\Dialog.baml
-C:\Users\Christoph\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Login\obj\Debug\netcoreapp3.1\Theme\NavigationButtonTheme.baml
-C:\Users\Christoph\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Login\obj\Debug\netcoreapp3.1\Theme\WindowSizeButtonsTheme.baml
-C:\Users\Christoph\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Login\obj\Debug\netcoreapp3.1\Dialogs\Dialog.g.cs
-C:\Users\Christoph\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Login\obj\Debug\netcoreapp3.1\Login.g.cs
-C:\Users\Christoph\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Login\obj\Debug\netcoreapp3.1\App.g.cs
-C:\Users\Christoph\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Login\obj\Debug\netcoreapp3.1\MAV.Login_MarkupCompile.cache
-C:\Users\Christoph\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Login\obj\Debug\netcoreapp3.1\MAV.Login_MarkupCompile.lref
 C:\Users\Christoph\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Login\obj\Debug\netcoreapp3.1\App.baml
 C:\Users\Christoph\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Login\obj\Debug\netcoreapp3.1\Login.baml
 C:\Users\Christoph\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Login\obj\Debug\netcoreapp3.1\MAV.Login.g.resources

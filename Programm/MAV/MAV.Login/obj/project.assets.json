@@ -726,6 +726,9 @@
       "MAV.Helper/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "System.Data.SqlClient": "4.8.2"
+        },
         "compile": {
           "bin/placeholder/MAV.Helper.dll": {}
         },
