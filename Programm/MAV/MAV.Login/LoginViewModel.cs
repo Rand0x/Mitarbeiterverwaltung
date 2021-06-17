@@ -66,8 +66,26 @@ namespace MAV.Login
         private void Login(object parameter = null)
         {
             //wenn kein Username angegeben ist wird gar nicht erst ein Anmeldeversuch gestartet
-            if (Control.UsernameBox.Text is null)
+            if (Control.UsernameBox.Text.Length < 1) //Hinweis das kein Passwort eingegeben worden ist
+            {
+                Dialog dialog = new Dialog
+                {
+                    Title = "Kein Benutzername",
+                    FirstLineContent = "Es wurde kein Benutzername eingegeben."
+                };
+                var resultDialog = dialog.ShowAsync();
                 return;
+            }
+            if(Control.PasswordBox.Password.Length < 1) //Hinweis das kein Passwort eingegeben worden ist
+            {
+                Dialog dialog = new Dialog
+                {
+                    Title = "Kein Passwort",
+                    FirstLineContent = "Es wurde kein Passwort eingegeben."
+                };
+                var resultDialog = dialog.ShowAsync();
+                return;
+            }
 
             var param = new ObservableCollection<SqlParameter>();
 
@@ -77,7 +95,7 @@ namespace MAV.Login
 
             var result = tmp_ExecProc("sp_LogIn", param); //Prozedur ausführen
 
-            //ToDo Fehlertext aus DB anzeigen lassen auf Frontend
+            
             if (result.Rows.Count > 0) //Anmeldung war erfolgreich
             {
                 var pwd = result.Rows[0]["szPassword"].ToString();
@@ -107,6 +125,17 @@ namespace MAV.Login
                     }
                 }
             }
+            else //Fehler beim Anmeldeversuch:
+            {
+                Dialog dialog = new Dialog
+                {
+                    Title = "Anmeldung fehlgeschlagen",
+                    FirstLineContent = "Es konnte sich nicht eingeloggt werden.",
+                    SecondLineText = "Prüfen Sie Ihre Eingaben und Ihre Verbindung."
+                };
+                var resultDialog = dialog.ShowAsync();
+                return;
+            }
 
             //Eingaben clearen und Fokus auf UsernameBox setzen
             Control.UsernameBox.Clear();
@@ -124,6 +153,9 @@ namespace MAV.Login
         }
 
         #endregion
+
+
+
 
         //ToDo entfernen
         //nur temporär bis DBProvider existiert

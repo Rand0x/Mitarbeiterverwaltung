@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MAV.Client.MVVM.ViewModel;
 
 namespace MAV.Client.MVVM.View
 {
@@ -20,7 +21,9 @@ namespace MAV.Client.MVVM.View
     {
         public SettingsView()
         {
+            this.DataContext = new SettingsViewModel(this);
             InitializeComponent();
+
         }
     }
 }

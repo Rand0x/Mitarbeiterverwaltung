@@ -26,4 +26,17 @@
     <Resource Include="LogoOhneText.png" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="MVVM\View\Dialogs\Dialog.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="MVVM\View\Dialogs\Dialog.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+
 </Project>

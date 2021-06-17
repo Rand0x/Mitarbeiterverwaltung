@@ -32,4 +32,17 @@
     <Resource Include="LogoOhneText.png" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Dialogs\Dialog.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Dialogs\Dialog.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+
 </Project>

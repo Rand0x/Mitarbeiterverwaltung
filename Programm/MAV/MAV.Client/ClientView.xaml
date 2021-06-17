@@ -32,21 +32,6 @@
 
             <DockPanel LastChildFill="False" Grid.Row="1" Background="#34363B">
                 <RadioButton DockPanel.Dock="Top" Style="{StaticResource NavigationButtonTheme}"
-                             Command="{Binding HomeViewCommand}" IsChecked="True">
-                    <RadioButton.Content>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="3*"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="&#xE10F;" FontFamily="Segoe MDL2 Assets" FontSize="24" Padding="10" 
-                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            <TextBlock Text="Startseite" FontSize="20" Grid.Column="1"  VerticalAlignment="Center"/>
-                        </Grid>
-                    </RadioButton.Content>
-                </RadioButton>
-
-                <RadioButton DockPanel.Dock="Top" Style="{StaticResource NavigationButtonTheme}"
                              Command="{Binding DirectoryViewCommand}">
                     <RadioButton.Content>
                         <Grid>
@@ -61,7 +46,25 @@
                     </RadioButton.Content>
                 </RadioButton>
 
+
+
                 <RadioButton DockPanel.Dock="Top" Style="{StaticResource NavigationButtonTheme}"
+                             Command="{Binding SettingsViewCommand}">
+                    <RadioButton.Content>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="3*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="&#xE115;" FontFamily="Segoe MDL2 Assets" FontSize="24" Padding="10" 
+                                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <TextBlock Text="Einstellungen" FontSize="20" Grid.Column="1"  VerticalAlignment="Center"/>
+                        </Grid>
+                    </RadioButton.Content>
+                </RadioButton>
+                
+                
+                <!--<RadioButton DockPanel.Dock="Top" Style="{StaticResource NavigationButtonTheme}"
                              Command="{Binding HolidayViewCommand}">
                     <RadioButton.Content>
                         <Grid>
@@ -74,7 +77,7 @@
                             <TextBlock Text="Urlaubsplaner" FontSize="20" Grid.Column="1"  VerticalAlignment="Center"/>
                         </Grid>
                     </RadioButton.Content>
-                </RadioButton>
+                </RadioButton>-->
 
                 <RadioButton DockPanel.Dock="Top" Style="{StaticResource NavigationButtonTheme}"
                              Command="{Binding AddUserViewCommand}">
@@ -106,20 +109,23 @@
                     </RadioButton.Content>
                 </RadioButton>
 
+
                 <RadioButton DockPanel.Dock="Bottom" Style="{StaticResource NavigationButtonTheme}"
-                             Command="{Binding SettingsViewCommand}">
+                             Command="{Binding ImprintViewCommand}" IsChecked="True">
                     <RadioButton.Content>
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="3*"/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Text="&#xE115;" FontFamily="Segoe MDL2 Assets" FontSize="24" Padding="10" 
+                            <TextBlock Text="" FontFamily="Segoe MDL2 Assets" FontSize="24" Padding="10" 
                                        HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            <TextBlock Text="Einstellungen" FontSize="20" Grid.Column="1"  VerticalAlignment="Center"/>
+                            <TextBlock Text="Impressum" FontSize="20" Grid.Column="1"  VerticalAlignment="Center"/>
                         </Grid>
                     </RadioButton.Content>
                 </RadioButton>
+                
+                
             </DockPanel>
             <ContentControl Grid.Row="1" Grid.Column="1" Margin=" 10" Content="{Binding CurrentView}"/>
         </Grid>

@@ -24,3 +24,12 @@ C:\Users\Chris\Documents\_Studium OHM\2. Semester\Software Engineering\_Projekt\
 C:\Users\Chris\Documents\_Studium OHM\2. Semester\Software Engineering\_Projekt\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Base\obj\Debug\netcoreapp3.1\MAV.Base.dll
 C:\Users\Chris\Documents\_Studium OHM\2. Semester\Software Engineering\_Projekt\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Base\obj\Debug\netcoreapp3.1\MAV.Base.pdb
 C:\Users\Chris\Documents\_Studium OHM\2. Semester\Software Engineering\_Projekt\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Base\obj\Debug\netcoreapp3.1\MAV.Base.csprojAssemblyReference.cache
+C:\Users\Christoph\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Base\bin\Debug\netcoreapp3.1\MAV.Base.deps.json
+C:\Users\Christoph\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Base\bin\Debug\netcoreapp3.1\MAV.Base.dll
+C:\Users\Christoph\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Base\bin\Debug\netcoreapp3.1\MAV.Base.pdb
+C:\Users\Christoph\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Base\obj\Debug\netcoreapp3.1\MAV.Base.csproj.AssemblyReference.cache
+C:\Users\Christoph\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Base\obj\Debug\netcoreapp3.1\MAV.Base.AssemblyInfoInputs.cache
+C:\Users\Christoph\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Base\obj\Debug\netcoreapp3.1\MAV.Base.AssemblyInfo.cs
+C:\Users\Christoph\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Base\obj\Debug\netcoreapp3.1\MAV.Base.csproj.CoreCompileInputs.cache
+C:\Users\Christoph\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Base\obj\Debug\netcoreapp3.1\MAV.Base.dll
+C:\Users\Christoph\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Base\obj\Debug\netcoreapp3.1\MAV.Base.pdb

@@ -34,3 +34,15 @@ C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV
 C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.DirectoryModule\obj\Debug\netcoreapp3.1\MAV.DirectoryModule.csproj.CopyComplete
 C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.DirectoryModule\obj\Debug\netcoreapp3.1\MAV.DirectoryModule.dll
 C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.DirectoryModule\obj\Debug\netcoreapp3.1\MAV.DirectoryModule.pdb
+C:\Users\Christoph\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.DirectoryModule\bin\Debug\netcoreapp3.1\MAV.DirectoryModule.deps.json
+C:\Users\Christoph\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.DirectoryModule\bin\Debug\netcoreapp3.1\MAV.DirectoryModule.dll
+C:\Users\Christoph\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.DirectoryModule\bin\Debug\netcoreapp3.1\MAV.DirectoryModule.pdb
+C:\Users\Christoph\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.DirectoryModule\bin\Debug\netcoreapp3.1\MAV.Base.dll
+C:\Users\Christoph\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.DirectoryModule\bin\Debug\netcoreapp3.1\MAV.Base.pdb
+C:\Users\Christoph\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.DirectoryModule\obj\Debug\netcoreapp3.1\MAV.DirectoryModule.csproj.AssemblyReference.cache
+C:\Users\Christoph\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.DirectoryModule\obj\Debug\netcoreapp3.1\MAV.DirectoryModule.AssemblyInfoInputs.cache
+C:\Users\Christoph\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.DirectoryModule\obj\Debug\netcoreapp3.1\MAV.DirectoryModule.AssemblyInfo.cs
+C:\Users\Christoph\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.DirectoryModule\obj\Debug\netcoreapp3.1\MAV.DirectoryModule.csproj.CoreCompileInputs.cache
+C:\Users\Christoph\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.DirectoryModule\obj\Debug\netcoreapp3.1\MAV.DirectoryModule.csproj.CopyComplete
+C:\Users\Christoph\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.DirectoryModule\obj\Debug\netcoreapp3.1\MAV.DirectoryModule.dll
+C:\Users\Christoph\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.DirectoryModule\obj\Debug\netcoreapp3.1\MAV.DirectoryModule.pdb
