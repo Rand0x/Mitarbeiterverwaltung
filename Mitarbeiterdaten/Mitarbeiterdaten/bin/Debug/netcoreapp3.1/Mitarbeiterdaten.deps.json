@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "Mitarbeiterdaten/1.0.0": {
+        "runtime": {
+          "Mitarbeiterdaten.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Mitarbeiterdaten/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
