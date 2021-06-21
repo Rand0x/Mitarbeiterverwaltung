@@ -68,22 +68,12 @@ namespace MAV.Login
             //wenn kein Username angegeben ist wird gar nicht erst ein Anmeldeversuch gestartet
             if (Control.UsernameBox.Text.Length < 1) //Hinweis das kein Passwort eingegeben worden ist
             {
-                Dialog dialog = new Dialog
-                {
-                    Title = "Kein Benutzername",
-                    FirstLineContent = "Es wurde kein Benutzername eingegeben."
-                };
-                var resultDialog = dialog.ShowAsync();
+                ShowErrorDialog("Kein Benutzername", "Es wurde kein Benutzername eingegeben.");
                 return;
             }
             if(Control.PasswordBox.Password.Length < 1) //Hinweis das kein Passwort eingegeben worden ist
             {
-                Dialog dialog = new Dialog
-                {
-                    Title = "Kein Passwort",
-                    FirstLineContent = "Es wurde kein Passwort eingegeben."
-                };
-                var resultDialog = dialog.ShowAsync();
+                ShowErrorDialog("Kein Passwort", "Es wurde kein Passwort eingegeben.");
                 return;
             }
 
@@ -95,52 +85,64 @@ namespace MAV.Login
 
             var result = tmp_ExecProc("sp_LogIn", param); //Prozedur ausführen
 
-            
-            if (result.Rows.Count > 0) //Anmeldung war erfolgreich
+            if (result != null) // Prüfen ob Verbindung mit Server erfolgreich war.
             {
-                var pwd = result.Rows[0]["szPassword"].ToString();
-                var salt = ByteStringConverter.ToByteFromString(result.Rows[0]["szSalt"].ToString());
-
-                if (pwd == ByteStringConverter.ToStringFromBytes(PasswordHash.Hash(Control.PasswordBox.Password, salt)))
+                if (result.Rows.Count > 0) //Anmeldung war erfolgreich
                 {
-                    //erstellen neus UserModel dass ID des Users und dessen Recht beinhalted
-                    var user = new UserModel(
-                      result.Rows[0]["nEmployeeLink"] is DBNull ? null : (int?)result.Rows[0]["nEmployeeLink"], //nKey des Users
-                      (int)result.Rows[0]["nRightLink"], //nKey des Rechts
-                      result.Rows[0]["szRightName"].ToString() //Name des Rechts
-                    );
+                    var pwd = result.Rows[0]["szPassword"].ToString();
+                    var salt = ByteStringConverter.ToByteFromString(result.Rows[0]["szSalt"].ToString());
 
-                    //Client starten und Login schließen
-                    var client = new ClientView(user);
-                    Control.Hide();
-                    client.ShowDialog();
+                    if (pwd == ByteStringConverter.ToStringFromBytes(PasswordHash.Hash(Control.PasswordBox.Password, salt)))
+                    {
+                        //erstellen neus UserModel dass ID des Users und dessen Recht beinhalted
+                        var user = new UserModel(
+                          result.Rows[0]["nEmployeeLink"] is DBNull ? null : (int?)result.Rows[0]["nEmployeeLink"], //nKey des Users
+                          (int)result.Rows[0]["nRightLink"], //nKey des Rechts
+                          result.Rows[0]["szRightName"].ToString() //Name des Rechts
+                        );
 
-                    try //wenn Anwendung über X geschlossen wird kommt Fehler und beendigung des Programms, ansonsten kann sich wieder eingelogt werden
-                    {
-                        Control.Show();
-                    }
-                    catch (Exception ex)
-                    {
-                        return;
+                        //Client starten und Login schließen
+                        var client = new ClientView(user);
+                        Control.Hide();
+                        client.ShowDialog();
+
+                        try //wenn Anwendung über X geschlossen wird kommt Fehler und beendigung des Programms, ansonsten kann sich wieder eingelogt werden
+                        {
+                            Control.Show();
+                        }
+                        catch (Exception ex)
+                        {
+                            return;
+                        }
                     }
                 }
-            }
-            else //Fehler beim Anmeldeversuch:
-            {
-                Dialog dialog = new Dialog
+                else //Fehler beim Anmeldeversuch:
                 {
-                    Title = "Anmeldung fehlgeschlagen",
-                    FirstLineContent = "Es konnte sich nicht eingeloggt werden.",
-                    SecondLineText = "Prüfen Sie Ihre Eingaben und Ihre Verbindung."
-                };
-                var resultDialog = dialog.ShowAsync();
-                return;
+                    ShowErrorDialog("Anmeldung fehlgeschlagen", "Benutzername oder Passwort falsch!", "Prüfen Sie Ihre Eingaben.");
+                    return;
+                }
             }
+            else  // Keine Verbindung zum Server
+            {
+                ShowErrorDialog("Anmeldung fehlgeschlagen", "Es konnte keine Verbindung zum Server hergestellt werden.", "Prüfen Sie Ihre VPN-Verbindung!");
+                return;
+            }            
 
             //Eingaben clearen und Fokus auf UsernameBox setzen
             Control.UsernameBox.Clear();
             Control.PasswordBox.Clear();
             Control.UsernameBox.Focus();
+        }
+
+        private void ShowErrorDialog(string title, string firstLine, string secondLine = null)
+        {
+            Dialog dialog = new Dialog
+            {
+                Title = title,
+                FirstLineContent = firstLine,
+                SecondLineText = secondLine
+            };
+            var resultDialog = dialog.ShowAsync();
         }
 
         private void ChangePwd(object parameter = null)
@@ -153,9 +155,6 @@ namespace MAV.Login
         }
 
         #endregion
-
-
-
 
         //ToDo entfernen
         //nur temporär bis DBProvider existiert
