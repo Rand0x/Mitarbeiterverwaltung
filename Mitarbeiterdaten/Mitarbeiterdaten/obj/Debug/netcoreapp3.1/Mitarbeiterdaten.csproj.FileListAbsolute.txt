@@ -1,0 +1,13 @@
+C:\Users\manue\source\repos\Mitarbeiterdaten\Mitarbeiterdaten\bin\Debug\netcoreapp3.1\Mitarbeiterdaten.exe
+C:\Users\manue\source\repos\Mitarbeiterdaten\Mitarbeiterdaten\bin\Debug\netcoreapp3.1\Mitarbeiterdaten.deps.json
+C:\Users\manue\source\repos\Mitarbeiterdaten\Mitarbeiterdaten\bin\Debug\netcoreapp3.1\Mitarbeiterdaten.runtimeconfig.json
+C:\Users\manue\source\repos\Mitarbeiterdaten\Mitarbeiterdaten\bin\Debug\netcoreapp3.1\Mitarbeiterdaten.runtimeconfig.dev.json
+C:\Users\manue\source\repos\Mitarbeiterdaten\Mitarbeiterdaten\bin\Debug\netcoreapp3.1\Mitarbeiterdaten.dll
+C:\Users\manue\source\repos\Mitarbeiterdaten\Mitarbeiterdaten\bin\Debug\netcoreapp3.1\Mitarbeiterdaten.pdb
+C:\Users\manue\source\repos\Mitarbeiterdaten\Mitarbeiterdaten\obj\Debug\netcoreapp3.1\Mitarbeiterdaten.csprojAssemblyReference.cache
+C:\Users\manue\source\repos\Mitarbeiterdaten\Mitarbeiterdaten\obj\Debug\netcoreapp3.1\Mitarbeiterdaten.AssemblyInfoInputs.cache
+C:\Users\manue\source\repos\Mitarbeiterdaten\Mitarbeiterdaten\obj\Debug\netcoreapp3.1\Mitarbeiterdaten.AssemblyInfo.cs
+C:\Users\manue\source\repos\Mitarbeiterdaten\Mitarbeiterdaten\obj\Debug\netcoreapp3.1\Mitarbeiterdaten.csproj.CoreCompileInputs.cache
+C:\Users\manue\source\repos\Mitarbeiterdaten\Mitarbeiterdaten\obj\Debug\netcoreapp3.1\Mitarbeiterdaten.dll
+C:\Users\manue\source\repos\Mitarbeiterdaten\Mitarbeiterdaten\obj\Debug\netcoreapp3.1\Mitarbeiterdaten.pdb
+C:\Users\manue\source\repos\Mitarbeiterdaten\Mitarbeiterdaten\obj\Debug\netcoreapp3.1\Mitarbeiterdaten.genruntimeconfig.cache

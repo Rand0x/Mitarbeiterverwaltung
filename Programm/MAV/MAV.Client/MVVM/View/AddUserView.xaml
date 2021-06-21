@@ -36,7 +36,7 @@
                 ItemsSource="{Binding Rights}" SelectedItem="{Binding SelectedRight}">
         <ComboBox.ItemTemplate>
           <DataTemplate>
-            <TextBlock Width="Auto" VerticalAlignment="Center" FontSize="16" Text="{Binding Name}"/>
+            <TextBlock Width="Auto" VerticalAlignment="Center" FontSize="16" Text="{Binding Name}" ToolTip="{Binding Info}"/>
           </DataTemplate>
         </ComboBox.ItemTemplate>
       </ComboBox>

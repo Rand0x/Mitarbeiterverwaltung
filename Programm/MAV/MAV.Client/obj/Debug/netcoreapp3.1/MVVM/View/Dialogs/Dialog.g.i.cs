@@ -74,7 +74,7 @@ namespace MAV.Client.MVVM.View {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/MAV.Client;component/mvvm/view/dialogs/dialog.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/MAV.Client;V1.0.0.0;component/mvvm/view/dialogs/dialog.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\..\MVVM\View\Dialogs\Dialog.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

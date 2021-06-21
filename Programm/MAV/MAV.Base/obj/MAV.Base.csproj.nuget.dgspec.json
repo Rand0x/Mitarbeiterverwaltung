@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Christoph\\Documents\\GitHub\\Mitarbeiterverwaltung\\Programm\\MAV\\MAV.Base\\MAV.Base.csproj": {}
+    "C:\\Users\\manue\\OneDrive\\Documents\\GitHub\\Mitarbeiterverwaltung\\Programm\\MAV\\MAV.Base\\MAV.Base.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Christoph\\Documents\\GitHub\\Mitarbeiterverwaltung\\Programm\\MAV\\MAV.Base\\MAV.Base.csproj": {
+    "C:\\Users\\manue\\OneDrive\\Documents\\GitHub\\Mitarbeiterverwaltung\\Programm\\MAV\\MAV.Base\\MAV.Base.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Christoph\\Documents\\GitHub\\Mitarbeiterverwaltung\\Programm\\MAV\\MAV.Base\\MAV.Base.csproj",
+        "projectUniqueName": "C:\\Users\\manue\\OneDrive\\Documents\\GitHub\\Mitarbeiterverwaltung\\Programm\\MAV\\MAV.Base\\MAV.Base.csproj",
         "projectName": "MAV.Base",
-        "projectPath": "C:\\Users\\Christoph\\Documents\\GitHub\\Mitarbeiterverwaltung\\Programm\\MAV\\MAV.Base\\MAV.Base.csproj",
-        "packagesPath": "C:\\Users\\Christoph\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Christoph\\Documents\\GitHub\\Mitarbeiterverwaltung\\Programm\\MAV\\MAV.Base\\obj\\",
+        "projectPath": "C:\\Users\\manue\\OneDrive\\Documents\\GitHub\\Mitarbeiterverwaltung\\Programm\\MAV\\MAV.Base\\MAV.Base.csproj",
+        "packagesPath": "C:\\Users\\manue\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\manue\\OneDrive\\Documents\\GitHub\\Mitarbeiterverwaltung\\Programm\\MAV\\MAV.Base\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Christoph\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\manue\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -58,7 +58,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     }
