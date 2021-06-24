@@ -9,7 +9,6 @@
       "MAV.Client/1.0.0": {
         "dependencies": {
           "MAV.Base": "1.0.0",
-          "MAV.DirectoryModule": "1.0.0",
           "MAV.Helper": "1.0.0",
           "ModernWpfUI": "0.9.4",
           "System.Data.SqlClient": "4.8.2"
@@ -528,14 +527,6 @@
           "MAV.Base.dll": {}
         }
       },
-      "MAV.DirectoryModule/1.0.0": {
-        "dependencies": {
-          "MAV.Base": "1.0.0"
-        },
-        "runtime": {
-          "MAV.DirectoryModule.dll": {}
-        }
-      },
       "MAV.Helper/1.0.0": {
         "dependencies": {
           "System.Data.SqlClient": "4.8.2"
@@ -644,11 +635,6 @@
       "hashPath": "system.security.principal.windows.4.7.0.nupkg.sha512"
     },
     "MAV.Base/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "MAV.DirectoryModule/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

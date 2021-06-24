@@ -1,5 +1,6 @@
 ﻿using MAV.Base;
 using MAV.Client.MVVM.Model;
+using MAV.Client.MVVM.View;
 using MAV.Helper;
 using System;
 using System.Collections.Generic;
@@ -32,10 +33,19 @@ namespace MAV.Client.MVVM.ViewModel
 
         private void LoadEmployeeData(int key)
         {
+            DataTable data;
             var param = new ObservableCollection<SqlParameter>();
             param.Add(new SqlParameter("@nKey", key));
 
-            var data = DBProvider.ExecProcedure("sp_LoadEmployeeData", param);
+            try
+            {
+                data = DBProvider.ExecProcedure("sp_LoadEmployeeData", param);
+            }
+            catch(Exception ex)
+            {
+                DialogPopUp("Fehler", ex.Message);
+                return;
+            }
 
             foreach(DataRow row in data.Rows)
             {
@@ -56,6 +66,21 @@ namespace MAV.Client.MVVM.ViewModel
                     Sex = row["szSex"].ToString()
                 };
             }
+        }
+
+        /// <summary>
+        /// Beim Aufrufen erscheint ein Fenster
+        /// </summary>
+        /// <param name="title">Title des Fensters</param>
+        /// <param name="firstLine">Erste Zeile des Fensters</param>
+        /// <param name="secondLine">Zweite Zeile des Fensters</param>
+        private void DialogPopUp(string title, string firstLine, string secondLine = "")
+        {
+            Dialog dialog = new Dialog();
+            dialog.Title = title;
+            dialog.FirstLineContent = firstLine;
+            dialog.SecondLineText = secondLine;
+            var result = dialog.ShowAsync();
         }
 
     }

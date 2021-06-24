@@ -8,4 +8,8 @@
     <ProjectReference Include="..\MAV.Base\MAV.Base.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Model\" />
+  </ItemGroup>
+
 </Project>

@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MAV.Base;
 using MAV.Client.MVVM.ViewModel;
 
 namespace MAV.Client.MVVM.View
@@ -19,9 +20,9 @@ namespace MAV.Client.MVVM.View
     /// </summary>
     public partial class SettingsView : UserControl
     {
-        public SettingsView()
+        public SettingsView(UserModel user)
         {
-            this.DataContext = new SettingsViewModel(this);
+            this.DataContext = new SettingsViewModel(user, this);
             InitializeComponent();
 
         }

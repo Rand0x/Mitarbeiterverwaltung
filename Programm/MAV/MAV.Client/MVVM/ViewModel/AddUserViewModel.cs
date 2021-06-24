@@ -158,9 +158,17 @@ namespace MAV.Client.MVVM.ViewModel
                 param.Add(new SqlParameter("@szSalt", ByteStringConverter.ToStringFromBytes(salt)));
                 param.Add(new SqlParameter("@nRightLink", SelectedRight.Key));
 
-                DBProvider.ExecProcedure("sp_CreateUser", param);
+                try
+                {
+                    DBProvider.ExecProcedure("sp_CreateUser", param);
+                }
+                catch(Exception ex)
+                {
+                    DialogPopUp("Fehler", ex.Message);
+                    ClearBoxes();
+                    return;
+                }
 
-                
                 DialogPopUp("Erfolgreich erstellt", "Der Benutzer wurde erfolgreich erstellt", $"Benutzername: {Control.FirstName.Text}_{Control.LastName.Text}");
                 ClearBoxes();
             }
@@ -172,7 +180,18 @@ namespace MAV.Client.MVVM.ViewModel
         /// </summary>
         private void LoadRights()
         {
-            var result = DBProvider.ExecProcedure("sp_LoadRights");
+            DataTable result;
+
+            try
+            {
+                result = DBProvider.ExecProcedure("sp_LoadRights");
+            }
+            catch(Exception ex)
+            {
+                DialogPopUp("Fehler", ex.Message);
+                return;
+            }
+
             foreach (DataRow row in result.Rows)
             {
                 Rights.Add(new RightModel()
@@ -185,23 +204,6 @@ namespace MAV.Client.MVVM.ViewModel
         }
 
         /// <summary>
-        /// Beim Aufrufen erscheint ein Fenster
-        /// </summary>
-        /// <param name="title">Title des Fensters</param>
-        /// <param name="firstLine">Erste Zeile des Fensters</param>
-        /// <param name="secondLine">Zweite Zeile des Fensters</param>
-        private void DialogPopUp(string title, string firstLine, string secondLine = "")
-        {
-            Dialog dialog = new Dialog();
-            dialog.Title = title;
-            dialog.FirstLine.Text = firstLine;
-            dialog.SecondLine.Text = secondLine;
-            var result = dialog.ShowAsync();
-        }
-
-
-
-        /// <summary>
         /// Leert die Boxen
         /// </summary>
         void ClearBoxes()
@@ -211,6 +213,21 @@ namespace MAV.Client.MVVM.ViewModel
             Control.Password.Clear();
             Control.PasswordRepeat.Clear();
             SelectedRight = null;
+        }
+
+        /// <summary>
+        /// Beim Aufrufen erscheint ein Fenster
+        /// </summary>
+        /// <param name="title">Title des Fensters</param>
+        /// <param name="firstLine">Erste Zeile des Fensters</param>
+        /// <param name="secondLine">Zweite Zeile des Fensters</param>
+        private void DialogPopUp(string title, string firstLine, string secondLine = "")
+        {
+            Dialog dialog = new Dialog();
+            dialog.Title = title;
+            dialog.FirstLineContent = firstLine;
+            dialog.SecondLineText = secondLine;
+            var result = dialog.ShowAsync();
         }
 
     }

@@ -1,7 +1,7 @@
 ﻿using MAV.Base;
 using System.Collections.Generic;
 
-namespace MAV.DirectoryModule.Model
+namespace MAV.Client.MVVM.Model
 {
     public class DepartmentModel : PropertyChangedBase
     {

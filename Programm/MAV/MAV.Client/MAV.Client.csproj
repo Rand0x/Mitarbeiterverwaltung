@@ -18,7 +18,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MAV.Base\MAV.Base.csproj" />
-    <ProjectReference Include="..\MAV.DirectoryModule\MAV.DirectoryModule.csproj" />
     <ProjectReference Include="..\MAV.Helper\MAV.Helper.csproj" />
   </ItemGroup>
 
@@ -30,13 +29,6 @@
     <Compile Update="MVVM\View\Dialogs\Dialog.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="MVVM\View\Dialogs\Dialog.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-      <SubType>Designer</SubType>
-    </Page>
   </ItemGroup>
 
 </Project>

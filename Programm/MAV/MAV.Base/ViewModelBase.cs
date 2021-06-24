@@ -8,6 +8,7 @@ namespace MAV.Base
     {
         private UserModel m_User;
 
+        public int UserKey => m_User.UserKey;
         public int? EmployeeKey => m_User.EmployeeKey;
         public int Right => m_User.Right;
         public string RightName => m_User.RightName;

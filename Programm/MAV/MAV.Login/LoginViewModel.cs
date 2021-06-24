@@ -78,14 +78,15 @@ namespace MAV.Login
             }
 
             var param = new ObservableCollection<SqlParameter>();
+            DataTable result;
 
             //Übergabeparameter für die Prozedur
             param.Add(new SqlParameter("@szUserName", Control.UsernameBox.Text));
 
-            var result = DBProvider.ExecProcedure("sp_LogIn", param); //Prozedur ausführen
-
-            if (result != null) // Prüfen ob Verbindung mit Server erfolgreich war.
+            try
             {
+                result = DBProvider.ExecProcedure("sp_LogIn", param); //Prozedur ausführen
+
                 if (result.Rows.Count > 0) //Anmeldung war erfolgreich
                 {
                     var pwd = result.Rows[0]["szPassword"].ToString();
@@ -95,9 +96,10 @@ namespace MAV.Login
                     {
                         //erstellen neus UserModel dass ID des Users und dessen Recht beinhalted
                         var user = new UserModel(
-                          result.Rows[0]["nEmployeeLink"] is DBNull ? null : (int?)result.Rows[0]["nEmployeeLink"], //nKey des Users
-                          (int)result.Rows[0]["nRightLink"], //nKey des Rechts
-                          result.Rows[0]["szRightName"].ToString() //Name des Rechts
+                            (int)result.Rows[0]["nKey"], //nKey des Users
+                            result.Rows[0]["nEmployeeLink"] is DBNull ? null : (int?)result.Rows[0]["nEmployeeLink"], //nKey des Mitarbeiters
+                            (int)result.Rows[0]["nRightLink"], //nKey des Rechts
+                            result.Rows[0]["szRightName"].ToString() //Name des Rechts
                         );
 
                         //Client starten und Login schließen
@@ -118,14 +120,12 @@ namespace MAV.Login
                 else //Fehler beim Anmeldeversuch:
                 {
                     ShowErrorDialog("Anmeldung fehlgeschlagen", "Benutzername oder Passwort falsch!", "Prüfen Sie Ihre Eingaben.");
-                    return;
                 }
             }
-            else  // Keine Verbindung zum Server
+            catch(Exception ex)
             {
-                ShowErrorDialog("Anmeldung fehlgeschlagen", "Es konnte keine Verbindung zum Server hergestellt werden.", "Prüfen Sie Ihre VPN-Verbindung!");
-                return;
-            }            
+                ShowErrorDialog("Fehler", ex.Message);
+            }
 
             //Eingaben clearen und Fokus auf UsernameBox setzen
             Control.UsernameBox.Clear();
