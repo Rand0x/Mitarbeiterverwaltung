@@ -10,6 +10,7 @@ namespace MAV.Client.MVVM.ViewModel
 {
     public class ClientViewModel : ViewModelBase
     {
+        public RelayCommand AddEmployeeViewCommand { get; set; }
         public RelayCommand AddUserViewCommand { get; set; }
         public RelayCommand DirectoryViewCommand { get; set; }
         public RelayCommand HolidayViewCommand { get; set; }
@@ -17,9 +18,11 @@ namespace MAV.Client.MVVM.ViewModel
         public RelayCommand SettingsViewCommand { get; set; }
         public RelayCommand EmployeeInfoViewCommand { get; set; }
         public RelayCommand EmployeeEditViewCommand { get; set; }
+        
 
         public RelayCommand LogOutCommand { get; private set; }
 
+        public AddEmployeeView AddEmployee { get; set; }
         public AddUserView AddUser { get; set; }
         public DirectoryView Directory { get; set; }
         public HolidayView Holiday { get; set; }
@@ -54,12 +57,13 @@ namespace MAV.Client.MVVM.ViewModel
             }
         }
 
+        private UserModel user;  // ToDo Eventuell eleganter Lösen
 
         public ClientViewModel(ClientView control, UserModel user) : base(user)
         {
             Control = control;
+            this.user = user;
 
-            AddUser = new AddUserView(user);
             Directory = new DirectoryView(user, this);
             Holiday = new HolidayView();
             Imprint = new ImprintView();
@@ -72,9 +76,14 @@ namespace MAV.Client.MVVM.ViewModel
 
         private void CreateCommands()
         {
+            AddEmployeeViewCommand = new RelayCommand(o =>
+            {
+                CurrentView = new AddEmployeeView(o);
+            });
+
             AddUserViewCommand = new RelayCommand(o =>
             {
-                CurrentView = AddUser;
+                CurrentView = new AddUserView(user);
             });
 
             DirectoryViewCommand = new RelayCommand(o =>
@@ -99,7 +108,7 @@ namespace MAV.Client.MVVM.ViewModel
 
             EmployeeInfoViewCommand = new RelayCommand(o =>
             {
-                CurrentView = new EmployeeInfoView(o);
+                CurrentView = new EmployeeInfoView(o, user);
             });
 
             EmployeeEditViewCommand = new RelayCommand(o =>
