@@ -1,5 +1,6 @@
 ﻿using MAV.Base;
-using MAV.DirectoryModule.Model;
+using MAV.Client.MVVM.Model;
+using MAV.Client.MVVM.View;
 using MAV.Helper;
 using System;
 using System.Collections.Generic;
@@ -123,6 +124,18 @@ namespace MAV.Client.MVVM.ViewModel
 
         private void LoadDepartements()
         {
+            DataTable data;
+
+            try
+            {
+                data = DBProvider.ExecProcedure("sp_LoadDepartements");
+            }
+            catch(Exception ex)
+            {
+                DialogPopUp("Fehler", ex.Message);
+                return;
+            }
+
             Departements.Clear();
 
             var defaultItem = new DepartmentModel()
@@ -133,7 +146,6 @@ namespace MAV.Client.MVVM.ViewModel
             Departements.Add(defaultItem);
             SelectedDepartement = defaultItem;
 
-            var data = DBProvider.ExecProcedure("sp_LoadDepartements");
             foreach(DataRow row in data.Rows)
             {
                 Departements.Add(new DepartmentModel()
@@ -150,16 +162,25 @@ namespace MAV.Client.MVVM.ViewModel
 
         public void LoadAddressList(object p = null)
         {
-            AddressList.Clear();
-
             var param = new ObservableCollection<SqlParameter>();
+            DataTable data;
 
             if (SearchText != null)
                 param.Add(new SqlParameter("@szFirstName", SearchText));
             if (SelectedDepartement != null && SelectedDepartement.Key != -1)
                 param.Add(new SqlParameter("@nDepartementLink", SelectedDepartement.Key));
 
-            var data = DBProvider.ExecProcedure("sp_LoadAddressList", param);
+            try
+            {
+                data = DBProvider.ExecProcedure("sp_LoadAddressList", param);
+            }
+            catch(Exception ex)
+            {
+                DialogPopUp("Fehler", ex.Message);
+                return;
+            }
+
+            AddressList.Clear();
 
             foreach (DataRow row in data.Rows)
             {
@@ -168,8 +189,8 @@ namespace MAV.Client.MVVM.ViewModel
                     Key = (int)row["nKey"],
                     FirstName = row["szFirstName"].ToString(),
                     LastName = row["szLastName"].ToString(),
-                    LandlineNbr = row["szTelephone"].ToString(),
-                    MobileNbr = row["szTelephone"].ToString(),
+                    LandlineNbr = row["szLandlineNmb"].ToString(),
+                    EmployeeNumber = (int)row["nEmployeeNumber"],
                     Department = row["szDepartement"].ToString()
                 });
             }
@@ -201,9 +222,9 @@ namespace MAV.Client.MVVM.ViewModel
             AddressList = AddressList.OrderBy(o => o.LandlineNbr).ToList();
         }
 
-        public void OrderByMobileNbr()
+        public void OrderByEmployeeNbr()
         {
-            AddressList = AddressList.OrderBy(o => o.MobileNbr).ToList();
+            AddressList = AddressList.OrderBy(o => o.EmployeeNumber).ToList();
         }
 
         #endregion
@@ -228,5 +249,20 @@ namespace MAV.Client.MVVM.ViewModel
         }
 
         #endregion
+
+        /// <summary>
+        /// Beim Aufrufen erscheint ein Fenster
+        /// </summary>
+        /// <param name="title">Title des Fensters</param>
+        /// <param name="firstLine">Erste Zeile des Fensters</param>
+        /// <param name="secondLine">Zweite Zeile des Fensters</param>
+        private void DialogPopUp(string title, string firstLine, string secondLine = "")
+        {
+            Dialog dialog = new Dialog();
+            dialog.Title = title;
+            dialog.FirstLineContent = firstLine;
+            dialog.SecondLineText = secondLine;
+            var result = dialog.ShowAsync();
+        }
     }
 }

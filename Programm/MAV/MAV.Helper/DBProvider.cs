@@ -51,7 +51,7 @@ namespace MAV.Helper
             }
             catch (Exception ex)
             {
-                result = null;
+                throw ex;
             }
             return result;
         }

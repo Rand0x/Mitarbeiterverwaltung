@@ -12,7 +12,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MAV.Base;
-using MAV.DirectoryModule.Model;
 
 namespace MAV.Client.MVVM.View
 {
@@ -42,9 +41,9 @@ namespace MAV.Client.MVVM.View
             ((DirectoryViewModel)this.DataContext).OrderByLandlineNbr();
         }
 
-        private void sortMobileNbr(object sender, RoutedEventArgs e)
+        private void sortEmployeeNbr(object sender, RoutedEventArgs e)
         {
-            ((DirectoryViewModel)this.DataContext).OrderByMobileNbr();
+            ((DirectoryViewModel)this.DataContext).OrderByEmployeeNbr();
         }
 
         private void sortDepartment(object sender, RoutedEventArgs e)

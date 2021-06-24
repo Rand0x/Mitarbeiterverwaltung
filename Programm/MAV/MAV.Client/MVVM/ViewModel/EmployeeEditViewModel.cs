@@ -1,7 +1,6 @@
 ﻿using MAV.Base;
 using MAV.Client.MVVM.Model;
 using MAV.Client.MVVM.View;
-using MAV.DirectoryModule.Model;
 using MAV.Helper;
 using ModernWpf.Controls;
 using System;
@@ -87,7 +86,15 @@ namespace MAV.Client.MVVM.ViewModel
             param.Add(new SqlParameter("@dtBirthdate", Employee.Birthday));
             param.Add(new SqlParameter("@szSex", Employee.Sex));
 
-            DBProvider.ExecProcedure("sp_AlterEmployee", param);
+
+            try
+            {
+                DBProvider.ExecProcedure("sp_AlterEmployee", param);
+            }
+            catch (Exception ex)
+            {
+                DialogPopUp("Fehler", ex.Message);
+            }
         }
 
         private async void Delete(object o = null)
@@ -99,7 +106,15 @@ namespace MAV.Client.MVVM.ViewModel
             {
                 var param = new ObservableCollection<SqlParameter>();
                 param.Add(new SqlParameter("@nKey", Employee.Key));
-                DBProvider.ExecProcedure("sp_DeleteEmployee", param);
+
+                try
+                {
+                    DBProvider.ExecProcedure("sp_DeleteEmployee", param);
+                }
+                catch(Exception ex)
+                {
+                    DialogPopUp("Fehler", ex.Message);
+                }
             }
         }
 
@@ -109,8 +124,20 @@ namespace MAV.Client.MVVM.ViewModel
 
         private void LoadDepartements()
         {
+            DataTable data;
+
+            try
+            {
+                data = DBProvider.ExecProcedure("sp_LoadDepartements");
+            }
+            catch(Exception ex)
+            {
+                DialogPopUp("Fehler", ex.Message);
+                return;
+            }
+
             Departements.Clear();
-            var data = DBProvider.ExecProcedure("sp_LoadDepartements");
+
             foreach (DataRow row in data.Rows)
             {
                 var newDep = new DepartmentModel()
@@ -129,5 +156,20 @@ namespace MAV.Client.MVVM.ViewModel
         }
 
         #endregion
+
+        /// <summary>
+        /// Beim Aufrufen erscheint ein Fenster
+        /// </summary>
+        /// <param name="title">Title des Fensters</param>
+        /// <param name="firstLine">Erste Zeile des Fensters</param>
+        /// <param name="secondLine">Zweite Zeile des Fensters</param>
+        private void DialogPopUp(string title, string firstLine, string secondLine = "")
+        {
+            Dialog dialog = new Dialog();
+            dialog.Title = title;
+            dialog.FirstLineContent = firstLine;
+            dialog.SecondLineText = secondLine;
+            var result = dialog.ShowAsync();
+        }
     }
 }

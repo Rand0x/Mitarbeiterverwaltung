@@ -63,7 +63,7 @@ namespace MAV.Client.MVVM.ViewModel
             Directory = new DirectoryView(user, this);
             Holiday = new HolidayView();
             Imprint = new ImprintView();
-            Settings = new SettingsView();
+            Settings = new SettingsView(user);
 
             CurrentView = Directory;
 

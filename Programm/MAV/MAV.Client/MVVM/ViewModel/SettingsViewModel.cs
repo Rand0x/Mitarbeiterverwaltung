@@ -4,14 +4,17 @@ using System.Text;
 using MAV.Helper;
 using MAV.Base;
 using MAV.Client.MVVM.View;
+using System.Collections.ObjectModel;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace MAV.Client.MVVM.ViewModel
 {
-    class SettingsViewModel : PropertyChangedBase
+    class SettingsViewModel : ViewModelBase
     {
         #region Properties
-        private SettingsView m_Control;
 
+        private SettingsView m_Control;
         public SettingsView Control
         {
             get { return m_Control; }
@@ -24,11 +27,12 @@ namespace MAV.Client.MVVM.ViewModel
                 }
             }
         }
+
         #endregion
 
         #region Constructor
 
-        public SettingsViewModel(SettingsView control)
+        public SettingsViewModel(UserModel user, SettingsView control) : base(user)
         {
             Control = control;
             CreateCommands();
@@ -48,12 +52,29 @@ namespace MAV.Client.MVVM.ViewModel
 
         private void ChangePassword(object parameter = null)
         {
-            // ToDo: Passwort herholen von der Datenbank
-            string platzHalter = "platzHalter";
+            //laden des alten Passworts und Salts aus der DB
+            var param = new ObservableCollection<SqlParameter>();
+            param.Add(new SqlParameter("@nKey", UserKey));
+            DataTable result;
 
-            if (Control.PasswordOld.Password != platzHalter)
+            try
             {
-                DialogPopUp("Aktuelle Passwort falsch", "Das eingegebene Passwort entspricht nicht", "dem aktuellen Passwort");
+                result = DBProvider.ExecProcedure("sp_LoadPassword", param);
+            }
+            catch(Exception ex)
+            {
+                DialogPopUp("Fehler", ex.Message);
+                ClearPwdBoxes();
+                return;
+            }
+
+            var pwdOld = result.Rows[0]["szPassword"].ToString();
+            var saltOld = ByteStringConverter.ToByteFromString(result.Rows[0]["szSalt"].ToString());
+
+            //Überprüfen des alten Passworts
+            if (ByteStringConverter.ToStringFromBytes(PasswordHash.Hash(Control.PasswordOld.Password, saltOld)) != pwdOld)
+            {
+                DialogPopUp("Aktuelles Passwort falsch", "Das eingegebene Passwort entspricht nicht", "dem aktuellen Passwort");
             }
             else if (Control.PasswordNew.Password.Length < 8)
             {
@@ -67,24 +88,45 @@ namespace MAV.Client.MVVM.ViewModel
             {
                 DialogPopUp("Passwörter sind gleich", "Das neue Passwort und das alte Passwort", "dürfen nicht identisch sein!");
             }
-            else
+            else //altes Passwort korrekt und alle anderen Anforderungen erfüllt
             {
-                // ToDo: Passwort in der Datenbank ändern
-                // + Erfolgreich Passwort geändert.
-                bool erfolgreich = true;
+                //neues Passwort hashen und Salt ermitteln
+                var pwdNew = PasswordHash.Hash(Control.PasswordNew.Password, out var saltNew);
 
-                if (erfolgreich)
+                //speichern des neuen Passworts und Salts in DB
+                var paramNew = new ObservableCollection<SqlParameter>();
+                paramNew.Add(new SqlParameter("@nKey", UserKey));
+                paramNew.Add(new SqlParameter("@szPassword", ByteStringConverter.ToStringFromBytes(pwdNew)));
+                paramNew.Add(new SqlParameter("@szSalt", ByteStringConverter.ToStringFromBytes(saltNew)));
+
+                try
                 {
-                    DialogPopUp("Passwort geändert", "Das Passwort wurde erfolgreich geändert!");
-                    ClearPwdBoxes();
+                    DBProvider.ExecProcedure("sp_ReplacePassword", paramNew);
                 }
-                else
+                catch(Exception ex)
                 {
-                    DialogPopUp("Passwort nicht geändert!", "Das Passwort ändern ist fehlgeschlagen!", "Versuche es erneunt.");
+                    DialogPopUp("Fehler", ex.Message);
                     ClearPwdBoxes();
+                    return;
                 }
+
+                DialogPopUp("Passwort geändert", "Das Passwort wurde erfolgreich geändert!");
             }
+
+            ClearPwdBoxes();
         }
+
+        /// <summary>
+        /// Leert die Passwortboxen
+        /// </summary>
+        void ClearPwdBoxes()
+        {
+            Control.PasswordOld.Password = "";
+            Control.PasswordNewRepeat.Password = "";
+            Control.PasswordNew.Password = "";
+        }
+
+        #endregion
 
         /// <summary>
         /// Beim Aufrufen erscheint ein Fenster
@@ -100,18 +142,5 @@ namespace MAV.Client.MVVM.ViewModel
             dialog.SecondLineText = secondLine;
             var result = dialog.ShowAsync();
         }
-
-
-
-        /// <summary>
-        /// Leert die Passwortboxen
-        /// </summary>
-        void ClearPwdBoxes()
-        {
-            Control.PasswordOld.Password = "";
-            Control.PasswordNewRepeat.Password = "";
-            Control.PasswordNew.Password = "";
-        }
-        #endregion
     }
 }

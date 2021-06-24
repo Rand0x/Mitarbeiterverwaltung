@@ -539,8 +539,6 @@ C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV
 C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Client\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\sni.dll
 C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Client\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Client\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
-C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Client\bin\Debug\netcoreapp3.1\MAV.DirectoryModule.dll
-C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Client\bin\Debug\netcoreapp3.1\MAV.DirectoryModule.pdb
 C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Client\obj\Debug\netcoreapp3.1\MVVM\View\AddUserView.baml
 C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Client\obj\Debug\netcoreapp3.1\MVVM\View\EmployeeEditView.baml
 C:\Users\Christoph\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Client\obj\Debug\netcoreapp3.1\MAV.Client.csproj.AssemblyReference.cache

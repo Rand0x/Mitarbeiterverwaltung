@@ -10,6 +10,20 @@ namespace MAV.Base
 
         #region Properties
 
+        private int m_UserKey;
+        public int UserKey
+        {
+            get { return m_UserKey; }
+            set {
+                if (value != m_UserKey)
+                {
+                    m_UserKey = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+
         private int? m_EmployeeKey;
         public int? EmployeeKey
         {
@@ -54,8 +68,9 @@ namespace MAV.Base
 
         #endregion
 
-        public UserModel(int? employee, int right, string rightname)
+        public UserModel(int user, int? employee, int right, string rightname)
         {
+            UserKey = user;
             EmployeeKey = employee;
             Right = right;
             RightName = rightname;

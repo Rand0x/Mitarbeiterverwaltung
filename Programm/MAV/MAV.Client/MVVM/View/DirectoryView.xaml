@@ -85,9 +85,9 @@
               <GridViewColumnHeader Tag="Telefon (geschäftlich)" Click="sortLandlineNbr" >Telefon (geschäftlich)</GridViewColumnHeader>
             </GridViewColumn.Header>
           </GridViewColumn>
-          <GridViewColumn Width="170" DisplayMemberBinding="{Binding MobileNbr}">
+          <GridViewColumn Width="170" DisplayMemberBinding="{Binding EmployeeNumber}">
             <GridViewColumn.Header>
-              <GridViewColumnHeader Tag="Mobil (geschäftlich)" Click="sortMobileNbr" >Mobil (geschäftlich)</GridViewColumnHeader>
+              <GridViewColumnHeader Tag="Mitarbeiternummer" Click="sortEmployeeNbr" >Mitarbeiternummer</GridViewColumnHeader>
             </GridViewColumn.Header>
           </GridViewColumn>
         </GridView>
