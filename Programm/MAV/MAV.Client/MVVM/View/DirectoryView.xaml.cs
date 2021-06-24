@@ -24,6 +24,8 @@ namespace MAV.Client.MVVM.View
         {
             this.DataContext = new DirectoryViewModel(user, vm);
             InitializeComponent();
+            if (user.Right > 2)
+                CtxMenuEditButton.Visibility = Visibility.Collapsed;
         }
 
         private void sortFirstName(object sender, RoutedEventArgs e)
@@ -52,11 +54,6 @@ namespace MAV.Client.MVVM.View
         }
 
         void ListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            ((DirectoryViewModel)this.DataContext).EmployeeInfoViewCommand.Execute(null);
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
         {
             ((DirectoryViewModel)this.DataContext).EmployeeInfoViewCommand.Execute(null);
         }
