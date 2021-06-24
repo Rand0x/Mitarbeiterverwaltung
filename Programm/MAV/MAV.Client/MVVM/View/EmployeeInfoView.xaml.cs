@@ -1,4 +1,5 @@
-﻿using MAV.Client.MVVM.ViewModel;
+﻿using MAV.Base;
+using MAV.Client.MVVM.ViewModel;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -9,17 +10,16 @@ namespace MAV.Client.MVVM.View
     /// </summary>
     public partial class EmployeeInfoView : UserControl
     {
-        public EmployeeInfoView()
+        public EmployeeInfoView(object key)
         {
+            this.DataContext = new EmployeeInfoViewModel(int.Parse(key.ToString()));
             InitializeComponent();
         }
 
-        private void OnEditButton(object sender, RoutedEventArgs e)
-        {
-            DirectoryViewModel.UserSelectedEdited = DirectoryViewModel.UserSelected.Clone();
-            var viewModel = (ViewModel.ClientViewModel)DataContext;
-            if (viewModel.EmployeeEditViewCommand.CanExecute(null))
-                viewModel.EmployeeEditViewCommand.Execute(null);
-        }
+        //private void OnEdit_Click(object sender, RoutedEventArgs e)
+        //{
+        //    var viewModel = (ViewModel.ClientViewModel)DataContext;
+        //    viewModel.EmployeeEditViewCommand.Execute(null);
+        //}
     }
 }

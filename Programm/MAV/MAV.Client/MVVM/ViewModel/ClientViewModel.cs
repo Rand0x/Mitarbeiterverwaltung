@@ -8,7 +8,7 @@ using System.Windows;
 
 namespace MAV.Client.MVVM.ViewModel
 {
-    class ClientViewModel : ViewModelBase
+    public class ClientViewModel : ViewModelBase
     {
         public RelayCommand AddUserViewCommand { get; set; }
         public RelayCommand DirectoryViewCommand { get; set; }
@@ -35,6 +35,8 @@ namespace MAV.Client.MVVM.ViewModel
             set
             {
                 _currentView = value;
+                if (_currentView == Directory)
+                    ((DirectoryViewModel)Directory.DataContext).LoadAddressList();
                 OnPropertyChanged();
             }
         }
@@ -58,7 +60,7 @@ namespace MAV.Client.MVVM.ViewModel
             Control = control;
 
             AddUser = new AddUserView(user);
-            Directory = new DirectoryView();
+            Directory = new DirectoryView(user, this);
             Holiday = new HolidayView();
             Imprint = new ImprintView();
             Settings = new SettingsView();
@@ -97,12 +99,12 @@ namespace MAV.Client.MVVM.ViewModel
 
             EmployeeInfoViewCommand = new RelayCommand(o =>
             {
-                CurrentView = new EmployeeInfoView();
+                CurrentView = new EmployeeInfoView(o);
             });
 
             EmployeeEditViewCommand = new RelayCommand(o =>
             {
-                CurrentView = new EmployeeEditView();
+                CurrentView = new EmployeeEditView(o);
             });
 
             LogOutCommand = new RelayCommand(LogOut);

@@ -9,14 +9,18 @@ GO
 
 alter proc [dbo].[sp_AlterEmployee]
     @nKey               int,    
-    @nDepartementLink   int                 null,
-    @szJobName          nvarchar(200)       null,
-    @nHoursPerWeek      int                 null,
-    @rWage              decimal(10,2)       null,
-    @nHolidyPerYear     int                 null,
-    @nNoticePeriod      int                 null,
-    @nTaxClass          int                 null,
-    @szComment          nvarchar(max)       null,       
+    @nEmployeeNmb       int                 = null,
+    @dtBirthdate        datetime            = null,
+    @szSex              nvarchar(1)         = null,
+    @nDepartementLink   int                 = null,
+    @szJobName          nvarchar(200)       = null,
+    @nHoursPerWeek      int                 = null,
+    @dtRecruitDate      datetime            = null,
+    @rWage              decimal(10,2)       = null,
+    @nHolidyPerYear     int                 = null,
+    @nNoticePeriod      int                 = null,
+    @nTaxClass          int                 = null,
+    @szComment          nvarchar(max)       = null,       
     @szError            nvarchar(500)       = N''         output,
     @bDebug             int                 = 0
 as begin
@@ -40,9 +44,13 @@ as begin
   end
 
   update e
-  set nDepartementLink = ISNULL(@nDepartementLink, nDepartementLink)
+  set nEmployeeNumber = ISNULL(@nEmployeeNmb, nEmployeeNumber)
+    , dtBirthdate = ISNULL(@dtBirthdate, dtBirthdate) 
+    , szSex = ISNULL(@szSex, szSex)
+    , nDepartementLink = ISNULL(@nDepartementLink, nDepartementLink)
     , szJobName = ISNULL(@szJobName, szJobName)
     , nHoursPerWeek = ISNULL(@nHoursPerWeek, nHoursPerWeek)
+    , dtRecruitDate = ISNULL(@dtRecruitDate, dtRecruitDate)
     , rWage = ISNULL(@rWage, rWage)
     , nHolidyPerYear = ISNULL(@nHolidyPerYear, nHolidyPerYear)
     , nNoticePeriod = ISNULL(@nNoticePeriod, nNoticePeriod)

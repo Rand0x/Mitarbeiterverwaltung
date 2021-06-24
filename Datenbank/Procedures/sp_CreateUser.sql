@@ -38,21 +38,26 @@ as begin
   declare @szUserName nvarchar(400)
   select @szUserName = @szFirstName + N'_' + @szLastName
 
-  declare @nEmployeeLink int
-  select @nEmployeeLink = nKey from tblEmployee where szFirstName = @szFirstName and szLastName = @szLastName
-  
-  insert into tblUser(
-    szName       
-  , szPassword   
-  , szSalt       
-  , nEmployeeLink
-  , nRightLink
-  )
-  select @szUserName
-       , @szPassword
-       , @szSalt
-       , @nEmployeeLink
-       , @nRightLink
+  if not exists(select * from tblUser where szName = @szUserName)
+  begin
+
+    declare @nEmployeeLink int
+    select @nEmployeeLink = nKey from tblEmployee where szFirstName = @szFirstName and szLastName = @szLastName
+    
+    insert into tblUser(
+      szName       
+    , szPassword   
+    , szSalt       
+    , nEmployeeLink
+    , nRightLink
+    )
+    select @szUserName
+         , @szPassword
+         , @szSalt
+         , @nEmployeeLink
+         , @nRightLink
+
+  end
   
 end
 
