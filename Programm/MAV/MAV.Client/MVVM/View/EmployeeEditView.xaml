@@ -76,9 +76,9 @@
                     <TextBlock Text="Persönliche Informationen" Margin ="0,0,0,10" FontSize="20" FontWeight="Bold"/>
                     <TextBlock Text="Personalnummer" Foreground="#5B5B5B" FontSize="16"/>
                     <TextBox Text="{Binding Employee.EmplyeeNmb}" Margin ="0,0,10,10" FontSize="16"/>
-                    <TextBlock Text="Mobil (privat)" Foreground="#5B5B5B" FontSize="16"/>
-                    <!--<TextBox Text="{Binding Employee.MobileNbrPrivate}" Margin ="0,0,10,10" FontSize="16"/>
-                    <TextBlock Text="Telefon (privat)" Foreground="#5B5B5B" FontSize="16"/>-->
+                    <!--<TextBlock Text="Mobil (privat)" Foreground="#5B5B5B" FontSize="16"/>
+                    <TextBox Text="{Binding Employee.MobileNbrPrivate}" Margin ="0,0,10,10" FontSize="16"/>-->
+                    <TextBlock Text="Telefon (privat)" Foreground="#5B5B5B" FontSize="16"/>
                     <TextBox Text="{Binding Employee.LandlineNbrPrivate}" Margin ="0,0,10,10" FontSize="16"/>
                     <TextBlock Text="Geburtstag" Foreground="#5B5B5B" FontSize="16"/>
                     <TextBox Text="{Binding Employee.Birthday}" Margin ="0,0,10,10" FontSize="16"/>

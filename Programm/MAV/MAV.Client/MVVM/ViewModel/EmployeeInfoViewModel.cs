@@ -41,6 +41,7 @@ namespace MAV.Client.MVVM.ViewModel
             {
                 Employee = new EmployeeModel()
                 {
+                    Key = (int)row["nKey"],
                     FirstName = row["szFirstName"].ToString(),
                     LastName = row["szLastName"].ToString(),
                     EmplyeeNmb = (int)row["nEmployeeNumber"],

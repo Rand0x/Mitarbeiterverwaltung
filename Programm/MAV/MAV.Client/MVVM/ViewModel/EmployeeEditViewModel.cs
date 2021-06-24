@@ -83,7 +83,7 @@ namespace MAV.Client.MVVM.ViewModel
             param.Add(new SqlParameter("@nDepartementLink", SelectedDepartement.Key));
             param.Add(new SqlParameter("@szJobName", Employee.Job));
             param.Add(new SqlParameter("@dtRecruitDate", Employee.HireDate));
-            param.Add(new SqlParameter("@szTelephonePrivate", Employee.LandlineNmbPrivate));
+            //param.Add(new SqlParameter("@szTelephonePrivate", Employee.LandlineNmbPrivate));
             param.Add(new SqlParameter("@dtBirthdate", Employee.Birthday));
             param.Add(new SqlParameter("@szSex", Employee.Sex));
 
