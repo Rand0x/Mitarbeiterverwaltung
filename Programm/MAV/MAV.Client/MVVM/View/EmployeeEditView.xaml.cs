@@ -21,39 +21,17 @@ namespace MAV.Client.MVVM.View
     /// </summary>
     public partial class EmployeeEditView : UserControl
     {
-        public EmployeeEditView()
+        public EmployeeEditView(object key)
         {
+            this.DataContext = new EmployeeEditViewModel(int.Parse(key.ToString()), this);
             InitializeComponent();
-
-            Department currentDepartments = new Department();
-            cmbDepartments.ItemsSource = currentDepartments.Departments;
         }
 
         private void OnCancelButton(object sender, RoutedEventArgs e)
         {
-            var viewModel = (ViewModel.ClientViewModel)DataContext;
-            if (viewModel.EmployeeInfoViewCommand.CanExecute(null))
-                viewModel.EmployeeInfoViewCommand.Execute(null);
+            //ToDo
         }
 
-        private void OnSaveButton(object sender, RoutedEventArgs e)
-        {
 
-            DirectoryViewModel.UserSelectedEdited.CopyPropsTo(DirectoryViewModel.UserSelected);
-            var viewModel = (ViewModel.ClientViewModel)DataContext;
-            if (viewModel.EmployeeInfoViewCommand.CanExecute(null))
-                viewModel.EmployeeInfoViewCommand.Execute(null);
-        }
-
-        private async void OnDeleteEmployeeButton(object sender, RoutedEventArgs e)
-        {
-            DeleteEmployeeDialog dialog = new DeleteEmployeeDialog();
-            var result = await dialog.ShowAsync();
-
-            if (result == ContentDialogResult.Primary)
-            {
-                MessageBox.Show("Hier Prozedur zum Löschen des Mitarbeiters");
-            }
-        }
     }
 }

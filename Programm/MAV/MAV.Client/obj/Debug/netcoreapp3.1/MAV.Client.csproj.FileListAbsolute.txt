@@ -147,10 +147,8 @@ C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV
 C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Client\obj\Debug\netcoreapp3.1\MVVM\View\DirectoryView.g.cs
 C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Client\obj\Debug\netcoreapp3.1\MVVM\View\EmployeeInfoView.g.cs
 C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Client\obj\Debug\netcoreapp3.1\MVVM\View\HolidayView.g.cs
-C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Client\obj\Debug\netcoreapp3.1\MVVM\View\HomeView.g.cs
 C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Client\obj\Debug\netcoreapp3.1\MVVM\View\SettingsView.g.cs
 C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Client\obj\Debug\netcoreapp3.1\App.g.cs
-C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Client\obj\Debug\netcoreapp3.1\GeneratedInternalTypeHelper.g.cs
 C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Client\obj\Debug\netcoreapp3.1\MAV.Client_MarkupCompile.cache
 C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Client\obj\Debug\netcoreapp3.1\MAV.Client_MarkupCompile.lref
 C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Client\obj\Debug\netcoreapp3.1\App.baml
@@ -158,7 +156,6 @@ C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV
 C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Client\obj\Debug\netcoreapp3.1\MVVM\View\DirectoryView.baml
 C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Client\obj\Debug\netcoreapp3.1\MVVM\View\EmployeeInfoView.baml
 C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Client\obj\Debug\netcoreapp3.1\MVVM\View\HolidayView.baml
-C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Client\obj\Debug\netcoreapp3.1\MVVM\View\HomeView.baml
 C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Client\obj\Debug\netcoreapp3.1\MVVM\View\SettingsView.baml
 C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Client\obj\Debug\netcoreapp3.1\MAV.Client.g.resources
 C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Client\obj\Debug\netcoreapp3.1\MAV.Client.AssemblyInfoInputs.cache
@@ -748,3 +745,7 @@ C:\Users\manue\OneDrive\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.
 C:\Users\manue\OneDrive\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Client\obj\Debug\netcoreapp3.1\MVVM\View\ImprintView.g.cs
 C:\Users\manue\OneDrive\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Client\obj\Debug\netcoreapp3.1\MVVM\View\AddUserView.baml
 C:\Users\manue\OneDrive\Documents\GitHub\Mitarbeiterverwaltung\Programm\MAV\MAV.Client\obj\Debug\netcoreapp3.1\MVVM\View\ImprintView.baml
+C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Client\obj\Debug\netcoreapp3.1\MVVM\View\Dialogs\Dialog.baml
+C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Client\obj\Debug\netcoreapp3.1\MVVM\View\Dialogs\Dialog.g.cs
+C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Client\obj\Debug\netcoreapp3.1\MVVM\View\ImprintView.g.cs
+C:\Users\Tobias\Desktop\Mitarbeiterverwaltung\Mitarbeiterverwaltung\Programm\MAV\MAV.Client\obj\Debug\netcoreapp3.1\MVVM\View\ImprintView.baml

@@ -7,17 +7,17 @@
              mc:Ignorable="d" 
              d:DesignHeight="700" d:DesignWidth="800">
 
-    <UserControl.Resources>
+    <!--<UserControl.Resources>
         <localModel:DirectoryViewModel x:Key="DirectoryVM" />
-    </UserControl.Resources>
+    </UserControl.Resources>-->
 
     <ScrollViewer HorizontalScrollBarVisibility="Auto">
-        <StackPanel DataContext="{Binding Source={StaticResource DirectoryVM}}">
+        <StackPanel>
             <DockPanel LastChildFill="False">
-                <TextBlock Text="{Binding UserSelectedEdited.FirstName}" FontSize="45" FontWeight="Bold" Margin="20,20,10,20"/>
-                <TextBlock Text="{Binding UserSelectedEdited.LastName}" FontSize="45" FontWeight="Bold" Margin="10,20,5,20"/>
+                <TextBlock Text="{Binding Employee.FirstName}" FontSize="45" FontWeight="Bold" Margin="20,20,10,20"/>
+                <TextBlock Text="{Binding Employee.LastName}" FontSize="45" FontWeight="Bold" Margin="10,20,5,20"/>
                 <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
-                    <Button Margin="15" Click="OnSaveButton"  Width="140" Style="{StaticResource AccentButtonStyle}">
+                    <Button Margin="15" Command="{Binding SaveCommand}"  Width="140" Style="{StaticResource AccentButtonStyle}">
                         <Button.Content>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="&#xE105;" Foreground="White" FontSize="18" FontFamily="Segoe MDL2 Assets" VerticalAlignment="Center" Margin="0,0,15,0"/>
@@ -46,42 +46,49 @@
                 </Grid.RowDefinitions>
                 <StackPanel>
                     <TextBlock Text="Kontakt" Margin ="0,0,0,10" FontSize="20" FontWeight="Bold"/>
-                    <TextBlock Text="Mobil (geschäftlich)" Foreground="#5B5B5B" FontSize="16"/>
-                    <TextBox Text="{Binding UserSelectedEdited.MobileNbr}" Margin ="0,0,10,10" FontSize="16"/>
+                    <!--<TextBlock Text="Mobil (geschäftlich)" Foreground="#5B5B5B" FontSize="16"/>
+                    <TextBox Text="{Binding Employee.MobileNbr}" Margin ="0,0,10,10" FontSize="16"/>-->
                     <TextBlock Text="Telefon (geschäftlich)" Foreground="#5B5B5B" FontSize="16"/>
-                    <TextBox Text="{Binding UserSelectedEdited.LandlineNbr}" Margin ="0,0,10,10" FontSize="16"/>
+                    <TextBox Text="{Binding Employee.LandlineNbr}" Margin ="0,0,10,10" FontSize="16"/>
                     <TextBlock Text="E-Mail" Foreground="#5B5B5B" FontSize="16"/>
-                    <TextBox Text="{Binding UserSelectedEdited.EMail}" Margin ="0,0,10,10" FontSize="16"/>
+                    <TextBox Text="{Binding Employee.EMail}" Margin ="0,0,10,10" FontSize="16"/>
                 </StackPanel>
                 <StackPanel Grid.Row="1">
                     <TextBlock Text="Geschäftsbeziehungen" Margin ="0,0,0,10" FontSize="20" FontWeight="Bold"/>
                     <TextBlock Text="Abteilung" Foreground="#5B5B5B" FontSize="16"/>
-                    <ComboBox x:Name="cmbDepartments" SelectedItem="{Binding UserSelectedEdited.Department}" 
-                              Margin ="0,0,10,10" FontSize="16" HorizontalAlignment="Stretch"/>
+                    <ComboBox x:Name="cmbDepartments" SelectedItem="{Binding SelectedDepartement}" 
+                              Margin ="0,0,10,10" FontSize="16" HorizontalAlignment="Stretch"
+                              ItemsSource="{Binding Departements}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Name}" FontSize="16" VerticalAlignment="Center"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
                     <TextBlock Text="Tätigkeit" Foreground="#5B5B5B" FontSize="16"/>
-                    <TextBox Text="{Binding UserSelectedEdited.Job}" Margin ="0,0,10,10" FontSize="16"/>
+                    <TextBox Text="{Binding Employee.Job}" Margin ="0,0,10,10" FontSize="16"/>
                     <TextBlock Text="Mitarbeiter seit" Foreground="#5B5B5B" FontSize="16"/>
-                    <TextBox Text="{Binding UserSelectedEdited.HireDate}" Margin ="0,0,10,10" FontSize="16"/>
+                    <TextBox Text="{Binding Employee.HireDate}" Margin ="0,0,10,10" FontSize="16"/>
                     <TextBlock Text="Vorgesetzter" Foreground="#5B5B5B" FontSize="16"/>
-                    <TextBox Text="{Binding UserSelectedEdited.Manager}" Margin ="0,0,10,10" FontSize="16"/>
+                    <TextBox Text="{Binding Employee.Manager}" Margin ="0,0,10,10" FontSize="16" IsReadOnly="True"/>
                 </StackPanel>
                 <StackPanel Grid.Column="1" Grid.RowSpan="2">
                     <TextBlock Text="Persönliche Informationen" Margin ="0,0,0,10" FontSize="20" FontWeight="Bold"/>
                     <TextBlock Text="Personalnummer" Foreground="#5B5B5B" FontSize="16"/>
-                    <TextBox Text="{Binding UserSelectedEdited.PersNr}" Margin ="0,0,10,10" FontSize="16"/>
+                    <TextBox Text="{Binding Employee.EmplyeeNmb}" Margin ="0,0,10,10" FontSize="16"/>
                     <TextBlock Text="Mobil (privat)" Foreground="#5B5B5B" FontSize="16"/>
-                    <TextBox Text="{Binding UserSelectedEdited.MobileNbrPrivate}" Margin ="0,0,10,10" FontSize="16"/>
-                    <TextBlock Text="Telefon (privat)" Foreground="#5B5B5B" FontSize="16"/>
-                    <TextBox Text="{Binding UserSelectedEdited.LandlineNbrPrivate}" Margin ="0,0,10,10" FontSize="16"/>
+                    <!--<TextBox Text="{Binding Employee.MobileNbrPrivate}" Margin ="0,0,10,10" FontSize="16"/>
+                    <TextBlock Text="Telefon (privat)" Foreground="#5B5B5B" FontSize="16"/>-->
+                    <TextBox Text="{Binding Employee.LandlineNbrPrivate}" Margin ="0,0,10,10" FontSize="16"/>
                     <TextBlock Text="Geburtstag" Foreground="#5B5B5B" FontSize="16"/>
-                    <TextBox Text="{Binding UserSelectedEdited.Birthday}" Margin ="0,0,10,10" FontSize="16"/>
-                    <TextBlock Text="Familienstand" Foreground="#5B5B5B" FontSize="16"/>
-                    <TextBox Text="{Binding UserSelectedEdited.MaritalDesc}" Margin ="0,0,10,10" FontSize="16"/>
+                    <TextBox Text="{Binding Employee.Birthday}" Margin ="0,0,10,10" FontSize="16"/>
+                    <!--<TextBlock Text="Familienstand" Foreground="#5B5B5B" FontSize="16"/>
+                    <TextBox Text="{Binding Employee.MaritalDesc}" Margin ="0,0,10,10" FontSize="16"/>-->
                     <TextBlock Text="Geschlecht" Foreground="#5B5B5B" FontSize="16"/>
-                    <TextBox Text="{Binding UserSelectedEdited.Sex}" Margin ="0,0,10,10" FontSize="16"/>
+                    <TextBox Text="{Binding Employee.Sex}" Margin ="0,0,10,10" FontSize="16"/>
                 </StackPanel>
             </Grid>
-            <Button Margin="15" Click="OnDeleteEmployeeButton" Width="240" Background="Red">
+            <Button Margin="15" Command="{Binding DeleteCommand}" Width="240" Background="Red">
                 <Button.Content>
                     <StackPanel Orientation="Horizontal">
                         <Label Content="&#xE107;" FontSize="18" FontFamily="Segoe MDL2 Assets" Foreground="White" VerticalAlignment="Center" Margin="0,0,15,0"/>

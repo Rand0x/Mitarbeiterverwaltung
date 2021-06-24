@@ -42,9 +42,13 @@ as begin
        , b.szBankName
        , b.szBIC
        , b.szIBAN
+       , d.szName as szDepartementName
+       , em.szFirstName + N' ' + em.szLastName as szManager
   from tblEmployee e
   left join tblAddress a on e.nAddressLink = a.nKey
   left join tblBanking b on e.nBankingLink = b.nKey
+  left join tblDepartement d on e.nDepartementLink = d.nKey
+  left join tblEmployee em on d.nManagerLink = em.nKey
   where e.nKey = @nKey
   
   

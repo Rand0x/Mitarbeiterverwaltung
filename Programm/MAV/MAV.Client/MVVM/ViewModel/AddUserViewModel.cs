@@ -158,7 +158,7 @@ namespace MAV.Client.MVVM.ViewModel
                 param.Add(new SqlParameter("@szSalt", ByteStringConverter.ToStringFromBytes(salt)));
                 param.Add(new SqlParameter("@nRightLink", SelectedRight.Key));
 
-                tmp_ExecProc("sp_CreateUser", param);
+                DBProvider.ExecProcedure("sp_CreateUser", param);
 
                 
                 DialogPopUp("Erfolgreich erstellt", "Der Benutzer wurde erfolgreich erstellt", $"Benutzername: {Control.FirstName.Text}_{Control.LastName.Text}");
@@ -172,7 +172,7 @@ namespace MAV.Client.MVVM.ViewModel
         /// </summary>
         private void LoadRights()
         {
-            var result = tmp_ExecProc("sp_LoadRights");
+            var result = DBProvider.ExecProcedure("sp_LoadRights");
             foreach (DataRow row in result.Rows)
             {
                 Rights.Add(new RightModel()
@@ -213,52 +213,5 @@ namespace MAV.Client.MVVM.ViewModel
             SelectedRight = null;
         }
 
-        //ToDo entfernen
-        //nur temporär bis DBProvider existiert
-        #region tmp_Helper
-
-        private string conStr = "Data Source=141.75.150.78,49724\\MAVSQL01;Initial Catalog=dbMAV;User ID=sa;Password=MAVAdmin01";
-
-        private DataTable tmp_ExecProc(string proc, ObservableCollection<SqlParameter> param = null)
-        {
-            var result = new DataTable();
-
-            try
-            {
-                //neue Verbindung aufbauen
-                using (var con = new SqlConnection(conStr))
-                {
-                    var cmd = new SqlCommand(proc, con);
-                    cmd.CommandType = CommandType.StoredProcedure;
-
-                    //Parameter zu Prozedur hinzufügen
-                    if (param != null)
-                    {
-                        foreach (var par in param)
-                        {
-                            cmd.Parameters.Add(par);
-                        }
-                    }
-
-                    con.Open();
-
-                    using (var adapter = new SqlDataAdapter(cmd))
-                    {
-                        //füllen des ERgebnisses der Prozedur in result
-                        adapter.Fill(result);
-                    }
-
-                    con.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                //...
-                result = null;
-            }
-            return result;
-        }
-
-        #endregion
     }
 }

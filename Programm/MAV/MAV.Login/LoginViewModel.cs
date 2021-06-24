@@ -81,9 +81,8 @@ namespace MAV.Login
 
             //Übergabeparameter für die Prozedur
             param.Add(new SqlParameter("@szUserName", Control.UsernameBox.Text));
-            //param.Add(new SqlParameter("@szPassword", Control.PasswordBox.Password));
 
-            var result = tmp_ExecProc("sp_LogIn", param); //Prozedur ausführen
+            var result = DBProvider.ExecProcedure("sp_LogIn", param); //Prozedur ausführen
 
             if (result != null) // Prüfen ob Verbindung mit Server erfolgreich war.
             {
@@ -152,51 +151,6 @@ namespace MAV.Login
             // Chris: Das "Passwort Vergessen" habe ich entfernt. Das können wir noch
             // hinzufügen wenn wir Zeit dafür haben!
             // --
-        }
-
-        #endregion
-
-        //ToDo entfernen
-        //nur temporär bis DBProvider existiert
-        #region tmp_Helper
-
-        private string conStr = "Data Source=141.75.150.78,49724\\MAVSQL01;Initial Catalog=dbMAV;User ID=sa;Password=MAVAdmin01";
-
-        private DataTable tmp_ExecProc(string proc, ObservableCollection<SqlParameter> param = null)
-        {
-            var result = new DataTable();
-
-            try
-            {
-                //neue Verbindung aufbauen
-                using (var con = new SqlConnection(conStr))
-                {
-                    var cmd = new SqlCommand(proc, con);
-                    cmd.CommandType = CommandType.StoredProcedure;
-
-                    //Parameter zu Prozedur hinzufügen
-                    foreach (var par in param)
-                    {
-                        cmd.Parameters.Add(par);
-                    }
-
-                    con.Open();
-
-                    using (var adapter = new SqlDataAdapter(cmd))
-                    {
-                        //füllen des ERgebnisses der Prozedur in result
-                        adapter.Fill(result);
-                    }
-
-                    con.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                //...
-                result = null;
-            }
-            return result;
         }
 
         #endregion
