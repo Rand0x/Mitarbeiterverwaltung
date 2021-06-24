@@ -350,6 +350,22 @@ values (N'Produktion', N'PRO', N'Produziert Dinge', 6)
      , (N'Marketing', N'MAR', N'Entwickelt Marketingpläne', 5)
      , (N'Human Ressources', N'HR', N'Mitarbeiter einstellen', 1)
 
+
+insert into tblAddress (szStreet, szHouseNumber, szCity, szPLZ, szPrivateMail, szPrivateTelephone)
+values (N'A-Street', N'5456a', N'A-Stadt', N'59423', N'a@gmx.de', N'0176265546')
+     , (N'B-Street', N'1234b', N'B-Stadt', N'94136', N'b@gmx.de', N'0176873125')
+     , (N'C-Street', N'343c', N'C-Stadt', N'78466', N'c@gmx.de', N'017615431')
+
+
+update e
+set nAddressLink = case when nDepartementLink = 0 then 0
+                        when nDepartementLink = 1 then 1
+                        when nDepartementLink = 2 then 2 
+                        else 0 end
+from tblEmployee e
+
+
+
 go
 
 
