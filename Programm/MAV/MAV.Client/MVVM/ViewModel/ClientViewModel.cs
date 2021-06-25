@@ -78,7 +78,7 @@ namespace MAV.Client.MVVM.ViewModel
         {
             AddEmployeeViewCommand = new RelayCommand(o =>
             {
-                CurrentView = new AddEmployeeView(o);
+                CurrentView = new AddEmployeeView(user);
             });
 
             AddUserViewCommand = new RelayCommand(o =>

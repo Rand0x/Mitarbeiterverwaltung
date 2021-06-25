@@ -20,10 +20,33 @@ namespace MAV.Client.MVVM.View
     /// </summary>
     public partial class AddEmployeeView : UserControl
     {
-        public AddEmployeeView(object key)
+        public AddEmployeeView(UserModel user)
         {
+            this.DataContext = new AddEmployeeViewModel(this, user);
             InitializeComponent();
-            dpHireDate.SelectedDate = DateTime.Today;
+            cbxSex.ItemsSource = Enum.GetValues(typeof (Sex));
+            dpHireDate.SelectedDate = DateTime.Today;            
         }
+
+        private void CheckboxPersNr_Click(object sender, RoutedEventArgs e)
+        {
+            if(CheckboxPersNr.IsChecked == false)
+            {
+                TextBoxPersNr.Visibility = Visibility.Visible;
+
+                Thickness margin = CheckboxPersNr.Margin;
+                margin.Bottom = 0;
+                CheckboxPersNr.Margin = margin;
+            }
+            else
+            {
+                TextBoxPersNr.Visibility = Visibility.Collapsed;
+
+                Thickness margin = CheckboxPersNr.Margin;
+                margin.Bottom = 10;
+                CheckboxPersNr.Margin = margin;
+            }               
+        }
+
     }
 }
