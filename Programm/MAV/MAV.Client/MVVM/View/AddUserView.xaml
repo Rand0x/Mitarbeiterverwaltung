@@ -6,48 +6,49 @@
              xmlns:local="clr-namespace:MAV.Client.MVVM.View"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-  <StackPanel>
-    <TextBlock Text="Benutzer erstellen"
-                   Foreground="Black"
-                   FontSize="30"
-                   />
-    <Grid>
-      <Grid.ColumnDefinitions>
-        <ColumnDefinition/>
-        <ColumnDefinition/>
-      </Grid.ColumnDefinitions>
-      <TextBlock Text="Name: *" Foreground="#5B5B5B" FontSize="16" Margin="10,0,10,10"/>
-      <TextBox x:Name="LastName" Width="300" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,22,10,10" VerticalContentAlignment="Center" 
-               Text="{Binding LastName}"/>
-      
-      <TextBlock Text="Vorname: *" Foreground="#5B5B5B" FontSize="16" Margin="10,70,10,10"/>
-      <TextBox x:Name="FirstName" Width="300" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,92,10,10" VerticalContentAlignment="Center" 
-               Text="{Binding FirstName}"/>
-      
-      <TextBlock Text="Passwort: *" Foreground="#5B5B5B" FontSize="16" Margin="10,140,10,10"/>
-      <PasswordBox x:Name="Password" Width="300" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,162,10,10" VerticalContentAlignment="Center"/>
-      
-      <TextBlock Text="Passwort wiederholen: *" Foreground="#5B5B5B" FontSize="16" Margin="10,210,10,10"/>
-      <PasswordBox x:Name="PasswordRepeat" Width="300" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,232,10,10" VerticalContentAlignment="Center"/>
-      
-      <TextBlock Text="Recht:" Foreground="#5B5B5B" FontSize="16" Margin="10,280,10,10"/>
-      <!--<TextBox x:Name="Department" Width="300" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,302,10,10" VerticalContentAlignment="Center"/>-->
-      <ComboBox x:Name="Right" Width="300" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,302,10,10" VerticalContentAlignment="Center" 
+    <StackPanel>
+        <TextBlock Text="Benutzer erstellen" Foreground="Black" FontSize="30" Margin="0,0,0,20"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <StackPanel>
+                <TextBlock Text="Name" Foreground="#5B5B5B" FontSize="16"/>
+                <TextBox x:Name="LastName" Width="300" VerticalAlignment="Top" HorizontalAlignment="Left" 
+                         Margin ="0,0,10,10" VerticalContentAlignment="Center" Text="{Binding LastName}"/>
+                <TextBlock Text="Vorname" Foreground="#5B5B5B" FontSize="16"/>
+                <TextBox x:Name="FirstName" Width="300" VerticalAlignment="Top" HorizontalAlignment="Left" 
+                         Margin ="0,0,10,10" VerticalContentAlignment="Center" Text="{Binding FirstName}"/>
+                <TextBlock Text="Passwort" Foreground="#5B5B5B" FontSize="16"/>
+                <PasswordBox x:Name="Password" Width="300" VerticalAlignment="Top" HorizontalAlignment="Left" 
+                             Margin ="0,0,10,10" VerticalContentAlignment="Center"/>
+                <TextBlock Text="Passwort wiederholen" Foreground="#5B5B5B" FontSize="16"/>
+                <PasswordBox x:Name="PasswordRepeat" Width="300" VerticalAlignment="Top" HorizontalAlignment="Left"
+                             Margin ="0,0,10,10" VerticalContentAlignment="Center"/>
+                <TextBlock Text="Recht" Foreground="#5B5B5B" FontSize="16"/>
+                <!--<TextBox x:Name="Department" Width="300" VerticalAlignment="Top" HorizontalAlignment="Left" 
+                Margin ="0,0,10,10" VerticalContentAlignment="Center"/>-->
+                <ComboBox x:Name="Right" Width="300" VerticalAlignment="Top" HorizontalAlignment="Left" 
+                          Margin ="0,0,10,10" VerticalContentAlignment="Center" 
                 ItemsSource="{Binding Rights}" SelectedItem="{Binding SelectedRight}">
-        <ComboBox.ItemTemplate>
-          <DataTemplate>
-            <TextBlock Width="Auto" VerticalAlignment="Center" FontSize="16" Text="{Binding Name}" ToolTip="{Binding Info}"/>
-          </DataTemplate>
-        </ComboBox.ItemTemplate>
-      </ComboBox>
-
-    </Grid>
-    <DockPanel>
-      <Button x:Name="Button_Benutzerhinzufuegen" Content="Benutzer hinzufügen" Margin="10" Width="200" DockPanel.Dock="Left"
-              Command="{Binding AddUserCommand}"/>
-    </DockPanel>
-    <TextBlock Text="* Erforderlich"/>
-    
-  </StackPanel>
-  
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Width="Auto" VerticalAlignment="Center" FontSize="16" Text="{Binding Name}" ToolTip="{Binding Info}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+        </Grid>
+        <Button Margin="15" Width="250" Command="{Binding AddUserCommand}" Style="{StaticResource AccentButtonStyle}" 
+                    x:Name="Button_Benutzerhinzufuegen">
+            <Button.Content>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="&#xE105;" Foreground="White" FontSize="18" FontFamily="Segoe MDL2 Assets" 
+                                   VerticalAlignment="Center" Margin="0,0,15,0"/>
+                    <Label Content="Benutzer hinzufügen" Foreground="White" FontSize="18" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Button.Content>
+        </Button>
+    </StackPanel>
 </UserControl>

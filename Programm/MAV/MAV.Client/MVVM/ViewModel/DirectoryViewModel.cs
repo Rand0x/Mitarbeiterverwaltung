@@ -160,7 +160,7 @@ namespace MAV.Client.MVVM.ViewModel
             }
         }
 
-        public void LoadAddressList(object p = null)
+        public void LoadAddressList(object p = null) // Parameter kann doch entfernt werden, oder?
         {
             var param = new ObservableCollection<SqlParameter>();
             DataTable data;

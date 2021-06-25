@@ -13,9 +13,8 @@
     <Grid.RowDefinitions>
       <RowDefinition Height="50"/>
       <RowDefinition Height="70"/>
-      <RowDefinition/>
-      <RowDefinition Height="70"/>
-    </Grid.RowDefinitions>
+       <RowDefinition/>
+     </Grid.RowDefinitions>
 
     <TextBlock Text="Adressbuch"
                    Foreground="Black"
@@ -44,65 +43,52 @@
                 Text="{Binding SearchText}"
                 QueryIcon="Find"
                 QuerySubmitted="controlsSearchBox_QuerySubmitted"/>
-
-
     </DockPanel>
 
-    <ListView Margin="10" Name="lvUsers" Grid.Row="2" ItemsSource="{Binding AddressList}" SelectedItem="{Binding SelectedEmployee}" MouseDoubleClick="ListView_MouseDoubleClick">
-      <ListView.ContextMenu>
-        <ContextMenu>
-          <MenuItem Header="Informationen anzeigen" Click="OnCtxMenuInfo">
-            <MenuItem.Icon>
-              <ui:FontIcon Glyph="&#xE13D;" />
-            </MenuItem.Icon>
-          </MenuItem>
-          <MenuItem Header="Mitarbeiter bearbeiten" Click="OnCtxMenuEdit">
-            <MenuItem.Icon>
-              <ui:FontIcon Glyph="&#xE104;" />
-            </MenuItem.Icon>
-          </MenuItem>
-        </ContextMenu>
-      </ListView.ContextMenu>
-      <ListView.View>
-        <GridView>
-          <GridViewColumn Width="120"  DisplayMemberBinding="{Binding FirstName}">
-            <GridViewColumn.Header>
-              <GridViewColumnHeader Tag="Vorname" Click="sortFirstName">Vorname</GridViewColumnHeader>
-            </GridViewColumn.Header>
-          </GridViewColumn>
-          <GridViewColumn  Width="120" DisplayMemberBinding="{Binding LastName}">
-            <GridViewColumn.Header>
-              <GridViewColumnHeader Tag="Nachname" Click="sortLastName">Nachname</GridViewColumnHeader>
-            </GridViewColumn.Header>
-          </GridViewColumn>
-          <GridViewColumn Width="150" DisplayMemberBinding="{Binding Department}">
-            <GridViewColumn.Header>
-              <GridViewColumnHeader Tag="Abteilung" Click="sortDepartment" >Abteilung</GridViewColumnHeader>
-            </GridViewColumn.Header>
-          </GridViewColumn>
-          <GridViewColumn Width="170" DisplayMemberBinding="{Binding LandlineNbr}">
-            <GridViewColumn.Header>
-              <GridViewColumnHeader Tag="Telefon (geschäftlich)" Click="sortLandlineNbr" >Telefon (geschäftlich)</GridViewColumnHeader>
-            </GridViewColumn.Header>
-          </GridViewColumn>
-          <GridViewColumn Width="170" DisplayMemberBinding="{Binding EmployeeNumber}">
-            <GridViewColumn.Header>
-              <GridViewColumnHeader Tag="Mitarbeiternummer" Click="sortEmployeeNbr" >Mitarbeiternummer</GridViewColumnHeader>
-            </GridViewColumn.Header>
-          </GridViewColumn>
-        </GridView>
-      </ListView.View>
-    </ListView>
-
-    <!--<DockPanel LastChildFill="False" Grid.Row="3">
-      <Button Content="Bearbeiten" IsEnabled="False" 
-                    DockPanel.Dock="Left" Margin="12" Width="150"> --><!-- ToDo: Bearbeiten Button hinzufügen --><!--
-      </Button>
-      <Button Content="Zum Kontakt" IsEnabled="True" 
-                    DockPanel.Dock="Right" Margin="12" Width="150"                    
-                    Click="Button_Click">
-      </Button>
-    </DockPanel>-->
-  </Grid>
-
+        <ListView Margin="10" Name="lvUsers" Grid.Row="2" ItemsSource="{Binding AddressList}" SelectedItem="{Binding SelectedEmployee}" MouseDoubleClick="ListView_MouseDoubleClick">
+            <ListView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Informationen anzeigen" Click="OnCtxMenuInfo">
+                        <MenuItem.Icon>
+                            <ui:FontIcon Glyph="&#xE13D;" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Mitarbeiter bearbeiten" Click="OnCtxMenuEdit" x:Name="CtxMenuEditButton">
+                        <MenuItem.Icon>
+                            <ui:FontIcon Glyph="&#xE104;" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </ContextMenu>
+            </ListView.ContextMenu>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="120"  DisplayMemberBinding="{Binding FirstName}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="Vorname" Click="sortFirstName">Vorname</GridViewColumnHeader>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn  Width="120" DisplayMemberBinding="{Binding LastName}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="Nachname" Click="sortLastName">Nachname</GridViewColumnHeader>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn Width="150" DisplayMemberBinding="{Binding Department}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="Abteilung" Click="sortDepartment" >Abteilung</GridViewColumnHeader>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn Width="170" DisplayMemberBinding="{Binding LandlineNbr}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="Telefon (geschäftlich)" Click="sortLandlineNbr" >Telefon (geschäftlich)</GridViewColumnHeader>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                    <GridViewColumn Width="170" DisplayMemberBinding="{Binding EmployeeNumber}">
+                        <GridViewColumn.Header>
+                            <GridViewColumnHeader Tag="Mitarbeiternummer" Click="sortEmployeeNbr" >Mitarbeiternummer</GridViewColumnHeader>
+                        </GridViewColumn.Header>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
 </UserControl>

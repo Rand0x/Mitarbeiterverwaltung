@@ -34,6 +34,11 @@ namespace MAV.Client
         {
             this.DataContext = new ClientViewModel(this, user);
             InitializeComponent();
+
+            if (user.Right > 2)
+                AddEmployeeButton.Visibility = Visibility.Hidden;
+            if (user.Right > 1)
+                AddUserButton.Visibility = Visibility.Hidden;
         }
 
         private void OnWindowClose(object sender, RoutedEventArgs e)
