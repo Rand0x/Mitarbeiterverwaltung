@@ -3,6 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+public enum Sex {männlich,weiblich,divers}
+
+
 namespace MAV.Client.MVVM.Model
 {
     public class EmployeeModel : PropertyChangedBase
