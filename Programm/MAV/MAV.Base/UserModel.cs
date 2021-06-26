@@ -10,6 +10,7 @@ namespace MAV.Base
 
         #region Properties
 
+        //nKey des User aus tblUser
         private int m_UserKey;
         public int UserKey
         {
@@ -23,7 +24,7 @@ namespace MAV.Base
             }
         }
 
-
+        //nKey des evtl. Mitarbeiters aus tblEmployee
         private int? m_EmployeeKey;
         public int? EmployeeKey
         {
@@ -38,6 +39,7 @@ namespace MAV.Base
             }
         }
 
+        //nKey des Rechts aus tblRight
         private int m_Right;
         public int Right
         {
@@ -52,6 +54,7 @@ namespace MAV.Base
             }
         }
 
+        //szName des Rechts aus tblRight 
         private string m_RightName;
         public string RightName
         {

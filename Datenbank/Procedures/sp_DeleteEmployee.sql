@@ -28,6 +28,7 @@ as begin
   begin
     print N'Übergebene Parameter:'
     print N'********************************************************'
+    print N'Key: ' + CAST(@nKey as nvarchar)
     print N'********************************************************'
   end
 

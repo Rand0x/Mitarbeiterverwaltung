@@ -43,6 +43,21 @@ as begin
   begin
     print N'Übergebene Parameter:'
     print N'********************************************************'
+    print N'EmployeeNmb: ' + CAST(@nEmployeeNmb as nvarchar)
+    print N'Birthdate: ' + CAST(@dtBirthdate as nvarchar)
+    print N'Telephone: ' + CAST(@szTelephone as nvarchar)
+    print N'TelephonePrivate: ' + CAST(@szTelephonePrivate as nvarchar)
+    print N'Mail: ' + CAST(@szMail as nvarchar)
+    print N'Sex: ' + CAST(@szSex as nvarchar)
+    print N'DepartementLink: ' + CAST(@nDepartementLink as nvarchar)
+    print N'JobName: ' + CAST(@szJobName as nvarchar)
+    print N'HoursPerWeek: ' + CAST(@nHoursPerWeek as nvarchar)
+    print N'RecruitDate: ' + CAST(@dtRecruitDate as nvarchar)
+    print N'Wage: ' + CAST(@rWage as nvarchar)
+    print N'HolidyPerYear: ' + CAST(@nHolidyPerYear as nvarchar)
+    print N'NoticePeriod: ' + CAST(@nNoticePeriod as nvarchar)
+    print N'TaxClass: ' + CAST(@nTaxClass as nvarchar)
+    print N'Comment: ' + CAST(@szComment as nvarchar)
     print N'********************************************************'
   end
 

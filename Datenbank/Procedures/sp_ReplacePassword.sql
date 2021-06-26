@@ -30,6 +30,9 @@ as begin
   begin
     print N'Übergebene Parameter:'
     print N'********************************************************'
+    print N'Key: ' + CAST(@nKey as nvarchar)
+    print N'Password: ' + CAST(@szPassword as nvarchar)
+    print N'Salt: ' + CAST(@szSalt as nvarchar)
     print N'********************************************************'
   end
 

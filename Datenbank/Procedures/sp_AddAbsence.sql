@@ -33,6 +33,12 @@ as begin
   begin
     print N'Übergebene Parameter:'
     print N'********************************************************'
+    print N'EmployeeLink: ' + CAST(@nEmployeeLink as nvarchar)
+    print N'Reason: ' + CAST(@szReason as nvarchar)
+    print N'Info: ' + CAST(@szInfo as nvarchar)
+    print N'Start: ' + CAST(@dtStart as nvarchar)
+    print N'End: ' + CAST(@dtEnd as nvarchar)
+    print N'Effective: ' + CAST(@nEffective as nvarchar)
     print N'********************************************************'
   end
 

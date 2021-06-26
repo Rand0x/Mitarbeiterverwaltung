@@ -4,8 +4,16 @@ using System.Text;
 
 namespace MAV.Helper
 {
+    /// <summary>
+    /// Hilfsklasse, um byte[] in string umzuwandenln und umgekehrt für Speicherung des Passworts/Salts in DB
+    /// </summary>
     public static class ByteStringConverter
     {
+        /// <summary>
+        /// wandelt übergebens byte-array zu string um
+        /// </summary>
+        /// <param name="bytes"></param>
+        /// <returns></returns>
         public static string ToStringFromBytes(byte[] bytes)
         {
             var result = new StringBuilder();
@@ -16,6 +24,11 @@ namespace MAV.Helper
             return result.ToString();
         }
 
+        /// <summary>
+        /// wandelt übergebenen string zu byte-array um
+        /// </summary>
+        /// <param name="bytes"></param>
+        /// <returns></returns>
         public static byte[] ToByteFromString(string bytes)
         {
             var result = new byte[bytes.Length / 2];

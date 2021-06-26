@@ -17,6 +17,7 @@ namespace MAV.Client.MVVM.ViewModel
         #region Properties
 
         private List<AddressEntryModel> m_AddressList;
+        //Liste aller Elemente in der Adressliste
         public List<AddressEntryModel> AddressList
         {
             get { return m_AddressList; }
@@ -45,6 +46,7 @@ namespace MAV.Client.MVVM.ViewModel
         }
 
         private ObservableCollection<DepartmentModel> m_Departements;
+        //Liste aller Abteilungen
         public ObservableCollection<DepartmentModel> Departements
         {
             get { return m_Departements; }
@@ -86,6 +88,7 @@ namespace MAV.Client.MVVM.ViewModel
         }
 
         private ClientViewModel m_ClientVM;
+        //ViewModel des Clients
         public ClientViewModel ClientVM
         {
             get { return m_ClientVM; }
@@ -122,6 +125,9 @@ namespace MAV.Client.MVVM.ViewModel
 
         #region LoadData
 
+        /// <summary>
+        /// Lädt alle Abteilungen aus DB
+        /// </summary>
         private void LoadDepartements()
         {
             DataTable data;
@@ -138,6 +144,7 @@ namespace MAV.Client.MVVM.ViewModel
 
             Departements.Clear();
 
+            //Defualt Abteilungen die alle vorhanden auswählt
             var defaultItem = new DepartmentModel()
             {
                 Key = -1,
@@ -146,6 +153,7 @@ namespace MAV.Client.MVVM.ViewModel
             Departements.Add(defaultItem);
             SelectedDepartement = defaultItem;
 
+            //hinzufügen der geladenen zu Liste
             foreach(DataRow row in data.Rows)
             {
                 Departements.Add(new DepartmentModel()
@@ -160,11 +168,16 @@ namespace MAV.Client.MVVM.ViewModel
             }
         }
 
-        public void LoadAddressList(object p = null) // Parameter kann doch entfernt werden, oder?
+        /// <summary>
+        /// Laden aller Einträge der Adressliste
+        /// </summary>
+        /// <param name="p"></param>
+        public void LoadAddressList(object p = null)
         {
             var param = new ObservableCollection<SqlParameter>();
             DataTable data;
 
+            //Filter falls vorhanden hinzufügen
             if (SearchText != null)
                 param.Add(new SqlParameter("@szFirstName", SearchText));
             if (SelectedDepartement != null && SelectedDepartement.Key != -1)
@@ -182,6 +195,7 @@ namespace MAV.Client.MVVM.ViewModel
 
             AddressList.Clear();
 
+            //Hinzufügen der Daten zu Liste
             foreach (DataRow row in data.Rows)
             {
                 AddressList.Add(new AddressEntryModel()
@@ -195,6 +209,7 @@ namespace MAV.Client.MVVM.ViewModel
                 });
             }
 
+            //Sortieren nach Vornamen
             OrderByFirstName();
         }
 
@@ -250,6 +265,8 @@ namespace MAV.Client.MVVM.ViewModel
 
         #endregion
 
+        #region Dialog
+
         /// <summary>
         /// Beim Aufrufen erscheint ein Fenster
         /// </summary>
@@ -264,5 +281,7 @@ namespace MAV.Client.MVVM.ViewModel
             dialog.SecondLineText = secondLine;
             var result = dialog.ShowAsync();
         }
+
+        #endregion
     }
 }

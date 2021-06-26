@@ -5,7 +5,7 @@ using MAV.Base;
 
 namespace MAV.Client.MVVM.Model
 {
-    public class AddressEntryModel : PropertyChangedBase  // Jetzt noch class User, später die Personen aus Datenbank holen
+    public class AddressEntryModel : PropertyChangedBase  //Model Klasse für Adresslisteneinträge
     {
         private int key;      // PropertyChanged nur für Elemente nötig, die im DirectoryView angezigt werden 
         public int Key

@@ -19,6 +19,7 @@ namespace MAV.Client.MVVM.ViewModel
         #region Properties
 
         private AddUserView m_Control;
+        //zugehöriges View
         public AddUserView Control
         {
             get { return m_Control; }
@@ -61,6 +62,7 @@ namespace MAV.Client.MVVM.ViewModel
         }
 
         private ObservableCollection<RightModel> m_Rights;
+        //Liste aller vorhandenen Rechte aus DB
         public ObservableCollection<RightModel> Rights
         {
             get { return m_Rights; }
@@ -110,6 +112,7 @@ namespace MAV.Client.MVVM.ViewModel
 
         #region Commands
 
+        //Command um User hinzuzufügen
         public RelayCommand AddUserCommand { get; private set; }
 
         private void CreateCommands()
@@ -119,39 +122,44 @@ namespace MAV.Client.MVVM.ViewModel
 
         #endregion
 
+        #region Implementation
+
         private void AddUser(object parameter = null)
         {
-            if (LastName is null)
+            //Überprüfen der eingegebenen Daten
+            if (LastName is null) //Nachname vorhanden?
             {
                 DialogPopUp("Kein Nachname", "Es wurde kein Nachname eingegeben");
             }
-            else if (FirstName is null)
+            else if (FirstName is null) //Vorname vorhanden?
             {
                 DialogPopUp("Kein Vorname", "Es wurde kein Vorname eingegeben");
             }
-            else if (Control.Password.Password is null)
+            else if (Control.Password.Password is null) //Passwort vorhanden?
             {
                 DialogPopUp("Kein Passwort", "Es wurde kein Passwort eingegeben");
             }
-            else if (Control.Password.Password.Length < 8)
+            else if (Control.Password.Password.Length < 8) //Passwort lang genut?
             {
                 DialogPopUp("Passwort ist zu kurz", "Das Passwort muss mindestens", "acht Zeichen lang sein.");
             }
-            else if (Control.Password.Password != Control.PasswordRepeat.Password)
+            else if (Control.Password.Password != Control.PasswordRepeat.Password) //Passwort bestätigt?
             {
                 DialogPopUp("Passwörter nicht identisch", "Das Passwort ist nicht mit dem", "wiederholten Passwort identisch.");
             }
-            else if (SelectedRight is null)
+            else if (SelectedRight is null) //Recht ausgewählt?
             {
                 DialogPopUp("Kein Recht vergeben", "Die erstellte Person braucht Rechte");
             }
             else
             {
+                //sp Parameter für Aufruf zusammenstellen
                 var param = new ObservableCollection<SqlParameter>();
 
                 param.Add(new SqlParameter("@szFirstName", FirstName));
                 param.Add(new SqlParameter("@szLastName", LastName));
 
+                //hashen des Passworts damit kein Klartext in DB abgespeichert wird
                 var hash = PasswordHash.Hash(Control.Password.Password, out var salt);
 
                 param.Add(new SqlParameter("@szPassword", ByteStringConverter.ToStringFromBytes(hash)));
@@ -160,7 +168,7 @@ namespace MAV.Client.MVVM.ViewModel
 
                 try
                 {
-                    DBProvider.ExecProcedure("sp_CreateUser", param);
+                    DBProvider.ExecProcedure("sp_CreateUser", param); //anlegen des neuen Users
                 }
                 catch(Exception ex)
                 {
@@ -192,6 +200,7 @@ namespace MAV.Client.MVVM.ViewModel
                 return;
             }
 
+            //geladene Rechte zu Liste hinzufügen
             foreach (DataRow row in result.Rows)
             {
                 Rights.Add(new RightModel()
@@ -229,6 +238,8 @@ namespace MAV.Client.MVVM.ViewModel
             dialog.SecondLineText = secondLine;
             var result = dialog.ShowAsync();
         }
+
+        #endregion
 
     }
 }

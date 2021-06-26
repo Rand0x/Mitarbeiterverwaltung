@@ -5,6 +5,7 @@ using System.Text;
 
 namespace MAV.Client.MVVM.Model
 {
+    //Model Klasse um aus DB gelesene Rechte zu speichern
     public class RightModel : PropertyChangedBase
     {
         private int m_Key;
