@@ -31,6 +31,10 @@ as begin
   begin
     print N'Übergebene Parameter:'
     print N'********************************************************'
+    print N'EmployeeLink: ' + CAST(@nEmployeeLink as nvarchar)
+    print N'Reason: ' + CAST(@szReason as nvarchar)
+    print N'IssueDate: ' + CAST(@dtIssueDate as nvarchar)
+    print N'Comment: ' + CAST(@szComment as nvarchar)
     print N'********************************************************'
   end
 

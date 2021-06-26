@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace MAV.Client.MVVM.Model
 {
+    //Model Klasse um Abteilungsdaten aus DB abzuspeichern
     public class DepartmentModel : PropertyChangedBase
     {
         private int m_Key;

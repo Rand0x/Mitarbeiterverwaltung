@@ -5,6 +5,9 @@ using System.Text;
 
 namespace MAV.Helper
 {
+    /// <summary>
+    /// Hilfsklasse um Passwörter zu hashen
+    /// </summary>
     public static class PasswordHash
     {
         /// <summary>

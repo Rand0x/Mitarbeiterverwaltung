@@ -8,6 +8,7 @@ public enum Sex {männlich,weiblich,divers}
 
 namespace MAV.Client.MVVM.Model
 {
+    //Model Klasse um Benutzerdaten aus DB zu speichern
     public class EmployeeModel : PropertyChangedBase
     {
 

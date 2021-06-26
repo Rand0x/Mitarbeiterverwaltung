@@ -13,7 +13,10 @@ namespace MAV.Client.MVVM.ViewModel
 {
     public class EmployeeInfoViewModel : PropertyChangedBase
     {
+        #region Properties
+
         private EmployeeModel m_Employee;
+        //ausgewählter Mitarbeiter
         public EmployeeModel Employee
         {
             get { return m_Employee; }
@@ -26,11 +29,23 @@ namespace MAV.Client.MVVM.ViewModel
             }
         }
 
+        #endregion
+
+        #region Constructor
+
         public EmployeeInfoViewModel(int key)
         {
             LoadEmployeeData(key);
         }
 
+        #endregion
+
+        #region Implementation
+
+        /// <summary>
+        /// Laden der Daten des ausgewählten Mitarbeiters
+        /// </summary>
+        /// <param name="key"></param>
         private void LoadEmployeeData(int key)
         {
             DataTable data;
@@ -47,6 +62,7 @@ namespace MAV.Client.MVVM.ViewModel
                 return;
             }
 
+            //Mitarbeiter hinzufügen
             foreach(DataRow row in data.Rows)
             {
                 Employee = new EmployeeModel()
@@ -83,5 +99,6 @@ namespace MAV.Client.MVVM.ViewModel
             var result = dialog.ShowAsync();
         }
 
+        #endregion
     }
 }

@@ -14,10 +14,10 @@ namespace MAV.Client.MVVM.ViewModel
 {
     public class EmployeeEditViewModel : EmployeeInfoViewModel
     {
-
         #region Properties
 
         private ObservableCollection<DepartmentModel> m_Departements;
+        //Liste aller Abteilungen aus DB
         public ObservableCollection<DepartmentModel> Departements
         {
             get { return m_Departements; }
@@ -63,6 +63,7 @@ namespace MAV.Client.MVVM.ViewModel
 
         #region Commands
 
+        //Commands zum hinzufügen und Löschen von Mitarbeitern
         public RelayCommand SaveCommand { get; private set; }
         public RelayCommand DeleteCommand { get; private set; }
 
@@ -72,8 +73,13 @@ namespace MAV.Client.MVVM.ViewModel
             DeleteCommand = new RelayCommand(Delete);
         }
 
+        /// <summary>
+        /// Ändern der Daten eines Mitarbeiters
+        /// </summary>
+        /// <param name="o"></param>
         private void Save(object o = null)
         {
+            //zusammenstellen der benötigten Parameter für Prozeduraufruf
             var param = new ObservableCollection<SqlParameter>();
             param.Add(new SqlParameter("@nKey", Employee.Key));
             param.Add(new SqlParameter("@nEmployeeNmb", Employee.EmplyeeNmb));
@@ -97,13 +103,19 @@ namespace MAV.Client.MVVM.ViewModel
             }
         }
 
+        /// <summary>
+        /// Löschen eines Mitarbeiters aus der DB
+        /// </summary>
+        /// <param name="o"></param>
         private async void Delete(object o = null)
         {
+            //Abfrage ob wirklich gelöscht werden soll
             DeleteEmployeeDialog dialog = new DeleteEmployeeDialog();
             var result = await dialog.ShowAsync();
 
             if (result == ContentDialogResult.Primary)
             {
+                //aus DB löschen
                 var param = new ObservableCollection<SqlParameter>();
                 param.Add(new SqlParameter("@nKey", Employee.Key));
 
@@ -122,6 +134,9 @@ namespace MAV.Client.MVVM.ViewModel
 
         #region LoadData
 
+        /// <summary>
+        /// Laden aller Abteilungen aus der DB
+        /// </summary>
         private void LoadDepartements()
         {
             DataTable data;
@@ -138,6 +153,7 @@ namespace MAV.Client.MVVM.ViewModel
 
             Departements.Clear();
 
+            //hinzufügen zur Liste
             foreach (DataRow row in data.Rows)
             {
                 var newDep = new DepartmentModel()
@@ -157,6 +173,8 @@ namespace MAV.Client.MVVM.ViewModel
 
         #endregion
 
+        #region Dialog
+
         /// <summary>
         /// Beim Aufrufen erscheint ein Fenster
         /// </summary>
@@ -171,5 +189,7 @@ namespace MAV.Client.MVVM.ViewModel
             dialog.SecondLineText = secondLine;
             var result = dialog.ShowAsync();
         }
+
+        #endregion
     }
 }

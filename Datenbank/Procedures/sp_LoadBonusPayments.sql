@@ -29,6 +29,8 @@ as begin
   begin
     print N'Übergebene Parameter:'
     print N'********************************************************'
+    print N'EmployeeLink: ' + CAST(@nEmployeeLink as nvarchar)
+    print N'DateOfPayment: ' + CAST(@dtDateOfPayment as nvarchar)
     print N'********************************************************'
   end
 

@@ -16,7 +16,6 @@ namespace MAV.Login
 {
     public class LoginViewModel : PropertyChangedBase
     {
-
         #region Properties
 
         //Verweis auf Frontend um Password nciht zwischenspeichern zu müssen
@@ -48,7 +47,6 @@ namespace MAV.Login
         #region Commads
 
         public RelayCommand LogInCommand { get; private set; }
-        public RelayCommand ChangePwdCommand { get; private set; }
 
         /// <summary>
         /// Initialisieren der Commands
@@ -56,10 +54,8 @@ namespace MAV.Login
         private void CreateCommands()
         {
             LogInCommand = new RelayCommand(Login);
-            ChangePwdCommand = new RelayCommand(ChangePwd);
         }
 
-        //ToDo wenn DB Provider vorhanden ist, auf diesen umstellen
         /// <summary>
         /// Logik zum Einlogen und gegebenenfals öffnen mit Hilfe der DB
         /// </summary>
@@ -133,6 +129,10 @@ namespace MAV.Login
             Control.UsernameBox.Focus();
         }
 
+        #endregion
+
+        #region Dialog
+
         private void ShowErrorDialog(string title, string firstLine, string secondLine = null)
         {
             Dialog dialog = new Dialog
@@ -144,16 +144,6 @@ namespace MAV.Login
             var resultDialog = dialog.ShowAsync();
         }
 
-        private void ChangePwd(object parameter = null)
-        {
-            //ToDo Implementiern
-            // --
-            // Chris: Das "Passwort Vergessen" habe ich entfernt. Das können wir noch
-            // hinzufügen wenn wir Zeit dafür haben!
-            // --
-        }
-
         #endregion
-
     }
 }

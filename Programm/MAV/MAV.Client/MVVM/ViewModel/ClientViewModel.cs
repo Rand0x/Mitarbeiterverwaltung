@@ -10,6 +10,7 @@ namespace MAV.Client.MVVM.ViewModel
 {
     public class ClientViewModel : ViewModelBase
     {
+        //alle Commands um UserControls aufzurufen
         public RelayCommand AddEmployeeViewCommand { get; set; }
         public RelayCommand AddUserViewCommand { get; set; }
         public RelayCommand DirectoryViewCommand { get; set; }
@@ -19,9 +20,10 @@ namespace MAV.Client.MVVM.ViewModel
         public RelayCommand EmployeeInfoViewCommand { get; set; }
         public RelayCommand EmployeeEditViewCommand { get; set; }
         
-
+        //Command zum LogOut
         public RelayCommand LogOutCommand { get; private set; }
 
+        //alle Views die aufgerufen werden können
         public AddEmployeeView AddEmployee { get; set; }
         public AddUserView AddUser { get; set; }
         public DirectoryView Directory { get; set; }
@@ -32,6 +34,7 @@ namespace MAV.Client.MVVM.ViewModel
         public EmployeeEditView EmployeeEdit { get; set; }
 
         private object _currentView;
+        //Verweis auf aktuell angezeigtes UserControl
         public object CurrentView
         {
             get { return _currentView; }
@@ -39,12 +42,13 @@ namespace MAV.Client.MVVM.ViewModel
             {
                 _currentView = value;
                 if (_currentView == Directory)
-                    ((DirectoryViewModel)Directory.DataContext).LoadAddressList();
+                    ((DirectoryViewModel)Directory.DataContext).LoadAddressList(); //neuladen der Adressliste
                 OnPropertyChanged();
             }
         }
 
         private ClientView m_Control;
+        //Verweis auf ClientControl
         public ClientView Control
         {
             get { return m_Control; }
@@ -57,12 +61,9 @@ namespace MAV.Client.MVVM.ViewModel
             }
         }
 
-        private UserModel user;  // ToDo Eventuell eleganter Lösen
-
         public ClientViewModel(ClientView control, UserModel user) : base(user)
         {
             Control = control;
-            this.user = user;
 
             Directory = new DirectoryView(user, this);
             Holiday = new HolidayView();
@@ -78,12 +79,12 @@ namespace MAV.Client.MVVM.ViewModel
         {
             AddEmployeeViewCommand = new RelayCommand(o =>
             {
-                CurrentView = new AddEmployeeView(user);
+                CurrentView = new AddEmployeeView(User);
             });
 
             AddUserViewCommand = new RelayCommand(o =>
             {
-                CurrentView = new AddUserView(user);
+                CurrentView = new AddUserView(User);
             });
 
             DirectoryViewCommand = new RelayCommand(o =>
@@ -108,7 +109,7 @@ namespace MAV.Client.MVVM.ViewModel
 
             EmployeeInfoViewCommand = new RelayCommand(o =>
             {
-                CurrentView = new EmployeeInfoView(o, user);
+                CurrentView = new EmployeeInfoView(o, User);
             });
 
             EmployeeEditViewCommand = new RelayCommand(o =>
@@ -119,6 +120,7 @@ namespace MAV.Client.MVVM.ViewModel
             LogOutCommand = new RelayCommand(LogOut);
         }
 
+        //zurückkehren zum Login
         private void LogOut(object parameter = null)
         {
             Control.Close();

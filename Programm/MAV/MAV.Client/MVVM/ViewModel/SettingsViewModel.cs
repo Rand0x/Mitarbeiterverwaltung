@@ -15,6 +15,7 @@ namespace MAV.Client.MVVM.ViewModel
         #region Properties
 
         private SettingsView m_Control;
+        //Verweis auf View
         public SettingsView Control
         {
             get { return m_Control; }
@@ -42,14 +43,21 @@ namespace MAV.Client.MVVM.ViewModel
 
         #region Commands
 
+        //Command um Passwort zu ändern
         public RelayCommand ChangePwdCommand { get; private set; }
 
+        /// <summary>
+        /// Zusweisen von Methoden zu den Commands
+        /// </summary>
         private void CreateCommands()
         {
             ChangePwdCommand = new RelayCommand(ChangePassword);
-
         }
 
+        /// <summary>
+        /// Ändert das Passwort des aktuellen Benutzers
+        /// </summary>
+        /// <param name="parameter"></param>
         private void ChangePassword(object parameter = null)
         {
             //laden des alten Passworts und Salts aus der DB
@@ -68,23 +76,23 @@ namespace MAV.Client.MVVM.ViewModel
                 return;
             }
 
+            //ermitteln des alten Passworts/Salts
             var pwdOld = result.Rows[0]["szPassword"].ToString();
             var saltOld = ByteStringConverter.ToByteFromString(result.Rows[0]["szSalt"].ToString());
 
-            //Überprüfen des alten Passworts
-            if (ByteStringConverter.ToStringFromBytes(PasswordHash.Hash(Control.PasswordOld.Password, saltOld)) != pwdOld)
+            if (ByteStringConverter.ToStringFromBytes(PasswordHash.Hash(Control.PasswordOld.Password, saltOld)) != pwdOld) //Überprüfen des alten Passworts
             {
                 DialogPopUp("Aktuelles Passwort falsch", "Das eingegebene Passwort entspricht nicht", "dem aktuellen Passwort");
             }
-            else if (Control.PasswordNew.Password.Length < 8)
+            else if (Control.PasswordNew.Password.Length < 8) //neues Passwort lang genug?
             {
                 DialogPopUp("Passwort zu kurz", "Das neue Passwort ist zu kurz.", "Es muss mindestens acht Zeichen lang sein.");
             }
-            else if (Control.PasswordNew.Password != Control.PasswordNewRepeat.Password)
+            else if (Control.PasswordNew.Password != Control.PasswordNewRepeat.Password) //neue Passwörter stimmen über ein?
             {
                 DialogPopUp("Passwort nicht identisch", "Das neue Passwort ist nicht dem", "wiederholten Passwort identisch.");
             }
-            else if (Control.PasswordOld.Password == Control.PasswordNew.Password)
+            else if (Control.PasswordOld.Password == Control.PasswordNew.Password) //altes und neues Passwort sind unterschiedlich?
             {
                 DialogPopUp("Passwörter sind gleich", "Das neue Passwort und das alte Passwort", "dürfen nicht identisch sein!");
             }
@@ -128,6 +136,8 @@ namespace MAV.Client.MVVM.ViewModel
 
         #endregion
 
+        #region Dialog
+
         /// <summary>
         /// Beim Aufrufen erscheint ein Fenster
         /// </summary>
@@ -142,5 +152,7 @@ namespace MAV.Client.MVVM.ViewModel
             dialog.SecondLineText = secondLine;
             var result = dialog.ShowAsync();
         }
+
+        #endregion
     }
 }

@@ -90,6 +90,8 @@ namespace MAV.Client.MVVM.ViewModel
 
         #endregion
 
+        #region Implementation
+
         private void AddEmployee(object parameter = null)
         {
             if (LastName is null || LastName == String.Empty ||  FirstName is null || FirstName == String.Empty || Control.cbxSex.SelectedItem is null 
@@ -130,7 +132,7 @@ namespace MAV.Client.MVVM.ViewModel
                 param.Add(new SqlParameter("@nEmployeeNumber", persNr));
                 param.Add(new SqlParameter("@dtBirthdate", Control.dpBirthday.SelectedDate));
                 param.Add(new SqlParameter("@dtRecruitDate", Control.dpHireDate.SelectedDate));
-                param.Add(new SqlParameter("@szSex", Control.cbxSex.SelectedItem));
+                param.Add(new SqlParameter("@szSex", Control.cbxSex.SelectedItem.ToString().Substring(0,1))); //in DB wird nur der jeweils erste Buchstabe gespeichert (m/w/d)
 
                 try
                 {
@@ -219,6 +221,8 @@ namespace MAV.Client.MVVM.ViewModel
             dialog.SecondLineText = secondLine;
             var result = dialog.ShowAsync();
         }
+
+        #endregion
     }
-    
+
 }

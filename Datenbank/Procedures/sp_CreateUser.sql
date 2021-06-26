@@ -32,6 +32,11 @@ as begin
   begin
     print N'Übergebene Parameter:'
     print N'********************************************************'
+    print N'FirstName: ' + CAST(@szFirstName as nvarchar)
+    print N'LastName: ' + CAST(@szLastName as nvarchar)
+    print N'Password: ' + CAST(@szPassword as nvarchar)
+    print N'Salt: ' + CAST(@szSalt as nvarchar)
+    print N'RightLink: ' + CAST(@nRightLink as nvarchar)
     print N'********************************************************'
   end
 
