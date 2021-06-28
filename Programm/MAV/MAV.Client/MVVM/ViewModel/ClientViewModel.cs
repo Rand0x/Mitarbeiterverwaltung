@@ -109,12 +109,12 @@ namespace MAV.Client.MVVM.ViewModel
 
             EmployeeInfoViewCommand = new RelayCommand(o =>
             {
-                CurrentView = new EmployeeInfoView(o, User);
+                CurrentView = new EmployeeInfoView(o, User, this);
             });
 
             EmployeeEditViewCommand = new RelayCommand(o =>
             {
-                CurrentView = new EmployeeEditView(o);
+                CurrentView = new EmployeeEditView(o, this);
             });
 
             LogOutCommand = new RelayCommand(LogOut);

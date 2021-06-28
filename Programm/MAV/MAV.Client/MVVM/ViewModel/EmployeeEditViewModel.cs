@@ -51,7 +51,7 @@ namespace MAV.Client.MVVM.ViewModel
 
         #region Constructor
 
-        public EmployeeEditViewModel(int key, EmployeeEditView control) : base(key)
+        public EmployeeEditViewModel(int key, EmployeeEditView control, ClientViewModel clientVM) : base(key, clientVM)
         {
             m_Control = control;
             Departements = new ObservableCollection<DepartmentModel>();
@@ -66,11 +66,16 @@ namespace MAV.Client.MVVM.ViewModel
         //Commands zum hinzufügen und Löschen von Mitarbeitern
         public RelayCommand SaveCommand { get; private set; }
         public RelayCommand DeleteCommand { get; private set; }
+        public RelayCommand CancelCommand { get; private set; }
 
         private void CreateCommands()
         {
             SaveCommand = new RelayCommand(Save);
             DeleteCommand = new RelayCommand(Delete);
+            CancelCommand = new RelayCommand((object o) => 
+            {
+                ClientVM.DirectoryViewCommand.Execute(null);
+            });
         }
 
         /// <summary>
@@ -101,6 +106,11 @@ namespace MAV.Client.MVVM.ViewModel
             {
                 DialogPopUp("Fehler", ex.Message);
             }
+
+            DialogPopUp("Erfolgreich geändert", $"Daten von {Employee.FirstName} {Employee.LastName} wurden geändert.");
+
+            //zur Adressliste zurückkehren
+            ClientVM.DirectoryViewCommand.Execute(null);
         }
 
         /// <summary>
@@ -128,6 +138,8 @@ namespace MAV.Client.MVVM.ViewModel
                     DialogPopUp("Fehler", ex.Message);
                 }
             }
+
+            DialogPopUp("Erfolgreich gelöscht", $"Daten von {Employee.FirstName} {Employee.LastName} wurden gelöscht.");
         }
 
         #endregion
@@ -169,25 +181,6 @@ namespace MAV.Client.MVVM.ViewModel
                 if (newDep.Name == Employee.Department)
                     SelectedDepartement = newDep;
             }
-        }
-
-        #endregion
-
-        #region Dialog
-
-        /// <summary>
-        /// Beim Aufrufen erscheint ein Fenster
-        /// </summary>
-        /// <param name="title">Title des Fensters</param>
-        /// <param name="firstLine">Erste Zeile des Fensters</param>
-        /// <param name="secondLine">Zweite Zeile des Fensters</param>
-        private void DialogPopUp(string title, string firstLine, string secondLine = "")
-        {
-            Dialog dialog = new Dialog();
-            dialog.Title = title;
-            dialog.FirstLineContent = firstLine;
-            dialog.SecondLineText = secondLine;
-            var result = dialog.ShowAsync();
         }
 
         #endregion

@@ -20,17 +20,10 @@ namespace MAV.Client.MVVM.View
     /// </summary>
     public partial class EmployeeEditView : UserControl
     {
-        public EmployeeEditView(object key)
+        public EmployeeEditView(object key, ClientViewModel clientVM)
         {
-            this.DataContext = new EmployeeEditViewModel(int.Parse(key.ToString()), this);
+            this.DataContext = new EmployeeEditViewModel(int.Parse(key.ToString()), this, clientVM);
             InitializeComponent();
         }
-
-        private void OnCancelButton(object sender, RoutedEventArgs e)
-        {
-            //ToDo
-        }
-
-
     }
 }
