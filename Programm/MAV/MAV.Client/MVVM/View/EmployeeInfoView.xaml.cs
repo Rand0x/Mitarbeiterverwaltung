@@ -10,9 +10,9 @@ namespace MAV.Client.MVVM.View
     /// </summary>
     public partial class EmployeeInfoView : UserControl
     {
-        public EmployeeInfoView(object key, UserModel user)
+        public EmployeeInfoView(object key, UserModel user, ClientViewModel clientVM)
         {
-            this.DataContext = new EmployeeInfoViewModel(int.Parse(key.ToString()));
+            this.DataContext = new EmployeeInfoViewModel(int.Parse(key.ToString()), clientVM);
             InitializeComponent();
 
             if (user.Right > 2)
@@ -21,12 +21,6 @@ namespace MAV.Client.MVVM.View
                 sensibleData1.Visibility = Visibility.Hidden;
                 sensibleData2.Visibility = Visibility.Hidden;
             }                
-        }
-
-        private void OnEdit_Click(object sender, RoutedEventArgs e)
-        {
-        //    var viewModel = (ViewModel.ClientViewModel)DataContext;
-        //    viewModel.EmployeeEditViewCommand.Execute(null);
         }
     }
 }

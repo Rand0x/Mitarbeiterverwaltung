@@ -29,13 +29,43 @@ namespace MAV.Client.MVVM.ViewModel
             }
         }
 
+        private ClientViewModel m_ClientVM;
+        public ClientViewModel ClientVM
+        {
+            get { return m_ClientVM; }
+            set
+            {
+                if (value != m_ClientVM)
+                {
+                    m_ClientVM = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         #endregion
 
         #region Constructor
 
-        public EmployeeInfoViewModel(int key)
+        public EmployeeInfoViewModel(int key, ClientViewModel clientVM)
         {
+            ClientVM = clientVM;
             LoadEmployeeData(key);
+            CreateCommands();
+        }
+
+        #endregion
+
+        #region Commands
+
+        public RelayCommand EditCommand { get; private set; }
+
+        private void CreateCommands()
+        {
+            EditCommand = new RelayCommand((object o) => 
+            {
+                ClientVM.EmployeeEditViewCommand.Execute(Employee.Key);
+            });
         }
 
         #endregion
@@ -90,7 +120,7 @@ namespace MAV.Client.MVVM.ViewModel
         /// <param name="title">Title des Fensters</param>
         /// <param name="firstLine">Erste Zeile des Fensters</param>
         /// <param name="secondLine">Zweite Zeile des Fensters</param>
-        private void DialogPopUp(string title, string firstLine, string secondLine = "")
+        protected void DialogPopUp(string title, string firstLine, string secondLine = "")
         {
             Dialog dialog = new Dialog();
             dialog.Title = title;

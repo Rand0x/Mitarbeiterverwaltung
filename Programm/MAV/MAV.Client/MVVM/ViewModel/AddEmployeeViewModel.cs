@@ -62,8 +62,6 @@ namespace MAV.Client.MVVM.ViewModel
 
         #endregion
 
-
-
         #region Constructor
 
         public AddEmployeeViewModel(AddEmployeeView control, UserModel user) : base(user)
@@ -141,13 +139,13 @@ namespace MAV.Client.MVVM.ViewModel
                 catch (Exception ex)
                 {
                     DialogPopUp("Fehler", ex.Message);
-                    //ClearBoxes();
+                    ClearBoxes();
                     return;
                 }
 
                 DialogPopUp("Erfolgreich hinzugefügt", "Es wurde ein neuer Mitarbeiter angelegt", 
                     $"{Control.FirstName.Text} {Control.LastName.Text} mit Mitarbeiternummer {persNr}");
-                //ClearBoxes();
+                ClearBoxes();
             }
 
         }
@@ -220,6 +218,14 @@ namespace MAV.Client.MVVM.ViewModel
             dialog.FirstLineContent = firstLine;
             dialog.SecondLineText = secondLine;
             var result = dialog.ShowAsync();
+        }
+
+        private void ClearBoxes()
+        {
+            Control.FirstName.Text = null;
+            Control.LastName.Text = null;
+            Control.cbxSex.SelectedItem = null;
+            Control.dpBirthday.SelectedDate = null;
         }
 
         #endregion
