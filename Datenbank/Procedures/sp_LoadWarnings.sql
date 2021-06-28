@@ -8,8 +8,8 @@ GO
 
 
 alter proc [dbo].[sp_LoadWarnings]
-    @nEmployeeLink      int                 null,
-    @dtIssueDate        datetime            null,
+    @nEmployeeLink      int,
+    @dtIssueDate        datetime            = null,
     @szError            nvarchar(500)       = N''         output,
     @bDebug             int                 = 0
 as begin

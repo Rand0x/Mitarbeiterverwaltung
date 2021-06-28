@@ -8,8 +8,8 @@ GO
 
 
 alter proc [dbo].[sp_LoadBonusPayments]
-    @nEmployeeLink      int                 null,
-    @dtDateOfPayment    datetime            null,
+    @nEmployeeLink      int,
+    @dtDateOfPayment    datetime            = null,
     @szError            nvarchar(500)       = N''         output,
     @bDebug             int                 = 0
 as begin
