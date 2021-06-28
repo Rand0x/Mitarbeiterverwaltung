@@ -57,7 +57,7 @@
                     <TextBlock Text="Tätigkeit" Foreground="#5B5B5B" FontSize="16"/>
                     <TextBlock Text="{Binding Employee.Job}" Margin ="0,0,0,10" FontSize="16"/>
                     <TextBlock Text="Abteilung" Foreground="#5B5B5B" FontSize="16"/>
-                    <TextBlock Text="{Binding Employee.Department}" Margin ="0,0,0,10" FontSize="16"/>                    
+                    <TextBlock Text="{Binding Employee.Department}" Margin ="0,0,0,10" FontSize="16"/>
                     <TextBlock Text="Vorgesetzter" Foreground="#5B5B5B" FontSize="16"/>
                     <TextBlock Text="{Binding Employee.Manager}" Margin ="0,0,0,10" FontSize="16"/>
                 </StackPanel>
@@ -87,12 +87,26 @@
                             <TextBlock Text="Anschrift" Margin ="0,0,0,10" FontSize="20" FontWeight="Bold"/>
                         </Expander.Header>
                         <StackPanel>
-                            <TextBlock Text="Straße + Hausnummer" Foreground="#5B5B5B" FontSize="16"/>
-                            <TextBlock Text="{Binding Employee.Street}" Margin ="0,0,0,10" FontSize="16"/>
-                            <TextBlock Text="PLZ" Foreground="#5B5B5B" FontSize="16"/>
-                            <TextBlock Text="{Binding Employee.PLZ}" Margin ="0,0,0,10" FontSize="16"/>
-                            <TextBlock Text="Ort" Foreground="#5B5B5B" FontSize="16"/>
-                            <TextBlock Text="{Binding Employee.City}" Margin ="0,0,0,10" FontSize="16"/>
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel Orientation="Vertical" Width="Auto">
+                                    <TextBlock Text="Straße" Foreground="#5B5B5B" FontSize="16"/>
+                                    <TextBlock Text="{Binding Employee.Street}" Margin ="0,0,0,10" FontSize="16"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Text="Hausnummer" Margin ="20,0,0,0" Foreground="#5B5B5B" FontSize="16"/>
+                                    <TextBlock Text="{Binding Employee.HouseNumber}" Margin ="20,0,0,10" FontSize="16"/>
+                                </StackPanel>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel Orientation="Vertical"  Width="Auto">
+                                    <TextBlock Text="PLZ" Foreground="#5B5B5B" FontSize="16"/>
+                                    <TextBlock Text="{Binding Employee.PLZ}" Margin ="0,0,0,10" FontSize="16"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Text="Ort" Margin ="20,0,0,0" Foreground="#5B5B5B" FontSize="16"/>
+                                    <TextBlock Text="{Binding Employee.City}" Margin ="20,0,0,10" FontSize="16"/>
+                                </StackPanel>
+                            </StackPanel>
                         </StackPanel>
                     </Expander>
                     <Expander ExpandDirection="Down" IsExpanded="False" VerticalAlignment="Top">
@@ -130,36 +144,51 @@
                             <TextBlock Text="Steuerklasse" Foreground="#5B5B5B" FontSize="16"/>
                             <TextBlock Text="{Binding Employee.TaxClass}" Margin ="0,0,0,10" FontSize="16"/>
                         </StackPanel>
-                    </Expander>                    
+                    </Expander>
                     <Expander ExpandDirection="Down" IsExpanded="False" VerticalAlignment="Top">
                         <Expander.Header>
                             <TextBlock Text="Bonuszahlungen" Margin ="0,0,0,10" FontSize="20" FontWeight="Bold"/>
                         </Expander.Header>
-                        <StackPanel>
-                            <TextBlock Text="Grund der Bonuszahlung" Foreground="#5B5B5B" FontSize="16"/>
-                            <TextBlock Text="Mitarbeiter des Monats" Margin ="0,0,0,10" FontSize="16"/>
-                            <TextBlock Text="Höhe der Zahlung" Foreground="#5B5B5B" FontSize="16"/>
-                            <TextBlock Text="200€" Margin ="0,0,0,10" FontSize="16"/>
-                            <TextBlock Text="Zahlungsdatum" Foreground="#5B5B5B" FontSize="16"/>
-                            <TextBlock Text="17.06.2021" Margin ="0,0,0,10" FontSize="16"/>
-                            <TextBlock Text="Kommentar" Foreground="#5B5B5B" FontSize="16"/>
-                            <TextBlock Text="Test" Margin ="0,0,0,10" FontSize="16"/>
-                        </StackPanel>
+                        <ListView ItemsSource="{Binding Employee.BonusPaymentList}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Background="Transparent">
+                                        <TextBlock Text="Grund der Bonuszahlung" Foreground="#5B5B5B" FontSize="16"/>
+                                        <TextBlock Text="{Binding Reason}" Margin ="0,0,0,10" FontSize="16"/>
+                                        <TextBlock Text="Höhe der Zahlung" Foreground="#5B5B5B" FontSize="16"/>
+                                        <StackPanel Orientation="Horizontal" Margin ="0,0,0,10">
+                                            <TextBlock Text="{Binding Amount}" FontSize="16"/>
+                                            <TextBlock Text=" €" FontSize="16"/>
+                                        </StackPanel>
+                                        <TextBlock Text="Zahlungsdatum" Foreground="#5B5B5B" FontSize="16"/>
+                                        <TextBlock Text="{Binding DateOfPayment}" Margin ="0,0,0,10" FontSize="16"/>
+                                        <TextBlock Text="Kommentar" Foreground="#5B5B5B" FontSize="16"/>
+                                        <TextBlock Text="{Binding Comment}" Margin ="0,0,0,10" FontSize="16"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
                     </Expander>
                     <Expander ExpandDirection="Down" IsExpanded="False" VerticalAlignment="Top">
                         <Expander.Header>
                             <TextBlock Text="Abmahnungen" Margin ="0,0,0,10" FontSize="20" FontWeight="Bold"/>
                         </Expander.Header>
-                        <StackPanel>
-                            <TextBlock Text="Grund der Abmahnung" Foreground="#5B5B5B" FontSize="16"/>
-                            <TextBlock Text="Schlafen am Arbeitsplatz" Margin ="0,0,0,10" FontSize="16"/>
-                            <TextBlock Text="Zahlungsdatum" Foreground="#5B5B5B" FontSize="16"/>
-                            <TextBlock Text="17.06.2021" Margin ="0,0,0,10" FontSize="16"/>
-                            <TextBlock Text="Kommentar" Foreground="#5B5B5B" FontSize="16"/>
-                            <TextBlock Text="Test" Margin ="0,0,0,10" FontSize="16"/>
-                        </StackPanel>
+                        <ListView ItemsSource="{Binding Employee.WarningsList}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Background="Transparent">
+                                        <TextBlock Text="Grund der Abmahnung" Foreground="#5B5B5B" FontSize="16"/>
+                                        <TextBlock Text="{Binding Reason}" Margin ="0,0,0,10" FontSize="16"/>
+                                        <TextBlock Text="Zahlungsdatum" Foreground="#5B5B5B" FontSize="16"/>
+                                        <TextBlock Text="{Binding IssueDate}" Margin ="0,0,0,10" FontSize="16"/>
+                                        <TextBlock Text="Kommentar" Foreground="#5B5B5B" FontSize="16"/>
+                                        <TextBlock Text="{Binding Comment}" Margin ="0,0,0,30" FontSize="16" TextWrapping="Wrap"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
                     </Expander>
-                </StackPanel>                
+                </StackPanel>
             </Grid>
         </ScrollViewer>
     </Grid>
