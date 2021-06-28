@@ -47,9 +47,8 @@
                     <TextBlock Text="{Binding Employee.EmplyeeNmb}" Margin ="0,0,0,10" FontSize="16"/>
                     <TextBlock Text="Telefon (geschäftlich)" Foreground="#5B5B5B" FontSize="16"/>
                     <TextBlock Text="{Binding Employee.LandlineNbr}" Margin ="0,0,0,10" FontSize="16"/>
-                    <TextBlock Text="Mobil (geschäftlich)" Foreground="#5B5B5B" FontSize="16"/>
-                    <TextBlock Text="{Binding Employee.MobileNbr}" Margin ="0,0,0,10" FontSize="16"/>
-                    <!--ToDo Funktioniert noch nicht!-->
+                    <!--<TextBlock Text="Mobil (geschäftlich)" Foreground="#5B5B5B" FontSize="16"/>
+                    <TextBlock Text="{Binding Employee.MobileNbr}" Margin ="0,0,0,10" FontSize="16"/>-->
                     <TextBlock Text="E-Mail" Foreground="#5B5B5B" FontSize="16"/>
                     <TextBlock Text="{Binding Employee.EMail}" Margin ="0,0,0,10" FontSize="16"/>
                 </StackPanel>
@@ -71,18 +70,14 @@
                         <StackPanel Grid.Row="1" Grid.RowSpan="1">
                             <TextBlock Text="Personalnummer" Foreground="#5B5B5B" FontSize="16"/>
                             <TextBlock Text="{Binding Employee.EmplyeeNmb}" Margin ="0,0,0,10" FontSize="16"/>
-                            <TextBlock Text="Mobil (privat)" Foreground="#5B5B5B" FontSize="16"/>
-                            <TextBlock Text="{Binding UserSelected.MobileNbrPrivate}" Margin ="0,0,0,10" FontSize="16"/>
-                            <TextBlock Text="Mobil (privat)" Foreground="#5B5B5B" FontSize="16"/>
-                            <TextBlock Text="{Binding Employee.MobileNbrPrivate}" Margin ="0,0,0,10" FontSize="16"/>
-                            <!--ToDo Funktioniert noch nicht!-->
+                            <!--<TextBlock Text="Mobil (privat)" Foreground="#5B5B5B" FontSize="16"/>
+                            <TextBlock Text="{Binding Employee.MobileNbrPrivate}" Margin ="0,0,0,10" FontSize="16"/>-->
                             <TextBlock Text="Telefon (privat)" Foreground="#5B5B5B" FontSize="16"/>
-                            <TextBlock Text="{Binding Employee.LandlineNbrPrivate}" Margin ="0,0,0,10" FontSize="16"/>
+                            <TextBlock Text="{Binding Employee.LandlineNmbPrivate}" Margin ="0,0,0,10" FontSize="16"/>
                             <TextBlock Text="Geburtstag" Foreground="#5B5B5B" FontSize="16"/>
                             <TextBlock Text="{Binding Employee.Birthday}" Margin ="0,0,0,10" FontSize="16"/>
-                            <TextBlock Text="Familienstand" Foreground="#5B5B5B" FontSize="16"/>
-                            <TextBlock Text="{Binding Employee.MaritalDesc}" Margin ="0,0,0,10" FontSize="16"/>
-                            <!--ToDo Funktioniert noch nicht!-->
+                            <!--<TextBlock Text="Familienstand" Foreground="#5B5B5B" FontSize="16"/>
+                            <TextBlock Text="{Binding Employee.MaritalDesc}" Margin ="0,0,0,10" FontSize="16"/>-->
                             <TextBlock Text="Geschlecht" Foreground="#5B5B5B" FontSize="16"/>
                             <TextBlock Text="{Binding Employee.Sex}" Margin ="0,0,0,10" FontSize="16"/>
                         </StackPanel>
@@ -93,11 +88,11 @@
                         </Expander.Header>
                         <StackPanel>
                             <TextBlock Text="Straße + Hausnummer" Foreground="#5B5B5B" FontSize="16"/>
-                            <TextBlock Text="Draußnickstr. 1" Margin ="0,0,0,10" FontSize="16"/>
+                            <TextBlock Text="{Binding Employee.Street}" Margin ="0,0,0,10" FontSize="16"/>
                             <TextBlock Text="PLZ" Foreground="#5B5B5B" FontSize="16"/>
-                            <TextBlock Text="91052" Margin ="0,0,0,10" FontSize="16"/>
+                            <TextBlock Text="{Binding Employee.PLZ}" Margin ="0,0,0,10" FontSize="16"/>
                             <TextBlock Text="Ort" Foreground="#5B5B5B" FontSize="16"/>
-                            <TextBlock Text="Erlangen" Margin ="0,0,0,10" FontSize="16"/>
+                            <TextBlock Text="{Binding Employee.City}" Margin ="0,0,0,10" FontSize="16"/>
                         </StackPanel>
                     </Expander>
                     <Expander ExpandDirection="Down" IsExpanded="False" VerticalAlignment="Top">
@@ -106,11 +101,11 @@
                         </Expander.Header>
                         <StackPanel>
                             <TextBlock Text="IBAN" Foreground="#5B5B5B" FontSize="16"/>
-                            <TextBlock Text="DE02120300000000202051" Margin ="0,0,0,10" FontSize="16"/>
+                            <TextBlock Text="{Binding Employee.IBAN}" Margin ="0,0,0,10" FontSize="16"/>
                             <TextBlock Text="BIC" Foreground="#5B5B5B" FontSize="16"/>
-                            <TextBlock Text="BYLADEM1001" Margin ="0,0,0,10" FontSize="16"/>
+                            <TextBlock Text="{Binding Employee.BIC}" Margin ="0,0,0,10" FontSize="16"/>
                             <TextBlock Text="Bank" Foreground="#5B5B5B" FontSize="16"/>
-                            <TextBlock Text="DEUTSCHE KREDITBANK BERLIN" Margin ="0,0,0,10" FontSize="16"/>
+                            <TextBlock Text="{Binding Employee.BankName}" Margin ="0,0,0,10" FontSize="16"/>
                         </StackPanel>
                     </Expander>
                 </StackPanel>
@@ -123,17 +118,17 @@
                             <TextBlock Text="Eintrittsdatum" Foreground="#5B5B5B" FontSize="16"/>
                             <TextBlock Text="{Binding Employee.HireDate}" Margin ="0,0,0,10" FontSize="16"/>
                             <TextBlock Text="Kündigungsfrist" Foreground="#5B5B5B" FontSize="16"/>
-                            <TextBlock Text="3 Monate" Margin ="0,0,0,10" FontSize="16"/>
+                            <TextBlock Text="{Binding Employee.NoticePeriod}" Margin ="0,0,0,10" FontSize="16"/>
                             <TextBlock Text="Arbeitszeit (pro Woche)" Foreground="#5B5B5B" FontSize="16"/>
-                            <TextBlock Text="35h" Margin ="0,0,0,10" FontSize="16"/>
+                            <TextBlock Text="{Binding Employee.HoursPerWeek}" Margin ="0,0,0,10" FontSize="16"/>
                             <TextBlock Text="Überstunden" Foreground="#5B5B5B" FontSize="16"/>
-                            <TextBlock Text="12h" Margin ="0,0,0,10" FontSize="16"/>
-                            <TextBlock Text="Gehalt" Foreground="#5B5B5B" FontSize="16"/>
-                            <TextBlock Text="Era 5B" Margin ="0,0,0,10" FontSize="16"/>
-                            <TextBlock Text="Urlaubsanspruch" Foreground="#5B5B5B" FontSize="16"/>
-                            <TextBlock Text="30 Tage" Margin ="0,0,0,10" FontSize="16"/>
+                            <TextBlock Text="{Binding Employee.Overtime}" Margin ="0,0,0,10" FontSize="16"/>
+                            <TextBlock Text="Gehalt (€/Monat)" Foreground="#5B5B5B" FontSize="16"/>
+                            <TextBlock Text="{Binding Employee.Wage}" Margin ="0,0,0,10" FontSize="16"/>
+                            <TextBlock Text="Urlaubsanspruch (Tage/Jahr)" Foreground="#5B5B5B" FontSize="16"/>
+                            <TextBlock Text="{Binding Employee.HolidayPerYear}" Margin ="0,0,0,10" FontSize="16"/>
                             <TextBlock Text="Steuerklasse" Foreground="#5B5B5B" FontSize="16"/>
-                            <TextBlock Text="VI" Margin ="0,0,0,10" FontSize="16"/>
+                            <TextBlock Text="{Binding Employee.TaxClass}" Margin ="0,0,0,10" FontSize="16"/>
                         </StackPanel>
                     </Expander>                    
                     <Expander ExpandDirection="Down" IsExpanded="False" VerticalAlignment="Top">

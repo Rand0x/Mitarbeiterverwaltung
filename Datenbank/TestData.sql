@@ -364,7 +364,6 @@ set nAddressLink = case when nDepartementLink = 0 then 0
                         else 0 end
 from tblEmployee e
 
-
 insert into tblBanking (szBankName, szIBAN, szBIC)
 values (N'VR', N'DE5464665456', N'OBNSEKVBN48')
      , (N'Sparkasse', N'DE45641348543154',  N'OBNSEKVBN15')
