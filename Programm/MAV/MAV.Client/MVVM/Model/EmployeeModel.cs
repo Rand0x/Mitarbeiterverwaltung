@@ -11,7 +11,6 @@ namespace MAV.Client.MVVM.Model
     //Model Klasse um Benutzerdaten aus DB zu speichern
     public class EmployeeModel : PropertyChangedBase
     {
-
         private int key;      
         public int Key
         {
@@ -320,5 +319,26 @@ namespace MAV.Client.MVVM.Model
             }
         }
 
+        private List<WarningModel> warningsList = new List<WarningModel>();
+        public List<WarningModel> WarningsList
+        {
+            get { return warningsList; }
+            set
+            {
+                warningsList = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private List<BonusPaymentModel> bonusPaymentList = new List<BonusPaymentModel>();
+        public List<BonusPaymentModel> BonusPaymentList
+        {
+            get { return bonusPaymentList; }
+            set
+            {
+                bonusPaymentList = value;
+                OnPropertyChanged();
+            }
+        }
     }
 }
