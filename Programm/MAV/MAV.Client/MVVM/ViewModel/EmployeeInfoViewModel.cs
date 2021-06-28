@@ -109,7 +109,20 @@ namespace MAV.Client.MVVM.ViewModel
                     Manager = row["szManager"].ToString(),
                     LandlineNmbPrivate = row["szPrivateTelephone"].ToString(),
                     Birthday = DateTime.Parse(row["dtBirthdate"].ToString()),
-                    Sex = row["szSex"].ToString()
+                    Sex = row["szSex"].ToString(),
+                    Street = row["szStreet"].ToString() + " " + row["szHouseNumber"].ToString(),
+                    PLZ = row["szPLZ"].ToString(),
+                    City = row["szCity"].ToString(),
+                    IBAN = row["szIBAN"].ToString(),
+                    BIC = row["szBIC"].ToString(),
+                    BankName = row["szBankName"].ToString(),
+                    NoticePeriod = (int)row["nNoticePeriod"],
+                    HoursPerWeek = (int)row["nHoursPerWeek"],
+                    Overtime = double.Parse(row["rOvertime"].ToString()),
+                    Wage = double.Parse(row["rWage"].ToString()),
+                    HolidayPerYear = (int)row["nHolidyPerYear"],
+                    TaxClass = (int)row["nTaxClass"],
+
                 };
             }
         }
