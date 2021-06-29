@@ -12,6 +12,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ModernWpf.Controls;
 using MAV.Client.MVVM.ViewModel;
+using System.Windows.Markup;
 
 namespace MAV.Client.MVVM.View
 {
@@ -22,6 +23,7 @@ namespace MAV.Client.MVVM.View
     {
         public EmployeeEditView(object key, ClientViewModel clientVM)
         {
+            this.Language = XmlLanguage.GetLanguage("de-DE");
             this.DataContext = new EmployeeEditViewModel(int.Parse(key.ToString()), this, clientVM);
             InitializeComponent();
             cbxSex.ItemsSource = Enum.GetValues(typeof(Sex));
