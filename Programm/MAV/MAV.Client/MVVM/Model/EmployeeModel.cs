@@ -11,7 +11,6 @@ namespace MAV.Client.MVVM.Model
     //Model Klasse um Benutzerdaten aus DB zu speichern
     public class EmployeeModel : PropertyChangedBase
     {
-
         private int key;      
         public int Key
         {
@@ -65,6 +64,33 @@ namespace MAV.Client.MVVM.Model
                 birthday = value;
                 OnPropertyChanged();
             }
+        }        
+
+        public string BirthDayAsString
+        {
+            get 
+            {                  
+                return ($"{Birthday.Day.ToString("D2")}.{Birthday.Month.ToString("D2")}.{Birthday.Year}"); 
+            }
+        }
+
+        private DateTime hiredate;
+        public DateTime HireDate
+        {
+            get { return hiredate; }
+            set
+            {
+                hiredate = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string HireDateAsString
+        {
+            get
+            {
+                return ($"{HireDate.Day.ToString("D2")}.{HireDate.Month.ToString("D2")}.{HireDate.Year}");
+            }
         }
 
         private string sex;
@@ -109,18 +135,7 @@ namespace MAV.Client.MVVM.Model
                 job = value;
                 OnPropertyChanged();
             }
-        }
-
-        private DateTime hiredate;
-        public DateTime HireDate
-        {
-            get { return hiredate; }
-            set
-            {
-                hiredate = value;
-                OnPropertyChanged();
-            }
-        }
+        }        
 
         private int hoursperweek;
         public int HoursPerWeek
@@ -320,5 +335,26 @@ namespace MAV.Client.MVVM.Model
             }
         }
 
+        private List<WarningModel> warningsList = new List<WarningModel>();
+        public List<WarningModel> WarningsList
+        {
+            get { return warningsList; }
+            set
+            {
+                warningsList = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private List<BonusPaymentModel> bonusPaymentList = new List<BonusPaymentModel>();
+        public List<BonusPaymentModel> BonusPaymentList
+        {
+            get { return bonusPaymentList; }
+            set
+            {
+                bonusPaymentList = value;
+                OnPropertyChanged();
+            }
+        }
     }
 }

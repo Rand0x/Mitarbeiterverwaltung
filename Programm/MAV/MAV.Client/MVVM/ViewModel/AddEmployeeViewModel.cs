@@ -177,7 +177,7 @@ namespace MAV.Client.MVVM.ViewModel
                 if (current > highestPersNr)
                     highestPersNr = current;
             }
-            generatedPersNr = highestPersNr++;
+            generatedPersNr = highestPersNr + 1;
         }
 
         /// <summary>

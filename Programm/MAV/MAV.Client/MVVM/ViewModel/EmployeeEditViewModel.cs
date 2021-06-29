@@ -140,6 +140,9 @@ namespace MAV.Client.MVVM.ViewModel
             }
 
             DialogPopUp("Erfolgreich gelöscht", $"Daten von {Employee.FirstName} {Employee.LastName} wurden gelöscht.");
+
+            //zur Adressliste zurückkehren
+            ClientVM.DirectoryViewCommand.Execute(null);
         }
 
         #endregion

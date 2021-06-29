@@ -7,30 +7,40 @@
              mc:Ignorable="d" 
              d:DesignHeight="700" d:DesignWidth="800">
 
-    <ScrollViewer HorizontalScrollBarVisibility="Auto">
-        <StackPanel>
-            <DockPanel LastChildFill="False">
-                <TextBlock Text="{Binding Employee.FirstName}" FontSize="45" FontWeight="Bold" Margin="20,20,10,20"/>
-                <TextBlock Text="{Binding Employee.LastName}" FontSize="45" FontWeight="Bold" Margin="10,20,5,20"/>
-                <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
-                    <Button Margin="15" Command="{Binding SaveCommand}"  Width="140" Style="{StaticResource AccentButtonStyle}">
-                        <Button.Content>
-                            <StackPanel Orientation="Horizontal">
-                                <Label Content="&#xE105;" Foreground="White" FontSize="18" FontFamily="Segoe MDL2 Assets" VerticalAlignment="Center" Margin="0,0,15,0"/>
-                                <Label Content="Speichern" Foreground="White" FontSize="18" VerticalAlignment="Center"/>
-                            </StackPanel>
-                        </Button.Content>
-                    </Button>
-                    <Button Margin="15" Command="{Binding CancelCommand}" Width="140">
-                        <Button.Content>
-                            <StackPanel Orientation="Horizontal">
-                                <Label Content="&#xE106;" FontSize="18" FontFamily="Segoe MDL2 Assets" VerticalAlignment="Center" Margin="0,0,15,0"/>
-                                <Label Content="Abbrechen" FontSize="18" VerticalAlignment="Center"/>
-                            </StackPanel>
-                        </Button.Content>
-                    </Button>
-                </StackPanel>
-            </DockPanel>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <DockPanel LastChildFill="False">
+            <TextBlock Text="{Binding Employee.FirstName}" FontSize="45" FontWeight="Bold" Margin="20,20,10,20"/>
+            <TextBlock Text="{Binding Employee.LastName}" FontSize="45" FontWeight="Bold" Margin="10,20,5,20"/>
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
+                <Button Margin="15" Command="{Binding SaveCommand}"  Width="140" Style="{StaticResource AccentButtonStyle}">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="&#xE105;" Foreground="White" FontSize="18" FontFamily="Segoe MDL2 Assets" VerticalAlignment="Center" Margin="0,0,15,0"/>
+                            <Label Content="Speichern" Foreground="White" FontSize="18" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+                <Button Margin="15" Command="{Binding CancelCommand}" Width="140">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="&#xE106;" FontSize="18" FontFamily="Segoe MDL2 Assets" VerticalAlignment="Center" Margin="0,0,15,0"/>
+                            <Label Content="Abbrechen" FontSize="18" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+            </StackPanel>
+        </DockPanel>
+
+        <ScrollViewer Grid.Row="1">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
@@ -39,18 +49,23 @@
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
+                    <RowDefinition Height="50"/>
                 </Grid.RowDefinitions>
                 <StackPanel>
                     <TextBlock Text="Kontakt" Margin ="0,0,0,10" FontSize="20" FontWeight="Bold"/>
-                    <!--<TextBlock Text="Mobil (geschäftlich)" Foreground="#5B5B5B" FontSize="16"/>
-                    <TextBox Text="{Binding Employee.MobileNbr}" Margin ="0,0,10,10" FontSize="16"/>-->
+                    <TextBlock Text="Mitarbeiternummer" Foreground="#5B5B5B" FontSize="16"/>
+                    <TextBox Text="{Binding Employee.EmplyeeNmb}" Margin ="0,0,10,10" FontSize="16"/>                    
                     <TextBlock Text="Telefon (geschäftlich)" Foreground="#5B5B5B" FontSize="16"/>
                     <TextBox Text="{Binding Employee.LandlineNbr}" Margin ="0,0,10,10" FontSize="16"/>
+                    <!--<TextBlock Text="Mobil (geschäftlich)" Foreground="#5B5B5B" FontSize="16"/>
+                    <TextBox Text="{Binding Employee.MobileNbr}" Margin ="0,0,10,10" FontSize="16"/>-->
                     <TextBlock Text="E-Mail" Foreground="#5B5B5B" FontSize="16"/>
                     <TextBox Text="{Binding Employee.EMail}" Margin ="0,0,10,10" FontSize="16"/>
                 </StackPanel>
-                <StackPanel Grid.Row="1">
+                <StackPanel Grid.Column="1">
                     <TextBlock Text="Geschäftsbeziehungen" Margin ="0,0,0,10" FontSize="20" FontWeight="Bold"/>
+                    <TextBlock Text="Tätigkeit" Foreground="#5B5B5B" FontSize="16"/>
+                    <TextBox Text="{Binding Employee.Job}" Margin ="0,0,10,10" FontSize="16"/>
                     <TextBlock Text="Abteilung" Foreground="#5B5B5B" FontSize="16"/>
                     <ComboBox x:Name="cmbDepartments" SelectedItem="{Binding SelectedDepartement}" 
                               Margin ="0,0,10,10" FontSize="16" HorizontalAlignment="Stretch"
@@ -61,37 +76,146 @@
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>
-                    <TextBlock Text="Tätigkeit" Foreground="#5B5B5B" FontSize="16"/>
-                    <TextBox Text="{Binding Employee.Job}" Margin ="0,0,10,10" FontSize="16"/>
-                    <TextBlock Text="Mitarbeiter seit" Foreground="#5B5B5B" FontSize="16"/>
-                    <TextBox Text="{Binding Employee.HireDate}" Margin ="0,0,10,10" FontSize="16"/>
                     <TextBlock Text="Vorgesetzter" Foreground="#5B5B5B" FontSize="16"/>
                     <TextBox Text="{Binding Employee.Manager}" Margin ="0,0,10,10" FontSize="16" IsReadOnly="True"/>
                 </StackPanel>
-                <StackPanel Grid.Column="1" Grid.RowSpan="2">
-                    <TextBlock Text="Persönliche Informationen" Margin ="0,0,0,10" FontSize="20" FontWeight="Bold"/>
-                    <TextBlock Text="Personalnummer" Foreground="#5B5B5B" FontSize="16"/>
-                    <TextBox Text="{Binding Employee.EmplyeeNmb}" Margin ="0,0,10,10" FontSize="16"/>
-                    <!--<TextBlock Text="Mobil (privat)" Foreground="#5B5B5B" FontSize="16"/>
-                    <TextBox Text="{Binding Employee.MobileNbrPrivate}" Margin ="0,0,10,10" FontSize="16"/>-->
-                    <TextBlock Text="Telefon (privat)" Foreground="#5B5B5B" FontSize="16"/>
-                    <TextBox Text="{Binding Employee.LandlineNbrPrivate}" Margin ="0,0,10,10" FontSize="16"/>
-                    <TextBlock Text="Geburtstag" Foreground="#5B5B5B" FontSize="16"/>
-                    <TextBox Text="{Binding Employee.Birthday}" Margin ="0,0,10,10" FontSize="16"/>
-                    <!--<TextBlock Text="Familienstand" Foreground="#5B5B5B" FontSize="16"/>
-                    <TextBox Text="{Binding Employee.MaritalDesc}" Margin ="0,0,10,10" FontSize="16"/>-->
-                    <TextBlock Text="Geschlecht" Foreground="#5B5B5B" FontSize="16"/>
-                    <TextBox Text="{Binding Employee.Sex}" Margin ="0,0,10,10" FontSize="16"/>
+                <StackPanel Grid.Row="1" Grid.Column="0">
+                    <Expander ExpandDirection="Down" IsExpanded="False" VerticalAlignment="Top">
+                        <Expander.Header>
+                            <TextBlock Text="Persönliche Informationen" Margin ="0,0,0,10" FontSize="20" FontWeight="Bold"/>
+                        </Expander.Header>
+                        <StackPanel>                            
+                            <!--<TextBlock Text="Mobil (privat)" Foreground="#5B5B5B" FontSize="16"/>
+                            <TextBox Text="{Binding Employee.MobileNbrPrivate}" Margin ="0,0,10,10" FontSize="16"/>-->
+                            <TextBlock Text="Telefon (privat)" Foreground="#5B5B5B" FontSize="16"/>
+                            <TextBox Text="{Binding Employee.LandlineNbrPrivate}" Margin ="0,0,10,10" FontSize="16"/>
+                            <TextBlock Text="Geburtstag" Foreground="#5B5B5B" FontSize="16"/>
+                            <DatePicker Text="{Binding Employee.Birthday}" Margin ="0,0,10,10" FontSize="16"/>
+                            <!--<TextBlock Text="Familienstand" Foreground="#5B5B5B" FontSize="16"/>
+                            <TextBox Text="{Binding Employee.MaritalDesc}" Margin ="0,0,10,10" FontSize="16"/>-->
+                            <TextBlock Text="Geschlecht" Foreground="#5B5B5B" FontSize="16"/>
+                            <ComboBox x:Name="cbxSex" Text="{Binding Employee.Sex}" Margin ="0,0,10,10" FontSize="16"/>
+                            <TextBox Text="{Binding Employee.Sex}" Margin ="0,0,10,10" FontSize="16"/>
+                        </StackPanel>
+                    </Expander>
+                    <Expander ExpandDirection="Down" IsExpanded="False" VerticalAlignment="Top">
+                        <Expander.Header>
+                            <TextBlock Text="Anschrift" Margin ="0,0,0,10" FontSize="20" FontWeight="Bold"/>
+                        </Expander.Header>
+                        <StackPanel>
+                            <DockPanel>
+                                <StackPanel Orientation="Vertical" DockPanel.Dock="Right" Width="110">
+                                    <TextBlock Text="Hausnummer" Margin ="0,0,0,0" Foreground="#5B5B5B" FontSize="16"/>
+                                    <TextBox Text="{Binding Employee.HouseNumber}" Margin ="0,0,10,10" FontSize="16"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Vertical" Width="Auto">
+                                    <TextBlock Text="Straße" Foreground="#5B5B5B" FontSize="16"/>
+                                    <TextBox Text="{Binding Employee.Street}" Margin ="0,0,10,10" FontSize="16"/>
+                                </StackPanel>                                
+                            </DockPanel>                            
+                            <DockPanel>
+                                <StackPanel Orientation="Vertical"  Width="Auto">
+                                    <TextBlock Text="PLZ" Foreground="#5B5B5B" FontSize="16"/>
+                                    <TextBox Text="{Binding Employee.PLZ}" Margin ="0,0,10,10" FontSize="16"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Text="Ort" Margin ="20,0,0,0" Foreground="#5B5B5B" FontSize="16"/>
+                                    <TextBox Text="{Binding Employee.City}" Margin ="0,0,10,10" FontSize="16" HorizontalAlignment="Stretch"/>
+                                </StackPanel>
+                            </DockPanel>                            
+                        </StackPanel>
+                    </Expander>
+                    <Expander ExpandDirection="Down" IsExpanded="False" VerticalAlignment="Top">
+                        <Expander.Header>
+                            <TextBlock Text="Bankverbindung" Margin ="0,0,0,10" FontSize="20" FontWeight="Bold"/>
+                        </Expander.Header>
+                        <StackPanel>
+                            <TextBlock Text="IBAN" Foreground="#5B5B5B" FontSize="16"/>
+                            <TextBox Text="{Binding Employee.IBAN}" Margin ="0,0,10,10" FontSize="16"/>
+                            <TextBlock Text="BIC" Foreground="#5B5B5B" FontSize="16"/>
+                            <TextBox Text="{Binding Employee.BIC}" Margin ="0,0,10,10" FontSize="16"/>
+                            <TextBlock Text="Bank" Foreground="#5B5B5B" FontSize="16"/>
+                            <TextBox Text="{Binding Employee.BankName}" Margin ="0,0,10,10" FontSize="16"/>
+                        </StackPanel>
+                    </Expander>
                 </StackPanel>
+                
+                
+                <StackPanel Grid.Row="1" Grid.Column="1" x:Name="sensibleData2">
+                    <Expander ExpandDirection="Down" IsExpanded="False" VerticalAlignment="Top">
+                        <Expander.Header>
+                            <TextBlock Text="Betriebliche Daten" Margin ="0,0,0,10" FontSize="20" FontWeight="Bold"/>
+                        </Expander.Header>
+                        <StackPanel>
+                            <TextBlock Text="Eintrittsdatum" Foreground="#5B5B5B" FontSize="16"/>
+                            <DatePicker Text="{Binding Employee.HireDate}" Margin ="0,0,10,10" FontSize="16"/>
+                            <TextBlock Text="Kündigungsfrist" Foreground="#5B5B5B" FontSize="16"/>
+                            <TextBox Text="{Binding Employee.NoticePeriod}" Margin ="0,0,10,10" FontSize="16"/>
+                            <TextBlock Text="Arbeitszeit (pro Woche)" Foreground="#5B5B5B" FontSize="16"/>
+                            <TextBox Text="{Binding Employee.HoursPerWeek}" Margin ="0,0,10,10" FontSize="16"/>
+                            <TextBlock Text="Überstunden" Foreground="#5B5B5B" FontSize="16"/>
+                            <TextBox Text="{Binding Employee.Overtime}" Margin ="0,0,10,10" FontSize="16"/>
+                            <TextBlock Text="Gehalt (€/Monat)" Foreground="#5B5B5B" FontSize="16"/>
+                            <TextBox Text="{Binding Employee.Wage}" Margin ="0,0,10,10" FontSize="16"/>
+                            <TextBlock Text="Urlaubsanspruch (Tage/Jahr)" Foreground="#5B5B5B" FontSize="16"/>
+                            <TextBox Text="{Binding Employee.HolidayPerYear}" Margin ="0,0,10,10" FontSize="16"/>
+                            <TextBlock Text="Steuerklasse" Foreground="#5B5B5B" FontSize="16"/>
+                            <TextBox Text="{Binding Employee.TaxClass}" Margin ="0,0,10,10" FontSize="16"/>
+                        </StackPanel>
+                    </Expander>
+                    <Expander ExpandDirection="Down" IsExpanded="False" VerticalAlignment="Top">
+                        <Expander.Header>
+                            <TextBlock Text="Bonuszahlungen" Margin ="0,0,0,10" FontSize="20" FontWeight="Bold"/>
+                        </Expander.Header>
+                        <ListView ItemsSource="{Binding Employee.BonusPaymentList}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Background="Transparent">
+                                        <TextBlock Text="Grund der Bonuszahlung" Foreground="#5B5B5B" FontSize="16"/>
+                                        <TextBlock Text="{Binding Reason}" Margin ="0,0,0,10" FontSize="16"/>
+                                        <TextBlock Text="Höhe der Zahlung" Foreground="#5B5B5B" FontSize="16"/>
+                                        <StackPanel Orientation="Horizontal" Margin ="0,0,0,10">
+                                            <TextBlock Text="{Binding Amount}" FontSize="16"/>
+                                            <TextBlock Text=" €" FontSize="16"/>
+                                        </StackPanel>
+                                        <TextBlock Text="Zahlungsdatum" Foreground="#5B5B5B" FontSize="16"/>
+                                        <TextBlock Text="{Binding DateOfPaymentAsString}" Margin ="0,0,0,10" FontSize="16"/>
+                                        <TextBlock Text="Kommentar" Foreground="#5B5B5B" FontSize="16"/>
+                                        <TextBlock Text="{Binding Comment}" Margin ="0,0,0,10" FontSize="16"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </Expander>
+                    <Expander ExpandDirection="Down" IsExpanded="False" VerticalAlignment="Top">
+                        <Expander.Header>
+                            <TextBlock Text="Abmahnungen" Margin ="0,0,0,10" FontSize="20" FontWeight="Bold"/>
+                        </Expander.Header>
+                        <ListView ItemsSource="{Binding Employee.WarningsList}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Background="Transparent">
+                                        <TextBlock Text="Grund der Abmahnung" Foreground="#5B5B5B" FontSize="16"/>
+                                        <TextBlock Text="{Binding Reason}" Margin ="0,0,0,10" FontSize="16"/>
+                                        <TextBlock Text="Zahlungsdatum" Foreground="#5B5B5B" FontSize="16"/>
+                                        <TextBlock Text="{Binding IssueDateAsString}" Margin ="0,0,0,10" FontSize="16"/>
+                                        <TextBlock Text="Kommentar" Foreground="#5B5B5B" FontSize="16"/>
+                                        <TextBlock Text="{Binding Comment}" Margin ="0,0,0,30" FontSize="16" TextWrapping="Wrap"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </Expander>
+                </StackPanel>
+                <Button Margin="15,0,0,0" Command="{Binding DeleteCommand}" Width="240" Background="Red" Grid.Row="2">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="&#xE107;" FontSize="18" FontFamily="Segoe MDL2 Assets" Foreground="White" VerticalAlignment="Center" Margin="0,0,15,0"/>
+                            <Label Content="Mitarbeiter entfernen" FontSize="18" Foreground="White" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
             </Grid>
-            <Button Margin="15" Command="{Binding DeleteCommand}" Width="240" Background="Red">
-                <Button.Content>
-                    <StackPanel Orientation="Horizontal">
-                        <Label Content="&#xE107;" FontSize="18" FontFamily="Segoe MDL2 Assets" Foreground="White" VerticalAlignment="Center" Margin="0,0,15,0"/>
-                        <Label Content="Mitarbeiter entfernen" FontSize="18" Foreground="White" VerticalAlignment="Center"/>
-                    </StackPanel>
-                </Button.Content>
-            </Button>
-        </StackPanel>
-    </ScrollViewer>
+        </ScrollViewer>
+    </Grid>
 </UserControl>

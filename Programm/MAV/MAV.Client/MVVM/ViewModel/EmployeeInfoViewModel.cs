@@ -110,7 +110,8 @@ namespace MAV.Client.MVVM.ViewModel
                     LandlineNmbPrivate = row["szPrivateTelephone"].ToString(),
                     Birthday = DateTime.Parse(row["dtBirthdate"].ToString()),
                     Sex = row["szSex"].ToString(),
-                    Street = row["szStreet"].ToString() + " " + row["szHouseNumber"].ToString(),
+                    Street = row["szStreet"].ToString(),
+                    HouseNumber =  row["szHouseNumber"].ToString(),
                     PLZ = row["szPLZ"].ToString(),
                     City = row["szCity"].ToString(),
                     IBAN = row["szIBAN"].ToString(),
@@ -122,8 +123,87 @@ namespace MAV.Client.MVVM.ViewModel
                     Wage = double.Parse(row["rWage"].ToString()),
                     HolidayPerYear = (int)row["nHolidyPerYear"],
                     TaxClass = (int)row["nTaxClass"],
-
                 };
+            }
+            LoadWarnings(key);
+            LoadBonusPayments(key);
+
+
+            // Nur zu Testzwecken, da noch nichts in der Datenbank 
+            Employee.BonusPaymentList.Add(new BonusPaymentModel
+            {
+                Reason = "Mitarbeiter des Monats",
+                Amount = 199.99,
+                DateOfPayment = DateTime.Parse("12/20/2016 11:59:59 PM"),
+                Comment = "Das ist alles nur geklaut"
+            });
+
+            Employee.WarningsList.Add(new WarningModel
+            {
+                Reason = "Schlafen am Arbeitsplatz",
+                IssueDate = DateTime.Parse("12/31/1999 11:59:59 PM"),
+                Comment = "Test"
+            });            
+            Employee.WarningsList.Add(new WarningModel
+            {
+                Reason = "Nicht Erscheinen am Arbeitsplatz",
+                IssueDate = DateTime.Parse("12/31/1999 11:59:59 PM"),
+                Comment = "Kerwa Montag"
+            });
+        }
+
+        private void LoadWarnings(int key)
+        {
+            DataTable data;
+            var param = new ObservableCollection<SqlParameter>();
+            param.Add(new SqlParameter("@nEmployeeLink", key));
+
+            try
+            {
+                data = DBProvider.ExecProcedure("sp_LoadWarnings", param);
+            }
+            catch (Exception ex)
+            {
+                DialogPopUp("Fehler", ex.Message);
+                return;
+            }
+            // Abmahnungen laden
+            foreach (DataRow row in data.Rows)
+            {
+                Employee.WarningsList.Add(new WarningModel 
+                {
+                    Reason = row["szReason"].ToString(),
+                    IssueDate = DateTime.Parse(row["dtIssueDate"].ToString()),
+                    Comment = row["szComment"].ToString()                    
+                });                
+            }
+        }
+
+        private void LoadBonusPayments(int key)
+        {
+            DataTable data;
+            var param = new ObservableCollection<SqlParameter>();
+            param.Add(new SqlParameter("@nEmployeeLink", key));
+
+            try
+            {
+                data = DBProvider.ExecProcedure("sp_LoadBonusPayments", param);
+            }
+            catch (Exception ex)
+            {
+                DialogPopUp("Fehler", ex.Message);
+                return;
+            }
+            // Abmahnungen laden
+            foreach (DataRow row in data.Rows)
+            {
+                Employee.BonusPaymentList.Add(new BonusPaymentModel
+                {
+                    Reason = row["szReason"].ToString(),
+                    Amount = (double)row["rAmount"],
+                    DateOfPayment = DateTime.Parse(row["dtDateOfPayment"].ToString()),
+                    Comment = row["szComment"].ToString()
+                });
             }
         }
 
