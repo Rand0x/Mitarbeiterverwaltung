@@ -73,20 +73,6 @@ namespace MAV.Client.MVVM.ViewModel
             }
         }
 
-        private string m_SearchText;
-        public string SearchText
-        {
-            get { return m_SearchText; }
-            set
-            {
-                if (value != m_SearchText)
-                {
-                    m_SearchText = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
         private ClientViewModel m_ClientVM;
         //ViewModel des Clients
         public ClientViewModel ClientVM
@@ -117,8 +103,6 @@ namespace MAV.Client.MVVM.ViewModel
 
             Departements = new ObservableCollection<DepartmentModel>();
             LoadDepartements();
-
-            SearchText = null;
         }
 
         #endregion
@@ -178,8 +162,8 @@ namespace MAV.Client.MVVM.ViewModel
             DataTable data;
 
             //Filter falls vorhanden hinzufügen
-            if (SearchText != null)
-                param.Add(new SqlParameter("@szFirstName", SearchText));
+            if (p != null)
+                param.Add(new SqlParameter("@szFirstName", p.ToString()));
             if (SelectedDepartement != null && SelectedDepartement.Key != -1)
                 param.Add(new SqlParameter("@nDepartementLink", SelectedDepartement.Key));
 

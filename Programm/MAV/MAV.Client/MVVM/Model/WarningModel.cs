@@ -7,6 +7,17 @@ namespace MAV.Client.MVVM.Model
 {
     public class WarningModel : PropertyChangedBase
     {
+        private int key;
+        public int Key
+        {
+            get { return key; }
+            set
+            {
+                key = value;
+                OnPropertyChanged();
+            }
+        }
+
         private string reason;
         public string Reason
         {

@@ -1,28 +1,28 @@
 USE [dbMAV]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_AddBonusPayment]    Script Date: 09.06.2021 15:01:06 ******/
+/****** Object:  StoredProcedure [dbo].[sp_AlterBonusPayment]    Script Date: 09.06.2021 15:01:06 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 
 
-alter proc [dbo].[sp_AddBonusPayment]
-    @nEmployeeLink      int,
-    @szReason           nvarchar(200),
-    @rAmount            decimal(10,2),
-    @dtDateOfPayment    datetime,
+alter proc [dbo].[sp_AlterBonusPayment]
+    @nKey               int,
+    @szReason           nvarchar(200)       = null,
+    @rAmount            decimal(10,2)       = null,
+    @dtDateOfPayment    datetime            = null,
     @szComment          nvarchar(max)       = null,
     @szError            nvarchar(500)       = N''         output,
     @bDebug             int                 = 0
 as begin
 
 /********************************************************************************
-    Name: sp_AddBonusPayment
+    Name: sp_AlterBonusPayment
 
     Erstellt am: 18.05.2021
 
-    Inhalt: fügt Bonuszahlungen hinzu
+    Inhalt: bearbeitet eine Bonus Zahlung
 
     History:
         TK    erstellt
@@ -32,7 +32,7 @@ as begin
   begin
     print N'Übergebene Parameter:'
     print N'********************************************************'
-    print N'EmployeeLink: ' + CAST(@nEmployeeLink as nvarchar)
+    print N'Key: ' + CAST(@nKey as nvarchar)
     print N'Reason: ' + CAST(@szReason as nvarchar)
     print N'Amount: ' + CAST(@rAmount as nvarchar)
     print N'DateOfPayment: ' + CAST(@dtDateOfPayment as nvarchar)
@@ -40,12 +40,13 @@ as begin
     print N'********************************************************'
   end
 
-  insert into tblBonusPayment(nEmployeeLink, szReason, rAmount, dtDateOfPayment, szComment)
-  values(@nEmployeeLink
-       , @szReason     
-       , @rAmount     
-       , @dtDateOfPayment    
-       , @szComment)
-
+  update b
+  set szReason = ISNULL(@szReason, szReason)
+    , rAmount = ISNULL(@rAmount, rAmount)
+    , dtDateOfPayment = ISNULL(@dtDateOfPayment, dtDateOfPayment)
+    , szComment = ISNULL(@szComment, szComment)
+  from tblBonusPayment b
+  where nKey = @nKey
+ 
 end
 

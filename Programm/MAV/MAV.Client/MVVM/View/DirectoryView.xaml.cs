@@ -75,7 +75,7 @@ namespace MAV.Client.MVVM.View
 
         private void controlsSearchBox_QuerySubmitted(ModernWpf.Controls.AutoSuggestBox sender, ModernWpf.Controls.AutoSuggestBoxQuerySubmittedEventArgs args)
         {
-            ((DirectoryViewModel)this.DataContext).LoadAddressListCommand.Execute(null);
+            ((DirectoryViewModel)this.DataContext).LoadAddressListCommand.Execute(sender.Text);
         }
 
     }

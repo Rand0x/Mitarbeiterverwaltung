@@ -137,8 +137,8 @@ namespace MAV.Client.MVVM.Model
             }
         }        
 
-        private int hoursperweek;
-        public int HoursPerWeek
+        private int? hoursperweek;
+        public int? HoursPerWeek
         {
             get { return hoursperweek; }
             set
@@ -148,8 +148,8 @@ namespace MAV.Client.MVVM.Model
             }
         }
 
-        private double overtime;
-        public double Overtime
+        private double? overtime;
+        public double? Overtime
         {
             get { return overtime; }
             set
@@ -159,8 +159,8 @@ namespace MAV.Client.MVVM.Model
             }
         }
 
-        private double wage;
-        public double Wage
+        private double? wage;
+        public double? Wage
         {
             get { return wage; }
             set
@@ -170,8 +170,8 @@ namespace MAV.Client.MVVM.Model
             }
         }
 
-        private int holidayperyear;
-        public int HolidayPerYear
+        private int? holidayperyear;
+        public int? HolidayPerYear
         {
             get { return holidayperyear; }
             set
@@ -181,8 +181,8 @@ namespace MAV.Client.MVVM.Model
             }
         }
 
-        private int noticeperiod;
-        public int NoticePeriod
+        private int? noticeperiod;
+        public int? NoticePeriod
         {
             get { return noticeperiod; }
             set
@@ -192,8 +192,8 @@ namespace MAV.Client.MVVM.Model
             }
         }
 
-        private int taxclass;
-        public int TaxClass
+        private int? taxclass;
+        public int? TaxClass
         {
             get { return taxclass; }
             set
