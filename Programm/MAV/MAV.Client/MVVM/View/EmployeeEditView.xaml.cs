@@ -24,6 +24,7 @@ namespace MAV.Client.MVVM.View
         {
             this.DataContext = new EmployeeEditViewModel(int.Parse(key.ToString()), this, clientVM);
             InitializeComponent();
+            cbxSex.ItemsSource = Enum.GetValues(typeof(Sex));
         }
     }
 }

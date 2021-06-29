@@ -67,15 +67,13 @@
                         <Expander.Header>
                             <TextBlock Text="Persönliche Informationen" Margin ="0,0,0,10" FontSize="20" FontWeight="Bold"/>
                         </Expander.Header>
-                        <StackPanel Grid.Row="1" Grid.RowSpan="1">
-                            <TextBlock Text="Personalnummer" Foreground="#5B5B5B" FontSize="16"/>
-                            <TextBlock Text="{Binding Employee.EmplyeeNmb}" Margin ="0,0,0,10" FontSize="16"/>
+                        <StackPanel>
                             <!--<TextBlock Text="Mobil (privat)" Foreground="#5B5B5B" FontSize="16"/>
                             <TextBlock Text="{Binding Employee.MobileNbrPrivate}" Margin ="0,0,0,10" FontSize="16"/>-->
                             <TextBlock Text="Telefon (privat)" Foreground="#5B5B5B" FontSize="16"/>
                             <TextBlock Text="{Binding Employee.LandlineNmbPrivate}" Margin ="0,0,0,10" FontSize="16"/>
                             <TextBlock Text="Geburtstag" Foreground="#5B5B5B" FontSize="16"/>
-                            <TextBlock Text="{Binding Employee.Birthday}" Margin ="0,0,0,10" FontSize="16"/>
+                            <TextBlock Text="{Binding Employee.BirthDayAsString}" Margin ="0,0,0,10" FontSize="16"/>
                             <!--<TextBlock Text="Familienstand" Foreground="#5B5B5B" FontSize="16"/>
                             <TextBlock Text="{Binding Employee.MaritalDesc}" Margin ="0,0,0,10" FontSize="16"/>-->
                             <TextBlock Text="Geschlecht" Foreground="#5B5B5B" FontSize="16"/>
@@ -130,7 +128,7 @@
                         </Expander.Header>
                         <StackPanel>
                             <TextBlock Text="Eintrittsdatum" Foreground="#5B5B5B" FontSize="16"/>
-                            <TextBlock Text="{Binding Employee.HireDate}" Margin ="0,0,0,10" FontSize="16"/>
+                            <TextBlock Text="{Binding Employee.HireDateAsString}" Margin ="0,0,0,10" FontSize="16"/>
                             <TextBlock Text="Kündigungsfrist" Foreground="#5B5B5B" FontSize="16"/>
                             <TextBlock Text="{Binding Employee.NoticePeriod}" Margin ="0,0,0,10" FontSize="16"/>
                             <TextBlock Text="Arbeitszeit (pro Woche)" Foreground="#5B5B5B" FontSize="16"/>
@@ -161,7 +159,7 @@
                                             <TextBlock Text=" €" FontSize="16"/>
                                         </StackPanel>
                                         <TextBlock Text="Zahlungsdatum" Foreground="#5B5B5B" FontSize="16"/>
-                                        <TextBlock Text="{Binding DateOfPayment}" Margin ="0,0,0,10" FontSize="16"/>
+                                        <TextBlock Text="{Binding DateOfPaymentAsString}" Margin ="0,0,0,10" FontSize="16"/>
                                         <TextBlock Text="Kommentar" Foreground="#5B5B5B" FontSize="16"/>
                                         <TextBlock Text="{Binding Comment}" Margin ="0,0,0,10" FontSize="16"/>
                                     </StackPanel>
@@ -180,7 +178,7 @@
                                         <TextBlock Text="Grund der Abmahnung" Foreground="#5B5B5B" FontSize="16"/>
                                         <TextBlock Text="{Binding Reason}" Margin ="0,0,0,10" FontSize="16"/>
                                         <TextBlock Text="Zahlungsdatum" Foreground="#5B5B5B" FontSize="16"/>
-                                        <TextBlock Text="{Binding IssueDate}" Margin ="0,0,0,10" FontSize="16"/>
+                                        <TextBlock Text="{Binding IssueDateAsString}" Margin ="0,0,0,10" FontSize="16"/>
                                         <TextBlock Text="Kommentar" Foreground="#5B5B5B" FontSize="16"/>
                                         <TextBlock Text="{Binding Comment}" Margin ="0,0,0,30" FontSize="16" TextWrapping="Wrap"/>
                                     </StackPanel>
