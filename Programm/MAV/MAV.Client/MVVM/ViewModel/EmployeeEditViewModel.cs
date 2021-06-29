@@ -101,6 +101,9 @@ namespace MAV.Client.MVVM.ViewModel
             try
             {
                 DBProvider.ExecProcedure("sp_AlterEmployee", param);
+                //ToDo einfügen
+                //SaveWarnings();
+                //SaveBonusPayment();
             }
             catch (Exception ex)
             {
@@ -111,6 +114,55 @@ namespace MAV.Client.MVVM.ViewModel
 
             //zur Adressliste zurückkehren
             ClientVM.DirectoryViewCommand.Execute(null);
+        }
+
+        /// <summary>
+        /// speichert die geänderten Warnungen falls vorhanden
+        /// </summary>
+        private void SaveWarnings()
+        {
+            foreach (var warning in Employee.WarningsList)
+            {
+                var param = new ObservableCollection<SqlParameter>();
+                param.Add(new SqlParameter("@nKey", warning.Key));
+                param.Add(new SqlParameter("@szReason", warning.Reason));
+                param.Add(new SqlParameter("@dtIssueDate", warning.IssueDate));
+                param.Add(new SqlParameter("@szComment", warning.Comment));
+
+                try
+                {
+                    DBProvider.ExecProcedure("sp_AlterWarning", param);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+
+        /// <summary>
+        /// speichert die geänderten Bonuszahlungen falls vorhanden
+        /// </summary>
+        private void SaveBonusPayment()
+        {
+            foreach (var payment in Employee.BonusPaymentList)
+            {
+                var param = new ObservableCollection<SqlParameter>();
+                param.Add(new SqlParameter("@nKey", payment.Key));
+                param.Add(new SqlParameter("@szReason", payment.Reason));
+                param.Add(new SqlParameter("@rAmount", payment.Amount));
+                param.Add(new SqlParameter("@dtIssueDate", payment.DateOfPayment));
+                param.Add(new SqlParameter("@szComment", payment.Comment));
+
+                try
+                {
+                    DBProvider.ExecProcedure("sp_AlterWarning", param);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
         }
 
         /// <summary>

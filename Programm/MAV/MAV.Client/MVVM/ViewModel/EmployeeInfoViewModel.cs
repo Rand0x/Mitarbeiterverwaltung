@@ -117,12 +117,12 @@ namespace MAV.Client.MVVM.ViewModel
                     IBAN = row["szIBAN"].ToString(),
                     BIC = row["szBIC"].ToString(),
                     BankName = row["szBankName"].ToString(),
-                    NoticePeriod = (int)row["nNoticePeriod"],
-                    HoursPerWeek = (int)row["nHoursPerWeek"],
-                    Overtime = double.Parse(row["rOvertime"].ToString()),
-                    Wage = double.Parse(row["rWage"].ToString()),
-                    HolidayPerYear = (int)row["nHolidyPerYear"],
-                    TaxClass = (int)row["nTaxClass"],
+                    NoticePeriod = row["nNoticePeriod"] is DBNull ? null : (int?)row["nNoticePeriod"],
+                    HoursPerWeek = row["nHoursPerWeek"] is DBNull ? null : (int?)row["nHoursPerWeek"],
+                    Overtime = row["rOvertime"] is DBNull ? null : (double?)double.Parse(row["rOvertime"].ToString()),
+                    Wage = row["rWage"] is DBNull ? null : (double?)double.Parse(row["rWage"].ToString()),
+                    HolidayPerYear = row["nHolidyPerYear"] is DBNull ? null : (int?)row["nHolidyPerYear"],
+                    TaxClass = row["nTaxClass"] is DBNull ? null : (int?)row["nTaxClass"],
                 };
             }
             LoadWarnings(key);
@@ -134,20 +134,20 @@ namespace MAV.Client.MVVM.ViewModel
             {
                 Reason = "Mitarbeiter des Monats",
                 Amount = 199.99,
-                DateOfPayment = DateTime.Parse("12/20/2016 11:59:59 PM"),
+                DateOfPayment = DateTime.Now,
                 Comment = "Das ist alles nur geklaut"
             });
 
             Employee.WarningsList.Add(new WarningModel
             {
                 Reason = "Schlafen am Arbeitsplatz",
-                IssueDate = DateTime.Parse("12/31/1999 11:59:59 PM"),
+                IssueDate = DateTime.Now,
                 Comment = "Test"
             });            
             Employee.WarningsList.Add(new WarningModel
             {
                 Reason = "Nicht Erscheinen am Arbeitsplatz",
-                IssueDate = DateTime.Parse("12/31/1999 11:59:59 PM"),
+                IssueDate = DateTime.Now,
                 Comment = "Kerwa Montag"
             });
         }
@@ -168,10 +168,12 @@ namespace MAV.Client.MVVM.ViewModel
                 return;
             }
             // Abmahnungen laden
+            Employee.WarningsList = new List<WarningModel>();
             foreach (DataRow row in data.Rows)
             {
                 Employee.WarningsList.Add(new WarningModel 
                 {
+                    Key = (int)row["nKey"],
                     Reason = row["szReason"].ToString(),
                     IssueDate = DateTime.Parse(row["dtIssueDate"].ToString()),
                     Comment = row["szComment"].ToString()                    
@@ -195,10 +197,12 @@ namespace MAV.Client.MVVM.ViewModel
                 return;
             }
             // Abmahnungen laden
+            Employee.BonusPaymentList = new List<BonusPaymentModel>();
             foreach (DataRow row in data.Rows)
             {
                 Employee.BonusPaymentList.Add(new BonusPaymentModel
                 {
+                    Key = (int)row["nKey"],
                     Reason = row["szReason"].ToString(),
                     Amount = (double)row["rAmount"],
                     DateOfPayment = DateTime.Parse(row["dtDateOfPayment"].ToString()),
