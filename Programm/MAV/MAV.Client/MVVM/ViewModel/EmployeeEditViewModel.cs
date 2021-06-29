@@ -86,16 +86,23 @@ namespace MAV.Client.MVVM.ViewModel
         {
             //zusammenstellen der benötigten Parameter für Prozeduraufruf
             var param = new ObservableCollection<SqlParameter>();
-            param.Add(new SqlParameter("@nKey", Employee.Key));
+            param.Add(new SqlParameter("@nKey", Employee.Key));          
             param.Add(new SqlParameter("@nEmployeeNmb", Employee.EmplyeeNmb));
-            param.Add(new SqlParameter("@szTelephone", Employee.LandlineNbr));
-            param.Add(new SqlParameter("@szMail", Employee.EMail));
-            param.Add(new SqlParameter("@nDepartementLink", SelectedDepartement.Key));
-            param.Add(new SqlParameter("@szJobName", Employee.Job));
-            param.Add(new SqlParameter("@dtRecruitDate", Employee.HireDate));
+            if (Employee.LandlineNbr != null)
+                param.Add(new SqlParameter("@szTelephone", Employee.LandlineNbr));
+            if (Employee.EMail != null)
+                param.Add(new SqlParameter("@szMail", Employee.EMail));
+            if (SelectedDepartement != null)
+                param.Add(new SqlParameter("@nDepartementLink", SelectedDepartement.Key));
+            if (Employee.Job != null)
+                param.Add(new SqlParameter("@szJobName", Employee.Job));
+            if (Employee.HireDate != null)
+                param.Add(new SqlParameter("@dtRecruitDate", Employee.HireDate));
             //param.Add(new SqlParameter("@szTelephonePrivate", Employee.LandlineNmbPrivate));
-            param.Add(new SqlParameter("@dtBirthdate", Employee.Birthday));
-            param.Add(new SqlParameter("@szSex", Employee.Sex));
+            if (Employee.Birthday != null)
+                param.Add(new SqlParameter("@dtBirthdate", Employee.Birthday));
+            if (Employee.Sex != null)
+                param.Add(new SqlParameter("@szSex", Employee.Sex));
 
 
             try
@@ -108,8 +115,8 @@ namespace MAV.Client.MVVM.ViewModel
             catch (Exception ex)
             {
                 DialogPopUp("Fehler", ex.Message);
+                return;
             }
-
             DialogPopUp("Erfolgreich geändert", $"Daten von {Employee.FirstName} {Employee.LastName} wurden geändert.");
 
             //zur Adressliste zurückkehren
@@ -188,15 +195,14 @@ namespace MAV.Client.MVVM.ViewModel
                 catch(Exception ex)
                 {
                     DialogPopUp("Fehler", ex.Message);
+                    return;
                 }
+
+                DialogPopUp("Erfolgreich gelöscht", $"Daten von {Employee.FirstName} {Employee.LastName} wurden gelöscht.");
             }
-
-            DialogPopUp("Erfolgreich gelöscht", $"Daten von {Employee.FirstName} {Employee.LastName} wurden gelöscht.");
-
             //zur Adressliste zurückkehren
             ClientVM.DirectoryViewCommand.Execute(null);
         }
-
         #endregion
 
         #region LoadData
