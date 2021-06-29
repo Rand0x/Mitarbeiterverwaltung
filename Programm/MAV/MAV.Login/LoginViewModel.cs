@@ -112,11 +112,11 @@ namespace MAV.Login
                             return;
                         }
                     }
+                    else
+                        ShowErrorDialog("Anmeldung fehlgeschlagen", "Benutzername oder Passwort falsch!", "Prüfen Sie Ihre Eingaben.");
                 }
-                else //Fehler beim Anmeldeversuch:
-                {
-                    ShowErrorDialog("Anmeldung fehlgeschlagen", "Benutzername oder Passwort falsch!", "Prüfen Sie Ihre Eingaben.");
-                }
+                else //Fehler beim Anmeldeversuch:                
+                    ShowErrorDialog("Anmeldung fehlgeschlagen", "Benutzername oder Passwort falsch!", "Prüfen Sie Ihre Eingaben.");                
             }
             catch(Exception ex)
             {
