@@ -64,6 +64,33 @@ namespace MAV.Client.MVVM.Model
                 birthday = value;
                 OnPropertyChanged();
             }
+        }        
+
+        public string BirthDayAsString
+        {
+            get 
+            {                  
+                return ($"{Birthday.Day.ToString("D2")}.{Birthday.Month.ToString("D2")}.{Birthday.Year}"); 
+            }
+        }
+
+        private DateTime hiredate;
+        public DateTime HireDate
+        {
+            get { return hiredate; }
+            set
+            {
+                hiredate = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string HireDateAsString
+        {
+            get
+            {
+                return ($"{HireDate.Day.ToString("D2")}.{HireDate.Month.ToString("D2")}.{HireDate.Year}");
+            }
         }
 
         private string sex;
@@ -108,18 +135,7 @@ namespace MAV.Client.MVVM.Model
                 job = value;
                 OnPropertyChanged();
             }
-        }
-
-        private DateTime hiredate;
-        public DateTime HireDate
-        {
-            get { return hiredate; }
-            set
-            {
-                hiredate = value;
-                OnPropertyChanged();
-            }
-        }
+        }        
 
         private int hoursperweek;
         public int HoursPerWeek

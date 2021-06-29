@@ -41,6 +41,14 @@ namespace MAV.Client.MVVM.Model
             }
         }
 
+        public string DateOfPaymentAsString
+        {
+            get
+            {
+                return ($"{DateOfPayment.Day.ToString("D2")}.{DateOfPayment.Month.ToString("D2")}.{DateOfPayment.Year}");
+            }
+        }
+
         private string comment;
         public string Comment
         {

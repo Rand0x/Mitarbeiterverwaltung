@@ -29,6 +29,14 @@ namespace MAV.Client.MVVM.Model
             }
         }
 
+        public string IssueDateAsString
+        {
+            get
+            {
+                return ($"{IssueDate.Day.ToString("D2")}.{IssueDate.Month.ToString("D2")}.{IssueDate.Year}");
+            }
+        }
+
         private string comment;
         public string Comment
         {
