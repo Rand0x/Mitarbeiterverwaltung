@@ -4,11 +4,10 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 
-public enum Sex {männlich,weiblich,divers}
-
+public enum SexEnum { männlich, weiblich, divers }
 
 namespace MAV.Client.MVVM.Model
-{
+{   
     //Model Klasse um Benutzerdaten aus DB zu speichern
     public class EmployeeModel : PropertyChangedBase
     {
@@ -94,13 +93,16 @@ namespace MAV.Client.MVVM.Model
             }
         }
 
-        private string sex;
-        public string Sex
+        private SexEnum sexEn;
+        public SexEnum SexEn
         {
-            get { return sex; }
+            get
+            {
+                return sexEn;
+            }
             set
             {
-                sex = value;
+                sexEn = value;
                 OnPropertyChanged();
             }
         }

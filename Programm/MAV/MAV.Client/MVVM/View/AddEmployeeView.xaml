@@ -19,7 +19,7 @@
         <ComboBox x:Name="cbxSex" Width="300" Margin ="0,0,10,10" FontSize="16"/>
         <TextBlock Text="Geburtstag" Foreground="#5B5B5B" FontSize="16"/>
         <DatePicker x:Name ="dpBirthday" Width="300" Margin ="0,0,10,10" ui:ControlHelper.PlaceholderText ="Datum auswählen"/>
-        <TextBlock Text="Personalnummer" Foreground="#5B5B5B" FontSize="16"/>
+        <TextBlock Text="Mitarbeiternummer" Foreground="#5B5B5B" FontSize="16"/>
         <CheckBox x:Name="CheckboxPersNr" Content="Automatisch generiert" IsChecked="True" Click="CheckboxPersNr_Click" Margin ="0,0,10,10"/>
         <TextBox x:Name="TextBoxPersNr" Width="300" HorizontalAlignment="Left" Margin ="0,0,10,10"  FontSize="16" Visibility="Collapsed"/>
         <TextBlock Text="Abteilung" Foreground="#5B5B5B" FontSize="16"/>

@@ -5,10 +5,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:ui="http://schemas.modernwpf.com/2019"
              xmlns:localModel="clr-namespace:MAV.Client.MVVM.ViewModel"
+             xmlns:local="clr-namespace:MAV.Client" 
+             xmlns:System="clr-namespace:System;assembly=mscorlib" 
              mc:Ignorable="d" 
              d:DesignHeight="700" d:DesignWidth="800">
-
-
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -92,12 +93,12 @@
                             <TextBox Text="{Binding Employee.LandlineNmbPrivate}" Margin ="0,0,10,10" FontSize="16"/>
                             <TextBlock Text="Geburtstag" Foreground="#5B5B5B" FontSize="16" />
                             <DatePicker SelectedDate="{Binding Employee.Birthday}" Margin ="0,0,10,10" FontSize="16"
-                                        ui:ControlHelper.PlaceholderText ="Datum auswählen"/>
+                                        ui:ControlHelper.PlaceholderText ="Datum auswählen" HorizontalAlignment="Stretch"/>
                             <!--<TextBlock Text="Familienstand" Foreground="#5B5B5B" FontSize="16"/>
                             <TextBox Text="{Binding Employee.MaritalDesc}" Margin ="0,0,10,10" FontSize="16"/>-->
                             <TextBlock Text="Geschlecht" Foreground="#5B5B5B" FontSize="16"/>
-                            <ComboBox x:Name="cbxSex" Text="{Binding Employee.Sex}" Margin ="0,0,10,10" FontSize="16"/>
-                            <TextBox Text="{Binding Employee.Sex}" Margin ="0,0,10,10" FontSize="16"/>
+                            <ComboBox x:Name="cbxSex" SelectedItem="{Binding Employee.SexEn}" Margin ="0,0,10,10" 
+                                      FontSize="16" HorizontalAlignment="Stretch"/>
                         </StackPanel>
                     </Expander>
                     <Expander ExpandDirection="Down" IsExpanded="False" VerticalAlignment="Top">
@@ -145,7 +146,7 @@
                             <TextBlock Text="Kommentar" Margin ="0,0,0,10" FontSize="20" FontWeight="Bold"/>
                         </Expander.Header>
                         <RichTextBox ui:ControlHelper.PlaceholderText="Hier können Sie zusätzliche Informationen speichern"
-                                     AcceptsReturn ="True" IsUndoEnabled="True" x:Name="commentBox">
+                                     AcceptsReturn ="True" IsUndoEnabled="True" x:Name="commentBox" Margin ="0,0,10,10">
                             <RichTextBox.Resources>
                                 <Style TargetType="{x:Type Paragraph}">
                                     <Setter Property="Margin" Value="0" />
@@ -164,7 +165,7 @@
                         <StackPanel>
                             <TextBlock Text="Eintrittsdatum" Foreground="#5B5B5B" FontSize="16"/>
                             <DatePicker SelectedDate="{Binding Employee.HireDate}" Margin ="0,0,10,10" FontSize="16"
-                                        ui:ControlHelper.PlaceholderText ="Datum auswählen"/>
+                                        ui:ControlHelper.PlaceholderText ="Datum auswählen" HorizontalAlignment="Stretch"/>
                             <TextBlock Text="Kündigungsfrist" Foreground="#5B5B5B" FontSize="16"/>
                             <TextBox Text="{Binding Employee.NoticePeriod}" Margin ="0,0,10,10" FontSize="16"/>
                             <TextBlock Text="Arbeitszeit (pro Woche)" Foreground="#5B5B5B" FontSize="16"/>
@@ -189,17 +190,17 @@
                                     <DataTemplate>
                                         <StackPanel Background="Transparent">
                                             <TextBlock Text="Grund der Bonuszahlung" Foreground="#5B5B5B" FontSize="16"/>
-                                            <TextBox Text="{Binding Reason}" Margin ="0,0,0,10" FontSize="16"/>
+                                            <TextBox Text="{Binding Reason}" Margin ="0,0,10,10" FontSize="16" FontWeight="Bold"/>
                                             <TextBlock Text="Höhe der Zahlung" Foreground="#5B5B5B" FontSize="16"/>
-                                            <StackPanel Orientation="Horizontal" Margin ="0,0,0,10">
-                                                <TextBox Text="{Binding Amount}" FontSize="16"/>
-                                                <TextBlock Text=" €" FontSize="16"/>
+                                            <StackPanel Orientation="Horizontal" Margin ="0,0,10,10">
+                                                <TextBox Text="{Binding Amount}" FontSize="16" Width="100"/>
+                                                <TextBlock Text=" €" FontSize="16" VerticalAlignment="Center"/>
                                             </StackPanel>
                                             <TextBlock Text="Zahlungsdatum" Foreground="#5B5B5B" FontSize="16"/>
-                                            <DatePicker SelectedDate="{Binding DateOfPayment}" Margin ="0,0,0,10" FontSize="16"
-                                                        ui:ControlHelper.PlaceholderText ="Datum auswählen"/>
+                                            <DatePicker SelectedDate="{Binding DateOfPayment}" Margin ="0,0,10,10" FontSize="16"
+                                                        ui:ControlHelper.PlaceholderText ="Datum auswählen" HorizontalAlignment="Stretch"/>
                                             <TextBlock Text="Kommentar" Foreground="#5B5B5B" FontSize="16"/>
-                                            <TextBox Text="{Binding Comment}" Margin ="0,0,0,30" FontSize="16"/>
+                                            <TextBox Text="{Binding Comment}" Margin ="0,0,10,30" FontSize="16"/>
                                         </StackPanel>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
@@ -209,17 +210,17 @@
                                     <DataTemplate>
                                         <StackPanel Background="Transparent">
                                             <TextBlock Text="Grund der Bonuszahlung" Foreground="#5B5B5B" FontSize="16"/>
-                                            <TextBox Text="{Binding Reason}" Margin ="0,0,0,10" FontSize="16"/>
+                                            <TextBox Text="{Binding Reason}" Margin ="0,0,10,10" FontSize="16" FontWeight="Bold"/>
                                             <TextBlock Text="Höhe der Zahlung" Foreground="#5B5B5B" FontSize="16"/>
-                                            <StackPanel Orientation="Horizontal" Margin ="0,0,0,10">
-                                                <TextBox Text="{Binding Amount}" FontSize="16"/>
-                                                <TextBlock Text=" €" FontSize="16"/>
+                                            <StackPanel Orientation="Horizontal" Margin ="0,0,10,10">
+                                                <TextBox Text="{Binding Amount}" FontSize="16" Width="100"/>
+                                                <TextBlock Text=" €" FontSize="16" VerticalAlignment="Center"/>
                                             </StackPanel>
                                             <TextBlock Text="Zahlungsdatum" Foreground="#5B5B5B" FontSize="16"/>
-                                            <DatePicker SelectedDate="{Binding DateOfPayment}" Margin ="0,0,0,10" FontSize="16"
-                                                        ui:ControlHelper.PlaceholderText ="Datum auswählen"/>
+                                            <DatePicker SelectedDate="{Binding DateOfPayment}" Margin ="0,0,10,10" FontSize="16"
+                                                        ui:ControlHelper.PlaceholderText ="Datum auswählen" HorizontalAlignment="Stretch"/>
                                             <TextBlock Text="Kommentar" Foreground="#5B5B5B" FontSize="16"/>
-                                            <TextBox Text="{Binding Comment}" Margin ="0,0,0,30" FontSize="16"/>
+                                            <TextBox Text="{Binding Comment}" Margin ="0,0,10,30" FontSize="16"/>
                                         </StackPanel>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
@@ -233,17 +234,17 @@
                             <TextBlock Text="Abmahnungen" Margin ="0,0,0,10" FontSize="20" FontWeight="Bold"/>
                         </Expander.Header>
                         <StackPanel>
-                            <ItemsControl ItemsSource="{Binding Employee.WarningsList}">
+                            <ItemsControl ItemsSource="{Binding Employee.WarningsList}" >
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
                                         <StackPanel Background="Transparent">
                                             <TextBlock Text="Grund der Abmahnung" Foreground="#5B5B5B" FontSize="16"/>
-                                            <TextBox Text="{Binding Reason}" Margin ="0,0,0,10" FontSize="16"/>
+                                            <TextBox Text="{Binding Reason}" Margin ="0,0,10,10" FontSize="16" FontWeight="Bold"/>
                                             <TextBlock Text="Zahlungsdatum" Foreground="#5B5B5B" FontSize="16"/>
-                                            <DatePicker SelectedDate="{Binding IssueDate}" Margin ="0,0,0,10" FontSize="16"
-                                                        ui:ControlHelper.PlaceholderText ="Datum auswählen"/>
+                                            <DatePicker SelectedDate="{Binding IssueDate}" Margin ="0,0,10,10" FontSize="16"
+                                                        ui:ControlHelper.PlaceholderText ="Datum auswählen" HorizontalAlignment="Stretch"/>
                                             <TextBlock Text="Kommentar" Foreground="#5B5B5B" FontSize="16"/>
-                                            <TextBox Text="{Binding Comment}" Margin ="0,0,0,30" FontSize="16" TextWrapping="Wrap"/>
+                                            <TextBox Text="{Binding Comment}" Margin ="0,0,10,30" FontSize="16" TextWrapping="Wrap"/>
                                         </StackPanel>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
@@ -253,12 +254,12 @@
                                     <DataTemplate>
                                         <StackPanel Background="Transparent">
                                             <TextBlock Text="Grund der Abmahnung" Foreground="#5B5B5B" FontSize="16"/>
-                                            <TextBox Text="{Binding Reason}" Margin ="0,0,0,10" FontSize="16"/>
+                                            <TextBox Text="{Binding Reason}" Margin ="0,0,10,10" FontSize="16" FontWeight="Bold"/>
                                             <TextBlock Text="Zahlungsdatum" Foreground="#5B5B5B" FontSize="16"/>
-                                            <DatePicker SelectedDate="{Binding IssueDate}" Margin ="0,0,0,10" FontSize="16"
-                                                        ui:ControlHelper.PlaceholderText ="Datum auswählen"/>
-                                            <TextBlock Text="Kommentar" Foreground="#5B5B5B" FontSize="16"/>
-                                            <TextBox Text="{Binding Comment}" Margin ="0,0,0,30" FontSize="16" TextWrapping="Wrap"/>
+                                            <DatePicker SelectedDate="{Binding IssueDate}" Margin ="0,0,10,10" FontSize="16"
+                                                        ui:ControlHelper.PlaceholderText ="Datum auswählen" HorizontalAlignment="Stretch"/>
+                                            <TextBlock Text="Kommentar" Foreground="#5B5B5B" FontSize="16" />
+                                            <TextBox Text="{Binding Comment}" Margin ="0,0,10,30" FontSize="16" TextWrapping="Wrap"/>
                                         </StackPanel>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>

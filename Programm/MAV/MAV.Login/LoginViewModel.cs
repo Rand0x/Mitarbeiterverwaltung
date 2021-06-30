@@ -107,7 +107,7 @@ namespace MAV.Login
                         {
                             Control.Show();
                         }
-                        catch (Exception ex)
+                        catch (Exception)
                         {
                             return;
                         }

@@ -123,6 +123,8 @@ namespace MAV.Client.MVVM.ViewModel
 
         private void AddEmployee(object parameter = null)
         {
+            bool persNrNotAvailable = false;
+
             if (LastName is null || LastName == String.Empty ||  FirstName is null || FirstName == String.Empty || Control.cbxSex.SelectedItem is null
                 || Control.dpBirthday.SelectedDate is null || Control.dpHireDate.SelectedDate is null || SelectedDepartement is null)
             {
@@ -144,10 +146,11 @@ namespace MAV.Client.MVVM.ViewModel
                         // Wenn die gewünschte Personalnummer bereits vorhanden ist, wird einfach die generierte verwendet 
                         if (!CheckPersNrAvailability(persNr)) 
                         {
+                            persNrNotAvailable = true;
                             persNr = generatedPersNr;
                         }
                     }
-                    catch (FormatException e)
+                    catch (FormatException)
                     {
                         DialogPopUp("Fehlerhafte Daten", "Die Daten entsprechen nicht dem gewünschten Format");
                         return;
@@ -178,11 +181,15 @@ namespace MAV.Client.MVVM.ViewModel
                     return;
                 }
 
-                DialogPopUp("Erfolgreich hinzugefügt", "Es wurde ein neuer Mitarbeiter angelegt", 
+                if(persNrNotAvailable)
+                    DialogPopUp("Erfolgreich hinzugefügt", "Gewünschte Mitarbeiternummer ist leider nicht verfügbar.",
+                    $"{Control.FirstName.Text} {Control.LastName.Text} wurde mit generierter Mitarbeiternummer {persNr} angelegt");
+                else
+                    DialogPopUp("Erfolgreich hinzugefügt", "Es wurde ein neuer Mitarbeiter angelegt:",
                     $"{Control.FirstName.Text} {Control.LastName.Text} mit Mitarbeiternummer {persNr}");
+
                 ClearBoxes();
             }
-
         }
 
 
@@ -223,25 +230,30 @@ namespace MAV.Client.MVVM.ViewModel
         private bool CheckPersNrAvailability(int choosenPersNr)
         {
             bool available = true;
-            DataTable data;
 
-            try
+            if (choosenPersNr <= 0)
+                available = false;
+            else
             {
-                data = DBProvider.ExecProcedure("sp_LoadEmployeeNumbers");
-            }
-            catch (Exception ex)
-            {
-                DialogPopUp("Fehler", ex.Message);
-                return false;
-            }
+                DataTable data;
+                try
+                {
+                    data = DBProvider.ExecProcedure("sp_LoadEmployeeNumbers");
+                }
+                catch (Exception ex)
+                {
+                    DialogPopUp("Fehler", ex.Message);
+                    return false;
+                }
 
-            foreach (DataRow row in data.Rows)
-            {
-                int current = (int)row["nEmployeeNumber"];
+                foreach (DataRow row in data.Rows)
+                {
+                    int current = (int)row["nEmployeeNumber"];
 
-                if (current == choosenPersNr)
-                    available = false;
-            }
+                    if (current == choosenPersNr)
+                        available = false;
+                }
+            }            
             return available;
         }
 
@@ -259,10 +271,12 @@ namespace MAV.Client.MVVM.ViewModel
         {
             Control.FirstName.Text = null;
             Control.LastName.Text = null;
+            Control.TextBoxPersNr.Text = null;
             Control.cbxSex.SelectedItem = null;
             Control.dpBirthday.SelectedDate = null;
             Control.dpHireDate.SelectedDate = DateTime.Today;
             Control.cmbDepartments.SelectedItem = null;
+            Control.CheckboxPersNr.IsChecked = true;
         }
 
         #endregion
