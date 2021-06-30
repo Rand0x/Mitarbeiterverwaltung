@@ -21,12 +21,26 @@ namespace MAV.Client.MVVM.View
     /// </summary>
     public partial class EmployeeEditView : UserControl
     {
+        private EmployeeEditViewModel EditVM;
+
         public EmployeeEditView(object key, ClientViewModel clientVM)
         {
             this.Language = XmlLanguage.GetLanguage("de-DE");
-            this.DataContext = new EmployeeEditViewModel(int.Parse(key.ToString()), this, clientVM);
+            EditVM = new EmployeeEditViewModel(int.Parse(key.ToString()), this, clientVM);
+            this.DataContext = EditVM;
             InitializeComponent();
+            EditVM.updateRichTextBoxContent();
             cbxSex.ItemsSource = Enum.GetValues(typeof(Sex));
+        }
+
+        private void AddBonusPaymentButton_Click(object sender, RoutedEventArgs e)
+        {
+            EditVM.AddFieldForBonusPayment();
+        }
+
+        private void WarningButton_Click(object sender, RoutedEventArgs e)
+        {
+            EditVM.AddFieldForWarning();
         }
     }
 }

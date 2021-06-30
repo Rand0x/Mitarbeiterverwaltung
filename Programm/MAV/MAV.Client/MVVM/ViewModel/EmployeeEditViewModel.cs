@@ -9,12 +9,34 @@ using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text;
+using System.Windows.Documents;
 
 namespace MAV.Client.MVVM.ViewModel
 {
     public class EmployeeEditViewModel : EmployeeInfoViewModel
     {
         #region Properties
+        private ObservableCollection<WarningModel> addedWarningsList = new ObservableCollection<WarningModel>();
+        public ObservableCollection<WarningModel> AddedWarningsList
+        {
+            get { return addedWarningsList; }
+            set
+            {
+                addedWarningsList = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ObservableCollection<BonusPaymentModel> addedBonusPaymentList = new ObservableCollection<BonusPaymentModel>();
+        public ObservableCollection<BonusPaymentModel> AddedBonusPaymentList
+        {
+            get { return addedBonusPaymentList; }
+            set
+            {
+                addedBonusPaymentList = value;
+                OnPropertyChanged();
+            }
+        }
 
         private ObservableCollection<DepartmentModel> m_Departements;
         //Liste aller Abteilungen aus DB
@@ -56,7 +78,12 @@ namespace MAV.Client.MVVM.ViewModel
             m_Control = control;
             Departements = new ObservableCollection<DepartmentModel>();
             LoadDepartements();
-            CreateCommands();
+            CreateCommands();            
+
+            if (Employee.BonusPaymentList.Count >= 3)
+                m_Control.AddBonusPaymentButton.Visibility = System.Windows.Visibility.Collapsed;
+            if (Employee.WarningsList.Count >= 3)
+                m_Control.WarningButton.Visibility = System.Windows.Visibility.Collapsed;            
         }
 
         #endregion
@@ -78,12 +105,21 @@ namespace MAV.Client.MVVM.ViewModel
             });
         }
 
+        public void updateRichTextBoxContent()
+        {
+            m_Control.commentBox.Document.Blocks.Clear();
+            m_Control.commentBox.Document.Blocks.Add(new Paragraph(new Run(Employee.Comment)));
+        }
+
         /// <summary>
         /// Ändern der Daten eines Mitarbeiters
         /// </summary>
         /// <param name="o"></param>
         private void Save(object o = null)
         {
+            // Kein Binding möglich
+            Employee.Comment = new TextRange(m_Control.commentBox.Document.ContentStart, m_Control.commentBox.Document.ContentEnd).Text;
+
             //zusammenstellen der benötigten Parameter für Prozeduraufruf
             var param = new ObservableCollection<SqlParameter>();
             param.Add(new SqlParameter("@nKey", Employee.Key));          
@@ -103,30 +139,56 @@ namespace MAV.Client.MVVM.ViewModel
                 param.Add(new SqlParameter("@dtBirthdate", Employee.Birthday));
             if (Employee.Sex != null)
                 param.Add(new SqlParameter("@szSex", Employee.Sex));
+            param.Add(new SqlParameter("@szComment", Employee.Comment));
 
 
             try
             {
                 DBProvider.ExecProcedure("sp_AlterEmployee", param);
-                //ToDo einfügen
-                //SaveWarnings();
-                //SaveBonusPayment();
+
+                SaveChangedWarnings();
+                SaveChangedBonusPayments();
+
+                AddWarnings();
+                AddBonusPayments();
             }
             catch (Exception ex)
             {
                 DialogPopUp("Fehler", ex.Message);
                 return;
-            }
+            }            
+
             DialogPopUp("Erfolgreich geändert", $"Daten von {Employee.FirstName} {Employee.LastName} wurden geändert.");
 
             //zur Adressliste zurückkehren
             ClientVM.DirectoryViewCommand.Execute(null);
         }
 
+        private void AddWarnings()
+        {
+            foreach (var warning in AddedWarningsList)
+            {
+                var param = new ObservableCollection<SqlParameter>();
+                param.Add(new SqlParameter("@nEmployeeLink", Employee.Key));
+                param.Add(new SqlParameter("@szReason", warning.Reason));
+                param.Add(new SqlParameter("@dtIssueDate", warning.IssueDate));
+                param.Add(new SqlParameter("@szComment", warning.Comment));
+
+                try
+                {
+                    DBProvider.ExecProcedure("sp_AddWarning", param);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+
         /// <summary>
         /// speichert die geänderten Warnungen falls vorhanden
         /// </summary>
-        private void SaveWarnings()
+        private void SaveChangedWarnings()
         {
             foreach (var warning in Employee.WarningsList)
             {
@@ -147,10 +209,32 @@ namespace MAV.Client.MVVM.ViewModel
             }
         }
 
+        private void AddBonusPayments()
+        {
+            foreach (var payment in AddedBonusPaymentList)
+            {
+                var param = new ObservableCollection<SqlParameter>();
+                param.Add(new SqlParameter("@nEmployeeLink", Employee.Key));
+                param.Add(new SqlParameter("@szReason", payment.Reason));
+                param.Add(new SqlParameter("@rAmount", payment.Amount));
+                param.Add(new SqlParameter("@dtDateOfPayment", payment.DateOfPayment));
+                param.Add(new SqlParameter("@szComment", payment.Comment));
+
+                try
+                {
+                    DBProvider.ExecProcedure("sp_AddBonusPayment", param);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+
         /// <summary>
         /// speichert die geänderten Bonuszahlungen falls vorhanden
         /// </summary>
-        private void SaveBonusPayment()
+        private void SaveChangedBonusPayments()
         {
             foreach (var payment in Employee.BonusPaymentList)
             {
@@ -158,12 +242,12 @@ namespace MAV.Client.MVVM.ViewModel
                 param.Add(new SqlParameter("@nKey", payment.Key));
                 param.Add(new SqlParameter("@szReason", payment.Reason));
                 param.Add(new SqlParameter("@rAmount", payment.Amount));
-                param.Add(new SqlParameter("@dtIssueDate", payment.DateOfPayment));
+                param.Add(new SqlParameter("@dtDateOfPayment", payment.DateOfPayment));
                 param.Add(new SqlParameter("@szComment", payment.Comment));
 
                 try
                 {
-                    DBProvider.ExecProcedure("sp_AlterWarning", param);
+                    DBProvider.ExecProcedure("sp_AlterBonusPayment", param);
                 }
                 catch (Exception ex)
                 {
@@ -245,5 +329,19 @@ namespace MAV.Client.MVVM.ViewModel
         }
 
         #endregion
+        public void AddFieldForWarning()
+        {
+            AddedWarningsList.Add(new WarningModel { IssueDate = DateTime.Today });
+            if (Employee.WarningsList.Count + AddedWarningsList.Count >= 3)
+                m_Control.WarningButton.Visibility = System.Windows.Visibility.Collapsed;
+        }
+
+
+        public void AddFieldForBonusPayment()
+        {
+            AddedBonusPaymentList.Add(new BonusPaymentModel { DateOfPayment = DateTime.Today });
+            if (Employee.BonusPaymentList.Count + AddedBonusPaymentList.Count >= 3)
+                m_Control.AddBonusPaymentButton.Visibility = System.Windows.Visibility.Collapsed;
+        }
     }
 }
