@@ -16,6 +16,35 @@ namespace MAV.Client.MVVM.ViewModel
     {
         #region Properties
 
+        private ObservableCollection<DepartmentModel> m_Departements;
+        //Liste aller Abteilungen aus DB
+        public ObservableCollection<DepartmentModel> Departements
+        {
+            get { return m_Departements; }
+            set
+            {
+                if (value != m_Departements)
+                {
+                    m_Departements = value;
+                    OnPropertyChanged();
+                }
+            }
+        }               
+
+        private DepartmentModel m_SelectedDepartement;
+        public DepartmentModel SelectedDepartement
+        {
+            get { return m_SelectedDepartement; }
+            set
+            {
+                if (value != m_SelectedDepartement)
+                {
+                    m_SelectedDepartement = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         private AddEmployeeView m_Control;
         public AddEmployeeView Control
         {
@@ -68,10 +97,12 @@ namespace MAV.Client.MVVM.ViewModel
         {
             Control = control;
 
+            Departements = new ObservableCollection<DepartmentModel>();
             FirstName = string.Empty;
             LastName = string.Empty;
 
             GeneratePersNr();  // Gleich zu Beginn wird eine mögliche PersNr generiert 
+            LoadDepartements();
             CreateCommands();
         }
 
@@ -92,8 +123,8 @@ namespace MAV.Client.MVVM.ViewModel
 
         private void AddEmployee(object parameter = null)
         {
-            if (LastName is null || LastName == String.Empty ||  FirstName is null || FirstName == String.Empty || Control.cbxSex.SelectedItem is null 
-                || Control.dpBirthday.SelectedDate is null || Control.dpHireDate.SelectedDate is null)
+            if (LastName is null || LastName == String.Empty ||  FirstName is null || FirstName == String.Empty || Control.cbxSex.SelectedItem is null
+                || Control.dpBirthday.SelectedDate is null || Control.dpHireDate.SelectedDate is null || SelectedDepartement is null)
             {
                 DialogPopUp("Daten nicht vollständig", "Es müssen alle Felder ausgefüllt werden");
             }
@@ -123,11 +154,15 @@ namespace MAV.Client.MVVM.ViewModel
                     }                    
                 }
 
+                string eMail = ($"{FirstName.ToLower()}.{LastName.ToLower()}@mav.de");
+
                 var param = new ObservableCollection<SqlParameter>();
 
                 param.Add(new SqlParameter("@szFirstName", FirstName));
                 param.Add(new SqlParameter("@szLastName", LastName));
+                param.Add(new SqlParameter("@szMail", eMail));                
                 param.Add(new SqlParameter("@nEmployeeNumber", persNr));
+                param.Add(new SqlParameter("@nDepartementLink", SelectedDepartement.Key));
                 param.Add(new SqlParameter("@dtBirthdate", Control.dpBirthday.SelectedDate));
                 param.Add(new SqlParameter("@dtRecruitDate", Control.dpHireDate.SelectedDate));
                 param.Add(new SqlParameter("@szSex", Control.cbxSex.SelectedItem.ToString().Substring(0,1))); //in DB wird nur der jeweils erste Buchstabe gespeichert (m/w/d)
@@ -226,8 +261,48 @@ namespace MAV.Client.MVVM.ViewModel
             Control.LastName.Text = null;
             Control.cbxSex.SelectedItem = null;
             Control.dpBirthday.SelectedDate = null;
+            Control.dpHireDate.SelectedDate = DateTime.Today;
+            Control.cmbDepartments.SelectedItem = null;
         }
 
+        #endregion
+
+        #region LoadData
+
+        /// <summary>
+        /// Laden aller Abteilungen aus der DB
+        /// </summary>
+        private void LoadDepartements()
+        {
+            DataTable data;
+
+            try
+            {
+                data = DBProvider.ExecProcedure("sp_LoadDepartements");
+            }
+            catch (Exception ex)
+            {
+                DialogPopUp("Fehler", ex.Message);
+                return;
+            }
+
+            Departements.Clear();
+
+            //hinzufügen zur Liste
+            foreach (DataRow row in data.Rows)
+            {
+                var newDep = new DepartmentModel()
+                {
+                    Key = (int)row["nKey"],
+                    Name = row["szName"].ToString(),
+                    Identifier = row["szIdentifier"].ToString(),
+                    Info = row["szInfo"].ToString(),
+                    ManagerLink = (int)row["nManagerLink"],
+                    ManagerName = row["szManagerName"].ToString()
+                };
+                Departements.Add(newDep);                
+            }
+        }
         #endregion
     }
 

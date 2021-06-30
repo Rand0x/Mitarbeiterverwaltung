@@ -12,6 +12,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ModernWpf.Controls;
 using MAV.Client.MVVM.ViewModel;
+using System.Windows.Markup;
 
 namespace MAV.Client.MVVM.View
 {
@@ -20,11 +21,26 @@ namespace MAV.Client.MVVM.View
     /// </summary>
     public partial class EmployeeEditView : UserControl
     {
+        private EmployeeEditViewModel EditVM;
+
         public EmployeeEditView(object key, ClientViewModel clientVM)
         {
-            this.DataContext = new EmployeeEditViewModel(int.Parse(key.ToString()), this, clientVM);
+            this.Language = XmlLanguage.GetLanguage("de-DE");
+            EditVM = new EmployeeEditViewModel(int.Parse(key.ToString()), this, clientVM);
+            this.DataContext = EditVM;
             InitializeComponent();
+            EditVM.updateRichTextBoxContent();
             cbxSex.ItemsSource = Enum.GetValues(typeof(Sex));
+        }
+
+        private void AddBonusPaymentButton_Click(object sender, RoutedEventArgs e)
+        {
+            EditVM.AddFieldForBonusPayment();
+        }
+
+        private void WarningButton_Click(object sender, RoutedEventArgs e)
+        {
+            EditVM.AddFieldForWarning();
         }
     }
 }

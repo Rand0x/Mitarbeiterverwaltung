@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Markup;
 
 namespace MAV.Client.MVVM.View
 {
@@ -22,6 +23,7 @@ namespace MAV.Client.MVVM.View
     {
         public AddEmployeeView(UserModel user)
         {
+            this.Language = XmlLanguage.GetLanguage("de-DE");
             this.DataContext = new AddEmployeeViewModel(this, user);
             InitializeComponent();
             cbxSex.ItemsSource = Enum.GetValues(typeof (Sex));
