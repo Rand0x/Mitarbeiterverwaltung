@@ -26,7 +26,7 @@ namespace MAV.Client.MVVM.View
             this.Language = XmlLanguage.GetLanguage("de-DE");
             this.DataContext = new AddEmployeeViewModel(this, user);
             InitializeComponent();
-            cbxSex.ItemsSource = Enum.GetValues(typeof (Sex));
+            cbxSex.ItemsSource = Enum.GetValues(typeof (SexEnum));
             dpHireDate.SelectedDate = DateTime.Today;            
         }
 

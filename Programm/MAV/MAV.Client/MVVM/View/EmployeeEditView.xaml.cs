@@ -30,7 +30,7 @@ namespace MAV.Client.MVVM.View
             this.DataContext = EditVM;
             InitializeComponent();
             EditVM.updateRichTextBoxContent();
-            cbxSex.ItemsSource = Enum.GetValues(typeof(Sex));
+            cbxSex.ItemsSource = Enum.GetValues(typeof(SexEnum));
         }
 
         private void AddBonusPaymentButton_Click(object sender, RoutedEventArgs e)

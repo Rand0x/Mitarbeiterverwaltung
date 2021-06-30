@@ -78,7 +78,7 @@ namespace MAV.Client.MVVM.ViewModel
             m_Control = control;
             Departements = new ObservableCollection<DepartmentModel>();
             LoadDepartements();
-            CreateCommands();            
+            CreateCommands();
 
             if (Employee.BonusPaymentList.Count >= 3)
                 m_Control.AddBonusPaymentButton.Visibility = System.Windows.Visibility.Collapsed;
@@ -124,22 +124,29 @@ namespace MAV.Client.MVVM.ViewModel
             var param = new ObservableCollection<SqlParameter>();
             param.Add(new SqlParameter("@nKey", Employee.Key));          
             param.Add(new SqlParameter("@nEmployeeNmb", Employee.EmplyeeNmb));
+            if (Employee.Birthday != null)
+                param.Add(new SqlParameter("@dtBirthdate", Employee.Birthday));
             if (Employee.LandlineNbr != null)
                 param.Add(new SqlParameter("@szTelephone", Employee.LandlineNbr));
+            if (Employee.LandlineNmbPrivate != null)
+                param.Add(new SqlParameter("@szTelephonePrivate", Employee.LandlineNmbPrivate));
             if (Employee.EMail != null)
                 param.Add(new SqlParameter("@szMail", Employee.EMail));
+            param.Add(new SqlParameter("@szSex", Employee.SexEn.ToString()));
             if (SelectedDepartement != null)
                 param.Add(new SqlParameter("@nDepartementLink", SelectedDepartement.Key));
             if (Employee.Job != null)
                 param.Add(new SqlParameter("@szJobName", Employee.Job));
+            param.Add(new SqlParameter("@nHoursPerWeek", Employee.HoursPerWeek));
             if (Employee.HireDate != null)
                 param.Add(new SqlParameter("@dtRecruitDate", Employee.HireDate));
-            //param.Add(new SqlParameter("@szTelephonePrivate", Employee.LandlineNmbPrivate));
-            if (Employee.Birthday != null)
-                param.Add(new SqlParameter("@dtBirthdate", Employee.Birthday));
-            if (Employee.Sex != null)
-                param.Add(new SqlParameter("@szSex", Employee.Sex));
+            param.Add(new SqlParameter("@rWage", Employee.Wage));
+            param.Add(new SqlParameter("@nHolidyPerYear", Employee.HolidayPerYear));
+            param.Add(new SqlParameter("@nNoticePeriod", Employee.NoticePeriod));
+            param.Add(new SqlParameter("@nTaxClass", Employee.TaxClass));
             param.Add(new SqlParameter("@szComment", Employee.Comment));
+            
+            
 
 
             try
@@ -329,6 +336,7 @@ namespace MAV.Client.MVVM.ViewModel
         }
 
         #endregion
+
         public void AddFieldForWarning()
         {
             AddedWarningsList.Add(new WarningModel { IssueDate = DateTime.Today });

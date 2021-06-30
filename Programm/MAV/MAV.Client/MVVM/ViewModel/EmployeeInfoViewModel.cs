@@ -108,8 +108,7 @@ namespace MAV.Client.MVVM.ViewModel
                     HireDate = DateTime.Parse(row["dtRecruitDate"].ToString()),
                     Manager = row["szManager"].ToString(),
                     LandlineNmbPrivate = row["szPrivateTelephone"].ToString(),
-                    Birthday = DateTime.Parse(row["dtBirthdate"].ToString()),
-                    Sex = row["szSex"].ToString(),
+                    Birthday = DateTime.Parse(row["dtBirthdate"].ToString()),                    
                     Street = row["szStreet"].ToString(),
                     HouseNumber =  row["szHouseNumber"].ToString(),
                     PLZ = row["szPLZ"].ToString(),
@@ -125,6 +124,25 @@ namespace MAV.Client.MVVM.ViewModel
                     HolidayPerYear = row["nHolidyPerYear"] is DBNull ? null : (int?)row["nHolidyPerYear"],
                     TaxClass = row["nTaxClass"] is DBNull ? null : (int?)row["nTaxClass"],
                 };
+
+                // In Datenbank wird für Geschlecht nur ein Char gespeichert (m/w/d)
+                // Daher hier die Zusweisung mit Wert aus Enum
+                string sex = row["szSex"].ToString();
+                if (sex != null)
+                {
+                    switch (sex[0])
+                    {
+                        case 'm':
+                            Employee.SexEn = SexEnum.männlich;
+                            break;
+                        case 'd':
+                            Employee.SexEn = SexEnum.divers;
+                            break;
+                        default:
+                            Employee.SexEn = SexEnum.weiblich;
+                            break;
+                    }
+                }
             }
             LoadWarnings(key);
             LoadBonusPayments(key);

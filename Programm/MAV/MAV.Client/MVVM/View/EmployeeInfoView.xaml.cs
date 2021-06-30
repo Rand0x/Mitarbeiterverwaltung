@@ -18,7 +18,7 @@ namespace MAV.Client.MVVM.View
             InfoVM = new EmployeeInfoViewModel(int.Parse(key.ToString()), clientVM);
             this.DataContext = InfoVM;
             InitializeComponent();
-
+                        
             if (user.Right > 2)
             {
                 EditButton.Visibility = Visibility.Hidden;
