@@ -51,7 +51,7 @@ namespace MAV.Client.MVVM.ViewModel
         {
             ClientVM = clientVM;
             LoadEmployeeData(key);
-            CreateCommands();
+            CreateCommands();            
         }
 
         #endregion
@@ -116,6 +116,7 @@ namespace MAV.Client.MVVM.ViewModel
                     City = row["szCity"].ToString(),
                     IBAN = row["szIBAN"].ToString(),
                     BIC = row["szBIC"].ToString(),
+                    Comment = row["szComment"].ToString(),
                     BankName = row["szBankName"].ToString(),
                     NoticePeriod = row["nNoticePeriod"] is DBNull ? null : (int?)row["nNoticePeriod"],
                     HoursPerWeek = row["nHoursPerWeek"] is DBNull ? null : (int?)row["nHoursPerWeek"],
@@ -127,29 +128,6 @@ namespace MAV.Client.MVVM.ViewModel
             }
             LoadWarnings(key);
             LoadBonusPayments(key);
-
-
-            // Nur zu Testzwecken, da noch nichts in der Datenbank 
-            Employee.BonusPaymentList.Add(new BonusPaymentModel
-            {
-                Reason = "Mitarbeiter des Monats",
-                Amount = 199.99,
-                DateOfPayment = DateTime.Now,
-                Comment = "Das ist alles nur geklaut"
-            });
-
-            Employee.WarningsList.Add(new WarningModel
-            {
-                Reason = "Schlafen am Arbeitsplatz",
-                IssueDate = DateTime.Now,
-                Comment = "Test"
-            });            
-            Employee.WarningsList.Add(new WarningModel
-            {
-                Reason = "Nicht Erscheinen am Arbeitsplatz",
-                IssueDate = DateTime.Now,
-                Comment = "Kerwa Montag"
-            });
         }
 
         private void LoadWarnings(int key)
@@ -168,7 +146,7 @@ namespace MAV.Client.MVVM.ViewModel
                 return;
             }
             // Abmahnungen laden
-            Employee.WarningsList = new List<WarningModel>();
+            Employee.WarningsList = new ObservableCollection<WarningModel>();
             foreach (DataRow row in data.Rows)
             {
                 Employee.WarningsList.Add(new WarningModel 
@@ -197,14 +175,14 @@ namespace MAV.Client.MVVM.ViewModel
                 return;
             }
             // Abmahnungen laden
-            Employee.BonusPaymentList = new List<BonusPaymentModel>();
+            Employee.BonusPaymentList = new ObservableCollection<BonusPaymentModel>();
             foreach (DataRow row in data.Rows)
             {
                 Employee.BonusPaymentList.Add(new BonusPaymentModel
                 {
                     Key = (int)row["nKey"],
                     Reason = row["szReason"].ToString(),
-                    Amount = (double)row["rAmount"],
+                    Amount = Convert.ToDouble(row["rAmount"]),
                     DateOfPayment = DateTime.Parse(row["dtDateOfPayment"].ToString()),
                     Comment = row["szComment"].ToString()
                 });

@@ -1,6 +1,7 @@
 ﻿using MAV.Base;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 
 public enum Sex {männlich,weiblich,divers}
@@ -209,7 +210,10 @@ namespace MAV.Client.MVVM.Model
             get { return comment; }
             set
             {
-                comment = value;
+                if (value != null && value.Length > 2 && value.Substring(value.Length - 2).Contains("\r\n"))
+                    comment = value.Substring(0, value.Length - 2);                
+                else
+                    comment = value;
                 OnPropertyChanged();
             }
         }
@@ -334,9 +338,10 @@ namespace MAV.Client.MVVM.Model
                 OnPropertyChanged();
             }
         }
+        
 
-        private List<WarningModel> warningsList = new List<WarningModel>();
-        public List<WarningModel> WarningsList
+        private ObservableCollection<WarningModel> warningsList = new ObservableCollection<WarningModel>();
+        public ObservableCollection<WarningModel> WarningsList
         {
             get { return warningsList; }
             set
@@ -346,8 +351,8 @@ namespace MAV.Client.MVVM.Model
             }
         }
 
-        private List<BonusPaymentModel> bonusPaymentList = new List<BonusPaymentModel>();
-        public List<BonusPaymentModel> BonusPaymentList
+        private ObservableCollection<BonusPaymentModel> bonusPaymentList = new ObservableCollection<BonusPaymentModel>();
+        public ObservableCollection<BonusPaymentModel> BonusPaymentList
         {
             get { return bonusPaymentList; }
             set
