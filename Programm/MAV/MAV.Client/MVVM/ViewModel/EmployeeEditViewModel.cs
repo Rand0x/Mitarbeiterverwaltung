@@ -124,27 +124,47 @@ namespace MAV.Client.MVVM.ViewModel
             var param = new ObservableCollection<SqlParameter>();
             param.Add(new SqlParameter("@nKey", Employee.Key));          
             param.Add(new SqlParameter("@nEmployeeNmb", Employee.EmplyeeNmb));
-            param.Add(new SqlParameter("@szTelephone", Employee.LandlineNbr));
-            param.Add(new SqlParameter("@szMail", Employee.EMail));
-            param.Add(new SqlParameter("@nDepartementLink", SelectedDepartement.Key));
-            param.Add(new SqlParameter("@szJobName", Employee.Job));
-            param.Add(new SqlParameter("@dtRecruitDate", Employee.HireDate));
-            param.Add(new SqlParameter("@szTelephonePrivate", Employee.LandlineNmbPrivate));
-            param.Add(new SqlParameter("@dtBirthdate", Employee.Birthday));
-            param.Add(new SqlParameter("@szSex", Employee.Sex.Substring(0,1).ToUpper()));
-            param.Add(new SqlParameter("@nNoticePeriod", Employee.NoticePeriod));
-            param.Add(new SqlParameter("@nHoursPerWeek", Employee.HoursPerWeek));
-            param.Add(new SqlParameter("@rOvertime", Employee.Overtime));
-            param.Add(new SqlParameter("@rWage", Employee.Wage));
-            param.Add(new SqlParameter("@nHolidyPerYear", Employee.HolidayPerYear));
-            param.Add(new SqlParameter("@nTaxClass", Employee.TaxClass));
-            param.Add(new SqlParameter("@szHouseNumber", Employee.HouseNumber));
-            param.Add(new SqlParameter("@szStreet", Employee.Street));
-            param.Add(new SqlParameter("@zPLZ", Employee.PLZ));
-            param.Add(new SqlParameter("@szCity", Employee.City));
-            param.Add(new SqlParameter("@szIBAN", Employee.IBAN));
-            param.Add(new SqlParameter("@szBIC", Employee.BIC));
-            param.Add(new SqlParameter("@szBankName", Employee.BankName));
+            if(Employee.LandlineNbr != null)
+                param.Add(new SqlParameter("@szTelephone", Employee.LandlineNbr));
+            if(Employee.EMail != null)
+                param.Add(new SqlParameter("@szMail", Employee.EMail));
+            if(SelectedDepartement != null)
+                param.Add(new SqlParameter("@nDepartementLink", SelectedDepartement.Key));
+            if(Employee.Job != null)
+                param.Add(new SqlParameter("@szJobName", Employee.Job));
+            if(Employee.HireDate != null)
+                param.Add(new SqlParameter("@dtRecruitDate", Employee.HireDate));
+            if(Employee.LandlineNmbPrivate != null)
+                param.Add(new SqlParameter("@szTelephonePrivate", Employee.LandlineNmbPrivate));
+            if(Employee.Birthday != null)
+                param.Add(new SqlParameter("@dtBirthdate", Employee.Birthday));
+            param.Add(new SqlParameter("@szSex", Employee.SexEn.ToString().Substring(0,1).ToUpper()));
+            if(Employee.NoticePeriod != null)
+                param.Add(new SqlParameter("@nNoticePeriod", Employee.NoticePeriod));
+            if(Employee.HoursPerWeek != null)
+                param.Add(new SqlParameter("@nHoursPerWeek", Employee.HoursPerWeek));
+            if(Employee.Overtime != null)
+                param.Add(new SqlParameter("@rOvertime", Employee.Overtime));
+            if(Employee.Wage != null)
+                param.Add(new SqlParameter("@rWage", Employee.Wage));
+            if(Employee.HolidayPerYear != null)
+                param.Add(new SqlParameter("@nHolidyPerYear", Employee.HolidayPerYear));
+            if(Employee.TaxClass != null)
+                param.Add(new SqlParameter("@nTaxClass", Employee.TaxClass));
+            if(Employee.HouseNumber != null)
+                param.Add(new SqlParameter("@szHouseNumber", Employee.HouseNumber));
+            if(Employee.Street != null)
+                param.Add(new SqlParameter("@szStreet", Employee.Street));
+            if(Employee.PLZ != null)
+                param.Add(new SqlParameter("@zPLZ", Employee.PLZ));
+            if(Employee.City != null)
+                param.Add(new SqlParameter("@szCity", Employee.City));
+            if(Employee.IBAN != null)
+                param.Add(new SqlParameter("@szIBAN", Employee.IBAN));
+            if(Employee.BIC != null)
+                param.Add(new SqlParameter("@szBIC", Employee.BIC));
+            if(Employee.BankName != null)
+                param.Add(new SqlParameter("@szBankName", Employee.BankName));
 
             try
             {

@@ -74,7 +74,7 @@ namespace MAV.Login {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/MAV.Login;V1.0.0.0;component/dialogs/dialog.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/MAV.Login;component/dialogs/dialog.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Dialogs\Dialog.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
