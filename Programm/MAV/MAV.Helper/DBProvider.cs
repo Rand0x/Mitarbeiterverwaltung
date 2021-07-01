@@ -12,7 +12,9 @@ namespace MAV.Helper
     {
         public static string GetConnectionString()
         {
+            #region Private
             return "Data Source=141.75.150.78,49724\\MAVSQL01;Initial Catalog=dbMAV;User ID=sa;Password=MAVAdmin01";
+            #endregion
         }
 
         public static SqlConnection GetConnection()

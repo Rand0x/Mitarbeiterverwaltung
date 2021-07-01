@@ -109,7 +109,7 @@ namespace MAV.Client.MVVM.View {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/MAV.Client;component/mvvm/view/employeeinfoview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/MAV.Client;V1.0.0.0;component/mvvm/view/employeeinfoview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\MVVM\View\EmployeeInfoView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
