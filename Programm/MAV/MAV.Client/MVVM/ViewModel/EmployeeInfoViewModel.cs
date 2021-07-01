@@ -200,7 +200,7 @@ namespace MAV.Client.MVVM.ViewModel
                 {
                     Key = (int)row["nKey"],
                     Reason = row["szReason"].ToString(),
-                    Amount = Convert.ToDouble(row["rAmount"]),
+                    Amount = double.Parse(row["rAmount"].ToString()),
                     DateOfPayment = DateTime.Parse(row["dtDateOfPayment"].ToString()),
                     Comment = row["szComment"].ToString()
                 });

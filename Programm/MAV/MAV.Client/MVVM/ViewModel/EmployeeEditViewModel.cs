@@ -124,30 +124,27 @@ namespace MAV.Client.MVVM.ViewModel
             var param = new ObservableCollection<SqlParameter>();
             param.Add(new SqlParameter("@nKey", Employee.Key));          
             param.Add(new SqlParameter("@nEmployeeNmb", Employee.EmplyeeNmb));
-            if (Employee.Birthday != null)
-                param.Add(new SqlParameter("@dtBirthdate", Employee.Birthday));
-            if (Employee.LandlineNbr != null)
-                param.Add(new SqlParameter("@szTelephone", Employee.LandlineNbr));
-            if (Employee.LandlineNmbPrivate != null)
-                param.Add(new SqlParameter("@szTelephonePrivate", Employee.LandlineNmbPrivate));
-            if (Employee.EMail != null)
-                param.Add(new SqlParameter("@szMail", Employee.EMail));
-            param.Add(new SqlParameter("@szSex", Employee.SexEn.ToString()));
-            if (SelectedDepartement != null)
-                param.Add(new SqlParameter("@nDepartementLink", SelectedDepartement.Key));
-            if (Employee.Job != null)
-                param.Add(new SqlParameter("@szJobName", Employee.Job));
+            param.Add(new SqlParameter("@szTelephone", Employee.LandlineNbr));
+            param.Add(new SqlParameter("@szMail", Employee.EMail));
+            param.Add(new SqlParameter("@nDepartementLink", SelectedDepartement.Key));
+            param.Add(new SqlParameter("@szJobName", Employee.Job));
+            param.Add(new SqlParameter("@dtRecruitDate", Employee.HireDate));
+            param.Add(new SqlParameter("@szTelephonePrivate", Employee.LandlineNmbPrivate));
+            param.Add(new SqlParameter("@dtBirthdate", Employee.Birthday));
+            param.Add(new SqlParameter("@szSex", Employee.Sex.Substring(0,1).ToUpper()));
+            param.Add(new SqlParameter("@nNoticePeriod", Employee.NoticePeriod));
             param.Add(new SqlParameter("@nHoursPerWeek", Employee.HoursPerWeek));
-            if (Employee.HireDate != null)
-                param.Add(new SqlParameter("@dtRecruitDate", Employee.HireDate));
+            param.Add(new SqlParameter("@rOvertime", Employee.Overtime));
             param.Add(new SqlParameter("@rWage", Employee.Wage));
             param.Add(new SqlParameter("@nHolidyPerYear", Employee.HolidayPerYear));
-            param.Add(new SqlParameter("@nNoticePeriod", Employee.NoticePeriod));
             param.Add(new SqlParameter("@nTaxClass", Employee.TaxClass));
-            param.Add(new SqlParameter("@szComment", Employee.Comment));
-            
-            
-
+            param.Add(new SqlParameter("@szHouseNumber", Employee.HouseNumber));
+            param.Add(new SqlParameter("@szStreet", Employee.Street));
+            param.Add(new SqlParameter("@zPLZ", Employee.PLZ));
+            param.Add(new SqlParameter("@szCity", Employee.City));
+            param.Add(new SqlParameter("@szIBAN", Employee.IBAN));
+            param.Add(new SqlParameter("@szBIC", Employee.BIC));
+            param.Add(new SqlParameter("@szBankName", Employee.BankName));
 
             try
             {

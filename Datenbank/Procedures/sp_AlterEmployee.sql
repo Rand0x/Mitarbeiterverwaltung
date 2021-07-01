@@ -12,7 +12,6 @@ alter proc [dbo].[sp_AlterEmployee]
     @nEmployeeNmb       int                 = null,
     @dtBirthdate        datetime            = null,
     @szTelephone        nvarchar(200)       = null,
-    @szTelephonePrivate nvarchar(200)       = null,
     @szMail             nvarchar(200)       = null,
     @szSex              nvarchar(1)         = null,
     @nDepartementLink   int                 = null,
@@ -20,10 +19,19 @@ alter proc [dbo].[sp_AlterEmployee]
     @nHoursPerWeek      int                 = null,
     @dtRecruitDate      datetime            = null,
     @rWage              decimal(10,2)       = null,
+    @rOvertime          decimal(5,1)        = null,
     @nHolidyPerYear     int                 = null,
     @nNoticePeriod      int                 = null,
     @nTaxClass          int                 = null,
     @szComment          nvarchar(max)       = null,       
+    @szTelephonePrivate nvarchar(200)       = null,
+    @szHouseNumber      nvarchar(10)        = null,
+    @szStreet           nvarchar(200)       = null,
+    @szPLZ              nvarchar(5)         = null,
+    @szCity             nvarchar(200)       = null,
+    @szIBAN             nvarchar(22)        = null,
+    @szBIC              nvarchar(11)        = null,
+    @szBankName         nvarchar(200)       = null,
     @szError            nvarchar(500)       = N''         output,
     @bDebug             int                 = 0
 as begin
@@ -61,144 +69,42 @@ as begin
     print N'********************************************************'
   end
 
-  if @nEmployeeNmb is not null
-  begin
-    update e
-    set nEmployeeNumber = @nEmployeeNmb
-    from tblEmployee e
-    where nKey = @nKey
-  end
-
-  if @dtBirthdate is not null
-  begin
-    update e
-    set dtBirthdate = @dtBirthdate
-    from tblEmployee e
-    where nKey = @nKey
-  end
-
-  if @szTelephone is not null
-  begin
-    update e
-    set szTelephone = @szTelephone
-    from tblEmployee e
-    where nKey = @nKey
-  end
-
-  if @szMail is not null
-  begin
-    update e
-    set szMail = @szMail
-    from tblEmployee e
-    where nKey = @nKey
-  end
-
-  if @szSex is not null
-  begin
-    update e
-    set szSex = @szSex
-    from tblEmployee e
-    where nKey = @nKey
-  end
-
-  if @nDepartementLink is not null
-  begin
-    update e
-    set nDepartementLink = @nDepartementLink
-    from tblEmployee e
-    where nKey = @nKey
-  end
-
-  if @szJobName is not null
-  begin
-    update e
-    set szJobName = @szJobName
-    from tblEmployee e
-    where nKey = @nKey
-  end
-
-  if @nHoursPerWeek is not null
-  begin
-    update e
-    set nHoursPerWeek = @nHoursPerWeek
-    from tblEmployee e
-    where nKey = @nKey
-  end
-
-  if @dtRecruitDate is not null
-  begin
-    update e
-    set dtRecruitDate = @dtRecruitDate
-    from tblEmployee e
-    where nKey = @nKey
-  end
-
-  if @rWage is not null
-  begin
-    update e
-    set rWage = @rWage
-    from tblEmployee e
-    where nKey = @nKey
-  end
-
-  if @nHolidyPerYear is not null
-  begin
-    update e
-    set nHolidyPerYear = @nHolidyPerYear
-    from tblEmployee e
-    where nKey = @nKey
-  end
-
-  if @nNoticePeriod is not null
-  begin
-    update e
-    set nNoticePeriod = @nNoticePeriod
-    from tblEmployee e
-    where nKey = @nKey
-  end
-
-  if @nTaxClass is not null
-  begin
-    update e
-    set nTaxClass = @nTaxClass
-    from tblEmployee e
-    where nKey = @nKey
-  end
-
-  if @szComment is not null
-  begin
-    update e
-    set szComment = @szComment
-    from tblEmployee e
-    where nKey = @nKey
-  end
-
-  --update e
-  --set e.nEmployeeNumber = ISNULL(@nEmployeeNmb, e.nEmployeeNumber)
-  --  , e.dtBirthdate = ISNULL(@dtBirthdate, e.dtBirthdate) 
-  --  , e.szTelephone = ISNULL(@szTelephone, e.szTelephone)
-  --  , e.szMail = ISNULL(@szMail, szMail)
-  --  , e.szSex = ISNULL(@szSex, e.szSex)
-  --  , e.nDepartementLink = ISNULL(@nDepartementLink, e.nDepartementLink)
-  --  , e.szJobName = ISNULL(@szJobName, e.szJobName)
-  --  , e.nHoursPerWeek = ISNULL(@nHoursPerWeek, e.nHoursPerWeek)
-  --  , e.dtRecruitDate = ISNULL(@dtRecruitDate, e.dtRecruitDate)
-  --  , e.rWage = ISNULL(@rWage, e.rWage)
-  --  , e.nHolidyPerYear = ISNULL(@nHolidyPerYear, e.nHolidyPerYear)
-  --  , e.nNoticePeriod = ISNULL(@nNoticePeriod, e.nNoticePeriod)
-  --  , e.nTaxClass = ISNULL(@nTaxClass, e.nTaxClass)
-  --  , e.szComment = ISNULL(@szComment, e.szComment)
-  --from tblEmployee e
-  --where e.nKey = @nKey
+  update e
+  set e.nEmployeeNumber = ISNULL(@nEmployeeNmb, e.nEmployeeNumber)
+    , e.dtBirthdate = ISNULL(@dtBirthdate, e.dtBirthdate) 
+    , e.szTelephone = ISNULL(@szTelephone, e.szTelephone)
+    , e.szMail = ISNULL(@szMail, szMail)
+    , e.szSex = ISNULL(@szSex, e.szSex)
+    , e.nDepartementLink = ISNULL(@nDepartementLink, e.nDepartementLink)
+    , e.szJobName = ISNULL(@szJobName, e.szJobName)
+    , e.nHoursPerWeek = ISNULL(@nHoursPerWeek, e.nHoursPerWeek)
+    , e.dtRecruitDate = ISNULL(@dtRecruitDate, e.dtRecruitDate)
+    , e.rWage = ISNULL(@rWage, e.rWage)
+    , e.rOvertime = ISNULL(@rOvertime, e.rOvertime)
+    , e.nHolidyPerYear = ISNULL(@nHolidyPerYear, e.nHolidyPerYear)
+    , e.nNoticePeriod = ISNULL(@nNoticePeriod, e.nNoticePeriod)
+    , e.nTaxClass = ISNULL(@nTaxClass, e.nTaxClass)
+    , e.szComment = ISNULL(@szComment, e.szComment)
+  from tblEmployee e
+  where e.nKey = @nKey
   
-  if @szMail is not null
-  begin
-    update a 
-    set a.szPrivateTelephone = ISNULL(@szTelephonePrivate, szPrivateTelephone)
-    from tblAddress a
-    join tblEmployee e on e.nAddressLink = a.nKey
-    where e.nKey = @nKey
-  end
+  update a 
+  set a.szPrivateTelephone = ISNULL(@szTelephonePrivate, a.szPrivateTelephone)
+    , a.szHouseNumber = ISNULL(@szHouseNumber, a.szHouseNumber)
+    , a.szStreet = ISNULL(@szStreet, a.szStreet)
+    , a.szPLZ = ISNULL(@szPLZ, a.szPLZ)
+    , a.szCity = ISNULL(@szCity, a.szCity)
+  from tblAddress a
+  join tblEmployee e on e.nAddressLink = a.nKey
+  where e.nKey = @nKey
+
+  update b
+  set b.szBankName = ISNULL(@szBankName, b.szBankName)
+    , b.szBIC = ISNULL(@szBIC, b.szBIC)
+    , b.szIBAN = ISNULL(@szIBAN, b.szIBAN)
+  from tblBanking b
+  join tblEmployee e on e.nBankingLink = b.nKey
+  where e.nKey = @nKey
   
 end
 
