@@ -93,10 +93,22 @@ namespace MAV.Client.MVVM.ViewModel
             param.Add(new SqlParameter("@nDepartementLink", SelectedDepartement.Key));
             param.Add(new SqlParameter("@szJobName", Employee.Job));
             param.Add(new SqlParameter("@dtRecruitDate", Employee.HireDate));
-            //param.Add(new SqlParameter("@szTelephonePrivate", Employee.LandlineNmbPrivate));
+            param.Add(new SqlParameter("@szTelephonePrivate", Employee.LandlineNmbPrivate));
             param.Add(new SqlParameter("@dtBirthdate", Employee.Birthday));
-            param.Add(new SqlParameter("@szSex", Employee.Sex));
-
+            param.Add(new SqlParameter("@szSex", Employee.Sex.Substring(0,1).ToUpper()));
+            param.Add(new SqlParameter("@nNoticePeriod", Employee.NoticePeriod));
+            param.Add(new SqlParameter("@nHoursPerWeek", Employee.HoursPerWeek));
+            param.Add(new SqlParameter("@rOvertime", Employee.Overtime));
+            param.Add(new SqlParameter("@rWage", Employee.Wage));
+            param.Add(new SqlParameter("@nHolidyPerYear", Employee.HolidayPerYear));
+            param.Add(new SqlParameter("@nTaxClass", Employee.TaxClass));
+            param.Add(new SqlParameter("@szHouseNumber", Employee.HouseNumber));
+            param.Add(new SqlParameter("@szStreet", Employee.Street));
+            param.Add(new SqlParameter("@zPLZ", Employee.PLZ));
+            param.Add(new SqlParameter("@szCity", Employee.City));
+            param.Add(new SqlParameter("@szIBAN", Employee.IBAN));
+            param.Add(new SqlParameter("@szBIC", Employee.BIC));
+            param.Add(new SqlParameter("@szBankName", Employee.BankName));
 
             try
             {
