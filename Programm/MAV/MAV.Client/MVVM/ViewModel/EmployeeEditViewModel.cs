@@ -122,11 +122,16 @@ namespace MAV.Client.MVVM.ViewModel
 
             //zusammenstellen der benötigten Parameter für Prozeduraufruf
             var param = new ObservableCollection<SqlParameter>();
+
+            #region Parameter
+
             param.Add(new SqlParameter("@nKey", Employee.Key));          
             param.Add(new SqlParameter("@nEmployeeNmb", Employee.EmplyeeNmb));
             if(Employee.LandlineNbr != null)
                 param.Add(new SqlParameter("@szTelephone", Employee.LandlineNbr));
-            if(Employee.EMail != null)
+            if(Employee.MobileNbr != null)
+                param.Add(new SqlParameter("@szMobile", Employee.MobileNbr));
+            if (Employee.EMail != null)
                 param.Add(new SqlParameter("@szMail", Employee.EMail));
             if(SelectedDepartement != null)
                 param.Add(new SqlParameter("@nDepartementLink", SelectedDepartement.Key));
@@ -136,7 +141,9 @@ namespace MAV.Client.MVVM.ViewModel
                 param.Add(new SqlParameter("@dtRecruitDate", Employee.HireDate));
             if(Employee.LandlineNmbPrivate != null)
                 param.Add(new SqlParameter("@szTelephonePrivate", Employee.LandlineNmbPrivate));
-            if(Employee.Birthday != null)
+            if(Employee.MobileNbrPrivate != null)
+                param.Add(new SqlParameter("@szMobileNmbPrivate", Employee.MobileNbrPrivate));
+            if (Employee.Birthday != null)
                 param.Add(new SqlParameter("@dtBirthdate", Employee.Birthday));
             param.Add(new SqlParameter("@szSex", Employee.SexEn.ToString().Substring(0,1).ToUpper()));
             if(Employee.NoticePeriod != null)
@@ -151,12 +158,14 @@ namespace MAV.Client.MVVM.ViewModel
                 param.Add(new SqlParameter("@nHolidyPerYear", Employee.HolidayPerYear));
             if(Employee.TaxClass != null)
                 param.Add(new SqlParameter("@nTaxClass", Employee.TaxClass));
-            if(Employee.HouseNumber != null)
+            if(Employee.MaritalStatus != null)
+                param.Add(new SqlParameter("@szMaritalStatus", Employee.MaritalStatus));
+            if (Employee.HouseNumber != null)
                 param.Add(new SqlParameter("@szHouseNumber", Employee.HouseNumber));
             if(Employee.Street != null)
                 param.Add(new SqlParameter("@szStreet", Employee.Street));
             if(Employee.PLZ != null)
-                param.Add(new SqlParameter("@zPLZ", Employee.PLZ));
+                param.Add(new SqlParameter("@szPLZ", Employee.PLZ));
             if(Employee.City != null)
                 param.Add(new SqlParameter("@szCity", Employee.City));
             if(Employee.IBAN != null)
@@ -165,6 +174,8 @@ namespace MAV.Client.MVVM.ViewModel
                 param.Add(new SqlParameter("@szBIC", Employee.BIC));
             if(Employee.BankName != null)
                 param.Add(new SqlParameter("@szBankName", Employee.BankName));
+
+            #endregion
 
             try
             {

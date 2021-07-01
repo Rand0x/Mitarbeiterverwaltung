@@ -39,6 +39,7 @@ as begin
        , a.szPLZ
        , a.szPrivateMail
        , a.szPrivateTelephone
+       , a.szPrivateMobileNmb
        , b.szBankName
        , b.szBIC
        , b.szIBAN

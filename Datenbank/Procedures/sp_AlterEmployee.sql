@@ -11,7 +11,8 @@ alter proc [dbo].[sp_AlterEmployee]
     @nKey               int,    
     @nEmployeeNmb       int                 = null,
     @dtBirthdate        datetime            = null,
-    @szTelephone        nvarchar(200)       = null,
+    @szTelephone        nvarchar(50)        = null,
+    @szMobile           nvarchar(50)        = null,
     @szMail             nvarchar(200)       = null,
     @szSex              nvarchar(1)         = null,
     @nDepartementLink   int                 = null,
@@ -23,8 +24,10 @@ alter proc [dbo].[sp_AlterEmployee]
     @nHolidyPerYear     int                 = null,
     @nNoticePeriod      int                 = null,
     @nTaxClass          int                 = null,
+    @szMaritalStatus    nvarchar(50)        = null,
     @szComment          nvarchar(max)       = null,       
-    @szTelephonePrivate nvarchar(200)       = null,
+    @szTelephonePrivate nvarchar(50)        = null,
+    @szMobileNmbPrivate nvarchar(50)        = null,
     @szHouseNumber      nvarchar(10)        = null,
     @szStreet           nvarchar(200)       = null,
     @szPLZ              nvarchar(5)         = null,
@@ -73,6 +76,7 @@ as begin
   set e.nEmployeeNumber = ISNULL(@nEmployeeNmb, e.nEmployeeNumber)
     , e.dtBirthdate = ISNULL(@dtBirthdate, e.dtBirthdate) 
     , e.szTelephone = ISNULL(@szTelephone, e.szTelephone)
+    , e.szMobileNumber = ISNULL(@szMobile, e.szMobileNumber)
     , e.szMail = ISNULL(@szMail, szMail)
     , e.szSex = ISNULL(@szSex, e.szSex)
     , e.nDepartementLink = ISNULL(@nDepartementLink, e.nDepartementLink)
@@ -84,6 +88,7 @@ as begin
     , e.nHolidyPerYear = ISNULL(@nHolidyPerYear, e.nHolidyPerYear)
     , e.nNoticePeriod = ISNULL(@nNoticePeriod, e.nNoticePeriod)
     , e.nTaxClass = ISNULL(@nTaxClass, e.nTaxClass)
+    , e.szMaritalStatus = ISNULL(@szMaritalStatus, e.szMaritalStatus)
     , e.szComment = ISNULL(@szComment, e.szComment)
   from tblEmployee e
   where e.nKey = @nKey
@@ -94,6 +99,7 @@ as begin
     , a.szStreet = ISNULL(@szStreet, a.szStreet)
     , a.szPLZ = ISNULL(@szPLZ, a.szPLZ)
     , a.szCity = ISNULL(@szCity, a.szCity)
+    , a.szPrivateMobileNmb = ISNULL(@szMobileNmbPrivate, a.szPrivateMobileNmb)
   from tblAddress a
   join tblEmployee e on e.nAddressLink = a.nKey
   where e.nKey = @nKey

@@ -1,4 +1,4 @@
-
+ 
 
 use dbMAV
 
@@ -376,6 +376,8 @@ set nBankingLink = case when nDepartementLink = 2 then 0
                         when nDepartementLink = 1 then 2 
                         else 0 end
 from tblEmployee e
+
+
 
 go
 
