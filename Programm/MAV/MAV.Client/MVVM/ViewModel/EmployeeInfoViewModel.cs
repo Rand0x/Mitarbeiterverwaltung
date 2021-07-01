@@ -102,15 +102,17 @@ namespace MAV.Client.MVVM.ViewModel
                     LastName = row["szLastName"].ToString(),
                     EmplyeeNmb = (int)row["nEmployeeNumber"],
                     LandlineNbr = row["szTelephone"].ToString(),
+                    MobileNbr = row["szMobileNumber"].ToString(),
                     EMail = row["szMail"].ToString(),
                     Department = row["szDepartementName"].ToString(),
                     Job = row["szJobName"].ToString(),
                     HireDate = DateTime.Parse(row["dtRecruitDate"].ToString()),
                     Manager = row["szManager"].ToString(),
                     LandlineNmbPrivate = row["szPrivateTelephone"].ToString(),
-                    Birthday = DateTime.Parse(row["dtBirthdate"].ToString()),                    
+                    MobileNbrPrivate = row["szPrivateMobileNmb"].ToString(),
+                    Birthday = DateTime.Parse(row["dtBirthdate"].ToString()),
                     Street = row["szStreet"].ToString(),
-                    HouseNumber =  row["szHouseNumber"].ToString(),
+                    HouseNumber = row["szHouseNumber"].ToString(),
                     PLZ = row["szPLZ"].ToString(),
                     City = row["szCity"].ToString(),
                     IBAN = row["szIBAN"].ToString(),
@@ -123,6 +125,7 @@ namespace MAV.Client.MVVM.ViewModel
                     Wage = row["rWage"] is DBNull ? null : (double?)double.Parse(row["rWage"].ToString()),
                     HolidayPerYear = row["nHolidyPerYear"] is DBNull ? null : (int?)row["nHolidyPerYear"],
                     TaxClass = row["nTaxClass"] is DBNull ? null : (int?)row["nTaxClass"],
+                    MaritalStatus = row["szMaritalStatus"].ToString()
                 };
 
                 // In Datenbank wird für Geschlecht nur ein Char gespeichert (m/w/d)

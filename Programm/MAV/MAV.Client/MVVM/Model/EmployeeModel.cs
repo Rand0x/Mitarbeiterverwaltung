@@ -129,6 +129,17 @@ namespace MAV.Client.MVVM.Model
             }
         }
 
+        private string mobileNbr;
+        public string MobileNbr
+        {
+            get { return mobileNbr; }
+            set
+            {
+                mobileNbr = value;
+                OnPropertyChanged();
+            }
+        }
+
         private string job;
         public string Job
         {
@@ -202,6 +213,17 @@ namespace MAV.Client.MVVM.Model
             set
             {
                 taxclass = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string maritalStatus;
+        public string MaritalStatus
+        {
+            get { return maritalStatus; }
+            set
+            {
+                maritalStatus = value;
                 OnPropertyChanged();
             }
         }
@@ -282,6 +304,17 @@ namespace MAV.Client.MVVM.Model
             set
             {
                 landlinenmbprivate = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string mobileNbrPrivate;
+        public string MobileNbrPrivate
+        {
+            get { return mobileNbrPrivate; }
+            set
+            {
+                mobileNbrPrivate = value;
                 OnPropertyChanged();
             }
         }
