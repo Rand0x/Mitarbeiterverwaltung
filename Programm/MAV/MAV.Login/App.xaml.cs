@@ -1,24 +1,20 @@
 ﻿using MAV.Client;
 using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 
 namespace MAV.Login
 {
-  /// <summary>
-  /// Interaction logic for App.xaml
-  /// </summary>
-  public partial class App : Application
+    /// <summary>
+    /// Interaction logic for App.xaml
+    /// </summary>
+    public partial class App : Application
   {
         //Timer für Inaktivität des Users
-        private DispatcherTimer m_Timer = new DispatcherTimer();
+        private DispatcherTimer timer = new DispatcherTimer();
 
         /// <summary>
         /// Code von: https://social.msdn.microsoft.com/Forums/en-US/a518ff46-fa61-4b9a-b6ee-1443b17c1c56/wpf-application-automatic-lock-setup-?forum=wpf
@@ -52,9 +48,9 @@ namespace MAV.Login
         private void Application_Startup(object sender, StartupEventArgs e)
         {
             //Timer zum Auto LogOut
-            m_Timer.Interval = new TimeSpan(0, 1, 0); //Tick Event wird jede Minute gefeuert
-            m_Timer.Tick += timer_Tick;
-            m_Timer.Start();
+            timer.Interval = new TimeSpan(0, 1, 0); //Tick Event wird jede Minute gefeuert
+            timer.Tick += Timer_Tick;
+            timer.Start();
 
             //LogOut bei Sperrung des PCs
             SystemEvents.SessionSwitch += new SessionSwitchEventHandler(SystemEvents_SessionSwitch);
@@ -65,7 +61,7 @@ namespace MAV.Login
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void timer_Tick(object sender, EventArgs e)
+        private void Timer_Tick(object sender, EventArgs e)
         {
             //nach einer Abwesentheit von 5 Minuten wird der Benutzer ausgelogt
             if (GetLastInputTime() >= 300)

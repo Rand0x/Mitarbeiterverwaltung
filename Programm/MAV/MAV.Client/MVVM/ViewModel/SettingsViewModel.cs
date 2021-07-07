@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using MAV.Helper;
-using MAV.Base;
+﻿using MAV.Base;
 using MAV.Client.MVVM.View;
+using MAV.Helper;
+using System;
 using System.Collections.ObjectModel;
-using System.Data.SqlClient;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace MAV.Client.MVVM.ViewModel
 {
@@ -14,16 +12,16 @@ namespace MAV.Client.MVVM.ViewModel
     {
         #region Properties
 
-        private SettingsView m_Control;
+        private SettingsView control;
         //Verweis auf View
         public SettingsView Control
         {
-            get { return m_Control; }
+            get { return control; }
             private set
             {
-                if (value != m_Control)
+                if (value != control)
                 {
-                    m_Control = value;
+                    control = value;
                     OnPropertyChanged();
                 }
             }

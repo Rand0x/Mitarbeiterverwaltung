@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using MAV.Base;
+﻿using MAV.Base;
 
 namespace MAV.Client.MVVM.Model
 {
@@ -66,20 +63,6 @@ namespace MAV.Client.MVVM.Model
                 department = value;
                 OnPropertyChanged();
             }
-        }
-
-        public void CopyPropsTo(AddressEntryModel user)
-        {
-            user.FirstName = FirstName;
-            user.LastName = LastName;
-            user.Department = Department;
-            user.EmployeeNumber = EmployeeNumber;
-            user.LandlineNbr = LandlineNbr;
-        }
-
-        public AddressEntryModel Clone()
-        {
-            return (AddressEntryModel)this.MemberwiseClone();
         }
     }
 }

@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using MAV.Helper;
-using MAV.Base;
+﻿using MAV.Base;
+using MAV.Client.MVVM.Model;
 using MAV.Client.MVVM.View;
-using System.Security.Cryptography;
+using MAV.Helper;
+using System;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Collections.ObjectModel;
-using MAV.Client.MVVM.Model;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 
 namespace MAV.Client.MVVM.ViewModel
 {
@@ -18,73 +13,73 @@ namespace MAV.Client.MVVM.ViewModel
     {
         #region Properties
 
-        private AddUserView m_Control;
+        private AddUserView control;
         //zugehöriges View
         public AddUserView Control
         {
-            get { return m_Control; }
+            get { return control; }
             private set
             {
-                if (value != m_Control)
+                if (value != control)
                 {
-                    m_Control = value;
+                    control = value;
                     OnPropertyChanged();
                 }
             }
         }
 
-        private string m_FirstName;
+        private string firstName;
         public string FirstName
         {
-            get { return m_FirstName; }
+            get { return firstName; }
             set
             {
-                if (value != m_FirstName)
+                if (value != firstName)
                 {
-                    m_FirstName = value;
+                    firstName = value;
                     OnPropertyChanged();
                 }
             }
         }
 
-        private string m_LastName;
+        private string lastName;
         public string LastName
         {
-            get { return m_LastName; }
+            get { return lastName; }
             set
             {
-                if (value != m_LastName)
+                if (value != lastName)
                 {
-                    m_LastName = value;
+                    lastName = value;
                     OnPropertyChanged();
                 }
             }
         }
 
-        private ObservableCollection<RightModel> m_Rights;
+        private ObservableCollection<RightModel> rights;
         //Liste aller vorhandenen Rechte aus DB
         public ObservableCollection<RightModel> Rights
         {
-            get { return m_Rights; }
+            get { return rights; }
             set
             {
-                if (value != m_Rights)
+                if (value != rights)
                 {
-                    m_Rights = value;
+                    rights = value;
                     OnPropertyChanged();
                 }
             }
         }
 
-        private RightModel m_SelectedRight;
+        private RightModel selectedRight;
         public RightModel SelectedRight
         {
-            get { return m_SelectedRight; }
+            get { return selectedRight; }
             set
             {
-                if (value != m_SelectedRight)
+                if (value != selectedRight)
                 {
-                    m_SelectedRight = value;
+                    selectedRight = value;
                     OnPropertyChanged();
                 }
             }
@@ -124,6 +119,10 @@ namespace MAV.Client.MVVM.ViewModel
 
         #region Implementation
 
+        /// <summary>
+        /// Wenn alle benötigten Daten eingegeben wurden, wird ein neuer Benutzer (mit entsprechendem Recht) zum Anmelden erstellt 
+        /// </summary>
+        /// <param name="parameter"></param>
         private void AddUser(object parameter = null)
         {
             //Überprüfen der eingegebenen Daten
@@ -170,17 +169,15 @@ namespace MAV.Client.MVVM.ViewModel
                 {
                     DBProvider.ExecProcedure("sp_CreateUser", param); //anlegen des neuen Users
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     DialogPopUp("Fehler", ex.Message);
                     ClearBoxes();
                     return;
                 }
-
                 DialogPopUp("Erfolgreich erstellt", "Der Benutzer wurde erfolgreich erstellt", $"Benutzername: {Control.FirstName.Text}_{Control.LastName.Text}");
                 ClearBoxes();
             }
-
         }
 
         /// <summary>
@@ -194,7 +191,7 @@ namespace MAV.Client.MVVM.ViewModel
             {
                 result = DBProvider.ExecProcedure("sp_LoadRights");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 DialogPopUp("Fehler", ex.Message);
                 return;
@@ -213,9 +210,9 @@ namespace MAV.Client.MVVM.ViewModel
         }
 
         /// <summary>
-        /// Leert die Boxen
+        /// Alle Felder zur Eingabe von Daten werden wieder auf Startzustand zurückgesetzt
         /// </summary>
-        void ClearBoxes()
+        private void ClearBoxes()
         {
             FirstName = null;
             LastName = null;
@@ -225,7 +222,7 @@ namespace MAV.Client.MVVM.ViewModel
         }
 
         /// <summary>
-        /// Beim Aufrufen erscheint ein Fenster
+        /// Beim Aufrufen erscheint ein Dialog-Fenster
         /// </summary>
         /// <param name="title">Title des Fensters</param>
         /// <param name="firstLine">Erste Zeile des Fensters</param>
@@ -240,6 +237,5 @@ namespace MAV.Client.MVVM.ViewModel
         }
 
         #endregion
-
     }
 }

@@ -1,7 +1,5 @@
-﻿using System;
-using MAV.Base;
-using System.Collections.Generic;
-using System.Text;
+﻿using MAV.Base;
+using System;
 
 namespace MAV.Client.MVVM.Model
 {
@@ -40,6 +38,7 @@ namespace MAV.Client.MVVM.Model
             }
         }
 
+        // Property zum Binden (OneWay) um Datum im richtigen (europäischen) Format darzustellen
         public string IssueDateAsString
         {
             get

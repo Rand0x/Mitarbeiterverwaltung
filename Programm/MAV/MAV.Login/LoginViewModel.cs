@@ -2,15 +2,9 @@
 using MAV.Client;
 using MAV.Helper;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Security.Cryptography;
-using System.Text;
-using System.Windows;
 
 namespace MAV.Login
 {
@@ -19,14 +13,14 @@ namespace MAV.Login
         #region Properties
 
         //Verweis auf Frontend um Password nciht zwischenspeichern zu müssen
-        private Login m_Control;
+        private Login control;
         public Login Control
         {
-            get { return m_Control; }
+            get { return control; }
             private set {
-                if(value != m_Control)
+                if(value != control)
                 {
-                    m_Control = value;
+                    control = value;
                     OnPropertyChanged();
                 }
             }

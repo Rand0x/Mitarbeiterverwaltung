@@ -9,7 +9,16 @@ namespace MAV.Client.MVVM.View
             InitializeComponent();
         }
 
-        public string FirstLineContent { get { return FirstLine.Text; } set { FirstLine.Text = value; } }
-        public string SecondLineText { get { return SecondLine.Text; } set { SecondLine.Text = value; } }
+        public string FirstLineContent 
+        { 
+            get { return FirstLine.Text; } 
+            set { FirstLine.Text = value; } 
+        }
+
+        public string SecondLineText 
+        { 
+            get { return SecondLine.Text; } 
+            set { SecondLine.Text = value; } 
+        }
     }
 }
