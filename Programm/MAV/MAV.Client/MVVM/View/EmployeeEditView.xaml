@@ -9,7 +9,7 @@
              xmlns:System="clr-namespace:System;assembly=mscorlib" 
              mc:Ignorable="d" 
              d:DesignHeight="700" d:DesignWidth="800">
-    
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -59,8 +59,8 @@
                     <TextBox Text="{Binding Employee.EmplyeeNmb}" Margin ="0,0,10,10" FontSize="16"/>
                     <TextBlock Text="Telefon (geschäftlich)" Foreground="#5B5B5B" FontSize="16"/>
                     <TextBox Text="{Binding Employee.LandlineNbr}" Margin ="0,0,10,10" FontSize="16"/>
-                    <!--<TextBlock Text="Mobil (geschäftlich)" Foreground="#5B5B5B" FontSize="16"/>
-                    <TextBox Text="{Binding Employee.MobileNbr}" Margin ="0,0,10,10" FontSize="16"/>-->
+                    <TextBlock Text="Mobil (geschäftlich)" Foreground="#5B5B5B" FontSize="16"/>
+                    <TextBox Text="{Binding Employee.MobileNbr}" Margin ="0,0,10,10" FontSize="16"/>
                     <TextBlock Text="E-Mail" Foreground="#5B5B5B" FontSize="16"/>
                     <TextBox Text="{Binding Employee.EMail}" Margin ="0,0,10,10" FontSize="16"/>
                 </StackPanel>
@@ -87,17 +87,17 @@
                             <TextBlock Text="Persönliche Informationen" Margin ="0,0,0,10" FontSize="20" FontWeight="Bold"/>
                         </Expander.Header>
                         <StackPanel>
-                            <!--<TextBlock Text="Mobil (privat)" Foreground="#5B5B5B" FontSize="16"/>
-                            <TextBox Text="{Binding Employee.MobileNbrPrivate}" Margin ="0,0,10,10" FontSize="16"/>-->
+                            <TextBlock Text="Mobil (privat)" Foreground="#5B5B5B" FontSize="16"/>
+                            <TextBox Text="{Binding Employee.MobileNbrPrivate}" Margin ="0,0,10,10" FontSize="16"/>
                             <TextBlock Text="Telefon (privat)" Foreground="#5B5B5B" FontSize="16"/>
                             <TextBox Text="{Binding Employee.LandlineNmbPrivate}" Margin ="0,0,10,10" FontSize="16"/>
                             <TextBlock Text="Geburtstag" Foreground="#5B5B5B" FontSize="16" />
                             <DatePicker SelectedDate="{Binding Employee.Birthday}" Margin ="0,0,10,10" FontSize="16"
                                         ui:ControlHelper.PlaceholderText ="Datum auswählen" HorizontalAlignment="Stretch"/>
-                            <!--<TextBlock Text="Familienstand" Foreground="#5B5B5B" FontSize="16"/>
-                            <TextBox Text="{Binding Employee.MaritalDesc}" Margin ="0,0,10,10" FontSize="16"/>-->
+                            <TextBlock Text="Familienstand" Foreground="#5B5B5B" FontSize="16"/>
+                            <TextBox Text="{Binding Employee.MaritalStatus}" Margin ="0,0,10,10" FontSize="16"/>
                             <TextBlock Text="Geschlecht" Foreground="#5B5B5B" FontSize="16"/>
-                            <ComboBox x:Name="cbxSex" SelectedItem="{Binding Employee.Sex}" Margin ="0,0,10,10" 
+                            <ComboBox x:Name="cbxSex" SelectedItem="{Binding Employee.SexEn}" Margin ="0,0,10,10" 
                                       FontSize="16" HorizontalAlignment="Stretch"/>
                         </StackPanel>
                     </Expander>
@@ -153,7 +153,7 @@
                                 </Style>
                             </RichTextBox.Resources>
                         </RichTextBox>
-                    </Expander>                    
+                    </Expander>
                 </StackPanel>
 
 
@@ -226,7 +226,7 @@
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
                             <Button x:Name="AddBonusPaymentButton" Content="&#xE109;" FontSize="18" FontFamily="Segoe MDL2 Assets" 
-                                    VerticalAlignment="Center" Click="OnAddBonusPayment"/>
+                                    VerticalAlignment="Center" Click="AddBonusPaymentButton_Click"/>
                         </StackPanel>
                     </Expander>
                     <Expander ExpandDirection="Down" IsExpanded="False" VerticalAlignment="Top">
@@ -265,7 +265,7 @@
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
                             <Button x:Name="WarningButton" Content="&#xE109;" FontSize="18" FontFamily="Segoe MDL2 Assets" 
-                                    VerticalAlignment="Center" Click="OnAddWarning"/>
+                                    VerticalAlignment="Center" Click="WarningButton_Click"/>
                         </StackPanel>
                     </Expander>
                 </StackPanel>

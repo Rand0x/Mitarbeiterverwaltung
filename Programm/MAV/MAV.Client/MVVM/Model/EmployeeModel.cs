@@ -1,15 +1,17 @@
 ﻿using MAV.Base;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Text;
 
-public enum Gender { männlich, weiblich, divers }
+public enum SexEnum { männlich, weiblich, divers }
 
 namespace MAV.Client.MVVM.Model
 {
     //Model Klasse um Benutzerdaten aus DB zu speichern
     public class EmployeeModel : PropertyChangedBase
     {
-        private int key;      
+        private int key;
         public int Key
         {
             get { return key; }
@@ -64,12 +66,11 @@ namespace MAV.Client.MVVM.Model
             }
         }
 
-        // Property zum Binden (OneWay) um Datum im richtigen (europäischen) Format darzustellen
         public string BirthDayAsString
         {
-            get 
-            {                  
-                return ($"{Birthday.Day.ToString("D2")}.{Birthday.Month.ToString("D2")}.{Birthday.Year}"); 
+            get
+            {
+                return ($"{Birthday.Day.ToString("D2")}.{Birthday.Month.ToString("D2")}.{Birthday.Year}");
             }
         }
 
@@ -84,7 +85,6 @@ namespace MAV.Client.MVVM.Model
             }
         }
 
-        // Property zum Binden (OneWay) um Datum im richtigen (europäischen) Format darzustellen
         public string HireDateAsString
         {
             get
@@ -93,16 +93,16 @@ namespace MAV.Client.MVVM.Model
             }
         }
 
-        private Gender sex;
-        public Gender Sex
+        private SexEnum sexEn;
+        public SexEnum SexEn
         {
             get
             {
-                return sex;
+                return sexEn;
             }
             set
             {
-                sex = value;
+                sexEn = value;
                 OnPropertyChanged();
             }
         }
@@ -129,6 +129,17 @@ namespace MAV.Client.MVVM.Model
             }
         }
 
+        private string mobileNbr;
+        public string MobileNbr
+        {
+            get { return mobileNbr; }
+            set
+            {
+                mobileNbr = value;
+                OnPropertyChanged();
+            }
+        }
+
         private string job;
         public string Job
         {
@@ -138,7 +149,7 @@ namespace MAV.Client.MVVM.Model
                 job = value;
                 OnPropertyChanged();
             }
-        }        
+        }
 
         private int? hoursperweek;
         public int? HoursPerWeek
@@ -206,6 +217,17 @@ namespace MAV.Client.MVVM.Model
             }
         }
 
+        private string maritalStatus;
+        public string MaritalStatus
+        {
+            get { return maritalStatus; }
+            set
+            {
+                maritalStatus = value;
+                OnPropertyChanged();
+            }
+        }
+
         private string comment;
         public string Comment
         {
@@ -213,7 +235,7 @@ namespace MAV.Client.MVVM.Model
             set
             {
                 if (value != null && value.Length > 2 && value.Substring(value.Length - 2).Contains("\r\n"))
-                    comment = value.Substring(0, value.Length - 2);                
+                    comment = value.Substring(0, value.Length - 2);
                 else
                     comment = value;
                 OnPropertyChanged();
@@ -286,6 +308,17 @@ namespace MAV.Client.MVVM.Model
             }
         }
 
+        private string mobileNbrPrivate;
+        public string MobileNbrPrivate
+        {
+            get { return mobileNbrPrivate; }
+            set
+            {
+                mobileNbrPrivate = value;
+                OnPropertyChanged();
+            }
+        }
+
         private string bankname;
         public string BankName
         {
@@ -340,7 +373,7 @@ namespace MAV.Client.MVVM.Model
                 OnPropertyChanged();
             }
         }
-        
+
 
         private ObservableCollection<WarningModel> warningsList = new ObservableCollection<WarningModel>();
         public ObservableCollection<WarningModel> WarningsList

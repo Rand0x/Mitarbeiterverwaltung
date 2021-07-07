@@ -3,9 +3,11 @@ using MAV.Client.MVVM.Model;
 using MAV.Client.MVVM.View;
 using MAV.Helper;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Text;
 
 namespace MAV.Client.MVVM.ViewModel
 {
@@ -13,30 +15,30 @@ namespace MAV.Client.MVVM.ViewModel
     {
         #region Properties
 
-        private EmployeeModel employee;
+        private EmployeeModel m_Employee;
         //ausgewählter Mitarbeiter
         public EmployeeModel Employee
         {
-            get { return employee; }
+            get { return m_Employee; }
             set
             {
-                if (value != employee)
+                if (value != m_Employee)
                 {
-                    employee = value;
+                    m_Employee = value;
                     OnPropertyChanged();
                 }
             }
         }
 
-        private ClientViewModel clientVM;
+        private ClientViewModel m_ClientVM;
         public ClientViewModel ClientVM
         {
-            get { return clientVM; }
+            get { return m_ClientVM; }
             set
             {
-                if (value != clientVM)
+                if (value != m_ClientVM)
                 {
-                    clientVM = value;
+                    m_ClientVM = value;
                     OnPropertyChanged();
                 }
             }
@@ -69,7 +71,7 @@ namespace MAV.Client.MVVM.ViewModel
 
         #endregion
 
-        #region LoadData
+        #region Implementation
 
         /// <summary>
         /// Laden der Daten des ausgewählten Mitarbeiters
@@ -101,12 +103,14 @@ namespace MAV.Client.MVVM.ViewModel
                     LastName = row["szLastName"].ToString(),
                     EmplyeeNmb = (int)row["nEmployeeNumber"],
                     LandlineNbr = row["szTelephone"].ToString(),
+                    MobileNbr = row["szMobileNumber"].ToString(),
                     EMail = row["szMail"].ToString(),
                     Department = row["szDepartementName"].ToString(),
                     Job = row["szJobName"].ToString(),
                     HireDate = DateTime.Parse(row["dtRecruitDate"].ToString()),
                     Manager = row["szManager"].ToString(),
                     LandlineNmbPrivate = row["szPrivateTelephone"].ToString(),
+                    MobileNbrPrivate = row["szPrivateMobileNmb"].ToString(),
                     Birthday = DateTime.Parse(row["dtBirthdate"].ToString()),
                     Street = row["szStreet"].ToString(),
                     HouseNumber = row["szHouseNumber"].ToString(),
@@ -122,6 +126,7 @@ namespace MAV.Client.MVVM.ViewModel
                     Wage = row["rWage"] is DBNull ? null : (double?)double.Parse(row["rWage"].ToString()),
                     HolidayPerYear = row["nHolidyPerYear"] is DBNull ? null : (int?)row["nHolidyPerYear"],
                     TaxClass = row["nTaxClass"] is DBNull ? null : (int?)row["nTaxClass"],
+                    MaritalStatus = row["szMaritalStatus"].ToString()
                 };
 
                 // In Datenbank wird für Geschlecht nur ein Char gespeichert (m/w/d)
@@ -132,13 +137,13 @@ namespace MAV.Client.MVVM.ViewModel
                     switch (sex[0])
                     {
                         case 'm':
-                            Employee.Sex = Gender.männlich;
+                            Employee.SexEn = SexEnum.männlich;
                             break;
                         case 'd':
-                            Employee.Sex = Gender.divers;
+                            Employee.SexEn = SexEnum.divers;
                             break;
                         default:
-                            Employee.Sex = Gender.weiblich;
+                            Employee.SexEn = SexEnum.weiblich;
                             break;
                     }
                 }
@@ -147,10 +152,6 @@ namespace MAV.Client.MVVM.ViewModel
             LoadBonusPayments(key);
         }
 
-        /// <summary>
-        /// Laden der Abmahnungen des ausgewählten Mitarbeiters
-        /// </summary>
-        /// <param name="key"></param>
         private void LoadWarnings(int key)
         {
             DataTable data;
@@ -180,10 +181,6 @@ namespace MAV.Client.MVVM.ViewModel
             }
         }
 
-        /// <summary>
-        /// Laden der Bonus-Zahlungen des ausgewählten Mitarbeiters
-        /// </summary>
-        /// <param name="key"></param>
         private void LoadBonusPayments(int key)
         {
             DataTable data;
@@ -207,7 +204,7 @@ namespace MAV.Client.MVVM.ViewModel
                 {
                     Key = (int)row["nKey"],
                     Reason = row["szReason"].ToString(),
-                    Amount = Convert.ToDouble(row["rAmount"]),
+                    Amount = double.Parse(row["rAmount"].ToString()),
                     DateOfPayment = DateTime.Parse(row["dtDateOfPayment"].ToString()),
                     Comment = row["szComment"].ToString()
                 });
