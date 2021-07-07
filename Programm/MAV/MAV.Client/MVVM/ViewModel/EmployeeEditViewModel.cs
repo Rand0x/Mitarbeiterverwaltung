@@ -43,8 +43,7 @@ namespace MAV.Client.MVVM.ViewModel
         public ObservableCollection<DepartmentModel> Departements
         {
             get { return m_Departements; }
-            set
-            {
+            set {
                 if (value != m_Departements)
                 {
                     m_Departements = value;
@@ -84,7 +83,7 @@ namespace MAV.Client.MVVM.ViewModel
             if (Employee.BonusPaymentList.Count >= 3)
                 m_Control.AddBonusPaymentButton.Visibility = System.Windows.Visibility.Collapsed;
             if (Employee.WarningsList.Count >= 3)
-                m_Control.WarningButton.Visibility = System.Windows.Visibility.Collapsed;
+                m_Control.WarningButton.Visibility = System.Windows.Visibility.Collapsed;            
         }
 
         #endregion
@@ -100,7 +99,7 @@ namespace MAV.Client.MVVM.ViewModel
         {
             SaveCommand = new RelayCommand(Save);
             DeleteCommand = new RelayCommand(Delete);
-            CancelCommand = new RelayCommand((object o) =>
+            CancelCommand = new RelayCommand((object o) => 
             {
                 ClientVM.DirectoryViewCommand.Execute(null);
             });
@@ -126,54 +125,54 @@ namespace MAV.Client.MVVM.ViewModel
 
             #region Parameter
 
-            param.Add(new SqlParameter("@nKey", Employee.Key));
+            param.Add(new SqlParameter("@nKey", Employee.Key));          
             param.Add(new SqlParameter("@nEmployeeNmb", Employee.EmplyeeNmb));
-            if (Employee.LandlineNbr != null)
+            if(Employee.LandlineNbr != null)
                 param.Add(new SqlParameter("@szTelephone", Employee.LandlineNbr));
-            if (Employee.MobileNbr != null)
+            if(Employee.MobileNbr != null)
                 param.Add(new SqlParameter("@szMobile", Employee.MobileNbr));
             if (Employee.EMail != null)
                 param.Add(new SqlParameter("@szMail", Employee.EMail));
-            if (SelectedDepartement != null)
+            if(SelectedDepartement != null)
                 param.Add(new SqlParameter("@nDepartementLink", SelectedDepartement.Key));
-            if (Employee.Job != null)
+            if(Employee.Job != null)
                 param.Add(new SqlParameter("@szJobName", Employee.Job));
-            if (Employee.HireDate != null)
+            if(Employee.HireDate != null)
                 param.Add(new SqlParameter("@dtRecruitDate", Employee.HireDate));
-            if (Employee.LandlineNmbPrivate != null)
+            if(Employee.LandlineNmbPrivate != null)
                 param.Add(new SqlParameter("@szTelephonePrivate", Employee.LandlineNmbPrivate));
-            if (Employee.MobileNbrPrivate != null)
+            if(Employee.MobileNbrPrivate != null)
                 param.Add(new SqlParameter("@szMobileNmbPrivate", Employee.MobileNbrPrivate));
             if (Employee.Birthday != null)
                 param.Add(new SqlParameter("@dtBirthdate", Employee.Birthday));
-            param.Add(new SqlParameter("@szSex", Employee.SexEn.ToString().Substring(0, 1).ToUpper()));
-            if (Employee.NoticePeriod != null)
+            param.Add(new SqlParameter("@szSex", Employee.SexEn.ToString().Substring(0,1).ToUpper()));
+            if(Employee.NoticePeriod != null)
                 param.Add(new SqlParameter("@nNoticePeriod", Employee.NoticePeriod));
-            if (Employee.HoursPerWeek != null)
+            if(Employee.HoursPerWeek != null)
                 param.Add(new SqlParameter("@nHoursPerWeek", Employee.HoursPerWeek));
-            if (Employee.Overtime != null)
+            if(Employee.Overtime != null)
                 param.Add(new SqlParameter("@rOvertime", Employee.Overtime));
-            if (Employee.Wage != null)
+            if(Employee.Wage != null)
                 param.Add(new SqlParameter("@rWage", Employee.Wage));
-            if (Employee.HolidayPerYear != null)
+            if(Employee.HolidayPerYear != null)
                 param.Add(new SqlParameter("@nHolidyPerYear", Employee.HolidayPerYear));
-            if (Employee.TaxClass != null)
+            if(Employee.TaxClass != null)
                 param.Add(new SqlParameter("@nTaxClass", Employee.TaxClass));
-            if (Employee.MaritalStatus != null)
+            if(Employee.MaritalStatus != null)
                 param.Add(new SqlParameter("@szMaritalStatus", Employee.MaritalStatus));
             if (Employee.HouseNumber != null)
                 param.Add(new SqlParameter("@szHouseNumber", Employee.HouseNumber));
-            if (Employee.Street != null)
+            if(Employee.Street != null)
                 param.Add(new SqlParameter("@szStreet", Employee.Street));
-            if (Employee.PLZ != null)
+            if(Employee.PLZ != null)
                 param.Add(new SqlParameter("@szPLZ", Employee.PLZ));
-            if (Employee.City != null)
+            if(Employee.City != null)
                 param.Add(new SqlParameter("@szCity", Employee.City));
-            if (Employee.IBAN != null)
+            if(Employee.IBAN != null)
                 param.Add(new SqlParameter("@szIBAN", Employee.IBAN));
-            if (Employee.BIC != null)
+            if(Employee.BIC != null)
                 param.Add(new SqlParameter("@szBIC", Employee.BIC));
-            if (Employee.BankName != null)
+            if(Employee.BankName != null)
                 param.Add(new SqlParameter("@szBankName", Employee.BankName));
 
             #endregion
@@ -192,7 +191,7 @@ namespace MAV.Client.MVVM.ViewModel
             {
                 DialogPopUp("Fehler", ex.Message);
                 return;
-            }
+            }            
 
             DialogPopUp("Erfolgreich geändert", $"Daten von {Employee.FirstName} {Employee.LastName} wurden geändert.");
 
@@ -312,7 +311,7 @@ namespace MAV.Client.MVVM.ViewModel
                 {
                     DBProvider.ExecProcedure("sp_DeleteEmployee", param);
                 }
-                catch (Exception ex)
+                catch(Exception ex)
                 {
                     DialogPopUp("Fehler", ex.Message);
                     return;
@@ -338,7 +337,7 @@ namespace MAV.Client.MVVM.ViewModel
             {
                 data = DBProvider.ExecProcedure("sp_LoadDepartements");
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 DialogPopUp("Fehler", ex.Message);
                 return;

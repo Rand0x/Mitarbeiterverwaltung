@@ -11,7 +11,8 @@ create table tblAddress
   szCity                nvarchar(200)       not null,
   szPLZ                 nvarchar(5)         not null,
   szPrivateMail         nvarchar(200)       null,
-  szPrivateTelephone    nvarchar(50)        null
+  szPrivateTelephone    nvarchar(50)        null,
+  szPrivateMobileNmb    nvarchar(50)        null
 )
 
 
