@@ -5,23 +5,23 @@ namespace MAV.Helper
 {
   public class RelayCommand : ICommand
   {
-    private Action<object> m_Execute;
-    private Func<object ,bool> m_CanExecute;
+    private Action<object> execute;
+    private Func<object ,bool> canExecute;
 
     public RelayCommand(Action<object> ex, Func<object, bool> canex = null)
     {
-      m_Execute = ex;
-      m_CanExecute = canex;
+      execute = ex;
+      canExecute = canex;
     }
 
     public bool CanExecute(object parameter)
     {
-      return m_CanExecute is null ? true : m_CanExecute(parameter);
+      return canExecute is null ? true : canExecute(parameter);
     }
 
     public void Execute(object parameter)
     {
-      m_Execute(parameter);
+      execute(parameter);
     }
 
     public event EventHandler CanExecuteChanged

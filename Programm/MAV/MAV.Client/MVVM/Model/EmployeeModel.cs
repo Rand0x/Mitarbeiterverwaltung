@@ -1,13 +1,11 @@
 ﻿using MAV.Base;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 
-public enum SexEnum { männlich, weiblich, divers }
+public enum Gender { männlich, weiblich, divers }
 
 namespace MAV.Client.MVVM.Model
-{   
+{
     //Model Klasse um Benutzerdaten aus DB zu speichern
     public class EmployeeModel : PropertyChangedBase
     {
@@ -64,8 +62,9 @@ namespace MAV.Client.MVVM.Model
                 birthday = value;
                 OnPropertyChanged();
             }
-        }        
+        }
 
+        // Property zum Binden (OneWay) um Datum im richtigen (europäischen) Format darzustellen
         public string BirthDayAsString
         {
             get 
@@ -85,6 +84,7 @@ namespace MAV.Client.MVVM.Model
             }
         }
 
+        // Property zum Binden (OneWay) um Datum im richtigen (europäischen) Format darzustellen
         public string HireDateAsString
         {
             get
@@ -93,16 +93,16 @@ namespace MAV.Client.MVVM.Model
             }
         }
 
-        private SexEnum sexEn;
-        public SexEnum SexEn
+        private Gender sex;
+        public Gender Sex
         {
             get
             {
-                return sexEn;
+                return sex;
             }
             set
             {
-                sexEn = value;
+                sex = value;
                 OnPropertyChanged();
             }
         }

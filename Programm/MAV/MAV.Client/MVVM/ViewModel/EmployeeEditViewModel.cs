@@ -1,14 +1,11 @@
-﻿using MAV.Base;
-using MAV.Client.MVVM.Model;
+﻿using MAV.Client.MVVM.Model;
 using MAV.Client.MVVM.View;
 using MAV.Helper;
 using ModernWpf.Controls;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Text;
 using System.Windows.Documents;
 
 namespace MAV.Client.MVVM.ViewModel
@@ -38,36 +35,36 @@ namespace MAV.Client.MVVM.ViewModel
             }
         }
 
-        private ObservableCollection<DepartmentModel> m_Departements;
+        private ObservableCollection<DepartmentModel> departements;
         //Liste aller Abteilungen aus DB
         public ObservableCollection<DepartmentModel> Departements
         {
-            get { return m_Departements; }
+            get { return departements; }
             set {
-                if (value != m_Departements)
+                if (value != departements)
                 {
-                    m_Departements = value;
+                    departements = value;
                     OnPropertyChanged();
                 }
             }
         }
 
-        private DepartmentModel m_SelectedDepartement;
+        private DepartmentModel selectedDepartement;
         public DepartmentModel SelectedDepartement
         {
-            get { return m_SelectedDepartement; }
+            get { return selectedDepartement; }
             set
             {
-                if (value != m_SelectedDepartement)
+                if (value != selectedDepartement)
                 {
-                    m_SelectedDepartement = value;
+                    selectedDepartement = value;
                     Employee.Manager = value.ManagerName;
                     OnPropertyChanged();
                 }
             }
         }
 
-        private EmployeeEditView m_Control;
+        private EmployeeEditView control;
 
         #endregion
 
@@ -75,15 +72,15 @@ namespace MAV.Client.MVVM.ViewModel
 
         public EmployeeEditViewModel(int key, EmployeeEditView control, ClientViewModel clientVM) : base(key, clientVM)
         {
-            m_Control = control;
+            this.control = control;
             Departements = new ObservableCollection<DepartmentModel>();
             LoadDepartements();
             CreateCommands();
 
             if (Employee.BonusPaymentList.Count >= 3)
-                m_Control.AddBonusPaymentButton.Visibility = System.Windows.Visibility.Collapsed;
+                this.control.AddBonusPaymentButton.Visibility = System.Windows.Visibility.Collapsed;
             if (Employee.WarningsList.Count >= 3)
-                m_Control.WarningButton.Visibility = System.Windows.Visibility.Collapsed;            
+                this.control.WarningButton.Visibility = System.Windows.Visibility.Collapsed;            
         }
 
         #endregion
@@ -103,198 +100,8 @@ namespace MAV.Client.MVVM.ViewModel
             {
                 ClientVM.DirectoryViewCommand.Execute(null);
             });
-        }
-
-        public void updateRichTextBoxContent()
-        {
-            m_Control.commentBox.Document.Blocks.Clear();
-            m_Control.commentBox.Document.Blocks.Add(new Paragraph(new Run(Employee.Comment)));
-        }
-
-        /// <summary>
-        /// Ändern der Daten eines Mitarbeiters
-        /// </summary>
-        /// <param name="o"></param>
-        private void Save(object o = null)
-        {
-            // Kein Binding möglich
-            Employee.Comment = new TextRange(m_Control.commentBox.Document.ContentStart, m_Control.commentBox.Document.ContentEnd).Text;
-
-            //zusammenstellen der benötigten Parameter für Prozeduraufruf
-            var param = new ObservableCollection<SqlParameter>();
-            param.Add(new SqlParameter("@nKey", Employee.Key));          
-            param.Add(new SqlParameter("@nEmployeeNmb", Employee.EmplyeeNmb));
-            if (Employee.Birthday != null)
-                param.Add(new SqlParameter("@dtBirthdate", Employee.Birthday));
-            if (Employee.LandlineNbr != null)
-                param.Add(new SqlParameter("@szTelephone", Employee.LandlineNbr));
-            if (Employee.LandlineNmbPrivate != null)
-                param.Add(new SqlParameter("@szTelephonePrivate", Employee.LandlineNmbPrivate));
-            if (Employee.EMail != null)
-                param.Add(new SqlParameter("@szMail", Employee.EMail));
-            param.Add(new SqlParameter("@szSex", Employee.SexEn.ToString()));
-            if (SelectedDepartement != null)
-                param.Add(new SqlParameter("@nDepartementLink", SelectedDepartement.Key));
-            if (Employee.Job != null)
-                param.Add(new SqlParameter("@szJobName", Employee.Job));
-            param.Add(new SqlParameter("@nHoursPerWeek", Employee.HoursPerWeek));
-            if (Employee.HireDate != null)
-                param.Add(new SqlParameter("@dtRecruitDate", Employee.HireDate));
-            param.Add(new SqlParameter("@rWage", Employee.Wage));
-            param.Add(new SqlParameter("@nHolidyPerYear", Employee.HolidayPerYear));
-            param.Add(new SqlParameter("@nNoticePeriod", Employee.NoticePeriod));
-            param.Add(new SqlParameter("@nTaxClass", Employee.TaxClass));
-            param.Add(new SqlParameter("@szComment", Employee.Comment));
-            
-            
-
-
-            try
-            {
-                DBProvider.ExecProcedure("sp_AlterEmployee", param);
-
-                SaveChangedWarnings();
-                SaveChangedBonusPayments();
-
-                AddWarnings();
-                AddBonusPayments();
-            }
-            catch (Exception ex)
-            {
-                DialogPopUp("Fehler", ex.Message);
-                return;
-            }            
-
-            DialogPopUp("Erfolgreich geändert", $"Daten von {Employee.FirstName} {Employee.LastName} wurden geändert.");
-
-            //zur Adressliste zurückkehren
-            ClientVM.DirectoryViewCommand.Execute(null);
-        }
-
-        private void AddWarnings()
-        {
-            foreach (var warning in AddedWarningsList)
-            {
-                var param = new ObservableCollection<SqlParameter>();
-                param.Add(new SqlParameter("@nEmployeeLink", Employee.Key));
-                param.Add(new SqlParameter("@szReason", warning.Reason));
-                param.Add(new SqlParameter("@dtIssueDate", warning.IssueDate));
-                param.Add(new SqlParameter("@szComment", warning.Comment));
-
-                try
-                {
-                    DBProvider.ExecProcedure("sp_AddWarning", param);
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
-            }
-        }
-
-        /// <summary>
-        /// speichert die geänderten Warnungen falls vorhanden
-        /// </summary>
-        private void SaveChangedWarnings()
-        {
-            foreach (var warning in Employee.WarningsList)
-            {
-                var param = new ObservableCollection<SqlParameter>();
-                param.Add(new SqlParameter("@nKey", warning.Key));
-                param.Add(new SqlParameter("@szReason", warning.Reason));
-                param.Add(new SqlParameter("@dtIssueDate", warning.IssueDate));
-                param.Add(new SqlParameter("@szComment", warning.Comment));
-
-                try
-                {
-                    DBProvider.ExecProcedure("sp_AlterWarning", param);
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
-            }
-        }
-
-        private void AddBonusPayments()
-        {
-            foreach (var payment in AddedBonusPaymentList)
-            {
-                var param = new ObservableCollection<SqlParameter>();
-                param.Add(new SqlParameter("@nEmployeeLink", Employee.Key));
-                param.Add(new SqlParameter("@szReason", payment.Reason));
-                param.Add(new SqlParameter("@rAmount", payment.Amount));
-                param.Add(new SqlParameter("@dtDateOfPayment", payment.DateOfPayment));
-                param.Add(new SqlParameter("@szComment", payment.Comment));
-
-                try
-                {
-                    DBProvider.ExecProcedure("sp_AddBonusPayment", param);
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
-            }
-        }
-
-        /// <summary>
-        /// speichert die geänderten Bonuszahlungen falls vorhanden
-        /// </summary>
-        private void SaveChangedBonusPayments()
-        {
-            foreach (var payment in Employee.BonusPaymentList)
-            {
-                var param = new ObservableCollection<SqlParameter>();
-                param.Add(new SqlParameter("@nKey", payment.Key));
-                param.Add(new SqlParameter("@szReason", payment.Reason));
-                param.Add(new SqlParameter("@rAmount", payment.Amount));
-                param.Add(new SqlParameter("@dtDateOfPayment", payment.DateOfPayment));
-                param.Add(new SqlParameter("@szComment", payment.Comment));
-
-                try
-                {
-                    DBProvider.ExecProcedure("sp_AlterBonusPayment", param);
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
-            }
-        }
-
-        /// <summary>
-        /// Löschen eines Mitarbeiters aus der DB
-        /// </summary>
-        /// <param name="o"></param>
-        private async void Delete(object o = null)
-        {
-            //Abfrage ob wirklich gelöscht werden soll
-            DeleteEmployeeDialog dialog = new DeleteEmployeeDialog();
-            var result = await dialog.ShowAsync();
-
-            if (result == ContentDialogResult.Primary)
-            {
-                //aus DB löschen
-                var param = new ObservableCollection<SqlParameter>();
-                param.Add(new SqlParameter("@nKey", Employee.Key));
-
-                try
-                {
-                    DBProvider.ExecProcedure("sp_DeleteEmployee", param);
-                }
-                catch(Exception ex)
-                {
-                    DialogPopUp("Fehler", ex.Message);
-                    return;
-                }
-
-                DialogPopUp("Erfolgreich gelöscht", $"Daten von {Employee.FirstName} {Employee.LastName} wurden gelöscht.");
-            }
-            //zur Adressliste zurückkehren
-            ClientVM.DirectoryViewCommand.Execute(null);
-        }
-        #endregion
+        }  
+        #endregion        
 
         #region LoadData
 
@@ -335,21 +142,227 @@ namespace MAV.Client.MVVM.ViewModel
             }
         }
 
+        /// <summary>
+        /// Inhalt der Kommentarbox kann nicht gebunden werden. Mit dieser Funktion wird er manuell aktualisiert 
+        /// </summary>
+        public void UpdateRichTextBoxContent()
+        {
+            control.commentBox.Document.Blocks.Clear();
+            control.commentBox.Document.Blocks.Add(new Paragraph(new Run(Employee.Comment)));
+        }
+
         #endregion
 
+        #region StoreData
+        /// <summary>
+        /// Ändern der Daten eines Mitarbeiters
+        /// </summary>
+        /// <param name="o"></param>
+        private void Save(object o = null)
+        {
+            // Kein Binding möglich
+            Employee.Comment = new TextRange(control.commentBox.Document.ContentStart, control.commentBox.Document.ContentEnd).Text;
+
+            //zusammenstellen der benötigten Parameter für Prozeduraufruf
+            var param = new ObservableCollection<SqlParameter>();
+            param.Add(new SqlParameter("@nKey", Employee.Key));
+            param.Add(new SqlParameter("@nEmployeeNmb", Employee.EmplyeeNmb));
+            if (Employee.Birthday != null)
+                param.Add(new SqlParameter("@dtBirthdate", Employee.Birthday));
+            if (Employee.LandlineNbr != null)
+                param.Add(new SqlParameter("@szTelephone", Employee.LandlineNbr));
+            if (Employee.LandlineNmbPrivate != null)
+                param.Add(new SqlParameter("@szTelephonePrivate", Employee.LandlineNmbPrivate));
+            if (Employee.EMail != null)
+                param.Add(new SqlParameter("@szMail", Employee.EMail));
+            param.Add(new SqlParameter("@szSex", Employee.Sex.ToString()));
+            if (SelectedDepartement != null)
+                param.Add(new SqlParameter("@nDepartementLink", SelectedDepartement.Key));
+            if (Employee.Job != null)
+                param.Add(new SqlParameter("@szJobName", Employee.Job));
+            param.Add(new SqlParameter("@nHoursPerWeek", Employee.HoursPerWeek));
+            if (Employee.HireDate != null)
+                param.Add(new SqlParameter("@dtRecruitDate", Employee.HireDate));
+            param.Add(new SqlParameter("@rWage", Employee.Wage));
+            param.Add(new SqlParameter("@nHolidyPerYear", Employee.HolidayPerYear));
+            param.Add(new SqlParameter("@nNoticePeriod", Employee.NoticePeriod));
+            param.Add(new SqlParameter("@nTaxClass", Employee.TaxClass));
+            param.Add(new SqlParameter("@szComment", Employee.Comment));
+
+            try
+            {
+                DBProvider.ExecProcedure("sp_AlterEmployee", param);
+
+                SaveChangedWarnings();
+                SaveChangedBonusPayments();
+
+                AddWarnings();
+                AddBonusPayments();
+            }
+            catch (Exception ex)
+            {
+                DialogPopUp("Fehler", ex.Message);
+                return;
+            }
+
+            DialogPopUp("Erfolgreich geändert", $"Daten von {Employee.FirstName} {Employee.LastName} wurden geändert.");
+
+            //zur Adressliste zurückkehren
+            ClientVM.DirectoryViewCommand.Execute(null);
+        }
+
+        /// <summary>
+        /// speichert die geänderten Warnungen, falls vorhanden
+        /// </summary>
+        private void SaveChangedWarnings()
+        {
+            foreach (var warning in Employee.WarningsList)
+            {
+                var param = new ObservableCollection<SqlParameter>();
+                param.Add(new SqlParameter("@nKey", warning.Key));
+                param.Add(new SqlParameter("@szReason", warning.Reason));
+                param.Add(new SqlParameter("@dtIssueDate", warning.IssueDate));
+                param.Add(new SqlParameter("@szComment", warning.Comment));
+
+                try
+                {
+                    DBProvider.ExecProcedure("sp_AlterWarning", param);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }        
+
+        /// <summary>
+        /// speichert die geänderten Bonuszahlungen, falls vorhanden
+        /// </summary>
+        private void SaveChangedBonusPayments()
+        {
+            foreach (var payment in Employee.BonusPaymentList)
+            {
+                var param = new ObservableCollection<SqlParameter>();
+                param.Add(new SqlParameter("@nKey", payment.Key));
+                param.Add(new SqlParameter("@szReason", payment.Reason));
+                param.Add(new SqlParameter("@rAmount", payment.Amount));
+                param.Add(new SqlParameter("@dtDateOfPayment", payment.DateOfPayment));
+                param.Add(new SqlParameter("@szComment", payment.Comment));
+
+                try
+                {
+                    DBProvider.ExecProcedure("sp_AlterBonusPayment", param);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }        
+
+        /// <summary>
+        /// Löschen eines Mitarbeiters aus der DB
+        /// </summary>
+        /// <param name="o"></param>
+        private async void Delete(object o = null)
+        {
+            //Abfrage ob wirklich gelöscht werden soll
+            DeleteEmployeeDialog dialog = new DeleteEmployeeDialog();
+            var result = await dialog.ShowAsync();
+
+            if (result == ContentDialogResult.Primary)
+            {
+                //aus DB löschen
+                var param = new ObservableCollection<SqlParameter>();
+                param.Add(new SqlParameter("@nKey", Employee.Key));
+
+                try
+                {
+                    DBProvider.ExecProcedure("sp_DeleteEmployee", param);
+                }
+                catch (Exception ex)
+                {
+                    DialogPopUp("Fehler", ex.Message);
+                    return;
+                }
+
+                DialogPopUp("Erfolgreich gelöscht", $"Daten von {Employee.FirstName} {Employee.LastName} wurden gelöscht.");
+            }
+            //zur Adressliste zurückkehren
+            ClientVM.DirectoryViewCommand.Execute(null);
+        }
+        #endregion
+
+        #region AddData
+
+        /// <summary>
+        /// Erzeugt ein leeres Feld (Vorlage), um neue Abmahnung einzugeben 
+        /// </summary>
         public void AddFieldForWarning()
         {
             AddedWarningsList.Add(new WarningModel { IssueDate = DateTime.Today });
             if (Employee.WarningsList.Count + AddedWarningsList.Count >= 3)
-                m_Control.WarningButton.Visibility = System.Windows.Visibility.Collapsed;
+                control.WarningButton.Visibility = System.Windows.Visibility.Collapsed;
         }
 
-
+        /// <summary>
+        /// Erzeugt ein leeres Feld (Vorlage), um neue Bonuszahlung einzugeben 
+        /// </summary>
         public void AddFieldForBonusPayment()
         {
             AddedBonusPaymentList.Add(new BonusPaymentModel { DateOfPayment = DateTime.Today });
             if (Employee.BonusPaymentList.Count + AddedBonusPaymentList.Count >= 3)
-                m_Control.AddBonusPaymentButton.Visibility = System.Windows.Visibility.Collapsed;
+                control.AddBonusPaymentButton.Visibility = System.Windows.Visibility.Collapsed;
         }
+
+        /// <summary>
+        /// Fügt eine neue Bonuszahlung hinzu, falls eine erstellt wurde 
+        /// </summary>
+        private void AddBonusPayments()
+        {
+            foreach (var payment in AddedBonusPaymentList)
+            {
+                var param = new ObservableCollection<SqlParameter>();
+                param.Add(new SqlParameter("@nEmployeeLink", Employee.Key));
+                param.Add(new SqlParameter("@szReason", payment.Reason));
+                param.Add(new SqlParameter("@rAmount", payment.Amount));
+                param.Add(new SqlParameter("@dtDateOfPayment", payment.DateOfPayment));
+                param.Add(new SqlParameter("@szComment", payment.Comment));
+
+                try
+                {
+                    DBProvider.ExecProcedure("sp_AddBonusPayment", param);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Fügt eine neue Abmahnung hinzu, falls eine erstellt wurde 
+        /// </summary>
+        private void AddWarnings()
+        {
+            foreach (var warning in AddedWarningsList)
+            {
+                var param = new ObservableCollection<SqlParameter>();
+                param.Add(new SqlParameter("@nEmployeeLink", Employee.Key));
+                param.Add(new SqlParameter("@szReason", warning.Reason));
+                param.Add(new SqlParameter("@dtIssueDate", warning.IssueDate));
+                param.Add(new SqlParameter("@szComment", warning.Comment));
+
+                try
+                {
+                    DBProvider.ExecProcedure("sp_AddWarning", param);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+        #endregion
     }
 }

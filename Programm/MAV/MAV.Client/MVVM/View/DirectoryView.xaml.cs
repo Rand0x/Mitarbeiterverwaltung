@@ -1,17 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using MAV.Base;
 using MAV.Client.MVVM.ViewModel;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using MAV.Base;
 
 namespace MAV.Client.MVVM.View
 {
@@ -28,55 +19,104 @@ namespace MAV.Client.MVVM.View
                 CtxMenuEditButton.Visibility = Visibility.Collapsed;
         }
 
-        private void sortFirstName(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Sortieren der Adressliste alphabetisch nach Vornamen der Mitarbeiter
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnSortFirstName(object sender, RoutedEventArgs e)
         {
             ((DirectoryViewModel)this.DataContext).OrderByFirstName();
         }
 
-        private void sortLastName(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Sortieren der Adressliste alphabetisch nach Nachnamen der Mitarbeiter
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnSortLastName(object sender, RoutedEventArgs e)
         {
             ((DirectoryViewModel)this.DataContext).OrderByLastName();
         }
 
-        private void sortLandlineNbr(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Sortieren der Adressliste nach Telefonnummern der Mitarbeiter (oberste == kleinste Nummer) 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnSortLandlineNbr(object sender, RoutedEventArgs e)
         {
             ((DirectoryViewModel)this.DataContext).OrderByLandlineNbr();
         }
 
-        private void sortEmployeeNbr(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Sortieren der Adressliste nach Mitarbeiternummern der Mitarbeiter (oberste == kleinste Nummer) 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnSortEmployeeNbr(object sender, RoutedEventArgs e)
         {
             ((DirectoryViewModel)this.DataContext).OrderByEmployeeNbr();
         }
 
-        private void sortDepartment(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Sortieren der Adressliste alphabetisch nach Abteilungen
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnSortDepartment(object sender, RoutedEventArgs e)
         {
             ((DirectoryViewModel)this.DataContext).OrderByDepartment();
         }
 
-        void ListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        /// <summary>
+        /// Bei Doppelklick wird InfoView (Seite mit Informationen) des Mitarbeiters geöffnet
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             ((DirectoryViewModel)this.DataContext).EmployeeInfoViewCommand.Execute(null);
         }
 
-        private void cmbDepartments_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        /// <summary>
+        /// Bei Änderung der Auswahl einer Abteilung wird die gesamte Adressliste nach Mitarbeitern dieser gefiltert
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CmbDepartments_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ((DirectoryViewModel)this.DataContext).LoadAddressListCommand.Execute(null);
         }
 
+        /// <summary>
+        /// InfoView (Seite mit Informationen) des Mitarbeiters geöffnet
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnCtxMenuInfo(object sender, RoutedEventArgs e)
         {
             ((DirectoryViewModel)this.DataContext).EmployeeInfoViewCommand.Execute(null);
         }
 
+        /// <summary>
+        /// EditView (Seite zum Bearbeiten) des Mitarbeiters wird geöffnet
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnCtxMenuEdit(object sender, RoutedEventArgs e)
         {
             ((DirectoryViewModel)this.DataContext).EmployeeEditViewCommand.Execute(null);
         }
 
-        private void controlsSearchBox_QuerySubmitted(ModernWpf.Controls.AutoSuggestBox sender, ModernWpf.Controls.AutoSuggestBoxQuerySubmittedEventArgs args)
+        /// <summary>
+        /// Bei Eingabe eines Namen (Vor- und/oder Nachname ) wird Adressliste danach gefiltert, d.h. der Mitarbeiter gesucht
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
+        private void ControlsSearchBox_QuerySubmitted(ModernWpf.Controls.AutoSuggestBox sender, ModernWpf.Controls.AutoSuggestBoxQuerySubmittedEventArgs args)
         {
             ((DirectoryViewModel)this.DataContext).LoadAddressListCommand.Execute(sender.Text);
         }
-
     }
 }

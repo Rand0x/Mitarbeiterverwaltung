@@ -1,10 +1,6 @@
 ﻿using MAV.Base;
 using MAV.Client.MVVM.View;
 using MAV.Helper;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
 
 namespace MAV.Client.MVVM.ViewModel
 {
@@ -33,29 +29,29 @@ namespace MAV.Client.MVVM.ViewModel
         public EmployeeInfoView EmployeeInfo { get; set; }
         public EmployeeEditView EmployeeEdit { get; set; }
 
-        private object _currentView;
+        private object currentView;
         //Verweis auf aktuell angezeigtes UserControl
         public object CurrentView
         {
-            get { return _currentView; }
+            get { return currentView; }
             set
             {
-                _currentView = value;
-                if (_currentView == Directory)
+                currentView = value;
+                if (currentView == Directory)
                     ((DirectoryViewModel)Directory.DataContext).LoadAddressList(); //neuladen der Adressliste
                 OnPropertyChanged();
             }
         }
 
-        private ClientView m_Control;
+        private ClientView control;
         //Verweis auf ClientControl
         public ClientView Control
         {
-            get { return m_Control; }
+            get { return control; }
             private set {
-                if (value != m_Control)
+                if (value != control)
                 {
-                    m_Control = value;
+                    control = value;
                     OnPropertyChanged();
                 }
             }

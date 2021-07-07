@@ -22,7 +22,7 @@
 
         <DockPanel LastChildFill="False" Grid.Row="1">
             <ComboBox x:Name="cmbDepartments"                
-                SelectionChanged="cmbDepartments_SelectionChanged"
+                SelectionChanged="CmbDepartments_SelectionChanged"
                 DockPanel.Dock="Right"
                 Margin="12"
                 Width="200"
@@ -41,7 +41,7 @@
                 Width="200"
                 PlaceholderText="Suchen"
                 QueryIcon="Find"
-                QuerySubmitted="controlsSearchBox_QuerySubmitted"/>
+                QuerySubmitted="ControlsSearchBox_QuerySubmitted"/>
         </DockPanel>
 
         <ListView Margin="10" Name="lvUsers" Grid.Row="2" ItemsSource="{Binding AddressList}" SelectedItem="{Binding SelectedEmployee}" MouseDoubleClick="ListView_MouseDoubleClick">
@@ -63,27 +63,27 @@
                 <GridView>
                     <GridViewColumn Width="120"  DisplayMemberBinding="{Binding FirstName}">
                         <GridViewColumn.Header>
-                            <GridViewColumnHeader Tag="Vorname" Click="sortFirstName">Vorname</GridViewColumnHeader>
+                            <GridViewColumnHeader Tag="Vorname" Click="OnSortFirstName">Vorname</GridViewColumnHeader>
                         </GridViewColumn.Header>
                     </GridViewColumn>
                     <GridViewColumn  Width="120" DisplayMemberBinding="{Binding LastName}">
                         <GridViewColumn.Header>
-                            <GridViewColumnHeader Tag="Nachname" Click="sortLastName">Nachname</GridViewColumnHeader>
+                            <GridViewColumnHeader Tag="Nachname" Click="OnSortLastName">Nachname</GridViewColumnHeader>
                         </GridViewColumn.Header>
                     </GridViewColumn>
                     <GridViewColumn Width="150" DisplayMemberBinding="{Binding Department}">
                         <GridViewColumn.Header>
-                            <GridViewColumnHeader Tag="Abteilung" Click="sortDepartment" >Abteilung</GridViewColumnHeader>
+                            <GridViewColumnHeader Tag="Abteilung" Click="OnSortDepartment" >Abteilung</GridViewColumnHeader>
                         </GridViewColumn.Header>
                     </GridViewColumn>
                     <GridViewColumn Width="170" DisplayMemberBinding="{Binding LandlineNbr}">
                         <GridViewColumn.Header>
-                            <GridViewColumnHeader Tag="Telefon (geschäftlich)" Click="sortLandlineNbr" >Telefon (geschäftlich)</GridViewColumnHeader>
+                            <GridViewColumnHeader Tag="Telefon (geschäftlich)" Click="OnSortLandlineNbr" >Telefon (geschäftlich)</GridViewColumnHeader>
                         </GridViewColumn.Header>
                     </GridViewColumn>
                     <GridViewColumn Width="170" DisplayMemberBinding="{Binding EmployeeNumber}">
                         <GridViewColumn.Header>
-                            <GridViewColumnHeader Tag="Mitarbeiternummer" Click="sortEmployeeNbr" >Mitarbeiternummer</GridViewColumnHeader>
+                            <GridViewColumnHeader Tag="Mitarbeiternummer" Click="OnSortEmployeeNbr" >Mitarbeiternummer</GridViewColumnHeader>
                         </GridViewColumn.Header>
                     </GridViewColumn>
                 </GridView>

@@ -97,7 +97,7 @@
                             <!--<TextBlock Text="Familienstand" Foreground="#5B5B5B" FontSize="16"/>
                             <TextBox Text="{Binding Employee.MaritalDesc}" Margin ="0,0,10,10" FontSize="16"/>-->
                             <TextBlock Text="Geschlecht" Foreground="#5B5B5B" FontSize="16"/>
-                            <ComboBox x:Name="cbxSex" SelectedItem="{Binding Employee.SexEn}" Margin ="0,0,10,10" 
+                            <ComboBox x:Name="cbxSex" SelectedItem="{Binding Employee.Sex}" Margin ="0,0,10,10" 
                                       FontSize="16" HorizontalAlignment="Stretch"/>
                         </StackPanel>
                     </Expander>
@@ -226,7 +226,7 @@
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
                             <Button x:Name="AddBonusPaymentButton" Content="&#xE109;" FontSize="18" FontFamily="Segoe MDL2 Assets" 
-                                    VerticalAlignment="Center" Click="AddBonusPaymentButton_Click"/>
+                                    VerticalAlignment="Center" Click="OnAddBonusPayment"/>
                         </StackPanel>
                     </Expander>
                     <Expander ExpandDirection="Down" IsExpanded="False" VerticalAlignment="Top">
@@ -265,7 +265,7 @@
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
                             <Button x:Name="WarningButton" Content="&#xE109;" FontSize="18" FontFamily="Segoe MDL2 Assets" 
-                                    VerticalAlignment="Center" Click="WarningButton_Click"/>
+                                    VerticalAlignment="Center" Click="OnAddWarning"/>
                         </StackPanel>
                     </Expander>
                 </StackPanel>

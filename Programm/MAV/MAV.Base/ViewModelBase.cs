@@ -1,27 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MAV.Base
+﻿namespace MAV.Base
 {
     //Basisklasse für ViewModels um auf Benutzer zuzugreifen
     public class ViewModelBase : PropertyChangedBase
     {
-        private UserModel m_User;
+        private UserModel user;
         public UserModel User
         {
-            get => m_User;
+            get => user;
         }
 
         //Properties um auf wichtige Variablen wie Recht zuzugreifen
-        public int UserKey => m_User.UserKey;
-        public int? EmployeeKey => m_User.EmployeeKey;
-        public int Right => m_User.Right;
-        public string RightName => m_User.RightName;
+        public int UserKey => user.UserKey;
+        public int? EmployeeKey => user.EmployeeKey;
+        public int Right => user.Right;
+        public string RightName => user.RightName;
 
         public ViewModelBase(UserModel user)
         {
-            m_User = user;
+            this.user = user;
         }
 
     }

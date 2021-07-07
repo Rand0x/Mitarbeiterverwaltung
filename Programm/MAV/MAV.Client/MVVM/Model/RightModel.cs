@@ -1,49 +1,46 @@
 ﻿using MAV.Base;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace MAV.Client.MVVM.Model
 {
     //Model Klasse um aus DB gelesene Rechte zu speichern
     public class RightModel : PropertyChangedBase
     {
-        private int m_Key;
+        private int key;
         public int Key
         {
-            get { return m_Key; }
+            get { return key; }
             set {
-                if (value != m_Key)
+                if (value != key)
                 {
-                    m_Key = value;
+                    key = value;
                     OnPropertyChanged();
                 }
             }
         }
 
-        private string m_Name;
+        private string name;
         public string Name
         {
-            get { return m_Name; }
+            get { return name; }
             set
             {
-                if (value != m_Name)
+                if (value != name)
                 {
-                    m_Name = value;
+                    name = value;
                     OnPropertyChanged();
                 }
             }
         }
 
-        private string m_Info;
+        private string info;
         public string Info
         {
-            get { return m_Info; }
+            get { return info; }
             set
             {
-                if (value != m_Info)
+                if (value != info)
                 {
-                    m_Info = value;
+                    info = value;
                     OnPropertyChanged();
                 }
             }

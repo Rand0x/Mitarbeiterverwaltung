@@ -1,69 +1,63 @@
-﻿using MAV.Base;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MAV.Base
+﻿namespace MAV.Base
 {
     public class UserModel : PropertyChangedBase
     {
-
         #region Properties
 
         //nKey des User aus tblUser
-        private int m_UserKey;
+        private int userKey;
         public int UserKey
         {
-            get { return m_UserKey; }
+            get { return userKey; }
             set {
-                if (value != m_UserKey)
+                if (value != userKey)
                 {
-                    m_UserKey = value;
+                    userKey = value;
                     OnPropertyChanged();
                 }
             }
         }
 
         //nKey des evtl. Mitarbeiters aus tblEmployee
-        private int? m_EmployeeKey;
+        private int? employeeKey;
         public int? EmployeeKey
         {
-            get { return m_EmployeeKey; }
+            get { return employeeKey; }
             private set
             {
-                if (value != m_EmployeeKey)
+                if (value != employeeKey)
                 {
-                    m_EmployeeKey = value;
+                    employeeKey = value;
                     OnPropertyChanged();
                 }
             }
         }
 
         //nKey des Rechts aus tblRight
-        private int m_Right;
+        private int right;
         public int Right
         {
-            get { return m_Right; }
+            get { return right; }
             private set
             {
-                if (value != m_Right)
+                if (value != right)
                 {
-                    m_Right = value;
+                    right = value;
                     OnPropertyChanged();
                 }
             }
         }
 
         //szName des Rechts aus tblRight 
-        private string m_RightName;
+        private string rightName;
         public string RightName
         {
-            get { return m_RightName; }
+            get { return rightName; }
             private set
             {
-                if (value != m_RightName)
+                if (value != rightName)
                 {
-                    m_RightName = value;
+                    rightName = value;
                     OnPropertyChanged();
                 }
             }

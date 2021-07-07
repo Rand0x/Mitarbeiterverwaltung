@@ -8,7 +8,6 @@ using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
 
 namespace MAV.Client.MVVM.ViewModel
 {
@@ -16,73 +15,73 @@ namespace MAV.Client.MVVM.ViewModel
     {
         #region Properties
 
-        private List<AddressEntryModel> m_AddressList;
+        private List<AddressEntryModel> addressList;
         //Liste aller Elemente in der Adressliste
         public List<AddressEntryModel> AddressList
         {
-            get { return m_AddressList; }
+            get { return addressList; }
             set
             {
-                if (value != m_AddressList)
+                if (value != addressList)
                 {
-                    m_AddressList = value;
+                    addressList = value;
                     OnPropertyChanged();
                 }
             }
         }
 
-        private AddressEntryModel m_SelectedEmployee;
+        private AddressEntryModel selectedEmployee;
         public AddressEntryModel SelectedEmployee
         {
-            get { return m_SelectedEmployee; }
+            get { return selectedEmployee; }
             set
             {
-                if (value != m_SelectedEmployee)
+                if (value != selectedEmployee)
                 {
-                    m_SelectedEmployee = value;
+                    selectedEmployee = value;
                     OnPropertyChanged();
                 }
             }
         }
 
-        private ObservableCollection<DepartmentModel> m_Departements;
+        private ObservableCollection<DepartmentModel> departements;
         //Liste aller Abteilungen
         public ObservableCollection<DepartmentModel> Departements
         {
-            get { return m_Departements; }
+            get { return departements; }
             set {
-                if (value != m_Departements)
+                if (value != departements)
                 {
-                    m_Departements = value;
+                    departements = value;
                     OnPropertyChanged();
                 }
             }
         }
 
-        private DepartmentModel m_SelectedDepartement;
+        private DepartmentModel selectedDepartement;
         public DepartmentModel SelectedDepartement
         {
-            get { return m_SelectedDepartement; }
+            get { return selectedDepartement; }
             set
             {
-                if (value != m_SelectedDepartement)
+                if (value != selectedDepartement)
                 {
-                    m_SelectedDepartement = value;
+                    selectedDepartement = value;
                     OnPropertyChanged();
                 }
             }
         }
 
-        private ClientViewModel m_ClientVM;
+        private ClientViewModel clientVM;
         //ViewModel des Clients
         public ClientViewModel ClientVM
         {
-            get { return m_ClientVM; }
+            get { return clientVM; }
             set
             {
-                if (value != m_ClientVM)
+                if (value != clientVM)
                 {
-                    m_ClientVM = value;
+                    clientVM = value;
                     OnPropertyChanged();
                 }
             }
@@ -192,7 +191,6 @@ namespace MAV.Client.MVVM.ViewModel
                     Department = row["szDepartement"].ToString()
                 });
             }
-
             //Sortieren nach Vornamen
             OrderByFirstName();
         }

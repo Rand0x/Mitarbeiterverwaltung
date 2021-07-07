@@ -16,78 +16,78 @@ namespace MAV.Client.MVVM.ViewModel
     {
         #region Properties
 
-        private ObservableCollection<DepartmentModel> m_Departements;
+        private ObservableCollection<DepartmentModel> departements;
         //Liste aller Abteilungen aus DB
         public ObservableCollection<DepartmentModel> Departements
         {
-            get { return m_Departements; }
+            get { return departements; }
             set
             {
-                if (value != m_Departements)
+                if (value != departements)
                 {
-                    m_Departements = value;
+                    departements = value;
                     OnPropertyChanged();
                 }
             }
         }               
 
-        private DepartmentModel m_SelectedDepartement;
+        private DepartmentModel selectedDepartement;
         public DepartmentModel SelectedDepartement
         {
-            get { return m_SelectedDepartement; }
+            get { return selectedDepartement; }
             set
             {
-                if (value != m_SelectedDepartement)
+                if (value != selectedDepartement)
                 {
-                    m_SelectedDepartement = value;
+                    selectedDepartement = value;
                     OnPropertyChanged();
                 }
             }
         }
 
-        private AddEmployeeView m_Control;
+        private AddEmployeeView control;
         public AddEmployeeView Control
         {
-            get { return m_Control; }
+            get { return control; }
             private set
             {
-                if (value != m_Control)
+                if (value != control)
                 {
-                    m_Control = value;
+                    control = value;
                     OnPropertyChanged();
                 }
             }
         }
 
-        private string m_FirstName;
+        private string firstName;
         public string FirstName
         {
-            get { return m_FirstName; }
+            get { return firstName; }
             set
             {
-                if (value != m_FirstName)
+                if (value != firstName)
                 {
-                    m_FirstName = value;
+                    firstName = value;
                     OnPropertyChanged();
                 }
             }
         }
 
-        private string m_LastName;
+        private string lastName;
         public string LastName
         {
-            get { return m_LastName; }
+            get { return lastName; }
             set
             {
-                if (value != m_LastName)
+                if (value != lastName)
                 {
-                    m_LastName = value;
+                    lastName = value;
                     OnPropertyChanged();
                 }
             }
         }
 
-        int generatedPersNr;
+        private int generatedPersNr;
 
         #endregion
 
@@ -121,10 +121,15 @@ namespace MAV.Client.MVVM.ViewModel
 
         #region Implementation
 
+        /// <summary>
+        /// Hinzufügen eines neuen Mitarbeiters zur Datenbank, falls alle Eingaben gemacht wurden
+        /// </summary>
+        /// <param name="parameter"></param>
         private void AddEmployee(object parameter = null)
         {
             bool persNrNotAvailable = false;
 
+            // Fehlermeldung (Dialog-Fenster), falls notwendige Daten zum Hinzufügen eines Mitarbeiters fehlen 
             if (LastName is null || LastName == String.Empty ||  FirstName is null || FirstName == String.Empty || Control.cbxSex.SelectedItem is null
                 || Control.dpBirthday.SelectedDate is null || Control.dpHireDate.SelectedDate is null || SelectedDepartement is null)
             {
@@ -138,7 +143,7 @@ namespace MAV.Client.MVVM.ViewModel
                 {
                     persNr = generatedPersNr;
                 }
-                else // Ansonsten die Eingabe Prüfen und verwenden
+                else // Ansonsten die Eingabe (Wunschpersonalnummer) prüfen und verwenden
                 {
                     try
                     {
@@ -181,7 +186,8 @@ namespace MAV.Client.MVVM.ViewModel
                     return;
                 }
 
-                if(persNrNotAvailable)
+                //Alternatives Dialog-Fenster, wenn die gewünschte Pers.Nr. nicht verfügbar war und die Generierte verwendet wurde
+                if(persNrNotAvailable)  
                     DialogPopUp("Erfolgreich hinzugefügt", "Gewünschte Mitarbeiternummer ist leider nicht verfügbar.",
                     $"{Control.FirstName.Text} {Control.LastName.Text} wurde mit generierter Mitarbeiternummer {persNr} angelegt");
                 else
@@ -191,7 +197,6 @@ namespace MAV.Client.MVVM.ViewModel
                 ClearBoxes();
             }
         }
-
 
         /// <summary>
         /// Funktion zum Generieren einer neuen Personalnummer
@@ -223,7 +228,7 @@ namespace MAV.Client.MVVM.ViewModel
         }
 
         /// <summary>
-        /// Prüfen, ob die ingegebene PersNr bereits vergeben wurde
+        /// Prüfen, ob die eingegebene PersNr bereits vergeben ist
         /// </summary>
         /// <param name="choosenPersNr">Eingegebene Personalnummer</param>
         /// <returns></returns>
@@ -257,7 +262,12 @@ namespace MAV.Client.MVVM.ViewModel
             return available;
         }
 
-
+        /// <summary>
+        /// Beim Aufrufen erscheint ein Dialog-Fenster
+        /// </summary>
+        /// <param name="title">Title des Fensters</param>
+        /// <param name="firstLine">Erste Zeile des Fensters</param>
+        /// <param name="secondLine">Zweite Zeile des Fensters</param>
         private void DialogPopUp(string title, string firstLine, string secondLine = "")
         {
             Dialog dialog = new Dialog();
@@ -267,6 +277,9 @@ namespace MAV.Client.MVVM.ViewModel
             var result = dialog.ShowAsync();
         }
 
+        /// <summary>
+        /// Alle Felder zur Eingabe von Daten werden wieder auf Startzustand zurückgesetzt
+        /// </summary>
         private void ClearBoxes()
         {
             Control.FirstName.Text = null;
@@ -319,5 +332,4 @@ namespace MAV.Client.MVVM.ViewModel
         }
         #endregion
     }
-
 }

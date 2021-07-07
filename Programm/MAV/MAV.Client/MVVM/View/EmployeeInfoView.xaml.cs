@@ -11,14 +11,16 @@ namespace MAV.Client.MVVM.View
     /// </summary>
     public partial class EmployeeInfoView : UserControl
     {
-        private EmployeeInfoViewModel InfoVM;
+        private EmployeeInfoViewModel infoVM;
 
         public EmployeeInfoView(object key, UserModel user, ClientViewModel clientVM)
         {
-            InfoVM = new EmployeeInfoViewModel(int.Parse(key.ToString()), clientVM);
-            this.DataContext = InfoVM;
+            infoVM = new EmployeeInfoViewModel(int.Parse(key.ToString()), clientVM);
+            this.DataContext = infoVM;
             InitializeComponent();
-                        
+            
+            // Wenn der angemeldete Benutzer nicht die nötige Berechtigung hat, wird der Button zum Bearbeiten und die
+            // Informationsfelder der perönlichen Daten ausgeblendet
             if (user.Right > 2)
             {
                 EditButton.Visibility = Visibility.Hidden;
@@ -26,17 +28,19 @@ namespace MAV.Client.MVVM.View
                 sensibleData2.Visibility = Visibility.Hidden;
             }
 
-            if (InfoVM.Employee.WarningsList.Count == 0)
+            // Sind keine Abmahnungen, Bonus-Zahlungen oder Kommentar über den Mitarbeiter vorhanden, werden jeweils die Expander hierfür deaktiviert
+            if (infoVM.Employee.WarningsList.Count == 0)
                 ExpanderWarnings.IsEnabled = false;            
 
-            if (InfoVM.Employee.BonusPaymentList.Count == 0)
+            if (infoVM.Employee.BonusPaymentList.Count == 0)
                 ExpanderBonusPayments.IsEnabled = false;            
 
-            if (InfoVM.Employee.Comment == string.Empty)
+            if (infoVM.Employee.Comment == string.Empty)
                 ExpanderComment.IsEnabled = false;
 
+            // Inhalt der Kommentarbox kann nicht gebunden werden. Daher wird der Inhalt hiermit manuell eingefügt
             commentBox.Document.Blocks.Clear();
-            commentBox.Document.Blocks.Add(new Paragraph(new Run(InfoVM.Employee.Comment)));                
+            commentBox.Document.Blocks.Add(new Paragraph(new Run(infoVM.Employee.Comment)));                
         }
     }
 }
