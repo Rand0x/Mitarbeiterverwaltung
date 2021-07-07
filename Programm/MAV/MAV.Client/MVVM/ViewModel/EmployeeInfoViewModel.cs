@@ -3,11 +3,9 @@ using MAV.Client.MVVM.Model;
 using MAV.Client.MVVM.View;
 using MAV.Helper;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Text;
 
 namespace MAV.Client.MVVM.ViewModel
 {
@@ -15,30 +13,30 @@ namespace MAV.Client.MVVM.ViewModel
     {
         #region Properties
 
-        private EmployeeModel m_Employee;
+        private EmployeeModel employee;
         //ausgewählter Mitarbeiter
         public EmployeeModel Employee
         {
-            get { return m_Employee; }
+            get { return employee; }
             set
             {
-                if (value != m_Employee)
+                if (value != employee)
                 {
-                    m_Employee = value;
+                    employee = value;
                     OnPropertyChanged();
                 }
             }
         }
 
-        private ClientViewModel m_ClientVM;
+        private ClientViewModel clientVM;
         public ClientViewModel ClientVM
         {
-            get { return m_ClientVM; }
+            get { return clientVM; }
             set
             {
-                if (value != m_ClientVM)
+                if (value != clientVM)
                 {
-                    m_ClientVM = value;
+                    clientVM = value;
                     OnPropertyChanged();
                 }
             }
@@ -71,7 +69,7 @@ namespace MAV.Client.MVVM.ViewModel
 
         #endregion
 
-        #region Implementation
+        #region LoadData
 
         /// <summary>
         /// Laden der Daten des ausgewählten Mitarbeiters
@@ -137,13 +135,13 @@ namespace MAV.Client.MVVM.ViewModel
                     switch (sex[0])
                     {
                         case 'm':
-                            Employee.SexEn = SexEnum.männlich;
+                            Employee.Sex = Gender.männlich;
                             break;
                         case 'd':
-                            Employee.SexEn = SexEnum.divers;
+                            Employee.Sex = Gender.divers;
                             break;
                         default:
-                            Employee.SexEn = SexEnum.weiblich;
+                            Employee.Sex = Gender.weiblich;
                             break;
                     }
                 }
@@ -152,6 +150,10 @@ namespace MAV.Client.MVVM.ViewModel
             LoadBonusPayments(key);
         }
 
+        /// <summary>
+        /// Laden der Abmahnungen des ausgewählten Mitarbeiters
+        /// </summary>
+        /// <param name="key"></param>
         private void LoadWarnings(int key)
         {
             DataTable data;
@@ -181,6 +183,10 @@ namespace MAV.Client.MVVM.ViewModel
             }
         }
 
+        /// <summary>
+        /// Laden der Bonus-Zahlungen des ausgewählten Mitarbeiters
+        /// </summary>
+        /// <param name="key"></param>
         private void LoadBonusPayments(int key)
         {
             DataTable data;
