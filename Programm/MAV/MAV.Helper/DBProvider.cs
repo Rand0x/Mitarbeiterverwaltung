@@ -10,29 +10,44 @@ namespace MAV.Helper
 {
     public class DBProvider
     {
+        /// <summary>
+        /// gibt Verbindungsstring für unseren SQL-Server zurück
+        /// </summary>
+        /// <returns></returns>
         public static string GetConnectionString()
         {
-            #region Private
             return "Data Source=141.75.150.78,49724\\MAVSQL01;Initial Catalog=dbMAV;User ID=sa;Password=MAVAdmin01";
-            #endregion
         }
 
+        /// <summary>
+        /// Liefert Connection zum SQL-Server
+        /// </summary>
+        /// <returns></returns>
         public static SqlConnection GetConnection()
         {
             return new SqlConnection(GetConnectionString());
         }
 
+        /// <summary>
+        /// Führt Prozedur auf SQL-Server aus
+        /// </summary>
+        /// <param name="proc">Prozedurname</param>
+        /// <param name="param">(optionale) Übergabeparameter</param>
+        /// <returns></returns>
         public static DataTable ExecProcedure(string proc, ObservableCollection<SqlParameter> param = null)
         {
             var result = new DataTable();
 
             try
             {
+                //Verbindung zum Server aufbauen
                 using (var con = GetConnection())
                 {
+                    //Prozedur angeben
                     var cmd = new SqlCommand(proc, con);
                     cmd.CommandType = CommandType.StoredProcedure;
 
+                    //falls vorhanden Parameter übergeben
                     if (param != null)
                     {
                         foreach (var par in param)
@@ -41,20 +56,25 @@ namespace MAV.Helper
                         }
                     }
 
+                    //Verbindung öffnen
                     con.Open();
 
+                    //Result aus Datenbank abspeichern
                     using (var adapter = new SqlDataAdapter(cmd))
                     {
                         adapter.Fill(result);
                     }
 
+                    //Verbindung schließen
                     con.Close();
                 }
             }
-            catch (Exception ex)
+            catch (Exception ex) //Fehler aus Datenbank abfangen und weiterleiten
             {
                 throw ex;
             }
+
+            //Ergebnis aus Datenbank zurückgeben 
             return result;
         }
     }
