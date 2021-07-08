@@ -3,31 +3,48 @@ using System.Windows.Input;
 
 namespace MAV.Helper
 {
-  public class RelayCommand : ICommand
-  {
-    private Action<object> execute;
-    private Func<object ,bool> canExecute;
-
-    public RelayCommand(Action<object> ex, Func<object, bool> canex = null)
+    /// <summary>
+    /// Hilfsklasse zum Ausführen von Commands
+    /// </summary>
+    public class RelayCommand : ICommand
     {
-      execute = ex;
-      canExecute = canex;
-    }
+        //Delegate zum Ausführen der gewünschten Methode
+        private Action<object> execute;
+        //Delegate zum testen ob gewünschte Methode ausgeführt werden kann
+        private Func<object, bool> canExecute;
 
-    public bool CanExecute(object parameter)
-    {
-      return canExecute is null ? true : canExecute(parameter);
-    }
+        public RelayCommand(Action<object> ex, Func<object, bool> canex = null)
+        {
+            execute = ex;
+            canExecute = canex;
+        }
 
-    public void Execute(object parameter)
-    {
-      execute(parameter);
-    }
+        /// <summary>
+        /// Ruft übergebenen Methode auf (falls vorhanden), ob Command-Mehtode ausgeführt werden darf
+        /// </summary>
+        /// <param name="parameter"></param>
+        /// <returns></returns>
+        public bool CanExecute(object parameter)
+        {
+            return canExecute is null ? true : canExecute(parameter);
+        }
 
-    public event EventHandler CanExecuteChanged
-    {
-      add { CommandManager.RequerySuggested += value; }
-      remove { CommandManager.RequerySuggested -= value; }
+        /// <summary>
+        /// Führt Command-Methode aus
+        /// </summary>
+        /// <param name="parameter"></param>
+        public void Execute(object parameter)
+        {
+            execute(parameter);
+        }
+
+        /// <summary>
+        /// EventHandler für Commands
+        /// </summary>
+        public event EventHandler CanExecuteChanged
+        {
+            add { CommandManager.RequerySuggested += value; }
+            remove { CommandManager.RequerySuggested -= value; }
+        }
     }
-  }
 }
